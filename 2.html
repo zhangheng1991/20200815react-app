@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .test {
+      border: 1px solid red;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+      background-color: #F5F5F5;
+    }
+
+    /*定义滚动条轨道 内阴影+圆角*/
+    ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      background-color: #F5F5F5;
+    }
+
+    /*定义滑块 内阴影+圆角*/
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <input class="input" type="text" placeholder="请输入手机号">
+  <select id="select" onfocus="selectFocus()">
+    <option onclick="selectClick()">1</option>
+    <option onclick="selectClick()">2</option>
+    <option onclick="selectClick()">3</option>
+    <option onclick="selectClick()">4</option>
+    <option onclick="selectClick()">5</option>
+    <option onclick="selectClick()">1</option>
+    <option onclick="selectClick()">2</option>
+    <option onclick="selectClick()">3</option>
+    <option onclick="selectClick()">4</option>
+    <option onclick="selectClick()">5</option>
+    <option onclick="selectClick()">1</option>
+    <option onclick="selectClick()">2</option>
+    <option onclick="selectClick()">3</option>
+    <option onclick="selectClick()">4</option>
+    <option onclick="selectClick()">5</option>
+    <option onclick="selectClick()">1</option>
+    <option onclick="selectClick()">2</option>
+    <option onclick="selectClick()">3</option>
+    <option onclick="selectClick()">4</option>
+    <option onclick="selectClick()">5</option>
+    <option onclick="selectClick()">1</option>
+    <option onclick="selectClick()">2</option>
+    <option onclick="selectClick()">3</option>
+    <option onclick="selectClick()">4</option>
+    <option onclick="selectClick()">5</option>
+    <option onclick="selectClick()">1</option>
+    <option onclick="selectClick()">2</option>
+    <option onclick="selectClick()">3</option>
+    <option onclick="selectClick()">4</option>
+    <option onclick="selectClick()">5</option>
+  </select>
+  <input id="show" type="text" name=""> <br />
+  <select id="words">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+    <option>D</option>
+    <option>E</option>
+    <option>F</option>
+    <option>G</option>
+  </select>
+  <div id="dddd"></div>
+  <script type="text/javascript">
+    // document.getElementById("dddd").write("<p>这是一个p</p>");
+    // document.getElementById("dddd").append('html字符串');
+    var frameDiv = document.createElement("div");//创建一个标签
+    frameDiv.innerHTML = "2222";
+    frameDiv.style.width = '100px';
+    frameDiv.style.height = '100px';
+    var bodyFa = document.getElementById("dddd");//通过id号获取frameDiv 的父类（也就是上一级的节点）
+    bodyFa.appendChild(frameDiv);//把创建的节点frameDiv 添加到父类body 中；
+
+    let show = document.getElementById('show');
+    let words = document.getElementById('words');
+    show.onclick = function (e) {
+      words.style.display = 'block';
+    }
+    words.size = 3;
+    words.onchange = function (e) {
+      var option = this.options[this.selectedIndex];
+      show.value = option.innerHTML;
+      words.style.display = 'none';
+    }
+  </script>
+
+
+
+  <script type="text/javascript">
+//  function selectFocus(){
+//    document.getElementById("select").setAttribute("size","10");
+//    console.log(1111)
+//  }
+//  function selectClick(){
+//    console.log(2222)
+//    document.getElementById("select").removeAttribute("size");
+//    document.getElementById("select").blur();
+//    this.setAttribute("selected","");
+//  }
+
+  </script>
+  <form>
+    <select name="aa" size="5">
+      <option value="0">1</option>
+      <option value="1">2</option>
+      <option value="2">3</option>
+      <option value="3">4</option>
+      <option value="4">5</option>
+      <option value="5">6</option>
+      <option value="6">7</option>
+      <option value="7">8</option>
+      <option value="8">9</option>
+      <option value="9">10</option>
+      <option value="10">11</option>
+    </select>
+  </form>
+</body>
+
+</html>

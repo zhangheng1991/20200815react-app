@@ -1,0 +1,87 @@
+.backGround{
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background: url("./../assets/yay.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.content{
+  position: relative;
+  z-index: 10000;
+}
+.First{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+  border: 1px solid green;
+  div{
+    border: 1px solid red;
+    display: block;
+  }
+}
+.Second{
+  // width: 400px;
+  height: 200px;
+  position: relative;
+  background:green;
+  div{
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -50px;
+    background:red;
+  }
+}
+.Three{
+  // width: 800px;
+  height: 400px;
+  position: relative;
+  background:blue;
+  div{
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: green;
+  }
+}
+.Four{
+  // width: 400px;
+  height: 200px;
+  background:purple;
+  position: relative;
+  div{
+    width: 200px;
+    height: 100px;
+    background: #9ff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%,-50%);
+  }
+}
+.Five{
+  display: table-cell; 
+  vertical-align: middle; 
+ 
+  background: green;
+  div{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background: red;
+    margin-left : 50% ;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,32 @@
+
+.normal {
+  /* font-family: Georgia, sans-serif;
+  text-align: center; */
+}
+.Header{
+  position: fixed;
+  width: 100%;
+  z-index: 100000;
+  height: 50px;
+  line-height: 50px;
+}
+.NormalBody{
+  padding-top: 50px;
+}
+.title {
+  /* height:4rem;
+  line-height:4rem;
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: -1px;
+  background: darkslateblue;
+  padding: .6em 0;
+  color: white;
+  margin: 0; */
+  /* height: 40px;
+  line-height: 40px; */
+  font-size: 20px;
+  letter-spacing: -1px;
+  background: darkslateblue;
+  color: white;
+}

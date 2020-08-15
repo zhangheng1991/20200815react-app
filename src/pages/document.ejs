@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Your App</title>
+  <script src="./baseCongig.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+<script>
+  (function (styleWidth) {
+    function jsWidth() {
+      var windowClient = document.documentElement.clientWidth || document.body.clientWidth;
+      // console.log(windowClient)
+      // console.log(styleWidth)
+      var html = document.getElementsByTagName("html")[0];
+      // console.log(html)
+      //html.style.fontSize=1rem= px;根据设计稿的尺寸
+      html.style.fontSize = windowClient /styleWidth *100 + "px";
+      // console.log(html.style.fontSize)
+    }
+    jsWidth();
+    window.onresize=function () {
+      // console.log(1111)
+      jsWidth()
+    };
+  })(750) //设计稿宽度  750/100=375/50
+//var html = document.getElementsByTagName('html')[0];
+///*取到屏幕的宽度*/
+//var width = window.innerWidth;
+///* 640 100  320 50 */
+//if (width > 1080) {
+//  width = 1080;
+//}
+//else if (width < 320 ) {
+//  width = 320 ;
+//}
+//var fontSize = 100/1080*width;
+///*设置fontsize*/
+//
+//html.style.fontSize = fontSize +'px';
+//window.onresize = function(){
+//  var html = document.getElementsByTagName('html')[0];
+//  /*取到屏幕的宽度*/
+//  var width = window.innerWidth;
+//  if (width > 1080) {
+//    width = 1080;
+//  }
+//  else if (width < 320 ) {
+//    width = 320 ;
+//  }
+//  /* 640 100  320 50 */
+//  var fontSize = 100/1080 * width;
+//  /*设置fontsize*/
+//  html.style.fontSize = fontSize +'px';
+//}
+</script>

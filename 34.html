@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .test{
+      border: 1px solid red;
+    }
+    ::-webkit-scrollbar
+    {
+      width: 6px;
+      height: 6px;
+      background-color: #F5F5F5;
+    }
+
+    /*定义滚动条轨道 内阴影+圆角*/
+    ::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #F5F5F5;
+    }
+
+    /*定义滑块 内阴影+圆角*/
+    ::-webkit-scrollbar-thumb
+    {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #555;
+    }
+    select{
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+<select class="my_selected"
+        data-edit-select="1"
+        onmousedown="if(this.options.length>3){this.size=8}"
+        onblur="this.size=0" onchange="this.size=0"
+        style="position:absolute;z-index:1;">
+  <option >选择</option>
+  <option >一</option>
+  <option>二</option>
+  <option>三</option>
+  <option>四</option>
+  <option>五</option>
+  <option>六</option>
+  <option>七</option>
+  <option>八</option>
+  <option>九</option>
+  <option>十</option>
+</select>
+
+</body>
+</html>
