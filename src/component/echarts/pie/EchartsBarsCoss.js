@@ -42,9 +42,9 @@ class EchartsBarsCoss extends React.Component {
       },
       grid: {
         left: 100,
-        top: 50,
+        top: 20,
         // right: 100,
-        bottom: 50
+        bottom: 20
       },
       toolbox: {
         // show: true,
@@ -146,7 +146,7 @@ class EchartsBarsCoss extends React.Component {
         name: '数值',
         type: 'bar',
         // barCategoryGap: '1900%',
-        barWidth: "20%",
+        barWidth: "60%",
         showBackground: false,
         data: [166, 186, 182, 18, 153, 147, 13, 125, 11, 102, 100],
         itemStyle: {

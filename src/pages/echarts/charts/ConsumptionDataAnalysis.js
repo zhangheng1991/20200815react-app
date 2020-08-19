@@ -16,6 +16,7 @@ class ConsumptionDataAnalysis extends React.Component {
       legend,
       colors,
     } = this.props;
+    
     return (
       <div>
         <EchartBox title={title}>

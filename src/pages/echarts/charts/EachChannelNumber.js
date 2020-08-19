@@ -3,7 +3,6 @@ import EchartsBarsCross from './../../../component/echarts/pie/EchartsBarsCoss';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
 import echarts from "echarts";
 
-
 class EachChannelNumber extends React.Component {
 //   static defaultProps={
 //     titleFont: 20,

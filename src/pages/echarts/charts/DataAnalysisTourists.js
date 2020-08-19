@@ -1,7 +1,6 @@
 import React from 'react';
 import EchartsLiquidfillBar from './../../../component/echarts/liquidfill/EchartsLiquidfillBar';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
-
 class DataAnalysisTourists extends React.Component {
   render() {
     const {

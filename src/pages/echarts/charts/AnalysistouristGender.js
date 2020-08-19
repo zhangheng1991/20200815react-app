@@ -5,6 +5,7 @@ import EchartBox from './../../../component/echarts/container/EchartsBox';
 class AnalysistouristGender extends React.Component {
   render() {
     const { titleFont, textFont, height, title, ChattTitle, id, data, symbols } = this.props;
+    
     return (
       <div>
         <EchartBox title={title}>

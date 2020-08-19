@@ -1,7 +1,6 @@
 import React from 'react';
 import EffectScatter from './../../../component/echarts/EffectScatter/EffectScatter';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
-
 class AgeDistributionVisitors extends React.Component {
   static defaultProps = {
     // titleFont: 20,

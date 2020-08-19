@@ -2,7 +2,7 @@ import React from "react";
 import echarts from "echarts";
 class PictorialBar extends React.Component {
   componentDidMount() {
-    const { data, Xdata, color, ChattTitle,textFont,symbols } = this.props;
+    const { data,  ChattTitle,textFont,symbols } = this.props;
     let MyEcharts = echarts.init(document.getElementById(this.props.id))
     // var symbols = [
     //   'path://M18.2629891,11.7131596 L6.8091608,11.7131596 C1.6685112,11.7131596 0,13.032145 0,18.6237673 L0,34.9928467 C0,38.1719847 4.28388932,38.1719847 4.28388932,34.9928467 L4.65591984,20.0216948 L5.74941883,20.0216948 L5.74941883,61.000787 C5.74941883,65.2508314 11.5891201,65.1268798 11.5891201,61.000787 L11.9611506,37.2137775 L13.1110872,37.2137775 L13.4831177,61.000787 C13.4831177,65.1268798 19.3114787,65.2508314 19.3114787,61.000787 L19.3114787,20.0216948 L20.4162301,20.0216948 L20.7882606,34.9928467 C20.7882606,38.1719847 25.0721499,38.1719847 25.0721499,34.9928467 L25.0721499,18.6237673 C25.0721499,13.032145 23.4038145,11.7131596 18.2629891,11.7131596 M12.5361629,1.11022302e-13 C15.4784742,1.11022302e-13 17.8684539,2.38997966 17.8684539,5.33237894 C17.8684539,8.27469031 15.4784742,10.66467 12.5361629,10.66467 C9.59376358,10.66467 7.20378392,8.27469031 7.20378392,5.33237894 C7.20378392,2.38997966 9.59376358,1.11022302e-13 12.5361629,1.11022302e-13',
@@ -10,174 +10,166 @@ class PictorialBar extends React.Component {
     //   'path://M512 292.205897c80.855572 0 146.358821-65.503248 146.358821-146.358821C658.358821 65.503248 592.855572 0 512 0 431.144428 0 365.641179 65.503248 365.641179 146.358821 365.641179 227.214393 431.144428 292.205897 512 292.205897zM512 731.282359c-80.855572 0-146.358821 65.503248-146.358821 146.358821 0 80.855572 65.503248 146.358821 146.358821 146.358821 80.855572 0 146.358821-65.503248 146.358821-146.358821C658.358821 796.273863 592.855572 731.282359 512 731.282359z'
     // ];
     var bodyMax = 100; //指定图形界限的值
-    var labelSetting = {
-      normal: {
-        show: true,
-        position: 'bottom',
-        offset: [0, 10],
-        formatter: function (param) {
-          return (param.value / bodyMax * 100).toFixed(0) + '%';
-        },
-        textStyle: {
-          fontSize: textFont,
-          fontFamily: 'Arial',
-          color: '#FFFFFF'
-        }
-      }
-    };
-
-    var markLineSetting = { //设置标线
-      symbol: 'none',
-      lineStyle: {
+      var labelSetting = {
         normal: {
-          opacity: 0.3
-        }
-      },
-      data: [{
-        type: 'max',
-        label: {
-          normal: {
-            formatter: 'max: {c}'
+          show: true,
+          position: "bottom",
+          offset: [0, 10],
+          formatter: function(param) {
+            return ((param.value / bodyMax) * 100).toFixed(0) + "%";
+          },
+          textStyle: {
+            fontSize: textFont,
+            fontFamily: "Arial",
+            color: "#FFFFFF"
           }
         }
-      }, {
-        type: 'min',
-        label: {
-          normal: {
-            formatter: 'min: {c}'
-          }
-        }
-      }]
-    };
+      };
 
-    let option = {
-      title: {
-        show: true,
-        text: ChattTitle,
-        textStyle: {
-          color:"#FFFFFF",
-           fontSize:textFont,
-           fontWeight:"normal",
-        },
-        left: 20,
-        top: 20,
-
-      },
-      tooltip: {
-        show: false, //鼠标放上去显示悬浮数据
-      },
-      color:["#2AA3E8","red"],
-      legend: {
-        show:false,
-        data: ['typeA', 'typeB'],
-        selectedMode: 'single',
-        itemWidth: 10, //图例的宽度
-        itemHeight: 10, //图例的高度
-        itemGap: 30,
-        orient: 'horizontal',
-        left: 'center',
-        top: '20px',
-        icon: 'rect',
-        // selectedMode: false, //取消图例上的点击事件
-        textStyle: {
-          color: '#808492'
-        },
-      },
-      grid: {
-        // left: '20%',
-        // right: '20%',
-        top: '20%',
-        bottom: '20%',
-        containLabel: true
-      },
-      xAxis: {
-        data: ['a', 'x', 'b'],
-        axisTick: {
-          show: false
-        },
-        axisLine: {
-          show: false
-        },
-        axisLabel: {
-          show: false
-        }
-      },
-      yAxis: {
-        max: bodyMax,
-        splitLine: {
-          show: false
-        },
-        axisTick: {
-          // 刻度线
-          show: false
-        },
-        axisLine: {
-          // 轴线
-          show: false
-        },
-        axisLabel: {
-          // 轴坐标文字
-          show: false
-        }
-      },
-      series: [
-      
-      {
-        name: 'typeB',
-        type: 'pictorialBar',
-        symbolClip: true,
-        symbolBoundingData: bodyMax,
-        label: labelSetting,
-        data: data,
-        // markLine: markLineSetting,
-        z: 10
-      },
-      {
-        // 设置背景底色，不同的情况用这个
-        name: 'full',
-        type: 'pictorialBar', //异型柱状图 图片、SVG PathData
-        symbolBoundingData: bodyMax,
-        animationDuration: 0,
-        itemStyle: {
+      var markLineSetting = {
+        //设置标线
+        symbol: "none",
+        lineStyle: {
           normal: {
-            color: '#ccc' //设置全部颜色，统一设置
+            opacity: 0.3
           }
         },
-        z: 10,
-        data: [{
-          itemStyle: {
-            normal: {
-              color: 'rgba(105,204,230,0.40)' //单独控制颜色
+        data: [
+          {
+            type: "max",
+            label: {
+              normal: {
+                formatter: "max: {c}"
+              }
             }
           },
-          value: 100,
-          symbol: symbols[0]
-        },
-        {
-          // 设置中间冒号
-          itemStyle: {
-            normal: {
-              color: '#1DA1F2' //单独控制颜色
+          {
+            type: "min",
+            label: {
+              normal: {
+                formatter: "min: {c}"
+              }
             }
-          },
-          value: 100,
-          symbol: symbols[2],
-          symbolSize: [8, '18%'],
-          symbolOffset: [0, '-200%']
-        },
-        {
-          itemStyle: {
-            normal: {
-              color: 'rgba(255,130,130,0.40)' //单独控制颜色
-            }
-          },
-          value: 100,
-          symbol: symbols[1]
-        }
+          }
         ]
-      }
-      ]
-    }
+      };
+
+     const  option = {
+        tooltip: {
+          show: false //鼠标放上去显示悬浮数据
+        },
+        legend: {
+          show:false,
+          data: ["环球网", "北京青年报", "央视新闻"],
+          selectedMode: "single",
+          itemWidth: 10, //图例的宽度
+          itemHeight: 10, //图例的高度
+          itemGap: 30,
+          orient: "horizontal",
+          left: "center",
+          top: "20px",
+          icon: "rect",
+          // selectedMode: false, //取消图例上的点击事件
+          textStyle: {
+            color: "#808492"
+          }
+        },
+        grid: {
+          // left: '20%',
+          // right: '20%',
+          top: "20%",
+          bottom: "20%",
+          containLabel: true
+        },
+        xAxis: {
+          data: ["a", "x", "b"],
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          }
+        },
+        yAxis: {
+          max: bodyMax,
+          splitLine: {
+            show: false
+          },
+          axisTick: {
+            // 刻度线
+            show: false
+          },
+          axisLine: {
+            // 轴线
+            show: false
+          },
+          axisLabel: {
+            // 轴坐标文字
+            show: false
+          }
+        },
+        series: [
+          {
+            name: "环球网",
+            type: "pictorialBar",
+            symbolClip: true,
+            symbolBoundingData: bodyMax,
+            label: labelSetting,
+            data:data,
+            // markLine: markLineSetting,
+            z: 10
+          },
+
+          {
+            // 设置背景底色，不同的情况用这个
+            name: "full",
+            type: "pictorialBar", //异型柱状图 图片、SVG PathData
+            symbolBoundingData: bodyMax,
+            animationDuration: 0,
+            itemStyle: {
+              normal: {
+                color: "#ccc" //设置全部颜色，统一设置
+              }
+            },
+            z: 10,
+            data: [
+              {
+                itemStyle: {
+                  normal: {
+                    color: "rgba(105,204,230,0.40)" //单独控制颜色
+                  }
+                },
+                value: 100,
+                symbol: symbols[0]
+              },
+              {
+                // 设置中间冒号
+                itemStyle: {
+                  normal: {
+                    color: "#1DA1F2" //单独控制颜色
+                  }
+                },
+                value: 100,
+                symbol: symbols[2],
+                symbolSize: [0, "18%"],
+                symbolOffset: [0, "-200%"]
+              },
+              {
+                itemStyle: {
+                  normal: {
+                    color: "rgba(255,130,130,0.40)" //单独控制颜色
+                  }
+                },
+                value: 100,
+                symbol: symbols[1]
+              }
+            ]
+          }
+        ]
+      };
 
     if (MyEcharts) {
       MyEcharts.setOption(option)
