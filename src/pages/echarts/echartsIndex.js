@@ -15,9 +15,10 @@ import TouristTransactionVolume from './charts/TouristTransactionVolume';
 import NighttimeConsumptionBias from './charts/NighttimeConsumptionBias';
 import AgeDistributionVisitors from './charts/AgeDistributionVisitors';
 import EachChannelNumber from './charts/EachChannelNumber';
+// import HuangFeiHong from "./charts/HuangFeiHong";
 class EchartsIndex extends React.Component {
   static defaultProps = {
-    span: 12,
+    span: 8,
   };
   render() {
     const { span } = this.props;
@@ -730,6 +731,10 @@ class EchartsIndex extends React.Component {
           <Col span={span}>
             <EachChannelNumber {...EachChannelNumber1} />
           </Col>
+          {/* <Col span={span}>
+            <HuangFeiHong />
+          </Col> */}
+          
         </Row>
       </div>
     );

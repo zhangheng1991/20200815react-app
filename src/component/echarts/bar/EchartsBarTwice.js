@@ -67,13 +67,13 @@ class EchartsBarTwice extends React.Component {
           data: []
         },
         legend: {
-          top: 45,
+          top: 0,
           left: 20,
           itemWidth: 14,
           itemHeight: 14,
           // itemGap: 343,
-          // icon: 'horizontal',
-          orient:"vertical",
+          // icon: 'horizontal',vertical
+          orient:"horizontal",
           textStyle: {
             show: true,
             color: "#FFFFFF",

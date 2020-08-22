@@ -64,7 +64,7 @@ class EchartsLine extends React.Component {
             value: sum - v.value,
             name: '',
             itemStyle: {
-              color: 'rgba(0,0,0,0)',
+              color: 'rgba(45,48,100,0.0)',
             },
           },
         ],
@@ -152,8 +152,10 @@ class EchartsLine extends React.Component {
               rich: {
                 line: {
                   width: 170,
-                  height: 10,
-                  backgroundColor: { image: dashedPic },
+                  height: 1,
+                  // backgroundColor: { image: dashedPic },
+                  backgroundColor: "#FFFFFF",
+                  border:"1px dashed red"
                 },
                 name: {
                   color: '#FFFFFF',
@@ -195,6 +197,7 @@ class EchartsLine extends React.Component {
       myLine.setOption(option);
     }
   }
+  
   render() {
     const {height,id}=this.props;
     return (

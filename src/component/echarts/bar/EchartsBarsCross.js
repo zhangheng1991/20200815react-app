@@ -27,12 +27,12 @@ class EchartsBarsCross extends React.Component {
       legend: {
         show: false,
       },
-      // grid: {
-      //   left: 100,
-      //   top: 100,
-      //   right: 100,
-      //   bottom: 100
-      // },
+      grid: {
+        left:100,
+        top: 20,
+        right: 0,
+        bottom: 20
+      },
       toolbox: {
         // show: true,
         // feature: {
