@@ -34,6 +34,9 @@ class Tests extends React.Component {
         dataIndex: 'name',
         width: '30%',
         editable: true,
+        render:(text,record)=>(
+          <div>{text}</div>
+        )
       },
       {
         title: 'age',
@@ -74,72 +77,72 @@ class Tests extends React.Component {
           age: '32',
           address: 'London, Park Lane no. 0',
         },
-        {
-          key: '1',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '2',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '3',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '4',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '5',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '6',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '7',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '8',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '9',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '10',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
-        {
-          key: '11',
-          name: 'Edward King 1',
-          age: '32',
-          address: 'London, Park Lane no. 1',
-        },
+        // {
+        //   key: '1',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '2',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '3',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '4',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '5',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '6',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '7',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '8',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '9',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '10',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
+        // {
+        //   key: '11',
+        //   name: 'Edward King 1',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 1',
+        // },
       ],
       count: 2,
     };
@@ -155,20 +158,30 @@ class Tests extends React.Component {
 
   handleAdd = () => {
     const { count, dataSource } = this.state;
+    // const newData = {
+    //   key: count,
+    //   name: `Edward King ${count}`,
+    //   age: 32,
+    //   address: `London, Park Lane no. ${count}`,
+    // };
     const newData = {
       key: count,
-      name: `Edward King ${count}`,
-      age: 32,
-      address: `London, Park Lane no. ${count}`,
+      name: "1",
+      age: "1",
+      address: "1",
     };
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
     });
+    this.setState((prevState, props) => ({
+      count: prevState.count + 1
+   })); 
+   console.log(this.state.count)
   };
 
   handleSave = row => {
-    console.log(row)
+    // console.log(row)
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
     const item = newData[index];
@@ -222,6 +235,8 @@ class Tests extends React.Component {
               bordered
               dataSource={dataSource}
               columns={columns}
+              pageSize="10000000"
+              pagintion={false}
             />
           </div>
         </div>
