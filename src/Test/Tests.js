@@ -6,6 +6,8 @@ import styles from './Tests.less';
 import Echarts from 'echarts';
 import { Table, Input, Button, Popconfirm, Form } from 'antd';
 import EditableCell from './TestChildren';
+import {connect} from "dva";
+
 const data = [];
 for (let i = 0; i < 100; i++) {
   data.push({
@@ -25,6 +27,7 @@ const EditableRow = ({ form, index, ...props }) => (
 );
 
 const EditableFormRow = Form.create()(EditableRow);
+@connect(({TestModel})=>({TestModel}))
 class Tests extends React.Component {
   constructor(props) {
     super(props);
@@ -156,6 +159,10 @@ class Tests extends React.Component {
     const dataSource = [...this.state.dataSource];
     console.log(dataSource);
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+    const {TestModel,dispatch}=this.props;
+    dispatch({
+      type:"TestModel/save",payload:{tableList:dataSource.filter(item => item.key !== key)}
+    })
     console.log(this.state.dataSource);
   };
 
@@ -180,10 +187,15 @@ class Tests extends React.Component {
     this.setState((prevState, props) => ({
       count: prevState.count + 1,
     }));
+    const {TestModel,dispatch}=this.props;
+    dispatch({
+      type:"TestModel/save",payload:{tableList:[...dataSource, newData]}
+    })
     console.log(this.state.count);
   };
 
   handleSave = row => {
+    const {TestModel,dispatch}=this.props;
     // console.log(row)
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
@@ -193,9 +205,12 @@ class Tests extends React.Component {
       ...row,
     });
     this.setState({ dataSource: newData });
-    this.setState((state, props) => ({
-      dataSource: newData,
-    }));
+    // this.setState((state, props) => ({
+    //   dataSource: newData,
+    // }));
+    dispatch({
+      type:"TestModel/save",payload:{tableList:newData}
+    })
     console.log(this.state.dataSource);
   };
   handledCurrent = () => {
@@ -203,6 +218,10 @@ class Tests extends React.Component {
   };
   render() {
     const { dataSource } = this.state;
+    const {TestModel,dispatch}=this.props;
+    // console.log(TestModel)
+    const {tableList}=TestModel;
+    console.log(tableList)
     console.log(dataSource);
     const components = {
       body: {
