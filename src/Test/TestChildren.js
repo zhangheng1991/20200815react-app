@@ -23,7 +23,7 @@ class TestChildren extends React.Component {
     // console.log(record);
     // console.log(e.target.value);
     this.props.form.validateFields((error, values) => {
-      console.log(values[0]);
+      // console.log(values[0]);
       for (let key in values) {
         // console.log(key + '---' + values[key]);
         values[key]=e.target.value;
@@ -45,12 +45,12 @@ class TestChildren extends React.Component {
     // console.log(children, dataIndex, record, title);
     const { editing } = this.state;
     return editing ? (
-      <Form.Item style={{ margin: 0 }}>
+      <Form.Item style={{ margin: 0,pading:"0px" }}>
         {this.props.form.getFieldDecorator(dataIndex, {
           rules: [
             {
-              required: true,
-              message: `${title} is required.`,
+              // required: true,
+              // message: `${title} is required.`,
             },
           ],
           initialValue: record[dataIndex],

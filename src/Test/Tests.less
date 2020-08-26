@@ -1,34 +1,54 @@
-.backGround{
+.backGround {
   position: fixed;
   width: 100%;
   top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background: url("./../assets/yay.jpg") no-repeat;
+  background: url('./../assets/yay.jpg') no-repeat;
   background-size: 100% 100%;
 }
-.content{
+.content {
   position: relative;
   z-index: 10000;
+  margin-top: 30px;
+  :global {
+    .ant-table-tbody > tr > td {
+      padding: 2px 0px;
+    }
+    .ant-table-thead > tr > th {
+      padding: 8px;
+    }
+    .ant-table-tbody > tr > td {
+      .text {
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #dfdfdf;
+      }
+
+      .editable-cell-value-wrap {
+        padding: 0px !important;
+      }
+    }
+  }
 }
-.First{
+.First {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 200px;
   border: 1px solid green;
-  div{
+  div {
     border: 1px solid red;
     display: block;
   }
 }
-.Second{
+.Second {
   // width: 400px;
   height: 200px;
   position: relative;
-  background:green;
-  div{
+  background: green;
+  div {
     width: 200px;
     height: 100px;
     position: absolute;
@@ -36,15 +56,15 @@
     left: 50%;
     margin-left: -100px;
     margin-top: -50px;
-    background:red;
+    background: red;
   }
 }
-.Three{
+.Three {
   // width: 800px;
   height: 400px;
   position: relative;
-  background:blue;
-  div{
+  background: blue;
+  div {
     width: 100px;
     height: 50px;
     position: absolute;
@@ -56,32 +76,32 @@
     background: green;
   }
 }
-.Four{
+.Four {
   // width: 400px;
   height: 200px;
-  background:purple;
+  background: purple;
   position: relative;
-  div{
+  div {
     width: 200px;
     height: 100px;
     background: #9ff;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate( -50%,-50%);
+    transform: translate(-50%, -50%);
   }
 }
-.Five{
-  display: table-cell; 
-  vertical-align: middle; 
- 
+.Five {
+  display: table-cell;
+  vertical-align: middle;
+
   background: green;
-  div{
+  div {
     width: 100px;
     height: 100px;
     margin: 0 auto;
     background: red;
-    margin-left : 50% ;
+    margin-left: 50%;
     transform: translateX(-50%);
   }
 }

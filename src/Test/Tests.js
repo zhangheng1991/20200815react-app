@@ -1,11 +1,11 @@
 /**
  * Created by zhangheng on 2019/5/18.
  */
-import React from "react";
+import React from 'react';
 import styles from './Tests.less';
-import Echarts from "echarts";
+import Echarts from 'echarts';
 import { Table, Input, Button, Popconfirm, Form } from 'antd';
-import EditableCell from "./TestChildren";
+import EditableCell from './TestChildren';
 const data = [];
 for (let i = 0; i < 100; i++) {
   data.push({
@@ -34,19 +34,19 @@ class Tests extends React.Component {
         dataIndex: 'name',
         width: '30%',
         editable: true,
-        render:(text,record)=>(
-          <div>{text}</div>
-        )
+        render: (text, record) => <div class="text">{text}</div>,
       },
       {
         title: 'age',
         dataIndex: 'age',
         editable: true,
+        render: (text, record) => <div class="text">{text}</div>,
       },
       {
         title: 'address',
         dataIndex: 'address',
         editable: true,
+        render: (text, record) => <div class="text">{text}</div>,
       },
       {
         title: 'operation',
@@ -54,18 +54,21 @@ class Tests extends React.Component {
         render: (text, record) =>
           this.state.dataSource.length > 1 ? (
             <div>
-              <Popconfirm title="Sure to delete?"
+              <Popconfirm
+                title="Sure to delete?"
                 onConfirm={() => this.handleDelete(record.key)}
-                overlayStyle={{ zIndex: "10000" }}
-              // onConfirm={this.confirm.bind(this,record.key)}
+                overlayStyle={{ zIndex: '10000' }}
+                // onConfirm={this.confirm.bind(this,record.key)}
               >
                 <a>删除</a>
-
               </Popconfirm>
-              <a onClick={this.handleAdd} style={{ marginLeft: "20px" }}>新增</a>
+              <a onClick={this.handleAdd} style={{ marginLeft: '20px' }}>
+                新增
+              </a>
             </div>
-          ) :
+          ) : (
             <a onClick={this.handleAdd}>新增</a>
+          ),
       },
     ];
 
@@ -148,12 +151,12 @@ class Tests extends React.Component {
     };
   }
 
-  handleDelete = (key) => {
-    console.log(key)
+  handleDelete = key => {
+    console.log(key);
     const dataSource = [...this.state.dataSource];
-    console.log(dataSource)
+    console.log(dataSource);
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
-    console.log(this.state.dataSource)
+    console.log(this.state.dataSource);
   };
 
   handleAdd = () => {
@@ -166,18 +169,18 @@ class Tests extends React.Component {
     // };
     const newData = {
       key: count,
-      name: "1",
-      age: "1",
-      address: "1",
+      name: '',
+      age: '',
+      address: '',
     };
     this.setState({
       dataSource: [...dataSource, newData],
       count: count + 1,
     });
     this.setState((prevState, props) => ({
-      count: prevState.count + 1
-   })); 
-   console.log(this.state.count)
+      count: prevState.count + 1,
+    }));
+    console.log(this.state.count);
   };
 
   handleSave = row => {
@@ -191,15 +194,16 @@ class Tests extends React.Component {
     });
     this.setState({ dataSource: newData });
     this.setState((state, props) => ({
-      dataSource: newData
+      dataSource: newData,
     }));
-    console.log(this.state.dataSource)
+    console.log(this.state.dataSource);
   };
-
-
+  handledCurrent = () => {
+    console.log(this.state.dataSource);
+  };
   render() {
     const { dataSource } = this.state;
-    console.log(dataSource)
+    console.log(dataSource);
     const components = {
       body: {
         row: EditableFormRow,
@@ -226,9 +230,12 @@ class Tests extends React.Component {
         {/* <div className={styles.backGround}></div> */}
         <div className={styles.content}>
           <div>
-            <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16 }}>
-              Add a row
-        </Button>
+            <Button onClick={this.handleAdd} type="primary">
+              新增
+            </Button>
+            <Button onClick={this.handledCurrent} type="primary">
+              打印当前表格
+            </Button>
             <Table
               components={components}
               rowClassName={() => 'editable-row'}
@@ -241,7 +248,7 @@ class Tests extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 // export default Form.create()(Tests) ;
