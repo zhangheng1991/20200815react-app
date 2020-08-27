@@ -74,9 +74,13 @@ class Tests extends React.Component {
               > */}
             {/* <a onClick={this.handleDelete.bind(this,record.key)}>删除</a> */}
             {/* </Popconfirm> */}
-            {this.state.dataSource.length > 1 ? 
-              <a onClick={this.handleDelete.bind(this, record.key)} style={{ marginRight: '20px' }}>删除</a>:<a ></a>
-            }
+            {this.state.dataSource.length > 1 ? (
+              <a onClick={this.handleDelete.bind(this, record.key)} style={{ marginRight: '20px' }}>
+                删除
+              </a>
+            ) : (
+              <a />
+            )}
             <a onClick={this.handleAdd} style={{ marginLeft: '0px' }}>
               新增
             </a>
@@ -208,7 +212,7 @@ class Tests extends React.Component {
     // };
     const newData = {
       key: count,
-      name:'King '+count,
+      name: 'King ' + count,
       age: '',
       address: '',
     };
@@ -223,7 +227,7 @@ class Tests extends React.Component {
     });
     // console.log(this.state.count);
   };
- //input框输入保存
+  //input框输入保存
   handleSave = row => {
     const { TestModel, dispatch } = this.props;
     // console.log(row)
@@ -249,21 +253,21 @@ class Tests extends React.Component {
     console.log(this.state.dataSource);
   };
   //全部删除
-  handDeleteAll=()=>{
+  handDeleteAll = () => {
     const { TestModel, dispatch } = this.props;
     dispatch({
       type: 'TestModel/save',
-      payload: { tableList: this.data},
+      payload: { tableList: this.data },
     });
-    this.setState({dataSource:this.data})
-  }
+    this.setState({ dataSource: this.data });
+  };
   render() {
     const { dataSource } = this.state;
     const { TestModel, dispatch } = this.props;
     // console.log(TestModel)
     const { tableList } = TestModel;
-    console.log(tableList);
-    console.log(dataSource);
+    console.log('modules', tableList);
+    console.log('state', dataSource);
     const components = {
       body: {
         row: EditableFormRow,
@@ -290,24 +294,28 @@ class Tests extends React.Component {
         {/* <div className={styles.backGround}></div> */}
         <div className={styles.content}>
           <div>
-            <Button onClick={this.handleAdd} type="primary">
-              新增
-            </Button>
-            <Button onClick={this.handledCurrent} type="primary">
-              打印当前表格
-            </Button>
-            <Button onClick={this.handDeleteAll} type="primary">
-              全部删除
-            </Button>
-            <Table
-              components={components}
-              rowClassName={() => 'editable-row'}
-              bordered
-              dataSource={dataSource}
-              columns={columns}
-              pageSize="10000000"
-              pagintion={false}
-            />
+            <div className={`${styles["ContentButton"]}`}>
+              <Button onClick={this.handleAdd} type="primary">
+                新增
+              </Button>
+              <Button onClick={this.handledCurrent} type="primary">
+                打印当前表格
+              </Button>
+              <Button onClick={this.handDeleteAll} type="primary">
+                全部删除
+              </Button>
+            </div>
+            <div>
+              <Table
+                components={components}
+                rowClassName={() => 'editable-row'}
+                bordered
+                dataSource={dataSource}
+                columns={columns}
+                pageSize="10000000"
+                pagintion={false}
+              />
+            </div>
           </div>
         </div>
       </div>
