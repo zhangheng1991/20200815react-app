@@ -6,7 +6,7 @@ import styles from './Tests.less';
 import Echarts from 'echarts';
 import { Table, Input, Button, Popconfirm, Form } from 'antd';
 import EditableCell from './TestChildren';
-import {connect} from "dva";
+import { connect } from 'dva';
 
 const data = [];
 for (let i = 0; i < 100; i++) {
@@ -27,62 +27,80 @@ const EditableRow = ({ form, index, ...props }) => (
 );
 
 const EditableFormRow = Form.create()(EditableRow);
-@connect(({TestModel})=>({TestModel}))
+@connect(({ TestModel }) => ({ TestModel }))
 class Tests extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [
       {
-        title: 'name',
+        title: '姓名',
         dataIndex: 'name',
-        width: '30%',
+        width: '20%',
         editable: true,
         render: (text, record) => <div class="text">{text}</div>,
       },
       {
-        title: 'age',
+        title: '性别',
+        dataIndex: 'sex',
+        width: '20%',
+        editable: true,
+        render: (text, record) => <div class="text">{text}</div>,
+      },
+      {
+        title: '年龄',
         dataIndex: 'age',
+        width: '20%',
         editable: true,
         render: (text, record) => <div class="text">{text}</div>,
       },
       {
-        title: 'address',
+        title: '地址',
         dataIndex: 'address',
+        width: '20%',
         editable: true,
         render: (text, record) => <div class="text">{text}</div>,
       },
       {
-        title: 'operation',
+        title: '操作',
         dataIndex: 'operation',
-        render: (text, record) =>
-          this.state.dataSource.length > 1 ? (
-            <div>
-              <Popconfirm
+        width: '10%',
+        render: (text, record) => (
+          <div style={{ paddingLeft: '8px' }}>
+            {/* <Popconfirm
                 title="Sure to delete?"
                 onConfirm={() => this.handleDelete(record.key)}
                 overlayStyle={{ zIndex: '10000' }}
                 // onConfirm={this.confirm.bind(this,record.key)}
-              >
-                <a>删除</a>
-              </Popconfirm>
-              <a onClick={this.handleAdd} style={{ marginLeft: '20px' }}>
-                新增
-              </a>
-            </div>
-          ) : (
-            <a onClick={this.handleAdd}>新增</a>
-          ),
+              > */}
+            {/* <a onClick={this.handleDelete.bind(this,record.key)}>删除</a> */}
+            {/* </Popconfirm> */}
+            {this.state.dataSource.length > 1 ? 
+              <a onClick={this.handleDelete.bind(this, record.key)} style={{ marginRight: '20px' }}>删除</a>:<a ></a>
+            }
+            <a onClick={this.handleAdd} style={{ marginLeft: '0px' }}>
+              新增
+            </a>
+          </div>
+        ),
       },
     ];
-
+    this.data = [
+      {
+        key: 1,
+        name: 'King 1',
+        age: '32',
+        sex: 'man',
+        address: 'London, Park Lane no. 0',
+      },
+    ];
     this.state = {
       dataSource: [
-        {
-          key: '0',
-          name: 'Edward King 0',
-          age: '32',
-          address: 'London, Park Lane no. 0',
-        },
+        // {
+        //   key: '1',
+        //   name: 'Edward King 0',
+        //   age: '32',
+        //   address: 'London, Park Lane no. 0',
+        // },
         // {
         //   key: '1',
         //   name: 'Edward King 1',
@@ -151,21 +169,44 @@ class Tests extends React.Component {
         // },
       ],
       count: 2,
+      tableList: [],
     };
   }
-
+  componentDidMount() {
+    // const data = [
+    //   {
+    //     key: 1,
+    //     name: 'King 1',
+    //     age: '32',
+    //     sex: 'man',
+    //     address: 'London, Park Lane no. 0',
+    //   },
+    // ];
+    this.props.dispatch({
+      type: 'TestModel/save',
+      payload: { tableList: this.data },
+    });
+  }
+  componentWillReceiveProps(nextProsp) {
+    console.log(nextProsp);
+    if (nextProsp.TestModel.tableList && nextProsp.TestModel.tableList != this.state.dataSource) {
+      this.setState({ dataSource: nextProsp.TestModel.tableList });
+    }
+  }
+  //删除行
   handleDelete = key => {
     console.log(key);
     const dataSource = [...this.state.dataSource];
     console.log(dataSource);
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
-    const {TestModel,dispatch}=this.props;
+    const { TestModel, dispatch } = this.props;
     dispatch({
-      type:"TestModel/save",payload:{tableList:dataSource.filter(item => item.key !== key)}
-    })
+      type: 'TestModel/save',
+      payload: { tableList: dataSource.filter(item => item.key !== key) },
+    });
     console.log(this.state.dataSource);
   };
-
+  //新增行
   handleAdd = () => {
     const { count, dataSource } = this.state;
     // const newData = {
@@ -176,7 +217,7 @@ class Tests extends React.Component {
     // };
     const newData = {
       key: count,
-      name: '',
+      name:'King '+count,
       age: '',
       address: '',
     };
@@ -184,18 +225,16 @@ class Tests extends React.Component {
       dataSource: [...dataSource, newData],
       count: count + 1,
     });
-    this.setState((prevState, props) => ({
-      count: prevState.count + 1,
-    }));
-    const {TestModel,dispatch}=this.props;
+    const { TestModel, dispatch } = this.props;
     dispatch({
-      type:"TestModel/save",payload:{tableList:[...dataSource, newData]}
-    })
+      type: 'TestModel/save',
+      payload: { tableList: [...dataSource, newData] },
+    });
     console.log(this.state.count);
   };
-
+ //input框输入保存
   handleSave = row => {
-    const {TestModel,dispatch}=this.props;
+    const { TestModel, dispatch } = this.props;
     // console.log(row)
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
@@ -209,19 +248,30 @@ class Tests extends React.Component {
     //   dataSource: newData,
     // }));
     dispatch({
-      type:"TestModel/save",payload:{tableList:newData}
-    })
+      type: 'TestModel/save',
+      payload: { tableList: newData },
+    });
     console.log(this.state.dataSource);
   };
+  //打印当前表格数据
   handledCurrent = () => {
     console.log(this.state.dataSource);
   };
+  //全部删除
+  handDeleteAll=()=>{
+    const { TestModel, dispatch } = this.props;
+    dispatch({
+      type: 'TestModel/save',
+      payload: { tableList: this.data},
+    });
+    this.setState({dataSource:this.data})
+  }
   render() {
     const { dataSource } = this.state;
-    const {TestModel,dispatch}=this.props;
+    const { TestModel, dispatch } = this.props;
     // console.log(TestModel)
-    const {tableList}=TestModel;
-    console.log(tableList)
+    const { tableList } = TestModel;
+    console.log(tableList);
     console.log(dataSource);
     const components = {
       body: {
@@ -254,6 +304,9 @@ class Tests extends React.Component {
             </Button>
             <Button onClick={this.handledCurrent} type="primary">
               打印当前表格
+            </Button>
+            <Button onClick={this.handDeleteAll} type="primary">
+              全部删除
             </Button>
             <Table
               components={components}
