@@ -173,31 +173,22 @@ class Tests extends React.Component {
     };
   }
   componentDidMount() {
-    // const data = [
-    //   {
-    //     key: 1,
-    //     name: 'King 1',
-    //     age: '32',
-    //     sex: 'man',
-    //     address: 'London, Park Lane no. 0',
-    //   },
-    // ];
     this.props.dispatch({
       type: 'TestModel/save',
       payload: { tableList: this.data },
     });
   }
   componentWillReceiveProps(nextProsp) {
-    console.log(nextProsp);
+    //实时监听表格数据发生变化
     if (nextProsp.TestModel.tableList && nextProsp.TestModel.tableList != this.state.dataSource) {
       this.setState({ dataSource: nextProsp.TestModel.tableList });
     }
   }
   //删除行
   handleDelete = key => {
-    console.log(key);
+    // console.log(key);
     const dataSource = [...this.state.dataSource];
-    console.log(dataSource);
+    // console.log(dataSource);
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     const { TestModel, dispatch } = this.props;
     dispatch({
@@ -230,7 +221,7 @@ class Tests extends React.Component {
       type: 'TestModel/save',
       payload: { tableList: [...dataSource, newData] },
     });
-    console.log(this.state.count);
+    // console.log(this.state.count);
   };
  //input框输入保存
   handleSave = row => {
