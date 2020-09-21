@@ -251,6 +251,7 @@ class Tests extends React.Component {
   //打印当前表格数据
   handledCurrent = () => {
     console.log(this.state.dataSource);
+    // alert(this.state.dataSource)
   };
   //全部删除
   handDeleteAll = () => {

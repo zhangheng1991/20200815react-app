@@ -1,29 +1,29 @@
 /**
  * Created by zhangheng on 2019/5/18.
  */
-import React from "react";
-import { Row, Col, Checkbox } from "antd";
+import React from 'react';
+import { Row, Col, Checkbox } from 'antd';
 import { Select, Table } from 'antd';
-import { connect } from "dva";
-import style from "./index.less";
+import { connect } from 'dva';
+import style from './index.less';
 const { Option } = Select;
 const data = [
   {
-    title: "1111",
-    key: "12312",
-    id: "eeee",
+    title: '1111',
+    key: '12312',
+    id: 'eeee',
   },
   {
-    title: "1111eee",
-    key: "12312fff",
-    id: "gggggg",
+    title: '1111eee',
+    key: '12312fff',
+    id: 'gggggg',
   },
   {
-    title: "eeeee",
-    key: "rrrrr",
-    id: "hhhhh",
-  }
-]
+    title: 'eeeee',
+    key: 'rrrrr',
+    id: 'hhhhh',
+  },
+];
 @connect(({ Index }) => ({ Index }))
 //
 class Test extends React.Component {
@@ -34,70 +34,72 @@ class Test extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: "Index/SelectList", payload: {}
-    })
+      type: 'Index/SelectList',
+      payload: {},
+    });
   }
-  onChange = (value) => {
+  onChange = value => {
     console.log(`selected ${value}`);
-  }
-  onSearch = (value) => {
+  };
+  onSearch = value => {
     console.log(`selected ${value}`);
-  }
-  dataSource =  [{
-    name: "张三",
-    sex: "男",
-    age: 12,
-    phone: 12345678900,
-    address: "河南",
-    id:1,
-    flag: 1,
-  },
-  {
-    name: "李四",
-    sex: "男",
-    age: 12,
-    phone: 12345678900,
-    address: "河南",
-    id: 2,
-    flag: 1,
-  },
-  {
-    name: "王二",
-    sex: "男",
-    age: 12,
-    phone: 12345678900,
-    address: "河南",
-    id: 3,
-    flag: 2,
-  },
-  {
-    name: "刘大",
-    sex: "男",
-    age: 12,
-    phone: 12345678900,
-    address: "河南",
-    id: 4,
-    flag: 3,
-  },
-  {
-    name: "胡六",
-    sex: "男",
-    age: 12,
-    phone: 12345678900,
-    address: "河南",
-    id: 5,
-    flag: 4,
-  },
-  {
-    name: "杨七",
-    sex: "男",
-    age: 12,
-    phone: 12345678900,
-    address: "河南",
-    id:6,
-    flag: 1,
-  },
-]
+  };
+  dataSource = [
+    {
+      name: '张三',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 1,
+      flag: 1,
+    },
+    {
+      name: '李四',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 2,
+      flag: 1,
+    },
+    {
+      name: '王二',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 3,
+      flag: 2,
+    },
+    {
+      name: '刘大',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 4,
+      flag: 3,
+    },
+    {
+      name: '胡六',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 5,
+      flag: 4,
+    },
+    {
+      name: '杨七',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 6,
+      flag: 1,
+    },
+  ];
 
   columns = [
     {
@@ -126,15 +128,15 @@ class Test extends React.Component {
       key: 'address',
     },
   ];
-  onSelectChange = selectedRowKeys => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
+  onSelectChange = (selectedRowKeys, selectedRows) => {
+    console.log(selectedRowKeys, selectedRows);
     this.setState({ selectedRowKeys });
   };
   render() {
     const { Index } = this.props;
     const { TableList } = Index;
     const { selectedRowKeys } = this.state;
-    console.log(TableList)
+    console.log(TableList);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -143,15 +145,15 @@ class Test extends React.Component {
         disabled: record.flag === 3, // Column configuration not to be checked
         flag: record.flag,
       }),
-     
     };
     return (
-      <div className={`${style["IndexBox"]}`}>
-        <Table rowKey="id"
-          dataSource={TableList&&TableList.length>0?TableList:this.dataSource}
+      <div className={`${style['IndexBox']}`}>
+        <Table
+          rowKey="id"
+          dataSource={TableList && TableList.length > 0 ? TableList : this.dataSource}
           columns={this.columns}
-          pagination={false}
-          pageSize="1000000"
+          pagination={true}
+          pageSize="3"
           rowSelection={rowSelection}
         />
         <Select
@@ -171,31 +173,27 @@ class Test extends React.Component {
           <Option value="lucyee">Lucy</Option>
           <Option value="tomee">Tom</Option>
         </Select>
-        {
-          data.map((item, index) => {
-            return (
-              <Row >
-                <Col span={4}>{item.title}</Col>
-                <Col span={12}>
-                  <Checkbox > {item.id}</Checkbox>
-                  {item.id}
-                </Col>
+        {data.map((item, index) => {
+          return (
+            <Row>
+              <Col span={4}>{item.title}</Col>
+              <Col span={12}>
+                <Checkbox> {item.id}</Checkbox>
+                {item.id}
+              </Col>
 
-                <Col span={8}>{item.key}</Col>
-              </Row>
-            )
-          })
-        }
-        <Row >
+              <Col span={8}>{item.key}</Col>
+            </Row>
+          );
+        })}
+        <Row>
           <Col span={4}>eeee</Col>
-          <Col span={12}>
-            dgerergergerg
-          </Col>
+          <Col span={12}>dgerergergerg</Col>
 
           <Col span={8}>水水水水水水水水</Col>
         </Row>
       </div>
-    )
+    );
   }
 }
 export default Test;
