@@ -26,6 +26,8 @@ export default
         { path: '/Test', component: './Test' },
         { path: '/Tests', component: '../Test/Tests' },//有导航
         { path: '/echartsIndex', component: './echarts/echartsIndex' },
+        { path: '/Hooks', component: './Hooks/Hooks' },
+        
       ]
     },
 
