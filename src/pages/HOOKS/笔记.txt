@@ -1,0 +1,59 @@
+护理项目
+项目地址：https://gitee.com/szydn/huachuang-www.git
+
+git branch -a
+git checkout dev_0.0.1
+git clone -b dev_0.0.1 https://gitee.com/szydn/huachuang-www.git
+
+
+
+旅游项目
+·
+
+
+账户：zhangheng@huisukj.com
+密码：zhang1991
+
+
+git clone -b dev https://rep.huisukj.com/xqs-data-platform/web.git
+
+
+
+
+
+github
+
+账户：404455037@qq.com/zhangheng1991
+密码：ZhangH123456
+
+
+码云
+404455037@qq.com
+zhang1991
+968824
+
+
+git使用：
+git clone https://github.com/zhangheng1991/React-New.git
+git init 
+git add .
+git commit -m  "第一次提交"
+
+git pull origin https://github.com/zhangheng1991/React-New.git
+
+
+git push origin master
+
+
+运行一下命令缓存输入的用户名和密码：
+
+git config --global credential.helper wincred
+清除掉缓存在git中的用户名和密码
+
+git credential-manager uninstall、
+
+
+jspang（学习网址）
+https://jspang.com/detailed?id=50#toc28
+
+

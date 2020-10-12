@@ -113,7 +113,8 @@ class DoubleTable extends React.Component {
       });
     });
     // console.log(colum)
-    this.setState({ columns: column,value:value });
+    // this.setState({ columns: column,value:value });
+    this.setState({ value:value });
     const NumTotal = _.map(column, record => record.width);
     // console.log(NumTotal)
     // console.log(_.sum(NumTotal))
