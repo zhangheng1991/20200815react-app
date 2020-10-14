@@ -36,7 +36,7 @@ const MultiVertical = () => {
   const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? "lightblue" : "lightgrey",
     padding: grid,
-    width: 250,
+    width: "30%",
   });
 
   /**
