@@ -9,7 +9,4 @@ module.exports = {
       '@': require('path').resolve(__dirname, 'src'),
     },
   },
-  {
-     test:/\.(pdf|svg|docx|doc|xls|xlsx)$/
-  },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'loadsh';
-import { Table, Select } from 'antd';
+import { Table, Select, AutoComplete } from 'antd';
 const { Option } = Select;
 
 // const columns = [
@@ -78,6 +78,17 @@ const DataS = [
     title: '虾米1',
   },
 ];
+const options = [
+  {
+    value: 'Burns Bay Road',
+  },
+  {
+    value: 'Downing Street',
+  },
+  {
+    value: 'Wall Street',
+  },
+];
 class DoubleTable extends React.Component {
   state = {
     expandedRowKeys: '1',
@@ -88,7 +99,7 @@ class DoubleTable extends React.Component {
       { title: 'Action', dataIndex: '', key: 'x', render: () => <a>Delete</a>, width: 100 },
     ],
     total: 1200,
-    value:['Name', 'Age', 'Address']
+    value: ['Name', 'Age', 'Address'],
   };
   onExpand = (expanded, record) => {
     console.log(record.key);
@@ -114,7 +125,7 @@ class DoubleTable extends React.Component {
     });
     // console.log(colum)
     // this.setState({ columns: column,value:value });
-    this.setState({ value:value });
+    this.setState({ value: value });
     const NumTotal = _.map(column, record => record.width);
     // console.log(NumTotal)
     // console.log(_.sum(NumTotal))
@@ -122,13 +133,23 @@ class DoubleTable extends React.Component {
     this.setState({ total: _.sum(NumTotal) });
   };
   render() {
-    const { columns, total,value } = this.state;
+    const { columns, total, value } = this.state;
     // console.log(columns,value)
     // const NumTotal= _.map(colums,record=>record.width);
     // console.log(columns,total)
     // console.log(_.sum(NumTotal))
     return (
       <div>
+        <AutoComplete
+          style={{
+            width: 200,
+          }}
+          options={options}
+          placeholder="try to type `b`"
+          filterOption={(inputValue, option) =>
+            option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+          }
+        />
         <Select
           mode="tags"
           placeholder="Please select"
@@ -146,18 +167,18 @@ class DoubleTable extends React.Component {
           {/* {children} */}
         </Select>
         <div key={total}>
-          {
-            columns&&  <Table
-            columns={columns}
-            expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-            dataSource={data}
-            onExpand={this.onExpand}
-            rowKey="key"
-            expandedRowKeys={this.state.expandedRowKeys}
-            scroll={{ x: total }}
-          />
-          }
-        
+          {columns && (
+            <Table
+              columns={columns}
+              expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
+              dataSource={data}
+              onExpand={this.onExpand}
+              rowKey="key"
+              expandedRowKeys={this.state.expandedRowKeys}
+              scroll={{ x: total }}
+
+            />
+          )}
         </div>
       </div>
     );

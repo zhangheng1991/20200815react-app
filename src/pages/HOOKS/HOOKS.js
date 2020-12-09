@@ -2,12 +2,24 @@ import React, { useState, useEffect } from 'react';
 import FileViewer from 'react-file-viewer';
 import logger from 'logging-library';
 import { CustomErrorComponent } from 'custom-error';
-import style from "./style.less";
+import style from './style.less';
+import { Anchor } from 'antd';
+import { Document, Page } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+// import {Pdf} from 'react-pdf-js';
+import Pdf from 'react-pdf-js';
+const { Link } = Anchor;
+
 const file = '11.jpg';
 const type = 'docx';
 
 function MyHooks() {
   const [count, setCount] = useState(0);
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  function onDocumentLoadSuccess({ numPages }) {
+    setPageNumber(numPages);
+  }
   useEffect(() => {});
   const handClick = () => {
     setCount(count - 1);
@@ -15,8 +27,49 @@ function MyHooks() {
   const onError = e => {
     logger.logError(e, 'error in file-viewer');
   };
+  // const onDocumentLoadSuccess=()=> {
+  //   // setNumPages(numPages);
+  // }
   return (
     <div className={style.box}>
+      <div>
+      <Document
+        file="./11.pdf"
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <p>Page {pageNumber} of {numPages}</p>
+    </div>
+       {/* <Document
+        file="./11.pdf"
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page pageNumber={100} />
+      </Document> */}
+      {/* <Pdf file="./11.pdf">
+
+    </Pdf> */}
+      {/* <Anchor>
+        <Link href="#components-anchor-demo-basic" title="Basic demo" />
+        <Link href="#components-anchor-demo-static" title="Static demo" />
+        <Link href="#API" title="API">
+          <Link href="#Anchor-Props" title="Anchor Props" />
+          <Link href="#Link-Props" title="Link Props" />
+        </Link>
+      </Anchor> */}
+      {/* <iframe
+        src="https://view.officeapps.live.com/op/view.aspx?src=http://storage.xuetangx.com/public_assets/xuetangx/PDF/1.xls"
+        width="100%"
+        height="100%"
+        frameborder="1"
+      />
+      <iframe
+        src="http://yl.yjc.lsx.com/op/view.aspx?src=http%3A%2F%2Foa.new1.com%2FXXX.xls"
+        width="100%"
+        height="100%"
+        frameborder="1"
+      /> */}
       <FileViewer
         fileType={type}
         filePath={require('./11.docx')}
