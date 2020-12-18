@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import ResizableTitle from "./ResizableTitle";
+import "./style.less";
 class ResizableTitleBody extends React.Component {
 
     state = {

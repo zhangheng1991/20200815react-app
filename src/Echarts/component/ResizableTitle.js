@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Resizable } from 'react-resizable';
-
+import "react-resizable/css/styles.css";
 class  ResizableTitle extends React.Component {
 render(){
     const { onResize, width, ...restProps } = this.props;

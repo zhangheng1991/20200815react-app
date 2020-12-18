@@ -2,7 +2,7 @@ import React from 'react';
 
 import Echarts from 'echarts';
 import { Modal, Button, Select, Radio, Table } from 'antd';
-import HeaderBody from "./component/HeaderBody";
+import HeaderBody from './component/HeaderBody';
 const { Option } = Select;
 
 const children = [];
@@ -411,10 +411,9 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        我是echarts第二个页面折线图
-      ddddddddddddd
+        我是echarts第二个页面折线图 ddddddddddddd
         <div>
-        {/* <HeaderBody /> */}
+          <HeaderBody />
           <Button type="primary" onClick={this.showModal}>
             Open Modal
           </Button>
