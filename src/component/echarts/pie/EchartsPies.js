@@ -1,9 +1,9 @@
-import React from "react";
-import echarts from "echarts";
+import React from 'react';
+import echarts from 'echarts';
 class EchartsPies extends React.Component {
   componentDidMount() {
-    const { data, id, textFont, ChattTitle,subtextTitle } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(id))
+    const { data, id, textFont, ChattTitle, subtextTitle } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id));
     let option = {
       title: {
         text: ChattTitle,
@@ -13,7 +13,7 @@ class EchartsPies extends React.Component {
         textStyle: {
           fontWeight: '20',
           color: '#303030',
-          fontSize: textFont
+          fontSize: textFont,
         },
         // subtext:subtextTitle,
         // subtextStyle:{
@@ -27,12 +27,16 @@ class EchartsPies extends React.Component {
       tooltip: {
         trigger: 'item',
         // formatter: '{a} <br/>{b}: {c} ({d}%)',
-        formatter: '{a} <br/>{b}: {c} ({d}%)'
+        formatter: '{a} <br/>{b}: {c} ({d}%)',
       },
       legend: {
         orient: 'vertical',
         left: 10,
-        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+        formatter: function(name) {
+          console.log(name + 1111);
+          // return 'Legend ' + name;
+        },
       },
       // graphic: {       //图形中间文字
       //   type: "text",
@@ -58,45 +62,47 @@ class EchartsPies extends React.Component {
           // roseType: 'area',
           label: {
             show: false,
-            position: 'center'
+            position: 'center',
           },
           emphasis: {
             label: {
               show: true,
               fontSize: textFont,
-              fontWeight: 'bold'
-            }
+              fontWeight: 'bold',
+            },
           },
           labelLine: {
             show: true,
-            length:30,
-            length2:50,
+            length: 30,
+            length2: 50,
           },
           label: {
             normal: {
-              formatter: ' {c|{c}%}  \n  {b|{b}}  \n\n',       //图形外文字上下显示
+              formatter: ' {c|{c}%}  \n  {b|{b}}  \n\n', //图形外文字上下显示
               borderWidth: 20,
               borderRadius: 4,
-              padding: [0, 10],          //文字和图的边距
+              padding: [0, 10], //文字和图的边距
               rich: {
                 a: {
                   color: '#ffffff',
                   fontSize: textFont,
-                  lineHeight: textFont
-                },
-                b: {                        //name 文字样式
-                  fontSize: textFont,
                   lineHeight: textFont,
-                  color: '#ffffff'
                 },
-                c: {                   //value 文字样式
+                b: {
+                  //name 文字样式
                   fontSize: textFont,
                   lineHeight: textFont,
                   color: '#ffffff',
-                  align: "center"
-                }
-              }
-            }
+                },
+                c: {
+                  //value 文字样式
+                  fontSize: textFont,
+                  lineHeight: textFont,
+                  color: '#ffffff',
+                  align: 'center',
+                },
+              },
+            },
           },
           //   itemStyle: {
           //     normal: {//颜色渐变
@@ -131,22 +137,22 @@ class EchartsPies extends React.Component {
               shadowColor: 'rgba(0,0,0,.3)',
               color: '#fff',
               label: {
-                show: false
+                show: false,
               },
               labelLine: {
-                show: false
-              }
+                show: false,
+              },
             },
           },
           hoverAnimation: false,
           data: [100],
         },
-      ]
-    }
+      ],
+    };
     if (MyEcharts) {
-      option.series[0].name = "西樵山风景"
+      option.series[0].name = '西樵山风景';
       option.series[0].data = data;
-      option.color = ["#E9C675", "#2E86EB"];
+      option.color = ['#E9C675', '#2E86EB'];
       // option.series[0].itemStyle.normal.color=new echarts.graphic.LinearGradient(
       //   0, 0, 0, 1,
       //   [
@@ -155,28 +161,28 @@ class EchartsPies extends React.Component {
       //     { offset: 1, color: '#00266C' },                   //柱图渐变色
       //   ]
       // );
-      MyEcharts.setOption(option)
+      MyEcharts.setOption(option);
     }
     window.addEventListener('resize', () => {
       // const myChart = echarts.init(document.getElementById('chart-left'))
       // const myChart1 = echarts.init(document.getElementById('chart-btm'))
-      MyEcharts.resize()
+      MyEcharts.resize();
       // myChart1.resize()
-    })
+    });
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    console.log(this.props)
+    console.log(nextProps);
+    console.log(this.props);
   }
   render() {
-    const {height,id}=this.props;
+    const { height, id } = this.props;
     return (
       <div>
-        <div >
-          <div id={id} style={{ width: "100%", height: height?height:"400px" }}></div>
+        <div>
+          <div id={id} style={{ width: '100%', height: height ? height : '400px' }} />
         </div>
       </div>
-    )
+    );
   }
 }
 export default EchartsPies;
