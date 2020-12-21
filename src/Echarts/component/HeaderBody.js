@@ -30,11 +30,13 @@ class ResizableTitleBody extends React.Component {
         {
           title: 'Action',
           key: 'action',
-          render: () => <a>Delete</a>,
+          render: (text,record) => <a onClick={this.handDelete.bind(this,record)}>Delete</a>,
         },
       ],
     };
-  
+    handDelete=(obj)=>{
+           console.log(obj)
+    }
     components = {
       header: {
         cell: ResizableTitle,

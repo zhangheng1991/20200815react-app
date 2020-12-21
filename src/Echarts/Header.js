@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Echarts from 'echarts';
 import { Modal, Button, Select, Radio, Table } from 'antd';
 import HeaderBody from './component/HeaderBody';
