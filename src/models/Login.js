@@ -17,10 +17,10 @@ export default{
   },
   effects: {
     *UserLogin({ payload: values }, { call, put, select }) {   //dispatch请求的方法
-      console.log(1111)
+      // console.log(1111)
       // const { dataList } = yield select(state => state.system); //获取models中的state
       const back = yield call(services.post,"umi/userLogin", values);  //call,请求services里面的接口以及传参，可继续往后面加参数，跟JavaScript的call一样
-      console.log(back)
+      // console.log(back)
       if(back.status==200&&back.data.data.username=="admin"&&back.data.data.password=="123456"){
         message.success('登陆成功');
         sessionStorage.setItem("userInfo", JSON.stringify(back.data.data));
@@ -53,7 +53,7 @@ export default{
       return history.listen(({ pathname, query }) => {
         // 进入 '/manager/system' 路由，会发起一个名叫 'save' 的 effect
         if (pathname === '/manager/system') {
-          console.log(1111)
+          // console.log(1111)
 					//do sth... dispatch({ type: 'save', payload: query });
 				}
       })

@@ -461,7 +461,7 @@ class PeoplePark extends React.Component {
       // option.series[0].name = "商户排名数据分析";
       // option.series[0].itemStyle.normal.color = color;
 
-      console.log(option);
+      // console.log(option);
       MyEcharts.setOption(option)
     }
     window.addEventListener('resize', () => {
@@ -473,7 +473,7 @@ class PeoplePark extends React.Component {
 
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
+    // console.log(nextProps)
   }
   render() {
     const { unit, textFont,heigth } = this.props;

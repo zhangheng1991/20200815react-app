@@ -5,7 +5,7 @@ import React from 'react';
 
 class HeighLogin extends React.Component{
   componentWillMount(){
-    console.log(this.props)
+    // console.log(this.props)
   }
   render(){
     return(

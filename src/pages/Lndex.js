@@ -78,7 +78,7 @@ const data = [
 const CountContext = createContext();
 function Index(props) {
   // console.log(config)
-  console.log(props)
+  // console.log(props)
   const [count, setCount] = useState(0);
   const [age, setAge] = useState(18)
   const [sex, setSex] = useState('男')

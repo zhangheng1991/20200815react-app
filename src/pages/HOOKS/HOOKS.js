@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import FileViewer from 'react-file-viewer';
 import logger from 'logging-library';
-import { CustomErrorComponent } from 'custom-error';
-import style from './style.less';
-import { Anchor } from 'antd';
-import { Document, Page } from 'react-pdf';
+import {connect} from "dva";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import { CustomErrorComponent } from 'custom-error';
 // import {Pdf} from 'react-pdf-js';
 import Pdf from 'react-pdf-js';
+import { Anchor } from 'antd';
+import { Document, Page } from 'react-pdf';
+import style from './style.less';
 const { Link } = Anchor;
-
 const file = '11.jpg';
 const type = 'docx';
 
-function MyHooks() {
+function MyHooks(props) {
   const [count, setCount] = useState(0);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   function onDocumentLoadSuccess({ numPages }) {
     setPageNumber(numPages);
   }
-  useEffect(() => {});
+  useEffect(() => {
+    //  console.log(props)
+     //hooks写法调用接口形式也可以用老的写法
+     props.dispatch({
+      type: "Index/homePage", payload: { username:"admin"}
+    })
+  },[]);
   const handClick = () => {
     setCount(count - 1);
   };
@@ -85,4 +91,4 @@ function MyHooks() {
   );
 }
 
-export default MyHooks;
+export default connect(({Index})=>({Index}))(MyHooks) ;

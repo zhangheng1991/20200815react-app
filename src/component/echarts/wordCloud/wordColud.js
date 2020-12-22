@@ -159,8 +159,8 @@ class WordCloud extends React.Component {
     })
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    console.log(this.props)
+    // console.log(nextProps)
+    // console.log(this.props)
   }
   render() {
     const {height,id}=this.props;

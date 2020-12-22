@@ -6,11 +6,11 @@ class PublicEcharts extends React.Component {
     this.PublicPie(this.props.data)
   }
   componentWillReceiveProps(nextProps){
-    console.log(nextProps);
+    // console.log(nextProps);
   }
   PublicPie(data) {
     const MyPie = Echarts.init(document.getElementById(this.props.id));
-    console.log(data)
+    // console.log(data)
    if(data&&data.value>0){
     MyPie.setOption({
       backgroundColor: 'rgba(16, 26, 73, 0.5)',

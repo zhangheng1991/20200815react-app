@@ -68,7 +68,7 @@ export function loadData(url) {
  * 加载远程数据
  */
 export function loadServerData(url,item) {
-  console.log(config)
+  // console.log(config)
   // axios.defaults.headers.common['Auth'] = getTokenId();
   // console.log(url);
   // console.log(item);
@@ -117,7 +117,7 @@ export function deleteById(url,sendData) {
 
 export function post(url,sendData) {
   // axios.defaults.headers.common['Auth'] = getTokenId();
-  console.log(sendData)
+  // console.log(sendData)
   return axios.post(config.SERVER_URL + url,sendData)
     .then((response)=>{
       saveTokenToSession(response);

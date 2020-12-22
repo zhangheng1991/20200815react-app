@@ -32,10 +32,10 @@ class Login extends React.Component {
     });
   };
   onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+    // console.log('Failed:', errorInfo);
   };
   disabledDate = (current) => {
-    console.log(current)
+    // console.log(current)
     // Can not select days before today and today
     // return current && current.valueOf() < moment().subtract(1, "month");
     return current && current.valueOf() < Date.now();

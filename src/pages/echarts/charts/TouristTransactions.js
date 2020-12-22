@@ -7,7 +7,7 @@ const { TabPane } = Tabs;
 
 class TouristTransactions extends React.Component {
   callback = (key) => {
-    console.log(key);
+    // console.log(key);
   };
   render() {
     const TouristTransactionVolume2 = {

@@ -175,14 +175,14 @@ class Header extends React.Component {
   };
 
   handleOk = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = e => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
@@ -404,7 +404,7 @@ class Header extends React.Component {
     }
   }
   handleChange = value => {
-    console.log(`Selected: ${value}`);
+    // console.log(`Selected: ${value}`);
   };
 
   render() {

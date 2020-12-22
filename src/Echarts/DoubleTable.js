@@ -102,7 +102,7 @@ class DoubleTable extends React.Component {
     value: ['Name', 'Age', 'Address'],
   };
   onExpand = (expanded, record) => {
-    console.log(record.key);
+    // console.log(record.key);
     if (expanded) {
       this.setState({ expandedRowKeys: record.key });
     } else {

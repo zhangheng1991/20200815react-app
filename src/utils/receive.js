@@ -52,7 +52,7 @@ function connStomp(url , userId , dispatch){
     });
 
     client.subscribe("/topic/"+userId ,function(message){
-      console.log(message);
+      // console.log(message);
     });
   };
 
@@ -81,7 +81,7 @@ function success(msg , dispatch){
 
 
 function* loadServer() {
-  console.log(1231);
+  // console.log(1231);
 
 }
 

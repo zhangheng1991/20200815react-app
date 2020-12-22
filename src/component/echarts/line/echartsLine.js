@@ -133,7 +133,7 @@ class EchartsLine extends React.Component {
           axisLabel: {
             formatter: function(params) {
               let item = chartData[params];
-              console.log(item);
+              // console.log(item);
               return (
                 '{line|}{circle|●}{name|' +
                 item.name +

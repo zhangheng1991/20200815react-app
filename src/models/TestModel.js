@@ -17,7 +17,7 @@ export default{
           return history.listen(({ pathname, query }) => {
             // 进入 '/manager/system' 路由，会发起一个名叫 'save' 的 effect
             if (pathname === '/manager/system') {
-              console.log(1111)
+              // console.log(1111)
                         //do sth... dispatch({ type: 'save', payload: query });
                     }
           })

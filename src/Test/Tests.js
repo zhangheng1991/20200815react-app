@@ -199,7 +199,7 @@ class Tests extends React.Component {
       type: 'TestModel/save',
       payload: { tableList: dataSource.filter(item => item.key !== key) },
     });
-    console.log(this.state.dataSource);
+    // console.log(this.state.dataSource);
   };
   //新增行
   handleAdd = () => {
@@ -246,11 +246,11 @@ class Tests extends React.Component {
       type: 'TestModel/save',
       payload: { tableList: newData },
     });
-    console.log(this.state.dataSource);
+    // console.log(this.state.dataSource);
   };
   //打印当前表格数据
   handledCurrent = () => {
-    console.log(this.state.dataSource);
+    // console.log(this.state.dataSource);
     // alert(this.state.dataSource)
   };
   //全部删除
@@ -267,8 +267,8 @@ class Tests extends React.Component {
     const { TestModel, dispatch } = this.props;
     // console.log(TestModel)
     const { tableList } = TestModel;
-    console.log('modules', tableList);
-    console.log('state', dataSource);
+    // console.log('modules', tableList);
+    // console.log('state', dataSource);
     const components = {
       body: {
         row: EditableFormRow,

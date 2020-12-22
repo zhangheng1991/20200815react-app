@@ -34,7 +34,7 @@ class EchartsPies extends React.Component {
         left: 10,
         data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
         formatter: function(name) {
-          console.log(name + 1111);
+          // console.log(name + 1111);
           // return 'Legend ' + name;
         },
       },
@@ -171,8 +171,8 @@ class EchartsPies extends React.Component {
     });
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    console.log(this.props);
+    // console.log(nextProps);
+    // console.log(this.props);
   }
   render() {
     const { height, id } = this.props;

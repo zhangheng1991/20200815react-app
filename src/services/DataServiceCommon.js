@@ -110,6 +110,6 @@ export async function isUnique(url ,callback , message , sendData ) {
       }
     })
     .catch(function (error) {
-      console.log(error);
+      // console.log(error);
     });
 }

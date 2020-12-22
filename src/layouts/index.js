@@ -57,8 +57,8 @@ class BasicLayout extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log(1111)
-    console.log(nextProps.location.pathname)
+    // console.log(1111)
+    // console.log(nextProps.location.pathname)
     if (nextProps.location && nextProps.location.pathname && nextProps.location.pathname != this.state.keyId) {
       this.setState({ keyId: nextProps.location.pathname })
     }
@@ -67,7 +67,7 @@ class BasicLayout extends React.Component {
   //   console.log(nextStates)
   // }
   handleClick = (e) => {
-    console.log(e);
+    // console.log(e);
 
     this.setState({
       keyId: e.key,
@@ -76,7 +76,7 @@ class BasicLayout extends React.Component {
   render() {
     const {Index}=this.props;
     const {NavData}=Index;
-    console.log(NavData)
+    // console.log(NavData)
     const loop = data => data.map((item, index) => {
       if (item.child && item.child.length > 0) {
         return (

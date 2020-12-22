@@ -39,10 +39,10 @@ class Test extends React.Component {
     });
   }
   onChange = value => {
-    console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
   };
   onSearch = value => {
-    console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
   };
   dataSource = [
     {
@@ -129,14 +129,14 @@ class Test extends React.Component {
     },
   ];
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    console.log(selectedRowKeys, selectedRows);
+    // console.log(selectedRowKeys, selectedRows);
     this.setState({ selectedRowKeys });
   };
   render() {
     const { Index } = this.props;
     const { TableList } = Index;
     const { selectedRowKeys } = this.state;
-    console.log(TableList);
+    // console.log(TableList);
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,

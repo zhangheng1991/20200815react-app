@@ -121,8 +121,8 @@ class EchartsPieRing extends React.Component {
     })
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
-    console.log(this.props)
+    // console.log(nextProps)
+    // console.log(this.props)
   }
   render() {
     const { TitleUnit, textFont,height } = this.props;

@@ -194,7 +194,7 @@ class EchartsBarsCoss extends React.Component {
       ]
     };
 
-    console.log(option);
+    // console.log(option);
 
     if (MyEcharts) {
       // option.color = ["#009EFA"]
@@ -214,7 +214,7 @@ class EchartsBarsCoss extends React.Component {
 
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
+    // console.log(nextProps)
   }
   render() {
     const { unit, textFont,height } = this.props;

@@ -316,7 +316,7 @@ class EchartsBar extends React.Component {
     // option.series=NewData;
     if (MyEcharts) {
       NewData.map((item, index) => {
-        console.log(item)
+        // console.log(item)
         option.series[index].data = item.data;
         option.series[index].name = item.name;
         option.series[index].type = "bar";

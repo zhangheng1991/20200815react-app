@@ -182,7 +182,7 @@ class PictorialBar extends React.Component {
     });
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    // console.log(nextProps);
   }
   render() {
     const { unit, textFont, height } = this.props;

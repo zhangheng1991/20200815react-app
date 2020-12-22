@@ -14,7 +14,7 @@ export default{
   subscriptions: {                                             //订阅，在app.start()即启动项目时被执行
     setup({ dispatch, history }) {
       return history.listen(({ pathname, query }) => {
-        console.log(pathname)
+        // console.log(pathname)
         // 进入 '/manager/system' 路由，会发起一个名叫 'save' 的 effect
         // if (pathname === '/manager/system') {
         //   console.log(1111)
@@ -25,10 +25,10 @@ export default{
   },
   effects: {
     *homePage({ payload: values }, { call, put, select }) {   //dispatch请求的方法
-      console.log(1111)
+      // console.log(1111)
       // const { dataList } = yield select(state => state.system); //获取models中的state
       //call,请求services里面的接口以及传参，可继续往后面加参数，跟JavaScript的call一样
-      console.log(sessionStorage.getItem("userInfo"))
+      // console.log(sessionStorage.getItem("userInfo"))
       if(sessionStorage.getItem("userInfo")){
         const back = yield call(services.loadServerData,"react/umi/homePage", values); 
         if(back.data.status==1){
@@ -58,7 +58,7 @@ export default{
     },
     *SelectList( {payload:values},{call,put,select}){
       const back = yield call(services.loadServerData,"users/list", values); 
-      console.log(back)
+      // console.log(back)
       yield put({
         type:"save",
         payload:{
