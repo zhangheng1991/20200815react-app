@@ -5,15 +5,15 @@ import { Menu } from "antd";
 import { connect } from "dva";
 const { SubMenu } = Menu;
 const MenuData = [
-  {
-    title: "首页",
-    url: "/",
+  // {
+  //   title: "首页",
+  //   url: "/",
 
-  },
-  {
-    title: "测试",
-    url: "/Test",
-  },
+  // },
+  // {
+  //   title: "测试",
+  //   url: "/Test",
+  // },
   // {
   //   title: "登录页面",
   //   url: "/user/login",
@@ -21,10 +21,10 @@ const MenuData = [
 
   //   ],
   // },
-  {
-    title: "新的测试",
-    url: "/Tests",
-  },
+  // {
+  //   title: "新的测试",
+  //   url: "/Tests",
+  // },
   {
     title: "EchartsO",
     url: "/Echarts/Header",
@@ -95,16 +95,17 @@ class BasicLayout extends React.Component {
     })
     return (
       <div className={styles.normal}>
-        <div className={styles.Header}>
+        {/* <div className={styles.Header}>
           <h1 className={styles.title}>Yay! Welcome to echarts!</h1>
-        </div>
-        <div className={styles.NormalBody}>
+        </div> */}
+        <div className={styles.NormalBodyS}>
           <Menu
             onClick={this.handleClick}
             selectedKeys={[this.state.keyId]}
             mode="horizontal"
           >
-            {loop(NavData&&NavData.length>0?NavData:MenuData)}
+            {/* {loop(NavData&&NavData.length>0?NavData:MenuData)} */}
+            {loop(MenuData)}
           </Menu>
           {this.props.children}
         </div>
