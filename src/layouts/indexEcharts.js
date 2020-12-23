@@ -50,7 +50,7 @@ class BasicLayout extends React.Component {
       type: "Index/homePage", payload: { username:"admin"}
     })
 
-    const url = this.props.location && this.props.location.pathname ? this.props.location.pathname : "";
+    const url = this.props.keyId && this.props.keyId ? this.props.keyId : "";
     if (url) {
       this.setState({ keyId: url })
     }
@@ -58,9 +58,9 @@ class BasicLayout extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     // console.log(1111)
-    // console.log(nextProps.location.pathname)
-    if (nextProps.location && nextProps.location.pathname && nextProps.location.pathname != this.state.keyId) {
-      this.setState({ keyId: nextProps.location.pathname })
+    // console.log(nextProps.keyId)
+    if (nextProps.keyId &&  nextProps.keyId != this.state.keyId) {
+      this.setState({ keyId: nextProps.keyId })
     }
   }
   // shouldComponentUpdate(nextStates) { // 应该使用这个方法，否则无论state是否有变化都将会导致组件重新渲染
@@ -89,6 +89,7 @@ class BasicLayout extends React.Component {
         return (
           <Menu.Item key={item.url}>
             <Link title={item.title} to={item.url} >{item.title}</Link>
+            {/* <Link title={item.title} to={`${item.url}?id=${item.title}`} >{item.title}</Link> */}
           </Menu.Item>
         )
       }

@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import PublicEcharts from './public/PublicEcharts';
 import style from './public/style.less';
-import EchartsChildren from "./component/EchartsChildren";
+import EchartsChildren from './component/EchartsChildren';
 const data = { value: 10, id: '1' };
 const data1 = { value: 50, id: '2' };
 const data2 = { value: 80, id: '3' };
@@ -153,15 +153,14 @@ let MeteorRain = function() {
 class Echarts extends React.Component {
   state = {
     Flagt: true,
-    timeD:moment().format("YYYYMMDDHHMMSS")
+    timeD: moment().format('YYYYMMDDHHMMSS'),
   };
   componentDidMount() {
-
     const { Flagt } = this.state;
     //页面加载的时候
     // window.onload = function() {
     // if (Flagt) {
-      this.TimeIDR = setInterval(() => this.TickR(), 1);
+    this.TimeIDR = setInterval(() => this.TickR(), 1);
     this.init();
     //画星星
     for (var i = 0; i < starCount; i++) {
@@ -187,11 +186,11 @@ class Echarts extends React.Component {
     // };
     // }
   }
-  TickR=()=>{
-     this.setState({timeD:moment().format("YYYYMMDDHHMMSS")})
-  }
+  TickR = () => {
+    this.setState({ timeD: moment().format('YYYYMMDDHHMMSS') });
+  };
   componentWillUnmount() {
-   this.setState({Flagt:false})
+    this.setState({ Flagt: false });
   }
   //初始化画布及context
   init = () => {
@@ -240,17 +239,16 @@ class Echarts extends React.Component {
     }
     // setTimeout(this.playRains(),2);
   };
- 
+
   render() {
     // console.log(this.state.timeD)
-    const {Flagt}=this.state;
+    const { Flagt } = this.state;
     return (
       <div style={{ background: 'black' }} className={style.box}>
         我是echarts的仪表盘
         {/* {moment().format('YYYY-MM-DD-HH:MM:SS') && <canvas id="stars" />} */}
         {/* key={this.state.timeD} */}
-        {Flagt&& <EchartsChildren  />}
-       
+        {Flagt && <EchartsChildren />}
         <div className={`${style['EchartsBox']}`}>
           {PublicData.map((item, index) => {
             return <PublicEcharts id={'SecondEecharts' + item.id} data={item} num={item.id} />;

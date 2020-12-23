@@ -88,6 +88,7 @@ class BasicLayout extends React.Component {
       else {
         return (
           <Menu.Item key={item.url}>
+            {/* <Link title={item.title} to={`${item.url}?id=${item.title}`} >{item.title}</Link> */}
             <Link title={item.title} to={item.url} >{item.title}</Link>
           </Menu.Item>
         )
