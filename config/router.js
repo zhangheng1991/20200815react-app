@@ -9,6 +9,8 @@ export default
         { path: '/Echarts/DoubleTable', component: '../Echarts/DoubleTable' },
         { path: '/Echarts/Header', component: '../Echarts/Header' },
         { path: '/Echarts/Echarts', component: '../Echarts/Echarts' },
+        { path: '/Echarts/HOOKSC', component: '../Echarts/HOOKSC' },
+        
       ]
     },
     {
@@ -33,3 +35,54 @@ export default
     },
 
   ]
+
+
+//   {
+//     "data":[
+//   {
+//     "title": "首页",
+//     "url": "/",
+
+//   },
+//   {
+//     "title": "表格默认选中",
+//     "url": "/selectedDefault",
+//   },
+//   // {
+//   //   title: "登录页面",
+//   //   url: "/user/login",
+//   //   child: [
+
+//   //   ],
+//   // },
+//   {
+//     "title": "表格编辑",
+//     "url": "/formEditor",
+//   },
+//   {
+//     "title": "表格拉伸",
+//     "url": "/tensileTabler",
+//   },
+//   {
+//     "title": "流星",
+//     "url": "/shootingStar",
+//   },
+//   {
+//     "title": "表格",
+//     "url": "/table",
+//   },
+//    {
+//     "title": "echarts图表",
+//     "url": "/echartsIndex",
+//   },
+//    {
+//     "title": "HOOKS",
+//     "url": "/HOOKS",
+//   },
+//    {
+//     "title": "拖拽",
+//     "url": "/DragDrop",
+//   },
+// ],
+// "status":1,
+// }

@@ -4,6 +4,7 @@ import moment from 'moment';
 import PublicEcharts from './public/PublicEcharts';
 import style from './public/style.less';
 import EchartsChildren from './component/EchartsChildren';
+import ParentComponent from "./component/ParentComponent";
 const data = { value: 10, id: '1' };
 const data1 = { value: 50, id: '2' };
 const data2 = { value: 80, id: '3' };
@@ -244,8 +245,9 @@ class Echarts extends React.Component {
     // console.log(this.state.timeD)
     const { Flagt } = this.state;
     return (
-      <div style={{ background: 'black' }} className={style.box}>
+      <div  className={style.box}>
         我是echarts的仪表盘
+        <ParentComponent />
         {/* {moment().format('YYYY-MM-DD-HH:MM:SS') && <canvas id="stars" />} */}
         {/* key={this.state.timeD} */}
         {Flagt && <EchartsChildren />}

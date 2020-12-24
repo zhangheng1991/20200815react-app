@@ -5,11 +5,10 @@ import { Menu } from "antd";
 import { connect } from "dva";
 const { SubMenu } = Menu;
 const MenuData = [
-  // {
-  //   title: "首页",
-  //   url: "/",
-
-  // },
+  {
+    title: "首页",
+    url: "/",
+  },
   // {
   //   title: "测试",
   //   url: "/Test",
@@ -26,16 +25,20 @@ const MenuData = [
   //   url: "/Tests",
   // },
   {
-    title: "EchartsO",
+    title: "表格拉伸",
     url: "/Echarts/Header",
   },
   {
-    title: "EchartsT",
+    title: "流星",
     url: "/Echarts/Echarts",
   },
   {
     title: "表格",
     url: "/Echarts/DoubleTable",
+  },
+  {
+    "title": "HOOKSC传值",
+    "url": "/Echarts/HOOKSC",
   },
 ]
 @connect(({ Index }) => ({ Index }))
