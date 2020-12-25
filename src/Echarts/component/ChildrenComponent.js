@@ -6,7 +6,7 @@ function MyHooks(props) {
   // const [numPages, setNumPages] = useState(null);
 
   useEffect(() => {
-    // console.log(props);
+    console.log(props);
     // props.getChildrenMsg('我是子组件的默认穿过去的值');
   }, []);
   const handClick = () => {
@@ -22,8 +22,9 @@ function MyHooks(props) {
           handClick();
         }}
         ref={handT}
+        type="primary"
       >
-        点击
+        子组件按钮点击
       </Button>
     </div>
   );

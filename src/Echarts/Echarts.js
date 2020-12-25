@@ -1,10 +1,11 @@
 import React from 'react';
 // import { Col } from 'antd';
 import moment from 'moment';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PublicEcharts from './public/PublicEcharts';
 import style from './public/style.less';
 import EchartsChildren from './component/EchartsChildren';
-import ParentComponent from "./component/ParentComponent";
+import ParentComponent from './component/ParentComponent';
 const data = { value: 10, id: '1' };
 const data1 = { value: 50, id: '2' };
 const data2 = { value: 80, id: '3' };
@@ -155,6 +156,8 @@ class Echarts extends React.Component {
   state = {
     Flagt: true,
     timeD: moment().format('YYYYMMDDHHMMSS'),
+    value: '',
+    copied: false,
   };
   componentDidMount() {
     const { Flagt } = this.state;
@@ -245,8 +248,24 @@ class Echarts extends React.Component {
     // console.log(this.state.timeD)
     const { Flagt } = this.state;
     return (
-      <div  className={style.box}>
+      <div className={style.box}>
         我是echarts的仪表盘
+        <div>
+          <input
+            value={this.state.value}
+            onChange={({ target: { value } }) => this.setState({ value, copied: false })}
+          />
+
+          <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+            <span>Copy to clipboard with span</span>
+          </CopyToClipboard>
+
+          <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+            <button>Copy to clipboard with button</button>
+          </CopyToClipboard>
+
+          {this.state.copied ? <span style={{ color: 'red' }}>Copied.</span> : null}
+        </div>
         <ParentComponent />
         {/* {moment().format('YYYY-MM-DD-HH:MM:SS') && <canvas id="stars" />} */}
         {/* key={this.state.timeD} */}

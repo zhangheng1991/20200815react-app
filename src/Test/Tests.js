@@ -2,6 +2,7 @@
  * Created by zhangheng on 2019/5/18.
  */
 import React from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styles from './Tests.less';
 import Echarts from 'echarts';
 import { Table, Input, Button, Popconfirm, Form } from 'antd';
@@ -174,6 +175,8 @@ class Tests extends React.Component {
       ],
       count: 2,
       tableList: [],
+      value: '',
+      copied: false,
     };
   }
   componentDidMount() {
@@ -294,6 +297,22 @@ class Tests extends React.Component {
       <div>
         {/* <div className={styles.backGround}></div> */}
         <div className={styles.content}>
+        <div>
+          <input
+            value={this.state.value}
+            onChange={({ target: { value } }) => this.setState({ value, copied: false })}
+          />
+
+          <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+            <span>点击复制</span>
+          </CopyToClipboard>
+
+          {/* <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+            <button>Copy to clipboard with button</button>
+          </CopyToClipboard> */}
+
+          {/* {this.state.copied ? <span style={{ color: 'red' }}>Copied.</span> : null} */}
+        </div>
           <div>
             <div className={`${styles["ContentButton"]}`}>
               <Button onClick={this.handleAdd} type="primary">
