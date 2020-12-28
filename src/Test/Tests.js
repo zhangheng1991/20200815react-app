@@ -304,7 +304,7 @@ class Tests extends React.Component {
           />
 
           <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
-            <span>点击复制</span>
+            <span className={styles.copyButton}>点击复制</span>
           </CopyToClipboard>
 
           {/* <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
@@ -325,7 +325,7 @@ class Tests extends React.Component {
                 全部删除
               </Button>
             </div>
-            <div>
+            <div >
               <Table
                 components={components}
                 rowClassName={() => 'editable-row'}
