@@ -58,21 +58,25 @@ class CopyCom extends React.Component {
         title: '姓名',
         dataIndex: 'name',
         key: 'name',
+        width:"20%",
       },
       {
         title: '年龄',
         dataIndex: 'age',
         key: 'age',
+        width:"10%",
       },
       {
         title: '住址',
         dataIndex: 'address',
         key: 'address',
+        width:"60%",
       },
       {
         title: '操作',
         dataIndex: 'operate',
         key: 'operate',
+        width:"10%",
         render: (text, record) => (
           <CopyToClipboard text={record.address} onCopy={this.onCopy.bind(this, record)}>
             <span className={`${style['copyText']}`}>复制</span>
