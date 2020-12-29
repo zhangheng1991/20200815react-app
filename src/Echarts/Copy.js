@@ -1,6 +1,7 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Table, Input } from 'antd';
+import style from "./component/style.less";
 class CopyCom extends React.Component {
   state = {
     title: '',
@@ -49,7 +50,7 @@ class CopyCom extends React.Component {
         key: 'operate',
         render: (text, record) => (
           <CopyToClipboard text={record.address} onCopy={this.onCopy.bind(this,record)}>
-            <span>复制</span>
+            <span className={`${style["copyText"]}`}>复制</span>
           </CopyToClipboard>
         ),
       },
