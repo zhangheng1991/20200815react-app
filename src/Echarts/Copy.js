@@ -67,10 +67,16 @@ class CopyCom extends React.Component {
         width:"10%",
       },
       {
+        title: '百分比',
+        dataIndex: 'persent',
+        key: 'persent',
+        width:"10%",
+      },
+      {
         title: '住址',
         dataIndex: 'address',
         key: 'address',
-        width:"60%",
+        width:"50%",
       },
       {
         title: '操作',
