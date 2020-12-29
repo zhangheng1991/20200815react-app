@@ -10,6 +10,7 @@ export default
         { path: '/Echarts/Header', component: '../Echarts/Header' },
         { path: '/Echarts/Echarts', component: '../Echarts/Echarts' },
         { path: '/Echarts/HOOKSC', component: '../Echarts/HOOKSC' },
+        { path: '/Echarts/Copy', component: '../Echarts/Copy' },
         
       ]
     },

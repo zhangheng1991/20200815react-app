@@ -40,6 +40,11 @@ const MenuData = [
     "title": "HOOKSC传值",
     "url": "/Echarts/HOOKSC",
   },
+  {
+    "title": "复制功能",
+    "url": "/Echarts/Copy",
+  },
+  
 ]
 @connect(({ Index }) => ({ Index }))
 class BasicLayout extends React.Component {
