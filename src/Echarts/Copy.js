@@ -68,8 +68,8 @@ class CopyCom extends React.Component {
     };
     return (
       <div className={`${style['copyBox']}`}>
-        <h2>当前选中复制：{textT}</h2>
-        <InputNumber min={0} max={100} defaultValue={3} onChange={this.onChangeNumber} />
+        <InputNumber min={0} max={100} defaultValue={persent} onChange={this.onChangeNumber} />
+        <h2>当前百分比：{persent}</h2>
         <Progress
           strokeColor={{
             '0%': '#108ee9',
@@ -81,6 +81,7 @@ class CopyCom extends React.Component {
           }}
           percent={persent}
         />
+         <h2>当前选中复制：{textT}</h2>
         <Table {...dataT} />
       </div>
     );
