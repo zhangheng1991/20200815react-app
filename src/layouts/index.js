@@ -88,7 +88,7 @@ class BasicLayout extends React.Component {
         url: 'https://www.tianqiapi.com/api/',
         method: "get",
         params: {
-            version: 'v1',
+            version: 'v3',
             city: '商丘',      // 若不提供城市名，会根据本机IP获取当地天气
             appid: '53783933',      // 到该网站上注册申请（操作很简单）
             appsecret: 'AYHXKr8a'
