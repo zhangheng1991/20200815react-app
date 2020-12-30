@@ -66,6 +66,17 @@ export default{
         }
       })
     },
+    *SelectListD( {payload:values},{call,put,select}){
+      const back = yield call(services.loadServerData,"users/list", values); 
+      return back;
+      // console.log(back)
+      // yield put({
+      //   type:"save",
+      //   payload:{
+      //     TableList:back.data.data
+      //   }
+      // })
+    },
   },
   reducers: {
     save(state, { payload }) {                    //更新store，用新数据合并state的旧数据

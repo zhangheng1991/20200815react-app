@@ -49,13 +49,20 @@ class BasicLayout extends React.Component {
     dispatch({
       type: "Index/homePage", payload: { username:"admin"}
     })
-
+    this.userFunction()
     const url = this.props.location && this.props.location.pathname ? this.props.location.pathname : "";
     if (url) {
       this.setState({ keyId: url })
     }
   }
-
+  userFunction(){
+    const { dispatch } = this.props;
+    dispatch({
+      type: "Index/SelectListD", payload: { username:"admin"}
+    }).then((res)=>{
+      console.log(res)
+    })
+  }
   UNSAFE_componentWillReceiveProps(nextProps) {
     // console.log(1111)
     // console.log(nextProps.location.pathname)
@@ -81,6 +88,7 @@ class BasicLayout extends React.Component {
       if (item.children && item.children.length > 0) {
         return (
           <SubMenu key={item.url} title={<span title={item.title}>{item.title}</span>} >
+             {/* <Link title={item.title} to={item.url} >{item.title}</Link> */}
             {loop(item.children)}
           </SubMenu>
         )
