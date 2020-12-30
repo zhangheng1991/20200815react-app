@@ -8,6 +8,7 @@ class Weather extends React.Component {
   state = {
     dataSource: [],
     current: 1,
+    updateTime: '',
   };
   // 定义form对象
   //   formRef = React.createRef();
@@ -38,7 +39,7 @@ class Weather extends React.Component {
         item.codeSort = index + 1;
         item.key = index + 1;
       });
-      this.setState({ dataSource: res.data.data });
+      this.setState({ dataSource: res.data.data, updateTime: res.data.update_time });
     });
   }
   handleSubmit = e => {
@@ -65,7 +66,7 @@ class Weather extends React.Component {
   };
   render() {
     // console.log(WheatherApi.getWeather(this.param));
-    const { dataSource, current } = this.state;
+    const { dataSource, current, updateTime } = this.state;
     // console.log(current);
     const columns = [
       {
@@ -241,9 +242,9 @@ class Weather extends React.Component {
       placeNames: '南京',
       numberDays: 7,
       rowKey: 'codeSort',
-      pagintion:{
-        current:current
-      }
+      pagintion: {
+        current: current,
+      },
     };
     const { getFieldDecorator } = this.props.form;
     return (
@@ -292,9 +293,12 @@ class Weather extends React.Component {
             </Button>
           </Form>
         </div>
-        <div >
+        <div className={`${style['updateTimeBox']}`}>
           {/* key={current} */}
-          <Table {...TableList} onChange={this.onChange}  />
+          <div className={`${style['updateTime']}`}>
+            <span>更新时间：{updateTime}</span>
+          </div>
+          <Table {...TableList} onChange={this.onChange} />
         </div>
       </div>
     );
