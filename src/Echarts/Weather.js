@@ -60,12 +60,13 @@ class Weather extends React.Component {
     });
   };
   onChange = (pagination, filters, sorter) => {
-    // console.log(pagination, filters, sorter);
-    this.setState({ current: pagination.pagination });
+    console.log(pagination, filters, sorter);
+    this.setState({ current: pagination.current });
   };
   render() {
     // console.log(WheatherApi.getWeather(this.param));
     const { dataSource, current } = this.state;
+    // console.log(current);
     const columns = [
       {
         title: '序号',
@@ -240,6 +241,9 @@ class Weather extends React.Component {
       placeNames: '南京',
       numberDays: 7,
       rowKey: 'codeSort',
+      pagintion:{
+        current:current
+      }
     };
     const { getFieldDecorator } = this.props.form;
     return (
@@ -288,8 +292,9 @@ class Weather extends React.Component {
             </Button>
           </Form>
         </div>
-        <div key={current}>
-          <Table {...TableList} onChange={this.onChange} />
+        <div >
+          {/* key={current} */}
+          <Table {...TableList} onChange={this.onChange}  />
         </div>
       </div>
     );
