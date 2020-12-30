@@ -72,66 +72,156 @@ class Weather extends React.Component {
         dataIndex: 'codeSort',
         key: 'codeSort',
         width: '4%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '城市',
         dataIndex: 'cityName',
         key: 'cityName',
         width: '8%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '年月日',
         dataIndex: 'date',
         key: 'date',
         width: '10%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '周',
         dataIndex: 'week',
         key: 'week',
-        width: '10%',
+        width: '5%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '阴历',
         dataIndex: 'date_nl',
         key: 'date_nl',
-        width: '10%',
+        width: '5%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '天气',
         dataIndex: 'wea',
         key: 'wea',
         width: '10%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '最高温度',
         dataIndex: 'tem1',
         key: 'tem1',
         width: '7%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '最低温度',
         dataIndex: 'tem2',
         key: 'tem2',
         width: '7%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '风向',
         dataIndex: 'win',
         key: 'win',
         width: '15%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
       {
         title: '白天风向',
         dataIndex: 'win_day',
         key: 'win_day',
         width: '10%',
+        render: (text, record) => {
+          if (typeof record.win === 'object') {
+            return <span>{record.win[0]}</span>;
+          } else {
+            return <span>{text ? text : '--'}</span>;
+          }
+        },
       },
       {
         title: '晚上风向',
         dataIndex: 'win_night',
         key: 'win_night',
         width: '10%',
+        render: (text, record) => {
+          if (typeof record.win === 'object') {
+            return <span>{record.win[1]}</span>;
+          } else {
+            return <span>{text ? text : '--'}</span>;
+          }
+        },
+      },
+      {
+        title: '风速',
+        dataIndex: 'win_speed',
+        key: 'win_speed',
+        width: '10%',
+        render: (text, record) => {
+          if (text) {
+            return <span>{text}</span>;
+          } else {
+            return <span>--</span>;
+          }
+        },
       },
     ];
     const TableList = {
