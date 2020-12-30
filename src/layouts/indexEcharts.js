@@ -44,6 +44,10 @@ const MenuData = [
     "title": "复制功能",
     "url": "/Echarts/Copy",
   },
+  {
+    "title": "天气",
+    "url": "/Echarts/Weather",
+  },
   
 ]
 @connect(({ Index }) => ({ Index }))
