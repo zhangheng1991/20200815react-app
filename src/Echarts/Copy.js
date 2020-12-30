@@ -9,7 +9,7 @@ class CopyCom extends React.Component {
     persent: 66,
   };
   onCopy = record => {
-    console.log(record);
+    // console.log(record);
     message.info("当前复制:"+record.address,0.5);//时间秒
     this.setState({ textT: record.address, persent: record.persent });
   };

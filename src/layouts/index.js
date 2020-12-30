@@ -2,6 +2,7 @@ import React from "react";
 import styles from './index.less';
 import Link from 'umi/link';
 import { Menu } from "antd";
+import axios from "axios";
 import { connect } from "dva";
 const { SubMenu } = Menu;
 const MenuData = [
@@ -49,7 +50,8 @@ class BasicLayout extends React.Component {
     dispatch({
       type: "Index/homePage", payload: { username:"admin"}
     })
-    this.userFunction()
+    this.userFunction();
+    this.getWeather();
     const url = this.props.location && this.props.location.pathname ? this.props.location.pathname : "";
     if (url) {
       this.setState({ keyId: url })
@@ -80,6 +82,38 @@ class BasicLayout extends React.Component {
       keyId: e.key,
     });
   }
+
+  getWeather() {
+    axios({
+        url: 'https://www.tianqiapi.com/api/',
+        method: "get",
+        params: {
+            version: 'v1',
+            city: '商丘',      // 若不提供城市名，会根据本机IP获取当地天气
+            appid: '53783933',      // 到该网站上注册申请（操作很简单）
+            appsecret: 'AYHXKr8a'
+        },
+        headers: {
+            'Content-type':'application/x-www-form-urlencoded'
+        },
+        data: []
+    }).then(res => {
+        console.log(res.data);
+        // let todayData = res.data.data[0];
+        // console.log(todayData);
+
+   
+
+    });
+}
+
+
+
+
+
+
+
+
   render() {
     const {Index}=this.props;
     const {NavData}=Index;
