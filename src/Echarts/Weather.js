@@ -35,6 +35,7 @@ class Weather extends React.Component {
       dataL.map((item, index) => {
         item.cityName = res.data.city;
         item.codeSort = index+1;
+        item.key = index+1;
       });
       this.setState({ dataSource: res.data.data });
     });
@@ -142,6 +143,7 @@ class Weather extends React.Component {
     const formD = {
       placeNames: '南京',
       numberDays: 7,
+      rowKey:"codeSort"
     };
     const { getFieldDecorator } = this.props.form;
     return (
