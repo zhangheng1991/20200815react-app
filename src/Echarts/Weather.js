@@ -7,6 +7,7 @@ const { Option } = Select;
 class Weather extends React.Component {
   state = {
     dataSource: [],
+    current: 1,
   };
   // 定义form对象
   //   formRef = React.createRef();
@@ -34,8 +35,8 @@ class Weather extends React.Component {
       const dataL = res.data.data;
       dataL.map((item, index) => {
         item.cityName = res.data.city;
-        item.codeSort = index+1;
-        item.key = index+1;
+        item.codeSort = index + 1;
+        item.key = index + 1;
       });
       this.setState({ dataSource: res.data.data });
     });
@@ -54,12 +55,17 @@ class Weather extends React.Component {
         }
         this.param.city = values.placeNames;
         this.getWeather(this.param);
+        this.setState({ current: 1 });
       }
     });
   };
+  onChange = (pagination, filters, sorter) => {
+    // console.log(pagination, filters, sorter);
+    this.setState({ current: pagination.pagination });
+  };
   render() {
     // console.log(WheatherApi.getWeather(this.param));
-    const { dataSource } = this.state;
+    const { dataSource, current } = this.state;
     const columns = [
       {
         title: '序号',
@@ -143,7 +149,7 @@ class Weather extends React.Component {
     const formD = {
       placeNames: '南京',
       numberDays: 7,
-      rowKey:"codeSort"
+      rowKey: 'codeSort',
     };
     const { getFieldDecorator } = this.props.form;
     return (
@@ -166,6 +172,8 @@ class Weather extends React.Component {
                   <Select style={{ width: '100%' }} onChange={this.handleChange}>
                     <Option value="南京">南京</Option>
                     <Option value="商丘">商丘</Option>
+                    <Option value="郑州">郑州</Option>
+                    <Option value="北京">北京</Option>
                   </Select>,
                 )}
               </Form.Item>
@@ -190,7 +198,9 @@ class Weather extends React.Component {
             </Button>
           </Form>
         </div>
-        <Table {...TableList} />
+        <div key={current}>
+          <Table {...TableList} onChange={this.onChange} />
+        </div>
       </div>
     );
   }
