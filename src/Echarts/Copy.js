@@ -1,6 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Table, InputNumber, Progress } from 'antd';
+import { Table, InputNumber, Progress,message } from 'antd';
 import style from './component/style.less';
 class CopyCom extends React.Component {
   state = {
@@ -10,6 +10,7 @@ class CopyCom extends React.Component {
   };
   onCopy = record => {
     console.log(record);
+    message.info("当前复制:"+record.address,0.5);//时间秒
     this.setState({ textT: record.address, persent: record.persent });
   };
   onChangeNumber = value => {
@@ -51,8 +52,6 @@ class CopyCom extends React.Component {
         persent:i,
       })
     }
-
-   
     const columns = [
       {
         title: '姓名',
