@@ -34,6 +34,7 @@ class Weather extends React.Component {
       const dataL = res.data.data;
       dataL.map((item, index) => {
         item.cityName = res.data.city;
+        item.codeSort = index+1;
       });
       this.setState({ dataSource: res.data.data });
     });
@@ -60,10 +61,16 @@ class Weather extends React.Component {
     const { dataSource } = this.state;
     const columns = [
       {
+        title: '序号',
+        dataIndex: 'codeSort',
+        key: 'codeSort',
+        width: '4%',
+      },
+      {
         title: '城市',
         dataIndex: 'cityName',
         key: 'cityName',
-        width: '10%',
+        width: '8%',
       },
       {
         title: '年月日',
