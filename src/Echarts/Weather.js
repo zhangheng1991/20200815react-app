@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Table, Form, Select, Button, Col } from 'antd';
 import WheatherApi from './../component/Weather/Weather';
+import style from './component/style.less';
 const { Option } = Select;
 class Weather extends React.Component {
   state = {
@@ -30,6 +31,10 @@ class Weather extends React.Component {
       },
       data: [],
     }).then(res => {
+      const dataL = res.data.data;
+      dataL.map((item, index) => {
+        item.cityName = res.data.city;
+      });
       this.setState({ dataSource: res.data.data });
     });
   }
@@ -55,10 +60,16 @@ class Weather extends React.Component {
     const { dataSource } = this.state;
     const columns = [
       {
+        title: '城市',
+        dataIndex: 'cityName',
+        key: 'cityName',
+        width: '10%',
+      },
+      {
         title: '年月日',
         dataIndex: 'date',
         key: 'date',
-        width: '20%',
+        width: '10%',
       },
       {
         title: '周',
@@ -70,43 +81,43 @@ class Weather extends React.Component {
         title: '阴历',
         dataIndex: 'date_nl',
         key: 'date_nl',
-        // width: '20%',
+        width: '10%',
       },
       {
         title: '天气',
         dataIndex: 'wea',
         key: 'wea',
-        // width: '20%',
+        width: '10%',
       },
       {
         title: '最高温度',
         dataIndex: 'tem1',
         key: 'tem1',
-        // width: '20%',
+        width: '7%',
       },
       {
         title: '最低温度',
         dataIndex: 'tem2',
         key: 'tem2',
-        // width: '20%',
+        width: '7%',
       },
       {
         title: '风向',
         dataIndex: 'win',
         key: 'win',
-        // width: '20%',
+        width: '15%',
       },
       {
         title: '白天风向',
         dataIndex: 'win_day',
         key: 'win_day',
-        // width: '20%',
+        width: '10%',
       },
       {
         title: '晚上风向',
         dataIndex: 'win_night',
         key: 'win_night',
-        // width: '20%',
+        width: '10%',
       },
     ];
     const TableList = {
@@ -127,7 +138,7 @@ class Weather extends React.Component {
     };
     const { getFieldDecorator } = this.props.form;
     return (
-      <div>
+      <div className={`${style['copyBox']}`}>
         <div>
           <Form
             {...layout}
