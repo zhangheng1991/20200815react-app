@@ -77,11 +77,11 @@ class BasicLayout extends React.Component {
     const {Index}=this.props;
     const {NavData}=Index;
     // console.log(NavData)
-    const loop = data => data.map((item, index) => {
-      if (item.child && item.child.length > 0) {
+    const loop = data =>data&& data.map((item, index) => {
+      if (item.children && item.children.length > 0) {
         return (
           <SubMenu key={item.url} title={<span title={item.title}>{item.title}</span>} >
-            {loop(item.child)}
+            {loop(item.children)}
           </SubMenu>
         )
       }
