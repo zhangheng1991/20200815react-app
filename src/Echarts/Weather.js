@@ -42,6 +42,7 @@ class Weather extends React.Component {
       this.setState({ dataSource: res.data.data, updateTime: res.data.update_time });
     });
   }
+  //查询
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -59,6 +60,18 @@ class Weather extends React.Component {
         this.setState({ current: 1 });
       }
     });
+  };
+  //重置
+  handreSet = () => {
+    //   console.log(this.props.form)
+    this.props.form.resetFields();
+    this.param = {
+      version: 'v1', //获取天气天数
+      city: '南京', // 若不提供城市名，会根据本机IP获取当地天气
+      appid: '53783933', // 若不提供城市名，会根据本机IP获取当地天气
+      appsecret: 'AYHXKr8a', // 到该网站上注册申请（操作很简单）
+    };
+    this.getWeather(this.param);
   };
   onChange = (pagination, filters, sorter) => {
     console.log(pagination, filters, sorter);
@@ -242,11 +255,11 @@ class Weather extends React.Component {
       placeNames: '南京',
       numberDays: 7,
       rowKey: 'codeSort',
-    //   pagination: {
-    //     current: current,
-    //     pageSize:1000000
-    //   },
-    pagination:false,
+      //   pagination: {
+      //     current: current,
+      //     pageSize:1000000
+      //   },
+      pagination: false,
     };
     const { getFieldDecorator } = this.props.form;
     return (
@@ -290,9 +303,14 @@ class Weather extends React.Component {
                 )}
               </Form.Item>
             </Col>
-            <Button type="primary" htmlType="submit">
-              查询
-            </Button>
+            <Col span={4} className={`${style['copyBoxButton']}`}>
+              <Button type="primary" htmlType="submit">
+                查询
+              </Button>
+              <Button type="primary" onClick={this.handreSet}>
+                重置
+              </Button>
+            </Col>
           </Form>
         </div>
         <div className={`${style['updateTimeBox']}`}>
@@ -301,7 +319,7 @@ class Weather extends React.Component {
             <span>更新时间：{updateTime}</span>
           </div>
           {/* pagination={false} */}
-          <Table {...TableList} onChange={this.onChange}  pagination={false} />
+          <Table {...TableList} onChange={this.onChange} pagination={false} />
         </div>
       </div>
     );
