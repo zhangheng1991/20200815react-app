@@ -242,9 +242,11 @@ class Weather extends React.Component {
       placeNames: '南京',
       numberDays: 7,
       rowKey: 'codeSort',
-      pagintion: {
-        current: current,
-      },
+    //   pagination: {
+    //     current: current,
+    //     pageSize:1000000
+    //   },
+    pagination:false,
     };
     const { getFieldDecorator } = this.props.form;
     return (
@@ -298,7 +300,8 @@ class Weather extends React.Component {
           <div className={`${style['updateTime']}`}>
             <span>更新时间：{updateTime}</span>
           </div>
-          <Table {...TableList} onChange={this.onChange} />
+          {/* pagination={false} */}
+          <Table {...TableList} onChange={this.onChange}  pagination={false} />
         </div>
       </div>
     );
