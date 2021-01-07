@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Table, Select, message } from 'antd';
+import moment from 'moment';
 import style from './component/style.less';
 const { Option } = Select;
 const data = [
@@ -137,6 +138,7 @@ class PublicInterface extends React.Component {
     flagD: true,
     defaultValue: '南京',
     weatherList: [],
+    time: moment().format('YYYY-MM-DD HH:mm ss'),
   };
   componentWillMount() {
     this.TodayHistory(this.param);
@@ -147,6 +149,7 @@ class PublicInterface extends React.Component {
   }
   Tick() {
     this.QQSpaceVisitors(this.param2);
+    this.setState({ time: moment().format('YYYY-MM-DD HH:mm ss') });
   }
   componentWillUnmount() {
     // this.setState({ flagD: false });
@@ -197,7 +200,7 @@ class PublicInterface extends React.Component {
     }).then(res => {
       if (res.data.code === 200) {
         this.setState({ QQSpace: res.data });
-      }else {
+      } else {
         message.error('查询失败!!!!!', 0.5); //时间秒
       }
     });
@@ -217,7 +220,7 @@ class PublicInterface extends React.Component {
           item.key = index + 1;
         });
         this.setState({ weatherList: dataL });
-      }else {
+      } else {
         message.error('查询失败!!!!!', 0.5); //时间秒
       }
     });
@@ -231,7 +234,7 @@ class PublicInterface extends React.Component {
     this.setState({ defaultValue: value });
   };
   render() {
-    const { todayHistoryList, QQLever, QQSpace, weatherList, defaultValue } = this.state;
+    const { todayHistoryList, QQLever, QQSpace, weatherList, defaultValue, time } = this.state;
 
     const TableList = {
       dataSource: todayHistoryList,
@@ -245,6 +248,9 @@ class PublicInterface extends React.Component {
     };
     return (
       <div className={`${style['copyBox']} ${style['publicInterface']}`}>
+        <div>
+          <h1>当前时间：{time}</h1>
+        </div>
         <div>
           <h1>获取历史上的今天发生的事件：</h1>
           <Table {...TableList} scroll={{ y: 310 }} pagination={false} />
@@ -261,7 +267,12 @@ class PublicInterface extends React.Component {
           </div>
           <div>
             <span>访问时间：{QQSpace.time}；</span>
-            <span>QQ空间链接：{QQSpace.qzone}；</span>
+            <span>
+              QQ空间链接：
+              <a href={QQSpace.qzone} target="_blank">
+                {QQSpace.qzone}；
+              </a>
+            </span>
             <span>今天访问人数：{QQSpace.today_access}；</span>
             <span>今天拒绝访问人数：{QQSpace.today_access}；</span>
             <span>总共访问人数：{QQSpace.total_access}；</span>
