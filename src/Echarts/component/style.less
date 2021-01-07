@@ -32,9 +32,9 @@
       font-size: 12px;
       font-family: none;
     }
-    .ant-form{
-       display: flex;
-       align-items: center;
+    .ant-form {
+      display: flex;
+      align-items: center;
     }
     .ant-form-item {
       margin-bottom: 0px;
@@ -61,5 +61,240 @@
     button {
       margin-right: 10px;
     }
+  }
+}
+
+.Mytest {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  animation: myfirstD2 5s infinite linear;
+  // -moz-animation: myfirstD 5s; /* Firefox */
+  // -webkit-animation: myfirst 3s infinite; /* Safari and Chrome */
+  // -o-animation: myfirst 5s; /* Opera */
+  position: fixed;
+  left: 0px;
+  top: 50px;
+  z-index: 10000;
+}
+
+@keyframes myfirstD {
+  0% {
+    left: 0px;
+    top: 50px;
+  }
+  25% {
+    left: 0px;
+    top: 87%;
+  }
+  50% {
+    left: 94%;
+    top: 87%;
+  }
+  75%{
+    left: 94%;
+    top: 50px;
+  }
+  100% {
+    left: 0px;
+    top: 50px;
+  }
+}
+@keyframes myfirst {
+  // 0% {
+  //   left:100px;
+  //   top: 50px;
+  // }
+  10% {
+    left: 200px;
+    top: 70px;
+  }
+  20% {
+    left: 300px;
+    top: 90px;
+  }
+  30% {
+    left: 400px;
+    top: 90px;
+  }
+  40% {
+    left: 600px;
+    top: 70px;
+  }
+  50% {
+    left: 700px;
+    top: 50px;
+  }
+  60% {
+    left: 600px;
+    top: 70px;
+  }
+  70% {
+    left: 500px;
+    top: 90px;
+  }
+  80% {
+    left: 400px;
+    top: 90px;
+  }
+  90% {
+    left: 300px;
+    top: 70px;
+  }
+  100% {
+    left: 200px;
+    top: 50px;
+  }
+}
+
+@-moz-keyframes myfirst /* Firefox */ {
+  0% {
+    left: 0%;
+    top: 50px;
+  }
+  10% {
+    left: 20%;
+    top: 70px;
+  }
+  20% {
+    left: 40%;
+    top: 90px;
+  }
+  30% {
+    left: 60%;
+    top: 90px;
+  }
+  40% {
+    left: 80%;
+    top: 70px;
+  }
+  50% {
+    left: 100%;
+    top: 50px;
+  }
+  60% {
+    left: 80%;
+    top: 70px;
+  }
+  70% {
+    left: 60%;
+    top: 90px;
+  }
+  80% {
+    left: 40%;
+    top: 90px;
+  }
+  90% {
+    left: 20%;
+    top: 70px;
+  }
+  100% {
+    left: 0%;
+    top: 50px;
+  }
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */ {
+  0% {
+    left: 0%;
+    top: 50px;
+  }
+  10% {
+    left: 20%;
+    top: 70px;
+  }
+  20% {
+    left: 40%;
+    top: 90px;
+  }
+  30% {
+    left: 60%;
+    top: 90px;
+  }
+  40% {
+    left: 80%;
+    top: 70px;
+  }
+  50% {
+    left: 100%;
+    top: 50px;
+  }
+  60% {
+    left: 80%;
+    top: 70px;
+  }
+  70% {
+    left: 60%;
+    top: 90px;
+  }
+  80% {
+    left: 40%;
+    top: 90px;
+  }
+  90% {
+    left: 20%;
+    top: 70px;
+  }
+  100% {
+    left: 0%;
+    top: 50px;
+  }
+}
+
+@-o-keyframes myfirst /* Opera */ {
+  0% {
+    left: 0%;
+    top: 50px;
+  }
+  10% {
+    left: 20%;
+    top: 70px;
+  }
+  20% {
+    left: 40%;
+    top: 90px;
+  }
+  30% {
+    left: 60%;
+    top: 90px;
+  }
+  40% {
+    left: 80%;
+    top: 70px;
+  }
+  50% {
+    left: 100%;
+    top: 50px;
+  }
+  60% {
+    left: 80%;
+    top: 70px;
+  }
+  70% {
+    left: 60%;
+    top: 90px;
+  }
+  80% {
+    left: 40%;
+    top: 90px;
+  }
+  90% {
+    left: 20%;
+    top: 70px;
+  }
+  100% {
+    left: 0%;
+    top: 50px;
+  }
+}
+.publicInterface{
+  text-align: left;
+  padding: 10px 30px;
+  h1{
+    font-size: 20px;
+    font-weight: bold;
   }
 }

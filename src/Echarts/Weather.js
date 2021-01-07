@@ -3,6 +3,26 @@ import axios from 'axios';
 import { Table, Form, Select, Button, Col } from 'antd';
 import WheatherApi from './../component/Weather/Weather';
 import style from './component/style.less';
+const data=[
+  {
+    title:"南京",
+  },
+  {
+    title:"北京",
+  },
+  {
+    title:"长安",
+  },
+  {
+    title:"开封",
+  },
+  {
+    title:"郑州",
+  },
+  {
+    title:"商丘",
+  },
+]
 const { Option } = Select;
 class Weather extends React.Component {
   state = {
@@ -86,7 +106,7 @@ class Weather extends React.Component {
         title: '序号',
         dataIndex: 'codeSort',
         key: 'codeSort',
-        width: '4%',
+        width: '5%',
         render: (text, record) => {
           if (text) {
             return <span>{text}</span>;
@@ -99,7 +119,7 @@ class Weather extends React.Component {
         title: '城市',
         dataIndex: 'cityName',
         key: 'cityName',
-        width: '8%',
+        width: '12%',
         render: (text, record) => {
           if (text) {
             return <span>{text}</span>;
@@ -109,44 +129,44 @@ class Weather extends React.Component {
         },
       },
       {
-        title: '年月日',
+        title: '日期',
         dataIndex: 'date',
         key: 'date',
-        width: '10%',
+        width: '15%',
         render: (text, record) => {
           if (text) {
-            return <span>{text}</span>;
+            return <span>{text+record.week}</span>;
           } else {
             return <span>--</span>;
           }
         },
       },
-      {
-        title: '周',
-        dataIndex: 'week',
-        key: 'week',
-        width: '5%',
-        render: (text, record) => {
-          if (text) {
-            return <span>{text}</span>;
-          } else {
-            return <span>--</span>;
-          }
-        },
-      },
-      {
-        title: '阴历',
-        dataIndex: 'date_nl',
-        key: 'date_nl',
-        width: '5%',
-        render: (text, record) => {
-          if (text) {
-            return <span>{text}</span>;
-          } else {
-            return <span>--</span>;
-          }
-        },
-      },
+    //   {
+    //     title: '周',
+    //     dataIndex: 'week',
+    //     key: 'week',
+    //     width: '5%',
+    //     render: (text, record) => {
+    //       if (text) {
+    //         return <span>{text}</span>;
+    //       } else {
+    //         return <span>--</span>;
+    //       }
+    //     },
+    //   },
+    //   {
+    //     title: '阴历',
+    //     dataIndex: 'date_nl',
+    //     key: 'date_nl',
+    //     width: '5%',
+    //     render: (text, record) => {
+    //       if (text) {
+    //         return <span>{text}</span>;
+    //       } else {
+    //         return <span>--</span>;
+    //       }
+    //     },
+    //   },
       {
         title: '天气',
         dataIndex: 'wea',
@@ -242,6 +262,7 @@ class Weather extends React.Component {
     const TableList = {
       dataSource: dataSource,
       columns: columns,
+      rowKey:"key",
     };
     const layout = {
       labelCol: {
@@ -280,10 +301,17 @@ class Weather extends React.Component {
                   rules: [{ required: false, message: '请选择地名' }],
                 })(
                   <Select style={{ width: '100%' }} onChange={this.handleChange}>
-                    <Option value="南京">南京</Option>
+                    {
+                      data.map((item,index)=>{
+                        return(
+                          <Option value={item.title} title={item.title}>{item.title}</Option>
+                        )
+                      })
+                    }
+                    {/* <Option value="南京">南京</Option>
                     <Option value="商丘">商丘</Option>
                     <Option value="郑州">郑州</Option>
-                    <Option value="北京">北京</Option>
+                    <Option value="北京">北京</Option> */}
                   </Select>,
                 )}
               </Form.Item>

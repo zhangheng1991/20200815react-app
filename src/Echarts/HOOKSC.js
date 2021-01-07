@@ -7,6 +7,11 @@ function HOOKSC(props) {
   const handT = React.createRef();
   const [total, setTotal] = useState(0);
   useEffect(() => {
+  //  console.log( window.parent.document)
+ 
+  //  if(window.frames["iframed"]){
+  //   console.log( window.frames["iframed"].document)
+  //  }
     return () => {
       // setTotal(10);
     };
@@ -23,6 +28,7 @@ function HOOKSC(props) {
     // })
   };
   const handClick = () => {
+    // console.log( window.frames["iframed"])
     // const total=count+1;
     setTotal(total + 1);
     // console.log(handT.current)
@@ -33,6 +39,7 @@ function HOOKSC(props) {
       <div>
         {/* <h2>{name}</h2> */}
         <h3>子组件传来的值为：{childrenMsg}</h3>
+        <iframe name="iframed" width="100%" height="600px"  src="https://www.baidu.com"></iframe>
         <Button
           onClick={() => {
             handClick();

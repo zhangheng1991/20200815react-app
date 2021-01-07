@@ -48,6 +48,10 @@ const MenuData = [
     "title": "天气",
     "url": "/Echarts/Weather",
   },
+  {
+    "title": "公用接口",
+    "url": "/Echarts/PublicInterface",
+  },
   
 ]
 @connect(({ Index }) => ({ Index }))

@@ -1,7 +1,9 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Table, InputNumber, Progress,message } from 'antd';
+import { Table, InputNumber, Progress,message ,Modal, Button, Space} from 'antd';
+
 import style from './component/style.less';
+
 class CopyCom extends React.Component {
   state = {
     title: '',
@@ -12,6 +14,16 @@ class CopyCom extends React.Component {
     // console.log(record);
     message.info("当前复制:"+record.address,0.5);//时间秒
     this.setState({ textT: record.address, persent: record.persent });
+    // Modal.info({
+    //   title: '当前复制:',
+    //   content: (
+    //     <div>
+    //       <p>{record.address}</p>
+    //       {/* <p>some messages...some messages...</p> */}
+    //     </div>
+    //   ),
+    //   onOk() {},
+    // });
   };
   onChangeNumber = value => {
     //  console.log(value)
@@ -95,6 +107,7 @@ class CopyCom extends React.Component {
     };
     return (
       <div className={`${style['copyBox']}`}>
+        <div className={style.Mytest}>渣渣辉</div>
         <InputNumber
           min={0}
           max={100}

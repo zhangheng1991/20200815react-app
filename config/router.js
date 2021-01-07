@@ -12,6 +12,7 @@ export default
         { path: '/Echarts/HOOKSC', component: '../Echarts/HOOKSC' },
         { path: '/Echarts/Copy', component: '../Echarts/Copy' },
         { path: '/Echarts/Weather', component: '../Echarts/Weather' },
+        { path: '/Echarts/PublicInterface', component: '../Echarts/PublicInterface' },
         
       ]
     },

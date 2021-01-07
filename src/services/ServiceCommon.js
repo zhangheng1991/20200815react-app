@@ -160,3 +160,37 @@ export function loadConfig() {
 
 }
 
+
+/**
+ * 加载远程数据公用接口
+ */
+export function loadServerDataP(url,item) {
+  // console.log(config)
+  // axios.defaults.headers.common['Auth'] = getTokenId();
+  // console.log(url);
+  // console.log(item);
+  return axios.get(config.SERVER_URL1+url, { params: item })
+    .then((response)=>{
+      //console.log(response)
+      saveTokenToSession(response);
+      return response;
+    })
+    .catch(function (error) {
+      redictSSOPage(error);
+    });
+
+}
+export function postP(url,sendData) {
+  // axios.defaults.headers.common['Auth'] = getTokenId();
+  // console.log(sendData)
+  return axios.post(config.SERVER_URL1 + url,sendData)
+    .then((response)=>{
+      saveTokenToSession(response);
+      return response;
+    })
+    .catch(function (error) {
+      redictSSOPage(error);
+    });
+
+
+}

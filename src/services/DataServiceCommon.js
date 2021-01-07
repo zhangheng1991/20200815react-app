@@ -113,3 +113,21 @@ export async function isUnique(url ,callback , message , sendData ) {
       // console.log(error);
     });
 }
+
+/**
+ * 加载远程数据公用
+ */
+export function *loadServerDataP(url,item) {
+  // console.log(url);
+  // console.log(item);
+  let data = yield service.loadServerDataP(url , item);
+  return filterMessage(data);
+
+}
+
+export function *postP(url,sendData) {
+
+  let data = yield service.postP(url , sendData);
+  return filterMessage(data);
+
+}
