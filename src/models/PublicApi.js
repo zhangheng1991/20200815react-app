@@ -25,6 +25,11 @@ export default {
       const back = yield call(services.loadServerDataP, 'qq.space.php', values);
       return back;
     },
+    //查询天气
+    *SelectWeatherList({ payload: values }, { call, put, select }) {
+      const back = yield call(services.loadServerDataP, 'weather.php', values);
+      return back;
+    },
   },
   reducers: {
     save(state, { payload }) {
