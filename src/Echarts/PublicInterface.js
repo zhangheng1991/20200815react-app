@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Table, Select, Col } from 'antd';
+import { Table, Select, message } from 'antd';
 import style from './component/style.less';
 const { Option } = Select;
 const data = [
@@ -160,13 +160,14 @@ class PublicInterface extends React.Component {
       type: 'PublicApi/SelectTodayHistory',
       payload: data,
     }).then(res => {
-      //   console.log(res);
       if (res.data.code === 200) {
         const dataL = res.data.data;
         dataL.map((item, index) => {
           item.key = index + 1;
         });
         this.setState({ todayHistoryList: dataL });
+      } else {
+        message.error('查询失败!!!!!', 0.5); //时间秒
       }
     });
   }
@@ -181,6 +182,8 @@ class PublicInterface extends React.Component {
       //   console.log(res);
       if (res.data.code === 200) {
         this.setState({ QQLever: res.data });
+      } else {
+        message.error('查询失败!!!!!', 0.5); //时间秒
       }
     });
   }
@@ -194,6 +197,8 @@ class PublicInterface extends React.Component {
     }).then(res => {
       if (res.data.code === 200) {
         this.setState({ QQSpace: res.data });
+      }else {
+        message.error('查询失败!!!!!', 0.5); //时间秒
       }
     });
   }
@@ -212,6 +217,8 @@ class PublicInterface extends React.Component {
           item.key = index + 1;
         });
         this.setState({ weatherList: dataL });
+      }else {
+        message.error('查询失败!!!!!', 0.5); //时间秒
       }
     });
   }
