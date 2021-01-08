@@ -250,7 +250,7 @@ class PublicInterface extends React.Component {
       <div className={`${style['copyBox']} ${style['publicInterface']}`}>
         <div className={`${style['publicTextBox']}`}>
           <h1>当前时间：{time}</h1>
-          <span className={`${style['publicText']}`}>aaa</span>
+          <span className={`${style['publicText']}`}>css calc()</span>
         </div>
         <div>
           <h1>获取历史上的今天发生的事件：</h1>

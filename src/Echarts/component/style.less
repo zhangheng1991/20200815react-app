@@ -310,3 +310,156 @@
   height:calc(100% - 80px) !important;
   width: calc(100% - 100px);
 }
+.MytestD {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  animation: myfirstD 5s infinite linear;
+  // -moz-animation: myfirstD 5s; /* Firefox */
+  // -webkit-animation: myfirst 3s infinite; /* Safari and Chrome */
+  // -o-animation: myfirst 5s; /* Opera */
+  position: fixed;
+  left: 0px;
+  top: 50px;
+  z-index: 10000;
+}
+
+@keyframes myfirstD {
+  0% {
+    left: 0px;
+    top: 50px;
+  }
+  25% {
+    left: 0px;
+    top: calc(100% - 100px);
+  }
+  50% {
+    left:calc(100% - 100px);
+    top: calc(100% - 100px);
+  }
+  75%{
+    left: calc(100% - 100px);
+    top: 50px;
+  }
+  100% {
+    left: 0px;
+    top: 50px;
+  }
+}
+.MytestT{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: yellow;
+  animation: myfirstT 5s infinite linear;
+  // -moz-animation: myfirstD 5s; /* Firefox */
+  // -webkit-animation: myfirst 3s infinite; /* Safari and Chrome */
+  // -o-animation: myfirst 5s; /* Opera */
+  position: fixed;
+  right:  0px;
+  top: 50px;
+  z-index: 10000;
+}
+@keyframes myfirstT {
+  0% {
+    right: 0px;
+    top: 50px;
+  }
+  25% {
+    right: 0px;
+    top: calc(100% - 100px);
+  }
+  50% {
+    right: calc(100% - 100px);
+    top: calc(100% - 100px);
+  }
+  75%{
+    right: calc(100% - 100px);
+    top: 50px;
+  }
+  100% {
+    right: 0px;
+    top: 50px;
+  }
+}
+.MytestL{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: blue;
+  animation: myfirstL 5s infinite linear;
+  // -moz-animation: myfirstD 5s; /* Firefox */
+  // -webkit-animation: myfirst 3s infinite; /* Safari and Chrome */
+  // -o-animation: myfirst 5s; /* Opera */
+  position: fixed;
+  left:  0px;
+  top: calc(100% - 100px);
+  z-index: 10000;
+}
+@keyframes myfirstL {
+  0% {
+    left: 0px;
+    top: calc(100% - 100px);
+  }
+  25% {
+    left: 0px;
+    top: 50px;
+  }
+  50% {
+    left: calc(100% - 100px);
+    top: 50px;
+  }
+  75%{
+    left: calc(100% - 100px);
+    top:calc(100% - 100px);
+  }
+  100% {
+    left: 0px;
+    top: calc(100% - 100px);
+  }
+}
+.MytestR{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: green;
+  animation: myfirstR 5s infinite linear;
+  // -moz-animation: myfirstD 5s; /* Firefox */
+  // -webkit-animation: myfirst 3s infinite; /* Safari and Chrome */
+  // -o-animation: myfirst 5s; /* Opera */
+  position: fixed;
+  right:  0px;
+  top: calc(100% - 100px);
+  z-index: 10000;
+}
+@keyframes myfirstR {
+  0% {
+    right: 0px;
+    top: calc(100% - 100px);
+  }
+  25% {
+    right: 0px;
+    top: 50px;
+  }
+  50% {
+    right: calc(100% - 100px);
+    top: 50px;
+  }
+  75%{
+    right: calc(100% - 100px);
+    top:calc(100% - 100px);
+  }
+  100% {
+    right: 0px;
+    top: calc(100% - 100px);
+  }
+}

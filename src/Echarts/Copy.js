@@ -107,7 +107,11 @@ class CopyCom extends React.Component {
     };
     return (
       <div className={`${style['copyBox']}`}>
-        <div className={style.Mytest}>渣渣辉</div>
+        {/* <div className={style.Mytest}>渣渣辉</div> */}
+        <div className={style.MytestD}>渣渣辉</div>
+        <div className={style.MytestT}>渣渣辉111</div>
+        <div className={style.MytestL}>渣渣辉111</div>
+        <div className={style.MytestR}>渣渣辉111</div>
         <InputNumber
           min={0}
           max={100}
