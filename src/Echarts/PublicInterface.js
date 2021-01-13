@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Table, Select, message } from 'antd';
+import { Table, Select, message, InputNumber } from 'antd';
 import moment from 'moment';
 import style from './component/style.less';
 const { Option } = Select;
@@ -139,12 +139,15 @@ class PublicInterface extends React.Component {
     defaultValue: '南京',
     weatherList: [],
     time: moment().format('YYYY-MM-DD HH:mm ss'),
+    valueNumber: 1,
+    EncryptedString: '', //加密串
   };
   componentWillMount() {
     this.TodayHistory(this.param);
     this.QQLever(this.param1);
     // this.QQSpaceVisitors(this.param2);
     this.weatherList(this.param3);
+    this.randomEncryption(this.param4);
     this.TimeID = setInterval(() => this.Tick(), 1000);
   }
   Tick() {
@@ -233,8 +236,42 @@ class PublicInterface extends React.Component {
     this.weatherList(this.param3);
     this.setState({ defaultValue: value });
   };
+  //对数字随机加密
+  param4 = {
+    a: 1,
+  };
+  randomEncryption(data) {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'PublicApi/SelectRandomEncryption',
+      payload: data,
+    }).then(res => {
+      // console.log(res);
+      if (res.data.code === 200) {
+        this.setState({ EncryptedString: res.data.password });
+      } else {
+        message.error('加密失败', 0.5); //时间秒
+      }
+    });
+  }
+  onChangeNumber = value => {
+    this.setState({ valueNumber: value });
+    this.param4 = {
+      a: value,
+    };
+    this.randomEncryption(this.param4);
+  };
   render() {
-    const { todayHistoryList, QQLever, QQSpace, weatherList, defaultValue, time } = this.state;
+    const {
+      todayHistoryList,
+      QQLever,
+      QQSpace,
+      weatherList,
+      defaultValue,
+      time,
+      EncryptedString,
+      valueNumber,
+    } = this.state;
 
     const TableList = {
       dataSource: todayHistoryList,
@@ -251,6 +288,15 @@ class PublicInterface extends React.Component {
         <div className={`${style['publicTextBox']}`}>
           <h1>当前时间：{time}</h1>
           <span className={`${style['publicText']}`}>css calc()</span>
+        </div>
+        <div>
+          <InputNumber min={1} value={valueNumber} onChange={this.onChangeNumber} />
+          <span>加密串：</span>
+          <div className={`${style['EncryptedStringBox']}`}>
+            <div title={EncryptedString} className={`${style['EncryptedString']}`} style={{ "-webkit-box-orient": "vertical",display: "-webkit-box"}}>
+              {EncryptedString}
+            </div>
+          </div>
         </div>
         <div>
           <h1>获取历史上的今天发生的事件：</h1>

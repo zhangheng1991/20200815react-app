@@ -30,6 +30,11 @@ export default {
       const back = yield call(services.loadServerDataP, 'weather.php', values);
       return back;
     },
+    //对数字随机加密
+    *SelectRandomEncryption({ payload: values }, { call, put, select }) {
+      const back = yield call(services.loadServerDataP, 'rand.pwd.php', values);
+      return back;
+    },
   },
   reducers: {
     save(state, { payload }) {
