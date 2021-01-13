@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
+import { Button,Table } from 'antd';
 import Children from './component/ChildrenComponent';
 function HOOKSC(props) {
   const [childrenMsg, setChildrenMsg] = useState(0);
@@ -34,12 +34,133 @@ function HOOKSC(props) {
     // console.log(handT.current)
   };
   // console.log(total);
+  const dataSource = [
+    {
+      key: '1',
+      name: '胡彦斌',
+      age: 32,
+      address: '西湖区湖底公园1号',
+    },
+    {
+      key: '2',
+      name: '胡彦祖',
+      age: 42,
+      address: '西湖区湖底公园1号',
+      children:[
+        {
+          key: '22',
+          name: '胡彦祖',
+          age: 42,
+          address: '西湖区湖底公园1号',
+          children:[
+            {
+              key: '23',
+              name: '胡彦祖',
+              age: 42,
+              address: '西湖区湖底公园1号',
+              children:[
+                {
+                  key: '24',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                },
+                {
+                  key: '25',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                },
+                {
+                  key: '26',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                }
+              ]
+            },
+            {
+              key: '27',
+              name: '胡彦祖',
+              age: 42,
+              address: '西湖区湖底公园1号',
+              children:[
+                {
+                  key: '28',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                },
+                {
+                  key: '212',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                },
+                {
+                  key: '2222',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                }
+              ]
+            },
+            {
+              key: '222222',
+              name: '胡彦祖',
+              age: 42,
+              address: '西湖区湖底公园1号',
+              children:[
+                {
+                  key: '233333',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                },
+                {
+                  key: '23545',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                },
+                {
+                  key: '24545454',
+                  name: '胡彦祖',
+                  age: 42,
+                  address: '西湖区湖底公园1号',
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+  ];
+  
+  const columns = [
+    {
+      title: '姓名',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: '住址',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ];
   return (
     <div>
       <div>
         {/* <h2>{name}</h2> */}
+        <Table dataSource={dataSource} columns={columns} />
         <h3>子组件传来的值为：{childrenMsg}</h3>
-        <iframe name="iframed" width="100%" height="600px"  src="https://www.baidu.com"></iframe>
+        {/* <iframe name="iframed" width="100%" height="600px"  src="https://www.baidu.com"></iframe> */}
         <Button
           onClick={() => {
             handClick();
