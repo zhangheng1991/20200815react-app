@@ -15,6 +15,7 @@ import TouristTransactionVolume from './charts/TouristTransactionVolume';
 import NighttimeConsumptionBias from './charts/NighttimeConsumptionBias';
 import AgeDistributionVisitors from './charts/AgeDistributionVisitors';
 import EachChannelNumber from './charts/EachChannelNumber';
+import TheOrganization from './charts/TheOrganization';
 // import HuangFeiHong from "./charts/HuangFeiHong";
 class EchartsIndex extends React.Component {
   static defaultProps = {
@@ -683,9 +684,18 @@ class EchartsIndex extends React.Component {
       ChattTitle: '',
       height: '400px',
     };
+    const TheOrganization1={
+      id:"TheOrganizations",
+      height:"600px",
+      title:"树形结构",
+      textFont: '16',
+    }
     return (
       <div style={{ background: '#dfdfdf' }}>
         <Row>
+          <Col span="24">
+            <TheOrganization {...TheOrganization1} />
+          </Col>
           <Col span={span}>
             <EchartsLine {...EchartsLine1} />
           </Col>
@@ -734,7 +744,6 @@ class EchartsIndex extends React.Component {
           {/* <Col span={span}>
             <HuangFeiHong />
           </Col> */}
-          
         </Row>
       </div>
     );
