@@ -1,5 +1,5 @@
 import React from "react";
-import "./china";
+import "./china.json";
 import echarts from "echarts";
 // import EchartsReact from  "echarts-for-react";
 
