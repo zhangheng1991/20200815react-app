@@ -1,4 +1,5 @@
 import React from 'react';
+import Lazyload from 'react-lazyload';
 import EchartsMap from './../../../component/echarts/map/EchartsMap';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
 
@@ -164,6 +165,7 @@ class HuangFeiHong extends React.Component {
     const { title, textFont, id, Xdata, data, color, height, ChattTitle } = this.props;
     return (
       <div>
+         <Lazyload debounce={300}>
         <EchartBox title={title}>
           {
             <EchartsMap
@@ -171,6 +173,7 @@ class HuangFeiHong extends React.Component {
             />
           }
         </EchartBox>
+        </Lazyload>
       </div>
     );
   }

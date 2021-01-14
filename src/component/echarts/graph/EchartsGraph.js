@@ -1,5 +1,6 @@
 import React from 'react';
 import echarts from 'echarts';
+import Lazyload from 'react-lazyload';
 class EchartsGraph extends React.Component {
   componentDidMount() {
     // const { data, Xdata, color, textFont, ChattTitle } = this.props;
@@ -1278,7 +1279,9 @@ class EchartsGraph extends React.Component {
     const { height } = this.props;
     return (
       <div>
-        <div id={this.props.id} style={{ width: '100%', height: height }} />
+        {/* <Lazyload debounce={300}> */}
+          <div id={this.props.id} style={{ width: '100%', height: height }} />
+        {/* </Lazyload> */}
       </div>
     );
   }

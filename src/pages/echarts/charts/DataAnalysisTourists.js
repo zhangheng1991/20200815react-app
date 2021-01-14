@@ -1,6 +1,8 @@
 import React from 'react';
+import Lazyload from 'react-lazyload';
 import EchartsLiquidfillBar from './../../../component/echarts/liquidfill/EchartsLiquidfillBar';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
+
 class DataAnalysisTourists extends React.Component {
   render() {
     const {
@@ -16,17 +18,19 @@ class DataAnalysisTourists extends React.Component {
     } = this.props;
     return (
       <div>
-        <EchartBox title={title}>
-          {
-            <EchartsLiquidfillBar
-              textFont={textFont}
-              color={color}
-              height={height}
-              id={id}
-              data={data}
-            />
-          }
-        </EchartBox>
+        <Lazyload debounce={300}>
+          <EchartBox title={title}>
+            {
+              <EchartsLiquidfillBar
+                textFont={textFont}
+                color={color}
+                height={height}
+                id={id}
+                data={data}
+              />
+            }
+          </EchartBox>
+        </Lazyload>
       </div>
     );
   }

@@ -1,7 +1,8 @@
 import React from 'react';
+import echarts from "echarts";
+import Lazyload from 'react-lazyload';
 import EchartsBarsCross from './../../../component/echarts/pie/EchartsBarsCoss';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
-import echarts from "echarts";
 
 class EachChannelNumber extends React.Component {
 //   static defaultProps={
@@ -14,10 +15,12 @@ class EachChannelNumber extends React.Component {
     
     return (
       <div>
+         <Lazyload debounce={300}>
         <EchartBox title={title} >
           {<EchartsBarsCross id={id} textFont={textFont} Xdata={Xdata} data={data} color={color}
            ChattTitle={ChattTitle} height={height}/>}
         </EchartBox>
+        </Lazyload>
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Lazyload from 'react-lazyload';
 import EchartsPieRing from './../../../component/echarts/pie/EchartsPieRing';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
 class TouristTransactionVolume extends React.Component {
@@ -6,6 +7,7 @@ class TouristTransactionVolume extends React.Component {
     const { title, id, TitleUnit, textFont, data, height } = this.props;
     return (
       <div>
+         <Lazyload debounce={300}>
         <EchartBox title={title}>
           {
             <EchartsPieRing
@@ -16,7 +18,8 @@ class TouristTransactionVolume extends React.Component {
               height={height}
             />
           }
-        </EchartBox>{' '}
+        </EchartBox>
+        </Lazyload>
       </div>
     );
   }

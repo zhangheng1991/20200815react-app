@@ -1,7 +1,8 @@
 import React from 'react';
+import Lazyload from 'react-lazyload';
+import { Tabs } from 'antd';
 import ChartContainer from '@/charts/container/ChartContainer';
 import style from '../style.less';
-import { Tabs } from 'antd';
 import TouristTransactionVolume from './TouristTransactionVolume';
 const { TabPane } = Tabs;
 

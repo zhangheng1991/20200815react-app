@@ -1,5 +1,6 @@
 import React from 'react';
 import echarts from 'echarts';
+import Lazyload from 'react-lazyload';
 import EchartBars from './../../../component/echarts/bar/EchartsBar';
 import EchartBox from './../../../component/echarts/container/EchartsBox';
 class EchartsBar extends React.Component {
@@ -19,6 +20,7 @@ class EchartsBar extends React.Component {
     } = this.props;
     return (
       <div>
+         <Lazyload debounce={300}>
         <EchartBox title={title}>
           {
             <EchartBars
@@ -31,6 +33,7 @@ class EchartsBar extends React.Component {
             />
           }
         </EchartBox>
+        </Lazyload>
       </div>
     );
   }
