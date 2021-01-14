@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Col } from 'antd';
 import moment from 'moment';
+import Lazyload from 'react-lazyload';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PublicEcharts from './public/PublicEcharts';
 import style from './public/style.less';
@@ -276,6 +277,10 @@ class Echarts extends React.Component {
           })}
         </div>
         <div className={`${style['EchartsBox']}`}>
+          {/* <Lazyload debounce={300} />
+          <Lazyload debounce={300} />
+          <Lazyload debounce={300} />
+          <Lazyload debounce={300} /> */}
           <PublicEcharts id={'FirstEecharts' + data.id} data={data} num="1" />
 
           <PublicEcharts id={'FirstEecharts' + data1.id} data={data1} num="2" />

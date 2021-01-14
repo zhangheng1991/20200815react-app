@@ -684,15 +684,378 @@ class EchartsIndex extends React.Component {
       ChattTitle: '',
       height: '400px',
     };
-    const TheOrganization1={
-      id:"TheOrganizations",
-      height:"600px",
-      title:"树形结构",
+    const TheOrganization1 = {
+      id: 'TheOrganizations',
+      height: '600px',
+      title: '树形结构',
       textFont: '16',
-    }
+      data: [
+        {
+          name: '中国',
+          children: [
+            {
+              name: '江苏',
+              children: [
+                {
+                  name: '南京',
+                  value: 938,
+                },
+                {
+                  name: '苏州',
+                  value: 338,
+                },
+                {
+                  name: '徐州',
+                  value: 538,
+                },
+                {
+                  name: '无锡',
+                  value: 638,
+                },
+                {
+                  name: '昆山',
+                  value: 3344,
+                },
+                {
+                  name: '常州',
+                  value: 1338,
+                },
+                {
+                  name: '连云港',
+                  value: 4338,
+                },
+              ],
+            },
+            {
+              name: '河南',
+              children: [
+                {
+                  name: '商丘市',
+                  value: 938,
+                  children: [
+                    {
+                      name: '梁园区',
+                      value: 98,
+                      children: [
+                        {
+                          name: '观堂镇',
+                          value: 98,
+                          children: [
+                            {
+                              name: '王大庄',
+                              value: 98,
+                            },
+                          ],
+                        },
+                        {
+                          name: '水池铺乡',
+                          value: 98,
+                          children: [
+                            {
+                              name: '高庄',
+                              value: 98,
+                            },
+                          ],
+                        },
+                        {
+                          name: '谢集镇',
+                          value: 98,
+                        },
+                        {
+                          name: '双八镇',
+                          value: 98,
+                        },
+                        {
+                          name: '刘口镇',
+                          value: 98,
+                        },
+                        {
+                          name: '李庄镇',
+                          value: 98,
+                        },
+                        {
+                          name: '王楼乡',
+                          value: 98,
+                        },
+                        {
+                          name: '孙福集乡',
+                          value: 98,
+                        },
+                      ],
+                    },
+                    {
+                      name: '睢园区',
+                      value: 38,
+                    },
+                    {
+                      name: '宁陵县',
+                      value: 138,
+                    },
+                    {
+                      name: '柘城县',
+                      value: 938,
+                    },
+                    {
+                      name: '永城市',
+                      value: 938,
+                    },
+                    {
+                      name: '睢县县',
+                      value: 938,
+                    },
+                    {
+                      name: '民权县',
+                      value: 938,
+                    },
+                    {
+                      name: '虞城县',
+                      value: 938,
+                    },
+                    {
+                      name: '夏邑县',
+                      value: 938,
+                    },
+                  ],
+                },
+                {
+                  name: '郑州市',
+                  value: 338,
+                },
+                {
+                  name: '南阳市',
+                  value: 538,
+                },
+                {
+                  name: '信阳市',
+                  value: 638,
+                },
+                {
+                  name: '开封市',
+                  value: 3344,
+                },
+                {
+                  name: '周口市',
+                  value: 1338,
+                },
+                {
+                  name: '新乡市',
+                  value: 4338,
+                },
+                {
+                  name: '洛阳市',
+                  value: 4338,
+                },
+                {
+                  name: '安阳市',
+                  value: 4338,
+                },
+                {
+                  name: '鹤壁市',
+                  value: 4338,
+                },
+                {
+                  name: '焦作市',
+                  value: 4338,
+                },
+                {
+                  name: '濮阳市',
+                  value: 4338,
+                },
+                {
+                  name: '许昌市',
+                  value: 4338,
+                },
+                {
+                  name: '漯河市',
+                  value: 4338,
+                },
+                {
+                  name: '三门峡市',
+                  value: 4338,
+                },
+                {
+                  name: '漯河市',
+                  value: 4338,
+                },
+                {
+                  name: '驻马店市',
+                  value: 4338,
+                },
+              ],
+            },
+            {
+              name: '山东',
+              children: [
+                {
+                  name: '济南',
+                  value: 938,
+                },
+                {
+                  name: '烟台',
+                  value: 338,
+                },
+                {
+                  name: '青岛',
+                  value: 538,
+                },
+                {
+                  name: '威海',
+                  value: 638,
+                },
+                {
+                  name: '枣庄',
+                  value: 3344,
+                },
+                {
+                  name: '淄博',
+                  value: 1338,
+                },
+                {
+                  name: '临沂',
+                  value: 4338,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      OpenHierarchy:2,
+    };
+    const TheOrganization2 = {
+      id: 'TheOrganizations1',
+      height: '600px',
+      title: '家庭关系',
+      textFont: '16',
+      data: [
+        {
+          name: '爷爷奶奶',
+          value: 70,
+          children: [
+            {
+              name: '伯父',
+              value: 45,
+              children: [
+                {
+                  name: '堂哥',
+                  value: 23,
+                },
+                {
+                  name: '堂姐',
+                  value: 20,
+                },
+                {
+                  name: '堂弟',
+                  value: 16,
+                },
+                {
+                  name: '堂妹',
+                  value: 13,
+                },
+              ],
+            },
+            {
+              name: '长姑',
+              value: 44,
+              children: [
+                {
+                  name: '表哥',
+                  value: 22,
+                },
+                {
+                  name: '表姐',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+                {
+                  name: '表妹',
+                  value: 7,
+                },
+              ],
+            },
+            {
+              name: '爸爸',
+              value: 42,
+              children: [
+                {
+                  name: '哥哥',
+                  value: 22,
+                },
+                {
+                  name: '姐姐',
+                  value: 20,
+                },
+                {
+                  name: '我',
+                  value: 19,
+                },
+                {
+                  name: '弟弟',
+                  value: 17,
+                },
+                {
+                  name: '妹妹',
+                  value: 15,
+                },
+              ],
+            },
+            {
+              name: '叔叔',
+              value: 40,
+              children: [
+                {
+                  name: '堂哥',
+                  value: 23,
+                },
+                {
+                  name: '堂姐',
+                  value: 20,
+                },
+                {
+                  name: '堂弟',
+                  value: 11,
+                },
+                {
+                  name: '堂妹',
+                  value: 5,
+                },
+              ],
+            },
+            {
+              name: '小姑',
+              value: 40,
+              children: [
+                {
+                  name: '表哥',
+                  value: 22,
+                },
+                {
+                  name: '表姐',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+                {
+                  name: '表妹',
+                  value: 7,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      OpenHierarchy: -1,
+    };
     return (
       <div style={{ background: '#dfdfdf' }}>
         <Row>
+          <Col span="24">
+            <TheOrganization {...TheOrganization2} />
+          </Col>
           <Col span="24">
             <TheOrganization {...TheOrganization1} />
           </Col>

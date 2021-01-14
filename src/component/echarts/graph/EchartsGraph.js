@@ -1,177 +1,201 @@
 import React from 'react';
 import echarts from 'echarts';
-import Lazyload from 'react-lazyload';
+
 class EchartsGraph extends React.Component {
   componentDidMount() {
-    // const { data, Xdata, color, textFont, ChattTitle } = this.props;
+    const { data, OpenHierarchy } = this.props;
 
     let MyEcharts = echarts.init(document.getElementById(this.props.id));
-    var data = [
-      {
-        name: '中国',
-        children: [
-          {
-            name: '江苏',
-            children: [
-              {
-                name: '南京',
-                value: 938,
-              },
-              {
-                name: '苏州',
-                value: 338,
-              },
-              {
-                name: '徐州',
-                value: 538,
-              },
-              {
-                name: '无锡',
-                value: 638,
-              },
-              {
-                name: '昆山',
-                value: 3344,
-              },
-              {
-                name: '常州',
-                value: 1338,
-              },
-              {
-                name: '连云港',
-                value: 4338,
-              },
-            ],
-          },
-          {
-            name: '河南',
-            children: [
-              {
-                name: '商丘',
-                value: 938,
-                children: [
-                  {
-                    name: '梁园区',
-                    value: 98,
-                    children: [
-                      {
-                        name: '观堂乡',
-                        value: 98,
-                        children: [
-                          {
-                            name: '王大庄',
-                            value: 98,
-                          },
-                        ],
-                      },
-                      {
-                        name: '水池部',
-                        value: 98,
-                        children: [
-                          {
-                            name: '高庄',
-                            value: 98,
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                  {
-                    name: '睢园区',
-                    value: 38,
-                  },
-                  {
-                    name: '宁陵县',
-                    value: 138,
-                  },
-                  {
-                    name: '柘城县',
-                    value: 938,
-                  },
-                  {
-                    name: '永城市',
-                    value: 938,
-                  },
-                  {
-                    name: '睢县县',
-                    value: 938,
-                  },
-                  {
-                    name: '民权县',
-                    value: 938,
-                  },
-                  {
-                    name: '虞城县',
-                    value: 938,
-                  },
-                  {
-                    name: '夏邑县',
-                    value: 938,
-                  },
-                ],
-              },
-              {
-                name: '郑州',
-                value: 338,
-              },
-              {
-                name: '南阳',
-                value: 538,
-              },
-              {
-                name: '信阳',
-                value: 638,
-              },
-              {
-                name: '开封',
-                value: 3344,
-              },
-              {
-                name: '周口',
-                value: 1338,
-              },
-              {
-                name: '新乡',
-                value: 4338,
-              },
-            ],
-          },
-          {
-            name: '山东',
-            children: [
-              {
-                name: '济南',
-                value: 938,
-              },
-              {
-                name: '烟台',
-                value: 338,
-              },
-              {
-                name: '青岛',
-                value: 538,
-              },
-              {
-                name: '威海',
-                value: 638,
-              },
-              {
-                name: '枣庄',
-                value: 3344,
-              },
-              {
-                name: '淄博',
-                value: 1338,
-              },
-              {
-                name: '临沂',
-                value: 4338,
-              },
-            ],
-          },
-        ],
-      },
-    ];
+    // var data = [
+    //   {
+    //     name: '中国',
+    //     children: [
+    //       {
+    //         name: '江苏',
+    //         children: [
+    //           {
+    //             name: '南京',
+    //             value: 938,
+    //           },
+    //           {
+    //             name: '苏州',
+    //             value: 338,
+    //           },
+    //           {
+    //             name: '徐州',
+    //             value: 538,
+    //           },
+    //           {
+    //             name: '无锡',
+    //             value: 638,
+    //           },
+    //           {
+    //             name: '昆山',
+    //             value: 3344,
+    //           },
+    //           {
+    //             name: '常州',
+    //             value: 1338,
+    //           },
+    //           {
+    //             name: '连云港',
+    //             value: 4338,
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         name: '河南',
+    //         children: [
+    //           {
+    //             name: '商丘',
+    //             value: 938,
+    //             children: [
+    //               {
+    //                 name: '梁园区',
+    //                 value: 98,
+    //                 children: [
+    //                   {
+    //                     name: '观堂镇',
+    //                     value: 98,
+    //                     children: [
+    //                       {
+    //                         name: '王大庄',
+    //                         value: 98,
+    //                       },
+    //                     ],
+    //                   },
+    //                   {
+    //                     name: '水池铺乡',
+    //                     value: 98,
+    //                     children: [
+    //                       {
+    //                         name: '高庄',
+    //                         value: 98,
+    //                       },
+    //                     ],
+    //                   },
+    //                   {
+    //                     name: '谢集镇',
+    //                     value: 98,
+    //                   },
+    //                   {
+    //                     name: '双八镇',
+    //                     value: 98,
+    //                   },
+    //                   {
+    //                     name: '刘口镇',
+    //                     value: 98,
+    //                   },
+    //                   {
+    //                     name: '李庄镇',
+    //                     value: 98,
+    //                   },
+    //                   {
+    //                     name: '王楼乡',
+    //                     value: 98,
+    //                   },
+    //                   {
+    //                     name: '孙福集乡',
+    //                     value: 98,
+    //                   },
+    //                 ],
+    //               },
+    //               {
+    //                 name: '睢园区',
+    //                 value: 38,
+    //               },
+    //               {
+    //                 name: '宁陵县',
+    //                 value: 138,
+    //               },
+    //               {
+    //                 name: '柘城县',
+    //                 value: 938,
+    //               },
+    //               {
+    //                 name: '永城市',
+    //                 value: 938,
+    //               },
+    //               {
+    //                 name: '睢县县',
+    //                 value: 938,
+    //               },
+    //               {
+    //                 name: '民权县',
+    //                 value: 938,
+    //               },
+    //               {
+    //                 name: '虞城县',
+    //                 value: 938,
+    //               },
+    //               {
+    //                 name: '夏邑县',
+    //                 value: 938,
+    //               },
+    //             ],
+    //           },
+    //           {
+    //             name: '郑州',
+    //             value: 338,
+    //           },
+    //           {
+    //             name: '南阳',
+    //             value: 538,
+    //           },
+    //           {
+    //             name: '信阳',
+    //             value: 638,
+    //           },
+    //           {
+    //             name: '开封',
+    //             value: 3344,
+    //           },
+    //           {
+    //             name: '周口',
+    //             value: 1338,
+    //           },
+    //           {
+    //             name: '新乡',
+    //             value: 4338,
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         name: '山东',
+    //         children: [
+    //           {
+    //             name: '济南',
+    //             value: 938,
+    //           },
+    //           {
+    //             name: '烟台',
+    //             value: 338,
+    //           },
+    //           {
+    //             name: '青岛',
+    //             value: 538,
+    //           },
+    //           {
+    //             name: '威海',
+    //             value: 638,
+    //           },
+    //           {
+    //             name: '枣庄',
+    //             value: 3344,
+    //           },
+    //           {
+    //             name: '淄博',
+    //             value: 1338,
+    //           },
+    //           {
+    //             name: '临沂',
+    //             value: 4338,
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   },
+    // ];
     // var data = [
     //   {
     //     name: 'flare',
@@ -1223,8 +1247,8 @@ class EchartsGraph extends React.Component {
         {
           type: 'tree',
           data: data,
-          // left: 20,
-          // right: 20,
+          left: 0,
+          right: 0,
           top: 20,
           // bottom: 40,
           symbol: 'rectangle',
@@ -1236,6 +1260,8 @@ class EchartsGraph extends React.Component {
           // expandAndCollapse: true,
           // edgeForkPosition: '0',
           // edgeForkPosition:'20%',
+          // initialTreeDepth :2,
+          initialTreeDepth :OpenHierarchy?OpenHierarchy:-1,//-1，null全部展开
           label: {
             position: 'insideTop',
             // verticalAlign: 'middle',
@@ -1280,7 +1306,7 @@ class EchartsGraph extends React.Component {
     return (
       <div>
         {/* <Lazyload debounce={300}> */}
-          <div id={this.props.id} style={{ width: '100%', height: height }} />
+        <div id={this.props.id} style={{ width: '100%', height: height }} />
         {/* </Lazyload> */}
       </div>
     );
