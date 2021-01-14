@@ -3,15 +3,15 @@ import echarts from 'echarts';
 class EchartsGraph extends React.Component {
   componentDidMount() {
     // const { data, Xdata, color, textFont, ChattTitle } = this.props;
-   
+
     let MyEcharts = echarts.init(document.getElementById(this.props.id));
-    var data=[
+    var data = [
       {
         name: '中国',
-        children:[
+        children: [
           {
             name: '江苏',
-            children:[
+            children: [
               {
                 name: '南京',
                 value: 938,
@@ -40,14 +40,74 @@ class EchartsGraph extends React.Component {
                 name: '连云港',
                 value: 4338,
               },
-            ]
+            ],
           },
           {
             name: '河南',
-            children:[
+            children: [
               {
                 name: '商丘',
                 value: 938,
+                children: [
+                  {
+                    name: '梁园区',
+                    value: 98,
+                    children: [
+                      {
+                        name: '观堂乡',
+                        value: 98,
+                        children: [
+                          {
+                            name: '王大庄',
+                            value: 98,
+                          },
+                        ],
+                      },
+                      {
+                        name: '水池部',
+                        value: 98,
+                        children: [
+                          {
+                            name: '高庄',
+                            value: 98,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    name: '睢园区',
+                    value: 38,
+                  },
+                  {
+                    name: '宁陵县',
+                    value: 138,
+                  },
+                  {
+                    name: '柘城县',
+                    value: 938,
+                  },
+                  {
+                    name: '永城市',
+                    value: 938,
+                  },
+                  {
+                    name: '睢县县',
+                    value: 938,
+                  },
+                  {
+                    name: '民权县',
+                    value: 938,
+                  },
+                  {
+                    name: '虞城县',
+                    value: 938,
+                  },
+                  {
+                    name: '夏邑县',
+                    value: 938,
+                  },
+                ],
               },
               {
                 name: '郑州',
@@ -73,11 +133,11 @@ class EchartsGraph extends React.Component {
                 name: '新乡',
                 value: 4338,
               },
-            ]
+            ],
           },
           {
             name: '山东',
-            children:[
+            children: [
               {
                 name: '济南',
                 value: 938,
@@ -106,11 +166,11 @@ class EchartsGraph extends React.Component {
                 name: '临沂',
                 value: 4338,
               },
-            ]
+            ],
           },
-        ]
-      }
-    ]
+        ],
+      },
+    ];
     // var data = [
     //   {
     //     name: 'flare',
@@ -1162,29 +1222,34 @@ class EchartsGraph extends React.Component {
         {
           type: 'tree',
           data: data,
-          left: 20,
-          right:20,
+          // left: 20,
+          // right: 20,
           top: 20,
-          bottom: 40,
-          symbol: 'circle',
-          symbolSize: 16,
+          // bottom: 40,
+          symbol: 'rectangle',
+          symbolSize: [50, 20],
           orient: 'vertical',
+          // edgeShape: 'curve',//默认曲线
+          edgeShape: 'polyline', //直线
           // roam: true,
           // expandAndCollapse: true,
           // edgeForkPosition: '0',
+          // edgeForkPosition:'20%',
           label: {
-            position: 'left',
-            verticalAlign: 'middle',
-            align: 'right',
-            fontSize: 20,
+            position: 'insideTop',
+            // verticalAlign: 'middle',
+            // align: 'right',
+            top: '20',
+            fontSize: 12,
+            color: '#FFFFFF',
           },
 
           leaves: {
             label: {
-              show: false,
-              position: 'right',
-              verticalAlign: 'middle',
-              align: 'left',
+              show: true,
+              // position: 'right',
+              // verticalAlign: 'middle',
+              // align: 'left',
             },
           },
 
@@ -1208,10 +1273,9 @@ class EchartsGraph extends React.Component {
       MyEcharts.resize();
     });
   }
-  componentWillReceiveProps(nextProps) {
-  }
+  componentWillReceiveProps(nextProps) {}
   render() {
-    const {  height } = this.props;
+    const { height } = this.props;
     return (
       <div>
         <div id={this.props.id} style={{ width: '100%', height: height }} />
