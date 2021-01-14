@@ -3,7 +3,7 @@ import echarts from 'echarts';
 
 class EchartsGraph extends React.Component {
   componentDidMount() {
-    const { data, OpenHierarchy,symbolSize } = this.props;
+    const { data, OpenHierarchy,symbolSize,fontSize } = this.props;
 
     let MyEcharts = echarts.init(document.getElementById(this.props.id));
     // var data = [
@@ -1267,7 +1267,7 @@ class EchartsGraph extends React.Component {
             // verticalAlign: 'middle',
             // align: 'right',
             top: '20',
-            fontSize: 10,
+            fontSize: fontSize?fontSize:10,
             color: '#FFFFFF',
           },
 

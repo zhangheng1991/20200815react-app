@@ -683,6 +683,7 @@ class EchartsIndex extends React.Component {
       textFont: '16',
       ChattTitle: '',
       height: '400px',
+      fontSize:12,
     };
     const TheOrganization1 = {
       id: 'TheOrganizations1',
@@ -729,7 +730,6 @@ class EchartsIndex extends React.Component {
             {
               name: '河南',
               children: [
-               
                 {
                   name: '郑州市',
                   value: 338,
@@ -920,8 +920,9 @@ class EchartsIndex extends React.Component {
           ],
         },
       ],
-      OpenHierarchy:2,
-      symbolSize:[50,20],
+      OpenHierarchy: 2,
+      symbolSize: [50, 20],
+      fontSize:12,
     };
     const TheOrganization2 = {
       id: 'TheOrganizations2',
@@ -1051,7 +1052,8 @@ class EchartsIndex extends React.Component {
         },
       ],
       OpenHierarchy: -1,
-      symbolSize:[50,20],
+      symbolSize: [50, 20],
+      fontSize:12,
     };
     const TheOrganization3 = {
       id: 'TheOrganizations3',
@@ -1181,12 +1183,248 @@ class EchartsIndex extends React.Component {
         },
       ],
       OpenHierarchy: -1,
-      symbolSize:[50,20],
+      symbolSize: [50, 20],
+      fontSize:12,
+    };
+    const TheOrganization4 = {
+      id: 'TheOrganizations4',
+      height: '300px',
+      title: '我的家庭关系',
+      textFont: '16',
+      data: [
+        {
+          name: '外公外婆',
+          value: 70,
+          children: [
+            {
+              name: '大姨',
+              value: 45,
+              children: [
+                {
+                  name: '大表哥',
+                  value: 23,
+                },
+                {
+                  name: '大表姐',
+                  value: 20,
+                },
+                {
+                  name: '二表姐',
+                  value: 20,
+                },
+                {
+                  name: '二表哥',
+                  value: 16,
+                },
+              ],
+            },
+            {
+              name: '大舅',
+              value: 45,
+              children: [
+                {
+                  name: '大表哥',
+                  value: 23,
+                },
+                {
+                  name: '二表哥',
+                  value: 20,
+                },
+                {
+                  name: '大表姐',
+                  value: 20,
+                },
+               
+                {
+                  name: '三表哥',
+                  value: 16,
+                },
+              ],
+            },
+            {
+              name: '大姨',
+              value: 44,
+              children: [
+                {
+                  name: '大表姐',
+                  value: 22,
+                },
+                {
+                  name: '二表姐',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+              ],
+            },
+            {
+              name: '妈妈',
+              value: 42,
+              children: [
+                {
+                  name: '哥哥',
+                  value: 22,
+                  children:[
+                    {
+                      name: '侄女',
+                      value: 9,
+                    },
+                    {
+                      name: '侄子',
+                      value: 5,
+                    },
+                  ]
+                },
+                
+                {
+                  name: '我',
+                  value: 19,
+                },
+              
+              ],
+            },
+            {
+              name: '小姨',
+              value: 40,
+              children: [
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+                {
+                  name: '表妹',
+                  value: 7,
+                },
+              ],
+            },
+            {
+              name: '小舅',
+              value: 40,
+              children: [
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+                {
+                  name: '表妹',
+                  value: 5,
+                },
+              ],
+            },
+            
+          ],
+        },
+      ],
+      OpenHierarchy: -1,
+      symbolSize: [36, 20],
+      fontSize:9,
+    };
+    const TheOrganization5 = {
+      id: 'TheOrganizations5',
+      height: '300px',
+      title: '我的家庭关系',
+      textFont: '16',
+      data: [
+        {
+          name: '爷爷奶奶',
+          value: 70,
+          children: [
+            {
+              name: '爸爸',
+              value: 42,
+              children: [
+                {
+                  name: '哥哥',
+                  value: 22,
+                  children:[
+                    {
+                      name: '侄女',
+                      value: 9,
+                    },
+                    {
+                      name: '侄子',
+                      value: 5,
+                    },
+                  ]
+                },
+                
+                {
+                  name: '我',
+                  value: 19,
+                },
+              
+              ],
+            },
+            {
+              name: '大姑姑',
+              value: 45,
+              children: [
+                {
+                  name: '表妹',
+                  value: 23,
+                },
+                {
+                  name: '表妹',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 16,
+                },
+              ],
+            },
+            {
+              name: '二姑姑',
+              value: 45,
+              children: [
+                {
+                  name: '表弟',
+                  value: 23,
+                },
+                {
+                  name: '表妹',
+                  value: 20,
+                },
+                {
+                  name: '表妹',
+                  value: 20,
+                },
+              ],
+            },
+            {
+              name: '小姑姑',
+              value: 44,
+              children: [
+                {
+                  name: '表弟',
+                  value: 22,
+                },
+                {
+                  name: '表弟',
+                  value: 20,
+                },
+              ],
+            },
+          
+          ],
+        },
+      ],
+      OpenHierarchy: -1,
+      symbolSize: [50, 20],
+      fontSize:12,
     };
     return (
       <div style={{ background: '#dfdfdf' }}>
         <Row>
-        <Col span="24">
+        <Col span="12">
+            <TheOrganization {...TheOrganization5} />
+          </Col>
+        <Col span="12">
+            <TheOrganization {...TheOrganization4} />
+          </Col>
+          <Col span="24">
             <TheOrganization {...TheOrganization3} />
           </Col>
           <Col span="24">
