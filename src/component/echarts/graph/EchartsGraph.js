@@ -3,7 +3,7 @@ import echarts from 'echarts';
 
 class EchartsGraph extends React.Component {
   componentDidMount() {
-    const { data, OpenHierarchy } = this.props;
+    const { data, OpenHierarchy,symbolSize } = this.props;
 
     let MyEcharts = echarts.init(document.getElementById(this.props.id));
     // var data = [
@@ -1252,7 +1252,7 @@ class EchartsGraph extends React.Component {
           top: 20,
           // bottom: 40,
           symbol: 'rectangle',
-          symbolSize: [50, 20],
+          symbolSize:symbolSize?symbolSize: [50, 20],
           orient: 'vertical',
           // edgeShape: 'curve',//默认曲线
           edgeShape: 'polyline', //直线
@@ -1267,7 +1267,7 @@ class EchartsGraph extends React.Component {
             // verticalAlign: 'middle',
             // align: 'right',
             top: '20',
-            fontSize: 12,
+            fontSize: 10,
             color: '#FFFFFF',
           },
 

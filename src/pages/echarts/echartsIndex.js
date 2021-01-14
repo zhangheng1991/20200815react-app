@@ -685,7 +685,7 @@ class EchartsIndex extends React.Component {
       height: '400px',
     };
     const TheOrganization1 = {
-      id: 'TheOrganizations',
+      id: 'TheOrganizations1',
       height: '600px',
       title: '树形结构',
       textFont: '16',
@@ -729,6 +729,39 @@ class EchartsIndex extends React.Component {
             {
               name: '河南',
               children: [
+               
+                {
+                  name: '郑州市',
+                  value: 338,
+                },
+                {
+                  name: '南阳市',
+                  value: 538,
+                },
+                {
+                  name: '信阳市',
+                  value: 638,
+                },
+                {
+                  name: '开封市',
+                  value: 3344,
+                },
+                {
+                  name: '周口市',
+                  value: 1338,
+                },
+                {
+                  name: '新乡市',
+                  value: 4338,
+                },
+                {
+                  name: '洛阳市',
+                  value: 4338,
+                },
+                {
+                  name: '安阳市',
+                  value: 4338,
+                },
                 {
                   name: '商丘市',
                   value: 938,
@@ -818,38 +851,6 @@ class EchartsIndex extends React.Component {
                   ],
                 },
                 {
-                  name: '郑州市',
-                  value: 338,
-                },
-                {
-                  name: '南阳市',
-                  value: 538,
-                },
-                {
-                  name: '信阳市',
-                  value: 638,
-                },
-                {
-                  name: '开封市',
-                  value: 3344,
-                },
-                {
-                  name: '周口市',
-                  value: 1338,
-                },
-                {
-                  name: '新乡市',
-                  value: 4338,
-                },
-                {
-                  name: '洛阳市',
-                  value: 4338,
-                },
-                {
-                  name: '安阳市',
-                  value: 4338,
-                },
-                {
                   name: '鹤壁市',
                   value: 4338,
                 },
@@ -920,10 +921,11 @@ class EchartsIndex extends React.Component {
         },
       ],
       OpenHierarchy:2,
+      symbolSize:[50,20],
     };
     const TheOrganization2 = {
-      id: 'TheOrganizations1',
-      height: '600px',
+      id: 'TheOrganizations2',
+      height: '300px',
       title: '家庭关系',
       textFont: '16',
       data: [
@@ -1049,10 +1051,144 @@ class EchartsIndex extends React.Component {
         },
       ],
       OpenHierarchy: -1,
+      symbolSize:[50,20],
+    };
+    const TheOrganization3 = {
+      id: 'TheOrganizations3',
+      height: '300px',
+      title: '家庭关系',
+      textFont: '16',
+      data: [
+        {
+          name: '外公外婆',
+          value: 70,
+          children: [
+            {
+              name: '大舅',
+              value: 45,
+              children: [
+                {
+                  name: '表哥',
+                  value: 23,
+                },
+                {
+                  name: '表姐',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 16,
+                },
+                {
+                  name: '表妹',
+                  value: 13,
+                },
+              ],
+            },
+            {
+              name: '大姨',
+              value: 44,
+              children: [
+                {
+                  name: '表哥',
+                  value: 22,
+                },
+                {
+                  name: '表姐',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+                {
+                  name: '表妹',
+                  value: 7,
+                },
+              ],
+            },
+            {
+              name: '妈妈',
+              value: 42,
+              children: [
+                {
+                  name: '哥哥',
+                  value: 22,
+                },
+                {
+                  name: '姐姐',
+                  value: 20,
+                },
+                {
+                  name: '我',
+                  value: 19,
+                },
+                {
+                  name: '弟弟',
+                  value: 17,
+                },
+                {
+                  name: '妹妹',
+                  value: 15,
+                },
+              ],
+            },
+            {
+              name: '小舅',
+              value: 40,
+              children: [
+                {
+                  name: '表哥',
+                  value: 23,
+                },
+                {
+                  name: '表姐',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+                {
+                  name: '表妹',
+                  value: 5,
+                },
+              ],
+            },
+            {
+              name: '小姨',
+              value: 40,
+              children: [
+                {
+                  name: '表哥',
+                  value: 22,
+                },
+                {
+                  name: '表姐',
+                  value: 20,
+                },
+                {
+                  name: '表弟',
+                  value: 11,
+                },
+                {
+                  name: '表妹',
+                  value: 7,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      OpenHierarchy: -1,
+      symbolSize:[50,20],
     };
     return (
       <div style={{ background: '#dfdfdf' }}>
         <Row>
+        <Col span="24">
+            <TheOrganization {...TheOrganization3} />
+          </Col>
           <Col span="24">
             <TheOrganization {...TheOrganization2} />
           </Col>
