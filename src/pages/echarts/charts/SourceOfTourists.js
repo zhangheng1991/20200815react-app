@@ -59,11 +59,11 @@ class SourceOfTourists extends React.Component {
   };
 
   render() {
-    const { textFont, height, HFData, geoCoordMap, data, id, title } = this.props;
+    const { textFont, height, HFData, geoCoordMap, id, title } = this.props;
     return (
       <div>
         <Lazyload debounce={300}>
-          <EchartBox title={title} backGroundType={2} titleFontSize={16}>
+          <EchartBox title={title} titleFontSize={16}>
             {
               <div>
                 <ChinaMap

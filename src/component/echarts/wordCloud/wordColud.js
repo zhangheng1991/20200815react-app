@@ -1,12 +1,10 @@
-import React from "react";
-import echarts from "echarts";
-import { connect } from "dva";
-import "echarts-wordcloud";
+import React from 'react';
+import echarts from 'echarts';
+import 'echarts-wordcloud';
 class WordCloud extends React.Component {
   componentDidMount() {
-
-    const { id, data, color,ChattTitle,textFont } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(id))
+    const { id, data, ChattTitle, textFont } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id));
     // let data = [{ name: '微信', value: 3328 }, { name: '南方+', value: 1045 }, {
     //   name: '东莞时间网',
     //   value: 834
@@ -86,56 +84,57 @@ class WordCloud extends React.Component {
       let r = 100 + ~~(Math.random() * 100);
       let g = 135 + ~~(Math.random() * 100);
       let b = 100 + ~~(Math.random() * 100);
-      return `rgb(${r}, ${g}, ${b})`
-    }
+      return `rgb(${r}, ${g}, ${b})`;
+    };
     let option = {
       // backgroundColor: 'rgba(0,0,0,.5)',
       title: {
         show: false,
         text: ChattTitle,
         textStyle: {
-          color:"#FFFFFF",
-           fontSize:textFont,
-           fontWeight:"normal",
+          color: '#FFFFFF',
+          fontSize: textFont,
+          fontWeight: 'normal',
         },
         left: 20,
         top: 20,
-
       },
       tooltip: {
         trigger: 'item',
         padding: [10, 15],
         textStyle: {
-          fontSize: 20
+          fontSize: 20,
         },
         formatter: params => {
-          const { name, value } = params
+          const { name, value } = params;
 
           return `
                       平台：${name} <br/>
                       数量：${value}
-                  `
-        }
-      },
-      series: [{
-        type: 'wordCloud',
-        gridSize: 20,
-        sizeRange: [12, 50],
-        rotationRange: [0, 0],
-        shape: 'circle',
-        textStyle: {
-          normal: {
-            color: params => {
-              return randcolor()
-            }
-          },
-          emphasis: {
-            shadowBlur: 10,
-            shadowColor: '#333'
-          }
+                  `;
         },
-        data: data
-      }]
+      },
+      series: [
+        {
+          type: 'wordCloud',
+          gridSize: 20,
+          sizeRange: [12, 50],
+          rotationRange: [0, 0],
+          shape: 'circle',
+          textStyle: {
+            normal: {
+              color: params => {
+                return randcolor();
+              },
+            },
+            emphasis: {
+              shadowBlur: 10,
+              shadowColor: '#333',
+            },
+          },
+          data: data,
+        },
+      ],
     };
 
     if (MyEcharts) {
@@ -149,28 +148,20 @@ class WordCloud extends React.Component {
       //     { offset: 1, color: '#00266C' },                   //柱图渐变色
       //   ]
       // );
-      MyEcharts.setOption(option)
+      MyEcharts.setOption(option);
     }
     window.addEventListener('resize', () => {
-      // const myChart = echarts.init(document.getElementById('chart-left'))
-      // const myChart1 = echarts.init(document.getElementById('chart-btm'))
-      MyEcharts.resize()
-      // myChart1.resize()
-    })
+      MyEcharts.resize();
+    });
   }
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps)
-    // console.log(this.props)
-  }
+
   render() {
-    const {height,id}=this.props;
+    const { height, id } = this.props;
     return (
       <div>
-        <div >
-          <div id={id} style={{ width: "100%", height: height }}></div>
-        </div>
+        <div id={id} style={{ width: '100%', height: height }} />
       </div>
-    )
+    );
   }
 }
 export default WordCloud;

@@ -1,22 +1,19 @@
 import React from 'react';
-// import PublicBox from '../PublicBox';
-// import option from "../../../components/charts/EchartsBar";
+// import './china.json';
 import echarts from 'echarts';
-// import style from '../style.less';
-// import EchartsReact from  "echarts-for-react";
-import './china.json';
-// import 'echarts-gl'
-// import china from  "china";
-// echarts.registerMap('china', china)
+import moment from "moment";
+import "echarts/map/js/china.js";
+// require('./china.json');
+// import "./world.json";
 class chinaMap extends React.Component {
   static defaupltProps = {
     height: 400,
   };
 
   componentDidMount() {
-    const { data, Xdata, geoCoordMap, HFData, dataT2, ChattTitle, textFont } = this.props;
-    console.log(HFData)
-    let MyEcharts = echarts.init(document.getElementById(this.props.id));
+    this.TimeID = setInterval(() => this.Tick(), 1000);
+    const {  geoCoordMap, HFData, id } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id));
     if (HFData) {
       var color1 = ['#F6CF12', '#00FE2A', '#FA3C00', '#FFFFFF']; //绿  黄  红
       geoCoordMap['南澳'] = [113.12244, 23.009505];
@@ -33,7 +30,7 @@ class chinaMap extends React.Component {
         GZData.push(arr);
       });
 
-      var convertData = function (data) {
+      var convertData = function(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
           var dataItem = data[i];
@@ -116,20 +113,20 @@ class chinaMap extends React.Component {
           },
           lineStyle: {
             normal: {
-              color: function (params) {
+              color: function(params) {
                 var num = params.data.numValue;
                 // console.log(params.data.type);
                 var type = params.data.type;
-                if (type == 1) {
+                if (type === 1) {
                   return color1[0];
                 }
-                if (type == 2) {
+                if (type === 2) {
                   return color1[1];
                 }
-                if (type == 3) {
+                if (type === 3) {
                   return color1[2];
                 }
-                if (type == 4) {
+                if (type === 4) {
                   return color1[3];
                 }
               },
@@ -156,7 +153,7 @@ class chinaMap extends React.Component {
               formatter: '{b}',
             },
           },
-          symbolSize: function (val) {
+          symbolSize: function(val) {
             // console.log(val);
             return 10;
           },
@@ -165,8 +162,8 @@ class chinaMap extends React.Component {
               //                fontSize: 80,
             },
           },
-          data: tempData[1].map(function (dataItem) {
-            console.log(dataItem)
+          data: tempData[1].map(function(dataItem) {
+            console.log(dataItem);
             return {
               name: dataItem[0].name,
               value: geoCoordMap[dataItem[0].name].concat([dataItem[0].value]),
@@ -210,11 +207,11 @@ class chinaMap extends React.Component {
 
       var option = {
         tooltip: {
-          show:true,
+          show: true,
           trigger: 'item',
-          formatter: function (params) {
-            console.log(params)
-            if (params.seriesType == 'scatter' && params.name != tempData[0]) {
+          formatter: function(params) {
+            console.log(params);
+            if (params.seriesType === 'scatter' && params.name != tempData[0]) {
               return (
                 '<br>' +
                 params.seriesName +
@@ -223,7 +220,7 @@ class chinaMap extends React.Component {
                 '<br />数量：' +
                 params.data.value[2]
               );
-            } else if (params.seriesType == 'lines') {
+            } else if (params.seriesType === 'lines') {
               return (
                 '<br>' +
                 params.data.fromName +
@@ -320,20 +317,21 @@ class chinaMap extends React.Component {
       MyEcharts.resize();
     });
   }
-
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+  state={
+    time: moment().format('YYYY-MM-DD HH:mm ss'),
+  }
+  Tick() {
+    this.setState({ time: moment().format('YYYY-MM-DD HH:mm ss') });
+  }
+  componentWillUnmount() {
+    clearTimeout(this.TimeID); //清除定时器
   }
   render() {
-    const {  height,id } = this.props;
+    const { height, id } = this.props;
+    const {time}=this.state;
     return (
-      <div>
-        <div >
-          <div
-            id={id}
-            style={{ width: '100%', height: height ? height : '600px' }}
-          ></div>
-        </div>
+      <div >
+        <div  id={id} style={{ width: '100%', height: height ? height : '600px' }} />
       </div>
     );
   }

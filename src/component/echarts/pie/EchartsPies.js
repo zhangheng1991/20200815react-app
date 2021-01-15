@@ -2,7 +2,7 @@ import React from 'react';
 import echarts from 'echarts';
 class EchartsPies extends React.Component {
   componentDidMount() {
-    const { data, id, textFont, ChattTitle, subtextTitle } = this.props;
+    const { data, id, textFont, ChattTitle } = this.props;
     let MyEcharts = echarts.init(document.getElementById(id));
     let option = {
       title: {
@@ -164,23 +164,14 @@ class EchartsPies extends React.Component {
       MyEcharts.setOption(option);
     }
     window.addEventListener('resize', () => {
-      // const myChart = echarts.init(document.getElementById('chart-left'))
-      // const myChart1 = echarts.init(document.getElementById('chart-btm'))
       MyEcharts.resize();
-      // myChart1.resize()
     });
-  }
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps);
-    // console.log(this.props);
   }
   render() {
     const { height, id } = this.props;
     return (
       <div>
-        <div>
           <div id={id} style={{ width: '100%', height: height ? height : '400px' }} />
-        </div>
       </div>
     );
   }

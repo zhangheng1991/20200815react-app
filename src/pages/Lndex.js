@@ -1,26 +1,27 @@
-import styles from './index.css';
-import Link from 'umi/link';
+
 import React, { useEffect, useState, createContext } from 'react';
 import { connect } from "dva";
-import { Button, Table } from "antd";
+import { Button } from "antd";
 import PropTypes from "prop-types";
 import LndexChildren from "./LndexChildren";
-const data = [
-  {
-    title: "1212123",
-    key: "1212124h",
+// import styles from './index.css';
+// import Link from 'umi/link';
+// const data = [
+//   {
+//     title: "1212123",
+//     key: "1212124h",
 
-  },
-  {
-    title: "1212123",
-    key: "121212f",
-  },
-  {
-    title: "121212",
-    key: "121212g",
+//   },
+//   {
+//     title: "1212123",
+//     key: "121212f",
+//   },
+//   {
+//     title: "121212",
+//     key: "121212g",
 
-  },
-]
+//   },
+// ]
 // @connect( ({ Index }) => ({Index }))
 // class Index extends React.Component {
 
@@ -91,6 +92,7 @@ function Index(props) {
     setCount(count + 1)
     setSex("女");
     setWork("测试");
+    setAge(age+1);
   }
   return (
     <div>三生三世

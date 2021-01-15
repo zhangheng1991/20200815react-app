@@ -2,8 +2,8 @@ import React from 'react';
 import echarts from 'echarts';
 class EchartsBars extends React.Component {
   componentDidMount() {
-    const { data, Xdata, color, ChattTitle, textFont } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(this.props.id));
+    const { data, Xdata, color, ChattTitle, textFont,id } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id));
     let option = {
       title: {
         show: true,
@@ -107,22 +107,14 @@ class EchartsBars extends React.Component {
       MyEcharts.setOption(option);
     }
     window.addEventListener('resize', () => {
-      // const myChart = echarts.init(document.getElementById('chart-left'))
-      // const myChart1 = echarts.init(document.getElementById('chart-btm'))
       MyEcharts.resize();
-      // myChart1.resize()
     });
   }
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps);
-  }
   render() {
-    const { unit, textFont, height } = this.props;
+    const { id, height } = this.props;
     return (
       <div>
-        <div>
-          <div id={this.props.id} style={{ width: '100%', height: height }} />
-        </div>
+          <div id={id} style={{ width: '100%', height: height }} />
       </div>
     );
   }

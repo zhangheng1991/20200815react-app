@@ -1,15 +1,9 @@
 import React from "react";
-// import PublicBox from "../PublicBox";
-// import option from "../../../components/charts/EchartsBar";
 import echarts from "echarts";
-// import style from "../style.less";
-// import _ from 'lodash';
 class EchartsBar extends React.Component {
   componentDidMount() {
-    const { data, Xdata, color, textFont, legendData, unit } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(this.props.id))
-    const colors = ["#00A2FF", "#F6CE47", "#F2625B"];
-   
+    const { Xdata, textFont, legendData, unit,id } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id))
     const NewData=[
       {
         data:[120, 152, 200, 334, 290, 330, 220, 221],
@@ -54,7 +48,7 @@ class EchartsBar extends React.Component {
       // };
       NewSeries.push( {
         type: 'bar',
-        barWidth: index == 0 ? '50%' : '40%',
+        barWidth: index === 0 ? '50%' : '40%',
         yAxisIndex: index,
         data: item.data,
         name: item.name,
@@ -80,12 +74,6 @@ class EchartsBar extends React.Component {
       })
       // NewSeries.push(itemStyle);
     });
-    // let ff={series:[]}
-    // ff.series=NewSeries
-    // console.log(NewSeries)
-   
-    var index = 0;
-    // var colorList = ['#f36c6c'];
     let option = {
       color: ["yellow"],
       title: {
@@ -316,7 +304,6 @@ class EchartsBar extends React.Component {
     // option.series=NewData;
     if (MyEcharts) {
       NewData.map((item, index) => {
-        // console.log(item)
         option.series[index].data = item.data;
         option.series[index].name = item.name;
         option.series[index].type = "bar";
@@ -333,7 +320,7 @@ class EchartsBar extends React.Component {
           }
         };
         option.series[index].zlevel = index;
-        option.series[index].barWidth = index == 0 ? '50%' : '40%';
+        option.series[index].barWidth = index === 0 ? '50%' : '40%';
         option.series[index].label = {
           normal: {
             show: true,
@@ -344,34 +331,19 @@ class EchartsBar extends React.Component {
           }
         };
       })
-      // option.color = ["#009EFA"]
-      // option.series[0].data = data;
-      // // option.series[0].label = labelOption;
-      // option.yAxis[0].data = Xdata;
-      // option.series[0].name = "商户排名数据分析";
-      // option.series = NewSeries;
       MyEcharts.setOption(option)
     }
     window.addEventListener('resize', () => {
-      // const myChart = echarts.init(document.getElementById('chart-left'))
-      // const myChart1 = echarts.init(document.getElementById('chart-btm'))
       MyEcharts.resize()
-      // myChart1.resize()
     })
 
   }
 
   render() {
-    const { unit, textFont, heigth } = this.props;
+    const {  heigth,id } = this.props;
     return (
       <div>
-        <div >
-          {/* {
-            unit && <span className={`${style["PublicChartsUnit"]}`} style={{ fontSize: textFont + "px" }}>{unit}</span>
-          } */}
-
-          <div id={this.props.id} style={{ width: "100%", height: heigth }}></div>
-        </div>
+          <div id={id} style={{ width: "100%", height: heigth }}></div>
       </div>
     )
   }

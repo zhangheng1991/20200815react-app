@@ -5,12 +5,12 @@ import {connect} from "dva";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import { CustomErrorComponent } from 'custom-error';
 // import {Pdf} from 'react-pdf-js';
-import Pdf from 'react-pdf-js';
-import { Anchor } from 'antd';
+// import Pdf from 'react-pdf-js';
+// import { Anchor } from 'antd';
 import { Document, Page } from 'react-pdf';
 import style from './style.less';
-const { Link } = Anchor;
-const file = '11.jpg';
+// const { Link } = Anchor;
+// const file = '11.jpg';
 const type = 'docx';
 
 function MyHooks(props) {

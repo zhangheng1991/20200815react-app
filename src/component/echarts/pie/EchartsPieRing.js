@@ -2,7 +2,7 @@ import React from "react";
 import echarts from "echarts";
 class EchartsPieRing extends React.Component {
   componentDidMount() {
-    const { data, id, textFont, ChattTitle, unit } = this.props;
+    const { data, id, textFont, unit } = this.props;
     let MyEcharts = echarts.init(document.getElementById(id))
     let option = {
       color: ["#52DFF3", "#CD4BD3", "#FECA41", "#2DBA6E", "#6146FA", "#921B56", "#C51648",],
@@ -120,17 +120,13 @@ class EchartsPieRing extends React.Component {
 
     })
   }
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps)
-    // console.log(this.props)
-  }
   render() {
-    const { TitleUnit, textFont,height } = this.props;
+    const { id,height } = this.props;
     return (
       <div>
         <div >
          
-          <div id={this.props.id} style={{ width: "100%", height: height }}></div>
+          <div id={id} style={{ width: "100%", height: height }}></div>
         </div>
       </div>
     )

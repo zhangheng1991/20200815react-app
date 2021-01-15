@@ -2,9 +2,9 @@ import React from 'react';
 import echarts from 'echarts';
 class EchartsBarsCross extends React.Component {
   componentDidMount() {
-    const { data, Xdata, color, textFont, ChattTitle } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(this.props.id));
-    var index = 0;
+    const { data, Xdata, textFont, ChattTitle,id } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id));
+
     // var colorList = ['#f36c6c'];
     let option = {
       title: {
@@ -28,10 +28,10 @@ class EchartsBarsCross extends React.Component {
         show: false,
       },
       grid: {
-        left:100,
+        left: 100,
         top: 20,
         right: 0,
-        bottom: 20
+        bottom: 20,
       },
       toolbox: {
         // show: true,
@@ -196,13 +196,13 @@ class EchartsBarsCross extends React.Component {
                   '#0093FF',
                 ];
                 // console.log(params)
-                if (params.dataIndex == 0) {
+                if ((params.dataIndex === 0)) {
                   return '#F36C6C';
                 }
-                if (params.dataIndex == 1) {
+                if (params.dataIndex === 1) {
                   return '#E6CF4E';
                 }
-                if (params.dataIndex == 2) {
+                if (params.dataIndex === 2) {
                   return '#20D180';
                 } else {
                   return '#0093FF';
@@ -231,31 +231,22 @@ class EchartsBarsCross extends React.Component {
     };
 
     if (MyEcharts) {
-      // option.color = ["#009EFA"]
       option.series[0].data = data;
-      // option.series[0].label = labelOption;
+
       option.yAxis[0].data = Xdata;
-      // option.series[0].name = "商户排名数据分析";
-      // option.series[0].itemStyle.normal.color = color;
+
       MyEcharts.setOption(option);
     }
     window.addEventListener('resize', () => {
-      // const myChart = echarts.init(document.getElementById('chart-left'))
-      // const myChart1 = echarts.init(document.getElementById('chart-btm'))
       MyEcharts.resize();
-      // myChart1.resize()
     });
   }
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps);
-  }
+
   render() {
-    const { unit, textFont, height } = this.props;
+    const { id, height } = this.props;
     return (
       <div>
-        <div>
-          <div id={this.props.id} style={{ width: '100%', height: height }} />
-        </div>
+        <div id={id} style={{ width: '100%', height: height }} />
       </div>
     );
   }

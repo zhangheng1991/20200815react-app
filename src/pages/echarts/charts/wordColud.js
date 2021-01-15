@@ -8,7 +8,7 @@ class WordColud extends React.Component {
     const { height, id, title, data, ChattTitle, textFont } = this.props;
     return (
       <div>
-        {/* <Lazyload debounce={10}> */}
+        <Lazyload debounce={10}>
           <EchartBox title={title}>
             {
               <WordColuds
@@ -20,7 +20,7 @@ class WordColud extends React.Component {
               />
             }
           </EchartBox>
-        {/* </Lazyload> */}
+        </Lazyload>
       </div>
     );
   }

@@ -1,45 +1,12 @@
 import React from "react";
 import echarts from "echarts";
-var labelOption = {
-  show: true,
-  formatter: '{c}',
-  fontSize: 16,
-  rich: {
-    name: {
-      textBorderColor: '#fff'
-    }
-  }
-};
-
 class EchartsBarTwice extends React.Component {
   componentDidMount() {
-    const { xData, color, ChattTitle,textFont,lineData,lastYearData,thisYearData,timeLineData,colors,legend } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(this.props.id))
-    // console.log(legend)
-    // var xData = ['小于18', '18-25', '26-35', '36-45', '46-55', '56-65', '大于66']
-    // var lineData = [100, 100, 100, 100, 100, 100, 100]
-    // var lastYearData = [3, 20, 62, 34, 55, 65, 33];
-    // var thisYearData = [11, 38, 23, 39, 66, 66, 79];
-    // var timeLineData = [1];
-    // var legend = ['男', '女'];
-    var background = "#0e2147"; //背景 
-    let textColor = "#fff";
+    const { xData,  ChattTitle,textFont,lastYearData,thisYearData,timeLineData,colors,legend,id } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id))
+    // var background = "#0e2147"; //背景 
+    // let textColor = "#fff";
     let lineColor = "#193E7D";
-    // let colors = [{
-    //   borderColor: "rgba(227,161,96,1)",
-    //   // start: "rgba(227,161,96,0.8)",
-    //   // end: "rgba(227,161,96,0.3)"
-    //   start: "#E12770",
-    //   end: "#E12770"
-    // },
-    // {
-    //   borderColor: "rgba(0,222,255,1)",
-    //   // start: "rgba(0,222,255,0.3)",
-    //   // end: "rgba(0,222,255,0.8)"
-    //   start: "#01C7E7",
-    //   end: "#01C7E7"
-    // },
-    // ];
     let borderData = [];
     let scale = 0;//边框
     borderData = xData.map(item => {
@@ -324,30 +291,19 @@ class EchartsBarTwice extends React.Component {
       ]
     });
     if (MyEcharts) {
-      // option.color = ["#009EFA"]
-      // option.series[0].data = data;
-      // // option.series[0].label = labelOption;
-      // option.yAxis[0].data = Xdata;
-      // option.series[0].name = "商户排名数据分析";
-      // option.series[0].itemStyle.normal.color = color;
       MyEcharts.setOption(option)
     }
     window.addEventListener('resize', () => {
-      // const myChart = echarts.init(document.getElementById('chart-left'))
-      // const myChart1 = echarts.init(document.getElementById('chart-btm'))
       MyEcharts.resize()
-      // myChart1.resize()
     })
 
   }
  
   render() {
-    const { unit, textFont,heigth } = this.props;
+    const { id,heigth } = this.props;
     return (
       <div>
-        <div >
-          <div id={this.props.id} style={{ width: "100%", height: heigth}}></div>
-        </div>
+          <div id={id} style={{ width: "100%", height: heigth}}></div>
       </div>
     )
   }

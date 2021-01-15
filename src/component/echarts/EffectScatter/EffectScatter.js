@@ -2,8 +2,8 @@ import React from "react";
 import echarts from "echarts";
 class EffectScatter extends React.Component {
   componentDidMount() {
-    const { data, Xdata, color,plantCap,datalist,textFont,ChattTitle } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(this.props.id))
+    const { plantCap,datalist,textFont,ChattTitle,id } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id))
   
     var datas = [];
     for (var i = 0; i < plantCap.length; i++) {
@@ -129,33 +129,18 @@ class EffectScatter extends React.Component {
       }]
     };
     if (MyEcharts) {
-      // option.color = ["#009EFA"]
-      // option.series[0].data = data;
-      // // option.series[0].label = labelOption;
-      // option.xAxis[0].data = Xdata;
-      // option.series[0].name = "商户排名数据分析";
-      // option.series[0].itemStyle.normal.color = color;
       MyEcharts.setOption(option)
     }
     window.addEventListener('resize', () => {
-      // const myChart = echarts.init(document.getElementById('chart-left'))
-      // const myChart1 = echarts.init(document.getElementById('chart-btm'))
       MyEcharts.resize()
-      // myChart1.resize()
     })
 
-  }
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps)
   }
   render() {
     const {height,id } = this.props;
     return (
       <div>
-        <div>
-         
           <div id={id} style={{ width: "100%", height: height }}></div>
-        </div>
       </div>
     )
   }

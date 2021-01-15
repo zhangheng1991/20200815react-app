@@ -4,8 +4,8 @@ import "echarts-liquidfill";
 import style from "./style.less";
 class EchartsLiquidfillBar extends React.Component {
   componentDidMount() {
-    const { data, Xdata, color, textFont } = this.props;
-    let MyEcharts = echarts.init(document.getElementById(this.props.id))
+    const { data, color, textFont,id } = this.props;
+    let MyEcharts = echarts.init(document.getElementById(id))
     var val1data2 = [{
       value: 2,
       name: '高资产占比',
@@ -44,7 +44,7 @@ class EchartsLiquidfillBar extends React.Component {
         trigger: 'item',
         formatter: function (res) {
           // console.log(res)
-          if (res.componentSubType == 'liquidFill') {
+          if (res.componentSubType === 'liquidFill') {
             return res.seriesName + ': ' + (res.value * 100).toFixed(2) + '%';
             // return (res.value * 10000 / 100).toFixed(2) + '%';
           } else {
@@ -162,7 +162,7 @@ class EchartsLiquidfillBar extends React.Component {
     }
     MyEcharts.on('click', function (params) {
       console.log(params)
-      if (params.componentType == "series") {
+      if (params.componentType === "series") {
 
       }
     })
@@ -173,17 +173,16 @@ class EchartsLiquidfillBar extends React.Component {
       // const myChart = echarts.init(document.getElementById('chart-left'))
       // const myChart1 = echarts.init(document.getElementById('chart-btm'))
       MyEcharts.resize()
-      // myChart1.resize()
     })
 
   }
  
   render() {
-    const { unit, textFont, ChattTitle,height } = this.props;
+    const { id, textFont, ChattTitle,height } = this.props;
     return (
       <div>
         <div>
-          <div id={this.props.id} style={{ width: "100%", height: height }}></div>
+          <div id={id} style={{ width: "100%", height: height }}></div>
           <div className={`${style["LiquidfillTitle"]}`}>
             <span style={{ fontSize: textFont + "px" }}>{ChattTitle}</span>
           </div>

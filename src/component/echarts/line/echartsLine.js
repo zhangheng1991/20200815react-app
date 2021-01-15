@@ -3,33 +3,11 @@ import echarts from 'echarts';
 
 class EchartsLine extends React.Component {
   componentDidMount() {
-    const {chartData,color,id}=this.props;
+    const { chartData, color, id } = this.props;
     const myLine = echarts.init(document.getElementById(id));
     let dashedPic =
       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM8AAAAOBAMAAAB6G1V9AAAAD1BMVEX////Kysrk5OTj4+TJycoJ0iFPAAAAG0lEQVQ4y2MYBaNgGAMTQQVFOiABhlEwCugOAMqzCykGOeENAAAAAElFTkSuQmCC';
-    // let color = ['#FF8700', '#ffc300', '#00e473', '#009DFF'];
-    // let chartData = [
-    //   {
-    //     name: '本科及以上',
-    //     value: 13211,
-    //     unit: '元',
-    //   },
-    //   {
-    //     name: '高中',
-    //     value: 42111,
-    //     unit: '元',
-    //   },
-    //   {
-    //     name: '初中及以下',
-    //     value: 81711,
-    //     unit: '元',
-    //   },
-    //   {
-    //     name: '其他',
-    //     value: 121711,
-    //     unit: '元',
-    //   },
-    // ];
+
     let arrName = [];
     let arrValue = [];
     let sum = 0;
@@ -112,7 +90,7 @@ class EchartsLine extends React.Component {
     });
 
     let option = {
-    //   backgroundColor: '#fff',
+      //   backgroundColor: '#fff',
       color: color,
       grid: {
         top: '15%',
@@ -154,8 +132,8 @@ class EchartsLine extends React.Component {
                   width: 170,
                   height: 1,
                   // backgroundColor: { image: dashedPic },
-                  backgroundColor: "#FFFFFF",
-                  border:"1px dashed red"
+                  backgroundColor: '#FFFFFF',
+                  border: '1px dashed red',
                 },
                 name: {
                   color: '#FFFFFF',
@@ -197,14 +175,12 @@ class EchartsLine extends React.Component {
       myLine.setOption(option);
     }
   }
-  
+
   render() {
-    const {height,id}=this.props;
+    const { height, id } = this.props;
     return (
       <div>
-        <div >
-          <div id={id} style={{ width: '100%', height: height }} />
-        </div>
+        <div id={id} style={{ width: '100%', height: height }} />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import echarts from 'echarts';
+import moment from "moment";
 //3/4饼状图
 import EchartsLine from './charts/echartsLine';
 import EchartsBar from './charts/EchartsBar';
@@ -22,8 +23,22 @@ class EchartsIndex extends React.Component {
   static defaultProps = {
     span: 8,
   };
+  componentDidMount(){
+    // this.TimeID = setInterval(() => this.Tick(), 1000);
+  }
+  state={
+    time: moment().format('YYYYMMDDHH:mmss'),
+  }
+  Tick() {
+    // this.setState({ time: moment().format('YYYYMMDDHH:mmss') });
+  }
+  componentWillUnmount() {
+    clearTimeout(this.TimeID); //清除定时器
+  }
   render() {
     const { span } = this.props;
+    const{time}=this.state;
+    // console.log(time)
     const EchartsLine1 = {
       data: '',
       title: 'XXX1公司员工薪资分布',
@@ -1569,8 +1584,8 @@ class EchartsIndex extends React.Component {
           value: 10,
         },
       ],
-      id:"HuangFeiHongA",
-      textFont:16,
+      id: 'HuangFeiHongA',
+      textFont: 16,
     };
     const SourceOfTourists1 = {
       geoCoordMap: {
@@ -1649,16 +1664,19 @@ class EchartsIndex extends React.Component {
           type: 3,
         },
       ],
-      height: '600px',
+      height: '800px',
       barWidth: 200,
       data: [{ name: '1000以下' }, { name: '1000人~10000以下' }, { name: '10000以上' }],
       id: 'SourceOfTouristsG',
       title: '游客来源',
-      TitleUnit:"单位： 分钟"
+      TitleUnit: '单位： 分钟',
     };
     return (
       <div style={{ background: '#dfdfdf' }}>
         <Row>
+          <Col span="24">
+            <SourceOfTourists {...SourceOfTourists1} key={time} />
+          </Col>
           <Col span="12">
             <TheOrganization {...TheOrganization5} />
           </Col>
@@ -1722,10 +1740,6 @@ class EchartsIndex extends React.Component {
           <Col span="24">
             <HuangFeiHong {...HuangFeiHong1} />
           </Col>
-          <Col span="24">
-          <SourceOfTourists  {...SourceOfTourists1}/>
-          </Col>
-         
         </Row>
       </div>
     );
