@@ -21,6 +21,7 @@ import HuangFeiHong from './charts/HuangFeiHong';
 import SourceOfTourists from './charts/SourceOfTourists';
 import AirQuality from './charts/AirQuality';
 import ChinaPneumonia from './charts/ChinaPneumonia';
+import ChinaPneumoniaAir from './charts/ChinaPneumoniaAir';
 class EchartsIndex extends React.Component {
   static defaultProps = {
     span: 8,
@@ -1819,7 +1820,7 @@ class EchartsIndex extends React.Component {
         },
       ],
     };
-    const AirQuality1={
+    const AirQuality1 = {
       source: [
         ['湖南', '112.929238', '28.249957', '90', '28', '66', 'rgba(19,198,249,1)'],
         ['上海', '121.481115', '31.234694', '88', '48', '75', 'rgba(19,198,249,1)'],
@@ -1857,12 +1858,93 @@ class EchartsIndex extends React.Component {
           visualMap: false,
         },
       ],
-      id:"AirQuality1",
-      height:"400px"
-    }
+      id: 'AirQuality1',
+      height: '400px',
+    };
+    const ChinaPneumoniaAir1 = {
+      id: 'ChinaPneumoniaAir1',
+      height: '600px',
+      outname : [
+        '南海诸岛',
+        '北京',
+        '天津',
+        '上海',
+        '重庆',
+        '河北',
+        '河南',
+        '云南',
+        '辽宁',
+        '黑龙江',
+        '湖南',
+        '安徽',
+        '山东',
+        '新疆',
+        '江苏',
+        '浙江',
+        '江西',
+        '湖北',
+        '广西',
+        '甘肃',
+        '山西',
+        '内蒙古',
+        '陕西',
+        '吉林',
+        '福建',
+        '贵州',
+        '广东',
+        '青海',
+        '西藏',
+        '四川',
+        '宁夏',
+        '海南',
+        '台湾',
+        '香港',
+        '澳门',
+      ],
+      outvalue : [
+        0,
+        524,
+        13,
+        140,
+        75,
+        13,
+        83,
+        11,
+        19,
+        15,
+        69,
+        260,
+        39,
+        4,
+        31,
+        104,
+        36,
+        1052,
+        33,
+        347,
+        9,
+        157,
+        22,
+        4,
+        18,
+        5,
+        2398,
+        41,
+        0,
+        484,
+        404,
+        22,
+        3,
+        5,
+        225,
+      ]
+    };
     return (
       <div style={{ background: '#dfdfdf' }}>
         <Row>
+          <Col span="24">
+            <ChinaPneumoniaAir {...ChinaPneumoniaAir1} />
+          </Col>
           <Col span="12">
             <ChinaPneumonia {...ChinaPneumonia1} />
           </Col>
