@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import echarts from 'echarts';
-import moment from "moment";
+import moment from 'moment';
 //3/4饼状图
 import EchartsLine from './charts/echartsLine';
 import EchartsBar from './charts/EchartsBar';
@@ -19,16 +19,18 @@ import EachChannelNumber from './charts/EachChannelNumber';
 import TheOrganization from './charts/TheOrganization';
 import HuangFeiHong from './charts/HuangFeiHong';
 import SourceOfTourists from './charts/SourceOfTourists';
+import AirQuality from './charts/AirQuality';
+import ChinaPneumonia from './charts/ChinaPneumonia';
 class EchartsIndex extends React.Component {
   static defaultProps = {
     span: 8,
   };
-  componentDidMount(){
+  componentDidMount() {
     // this.TimeID = setInterval(() => this.Tick(), 1000);
   }
-  state={
+  state = {
     time: moment().format('YYYYMMDDHH:mmss'),
-  }
+  };
   Tick() {
     // this.setState({ time: moment().format('YYYYMMDDHH:mmss') });
   }
@@ -37,7 +39,7 @@ class EchartsIndex extends React.Component {
   }
   render() {
     const { span } = this.props;
-    const{time}=this.state;
+    const { time } = this.state;
     // console.log(time)
     const EchartsLine1 = {
       data: '',
@@ -1671,9 +1673,202 @@ class EchartsIndex extends React.Component {
       title: '游客来源',
       TitleUnit: '单位： 分钟',
     };
+    const ChinaPneumonia1 = {
+      id: 'ChinaPneumonia1',
+      height: '400px',
+      dataList: [
+        {
+          name: '南海诸岛',
+          value: 0,
+        },
+        {
+          name: '北京',
+          value: 54,
+        },
+        {
+          name: '天津',
+          value: 13,
+        },
+        {
+          name: '上海',
+          value: 40,
+        },
+        {
+          name: '重庆',
+          value: 75,
+        },
+        {
+          name: '河北',
+          value: 13,
+        },
+        {
+          name: '河南',
+          value: 83,
+        },
+        {
+          name: '云南',
+          value: 11,
+        },
+        {
+          name: '辽宁',
+          value: 19,
+        },
+        {
+          name: '黑龙江',
+          value: 15,
+        },
+        {
+          name: '湖南',
+          value: 69,
+        },
+        {
+          name: '安徽',
+          value: 60,
+        },
+        {
+          name: '山东',
+          value: 39,
+        },
+        {
+          name: '新疆',
+          value: 4,
+        },
+        {
+          name: '江苏',
+          value: 31,
+        },
+        {
+          name: '浙江',
+          value: 104,
+        },
+        {
+          name: '江西',
+          value: 36,
+        },
+        {
+          name: '湖北',
+          value: 1052,
+        },
+        {
+          name: '广西',
+          value: 33,
+        },
+        {
+          name: '甘肃',
+          value: 7,
+        },
+        {
+          name: '山西',
+          value: 9,
+        },
+        {
+          name: '内蒙古',
+          value: 7,
+        },
+        {
+          name: '陕西',
+          value: 22,
+        },
+        {
+          name: '吉林',
+          value: 4,
+        },
+        {
+          name: '福建',
+          value: 18,
+        },
+        {
+          name: '贵州',
+          value: 5,
+        },
+        {
+          name: '广东',
+          value: 98,
+        },
+        {
+          name: '青海',
+          value: 1,
+        },
+        {
+          name: '西藏',
+          value: 0,
+        },
+        {
+          name: '四川',
+          value: 44,
+        },
+        {
+          name: '宁夏',
+          value: 4,
+        },
+        {
+          name: '海南',
+          value: 22,
+        },
+        {
+          name: '台湾',
+          value: 3,
+        },
+        {
+          name: '香港',
+          value: 5,
+        },
+        {
+          name: '澳门',
+          value: 5,
+        },
+      ],
+    };
+    const AirQuality1={
+      source: [
+        ['湖南', '112.929238', '28.249957', '90', '28', '66', 'rgba(19,198,249,1)'],
+        ['上海', '121.481115', '31.234694', '88', '48', '75', 'rgba(19,198,249,1)'],
+        ['湖北', '114.311073', '30.601099', '79', '56', '85', 'rgba(245, 42, 118,1)'],
+        ['澳门', '113.545265', '22.170938', '82', '36', '68', 'rgba(245, 42, 118,1)'],
+        ['江苏', '119.750934', '33.196174', '82', '36', '68', 'rgba(245, 42, 118,1)'],
+      ],
+      data: [
+        {
+          name: '北京',
+          value: [116.405285, 39.904989],
+          itemStyle: {
+            color: 'rgba(19,198,249,1)',
+          },
+          visualMap: false,
+        },
+        {
+          name: '天津',
+          value: [117.190182, 39.12559],
+          visualMap: false,
+        },
+        {
+          name: '山西',
+          value: [112.549248, 37.857014],
+          visualMap: false,
+        },
+        {
+          name: '内蒙古',
+          value: [111.670801, 40.818311],
+          visualMap: false,
+        },
+        {
+          name: '辽宁',
+          value: [123.429096, 41.796767],
+          visualMap: false,
+        },
+      ],
+      id:"AirQuality1",
+      height:"400px"
+    }
     return (
       <div style={{ background: '#dfdfdf' }}>
         <Row>
+          <Col span="12">
+            <ChinaPneumonia {...ChinaPneumonia1} />
+          </Col>
+          <Col span="12">
+            <AirQuality {...AirQuality1} />
+          </Col>
           <Col span="24">
             <SourceOfTourists {...SourceOfTourists1} key={time} />
           </Col>

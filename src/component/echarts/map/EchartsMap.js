@@ -3,6 +3,9 @@ import React from 'react';
 import echarts from 'echarts';
 import "echarts/map/js/china.js";
 class EchartsMap extends React.Component {
+  static defaupltProps = {
+    height: 400,
+  };
   componentDidMount() {
     const { geoCoordMap, dataT, ChattTitle, textFont, id } = this.props;
     let MyEcharts = echarts.init(document.getElementById(id));
