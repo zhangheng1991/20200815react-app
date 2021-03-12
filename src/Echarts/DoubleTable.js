@@ -1,6 +1,7 @@
 import React from 'react';
+import Dragger from 'react-dragger-r';
 import _ from 'loadsh';
-import { Table, Select, AutoComplete } from 'antd';
+import { Table, Select, AutoComplete, Col } from 'antd';
 const { Option } = Select;
 
 // const columns = [
@@ -89,6 +90,10 @@ const options = [
     value: 'Wall Street',
   },
 ];
+const dataD = [];
+for (let i = 10; i < 38; i++) {
+  dataD.push({ title: '我是拖拽' + i.toString(), key: i });
+}
 class DoubleTable extends React.Component {
   state = {
     expandedRowKeys: '1',
@@ -140,6 +145,27 @@ class DoubleTable extends React.Component {
     // console.log(_.sum(NumTotal))
     return (
       <div>
+        <div>
+          {dataD.map((item, index) => {
+            return (
+              // <Col span="6" style={{height:"50px",lineHeight:"50px",background:"white",position:"relative"}}>
+              <Dragger
+                style={{
+                  height: '50px',
+                  lineHeight: '50px',
+                  background: 'white',
+                  position: 'relative',
+                  display: 'inline-block',
+                  width: '25%',
+                }}
+                key={index}
+              >
+                <div >{item.title}</div>
+              </Dragger>
+              // </Col>
+            );
+          })}
+        </div>
         <AutoComplete
           style={{
             width: 200,
@@ -176,7 +202,6 @@ class DoubleTable extends React.Component {
               rowKey="key"
               expandedRowKeys={this.state.expandedRowKeys}
               scroll={{ x: total }}
-
             />
           )}
         </div>

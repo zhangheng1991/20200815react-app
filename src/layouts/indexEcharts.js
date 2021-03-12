@@ -52,6 +52,10 @@ const MenuData = [
     "title": "公用接口",
     "url": "/Echarts/PublicInterface",
   },
+  {
+    "title": "导出pdf",
+    "url": "/Pdf",
+  },
   
 ]
 @connect(({ Index }) => ({ Index }))

@@ -5,7 +5,7 @@ import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styles from './Tests.less';
 import Echarts from 'echarts';
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import { Table, Input, Button, Popconfirm, Form, Drawer } from 'antd';
 import EditableCell from './TestChildren';
 import { connect } from 'dva';
 
@@ -28,6 +28,24 @@ const EditableRow = ({ form, index, ...props }) => (
 );
 
 const EditableFormRow = Form.create()(EditableRow);
+const dataP =[
+  {
+    title:"右面",
+    key:"right",
+  },
+  {
+    title:"底部",
+    key:"bottom",
+  },
+  {
+    title:"左面",
+    key:"left",
+  },
+  {
+    title:"顶部",
+    key:"top",
+  },
+]
 @connect(({ TestModel }) => ({ TestModel }))
 class Tests extends React.Component {
   constructor(props) {
@@ -177,6 +195,9 @@ class Tests extends React.Component {
       tableList: [],
       value: '',
       copied: false,
+      visible:false,
+      placement:"right",
+      name:"右面",
     };
   }
   componentDidMount() {
@@ -265,6 +286,14 @@ class Tests extends React.Component {
     });
     this.setState({ dataSource: this.data });
   };
+   showDrawer = (obj) => {
+   this.setState({visible:true,placement:obj.key,name:obj.title})
+  };
+
+   onClose = () => {
+    this.setState({visible:false})
+  };
+
   render() {
     const { dataSource } = this.state;
     const { TestModel, dispatch } = this.props;
@@ -297,24 +326,46 @@ class Tests extends React.Component {
       <div>
         {/* <div className={styles.backGround}></div> */}
         <div className={styles.content}>
-        <div>
-          <input
-            value={this.state.value}
-            onChange={({ target: { value } }) => this.setState({ value, copied: false })}
-          />
+          {
+            dataP.map((item,index)=>{
+              return(
+                <Button type="primary" onClick={this.showDrawer.bind(this,item)} key={item.key}>
+                   {item.title}
+              </Button>
+              )
+            })
+          }
+        
+          <Drawer
+            title={"抽屉方向("+this.state.name+")"}
+            closable={false}
+            onClose={this.onClose}
+            visible={this.state.visible}
+            zIndex={100000}
+            placement={this.state.placement}
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Drawer>
+          <div>
+            <input
+              value={this.state.value}
+              onChange={({ target: { value } }) => this.setState({ value, copied: false })}
+            />
 
-          <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
-            <span className={styles.copyButton}>点击复制</span>
-          </CopyToClipboard>
+            <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+              <span className={styles.copyButton}>点击复制</span>
+            </CopyToClipboard>
 
-          {/* <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+            {/* <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
             <button>Copy to clipboard with button</button>
           </CopyToClipboard> */}
 
-          {/* {this.state.copied ? <span style={{ color: 'red' }}>Copied.</span> : null} */}
-        </div>
+            {/* {this.state.copied ? <span style={{ color: 'red' }}>Copied.</span> : null} */}
+          </div>
           <div>
-            <div className={`${styles["ContentButton"]}`}>
+            <div className={`${styles['ContentButton']}`}>
               <Button onClick={this.handleAdd} type="primary">
                 新增
               </Button>
@@ -325,7 +376,7 @@ class Tests extends React.Component {
                 全部删除
               </Button>
             </div>
-            <div >
+            <div>
               <Table
                 components={components}
                 rowClassName={() => 'editable-row'}

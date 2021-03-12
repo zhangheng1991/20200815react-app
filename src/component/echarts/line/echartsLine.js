@@ -129,7 +129,7 @@ class EchartsLine extends React.Component {
               fontSize: 14,
               rich: {
                 line: {
-                  width: 170,
+                  width: "15%",
                   height: 1,
                   // backgroundColor: { image: dashedPic },
                   backgroundColor: '#FFFFFF',

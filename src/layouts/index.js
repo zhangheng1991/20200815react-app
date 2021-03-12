@@ -134,6 +134,7 @@ class BasicLayout extends React.Component {
           );
         }
       });
+
     return (
       <div className={styles.normal}>
         <div className={styles.Header}>

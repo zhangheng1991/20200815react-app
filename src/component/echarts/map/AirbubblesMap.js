@@ -123,7 +123,7 @@ class AirbubblesMap extends React.Component {
     };
 
   let  option = {
-      backgroundColor: '#0F1C3C',
+    //   backgroundColor: '#0F1C3C',
       tooltip: {
         show: true,
         formatter: function(params) {
