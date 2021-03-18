@@ -19,60 +19,32 @@ const renderContent = (value, row, index) => {
   // }
   return obj;
 };
-
+const mergeCells=(text, data, key, index)=> {
+  // 上一行该列数据是否一样
+  if (index !== 0 && text === data[index - 1][key]) {
+    return 0
+  }
+  let rowSpan = 1
+  // 判断下一行是否相等
+  for (let i = index + 1; i < data.length; i++) {
+    if (text !== data[i][key]) {
+      break
+    }
+    rowSpan++
+  }
+  return rowSpan
+}
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    render: (text, row, index) => {
-      if (index === 0) {
-        return {
-          children: <a>{text}</a>,
-          props: {
-            rowSpan: 3,
-          },
-        };
+    render: (text, record,index) => {
+      const obj = {
+        children: text !== null ? text : '',
+        props: {}
       }
-      if (index === 1 || index === 2) {
-        return {
-          children: null,
-          props: {
-            rowSpan: 0,
-          },
-        };
-      }
-      if (index === 3) {
-        return {
-          children: <a>{text}</a>,
-          props: {
-            rowSpan: 2,
-          },
-        };
-      }
-      if (index === 4) {
-        return {
-          // children: null,
-          props: {
-            rowSpan: 0,
-          },
-        };
-      }
-      // if (index===2) {
-      //   return {
-      //   children:<a>{text}</a>,
-      //   props: {
-      //     rowlSpan: 2,
-      //     // colSpan: 1,
-      //   },
-      // };
-      // }
-      return {
-        children: <a>{text}</a>,
-        // props: {
-        //   rowlSpan: 0,
-
-        // },
-      };
+      obj.props.rowSpan =mergeCells(text, data, 'name', index)
+      return obj
     },
   },
   {

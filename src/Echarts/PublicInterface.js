@@ -168,7 +168,7 @@ class PublicInterface extends React.Component {
     }).then(res => {
       if (res.data.code === 200) {
         const dataL = res.data.data;
-        dataL.map((item, index) => {
+        dataL&&dataL.map((item, index) => {
           item.key = index + 1;
         });
         this.setState({ todayHistoryList: dataL });
@@ -217,7 +217,7 @@ class PublicInterface extends React.Component {
     }).then(res => {
       if (res.data.code === 200) {
         const dataL = res.data.data;
-        dataL.map((item, index) => {
+        dataL&& dataL.map((item, index) => {
           item.cityName = res.data.citynm;
           item.codeSort = index + 1;
           item.key = index + 1;

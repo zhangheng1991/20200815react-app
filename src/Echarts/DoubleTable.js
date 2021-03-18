@@ -200,8 +200,10 @@ class DoubleTable extends React.Component {
               dataSource={data}
               onExpand={this.onExpand}
               rowKey="key"
-              expandedRowKeys={this.state.expandedRowKeys}
+              defaultExpandAllRows={true}
+              // expandedRowKeys={this.state.expandedRowKeys}
               scroll={{ x: total }}
+              expandable={{defaultExpandAllRows:true}}
             />
           )}
         </div>
