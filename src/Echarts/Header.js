@@ -90,6 +90,7 @@ const columns = [
 ];
 
 const data = [
+ 
   {
     key: '1',
     name: 'John Brown',
@@ -124,6 +125,14 @@ const data = [
   },
   {
     key: '5',
+    name: 'Jake White',
+    age: 18,
+    tel: '0575-22098909',
+    phone: 18900010002,
+    address: 'Dublin No. 2 Lake Park',
+  },
+  {
+    key: '6',
     name: 'Jake White',
     age: 18,
     tel: '0575-22098909',
