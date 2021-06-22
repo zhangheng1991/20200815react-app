@@ -2,3 +2,61 @@
     width: 100%;
   padding: 0px 30px;
 }
+.Box{
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  div{
+    width: 50%;
+    border: 1px solid red;
+    display: inline-block;
+  }
+  span{
+    display: inline-block;;
+  }
+  .lengedTitle{
+    margin-right: 10px;
+       span{
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background:red;
+        position: absolute;
+        margin-top: 8px;
+        margin-left: -10px;
+       }
+  }
+  
+  div:nth-child(2n+1){
+    display: flex;
+    justify-content: flex-end;
+    span{
+      display: inline-block;
+      word-break: break-all;
+
+    }
+    .lengedTitle{
+      width: 30%;
+    }
+    .lengedName{
+      width: 30%;
+    }
+  }
+  div:nth-child(2n){
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+    span{
+      display: inline-block;
+      word-break: break-all;
+
+    }
+    .lengedTitle{
+      width: 30%;
+    }
+    .lengedName{
+      width: 30%;
+    }
+  }
+}

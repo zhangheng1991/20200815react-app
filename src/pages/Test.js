@@ -2,7 +2,7 @@
  * Created by zhangheng on 2019/5/18.
  */
 import React from 'react';
-import { Row, Col, Checkbox } from 'antd';
+import { Row, Col, Checkbox,Transfer, Button } from 'antd';
 import { Select, Table } from 'antd';
 import { connect } from 'dva';
 import style from './index.less';
@@ -29,6 +29,8 @@ const data = [
 class Test extends React.Component {
   state = {
     selectedRowKeys: [1], // Check here to configure the default column
+    mockData: [],
+    targetKeys: [],
   };
 
   componentDidMount() {
@@ -37,6 +39,7 @@ class Test extends React.Component {
       type: 'Index/SelectList',
       payload: {},
     });
+    this.getMock();
   }
   onChange = value => {
     // console.log(`selected ${value}`);
@@ -132,6 +135,41 @@ class Test extends React.Component {
     // console.log(selectedRowKeys, selectedRows);
     this.setState({ selectedRowKeys });
   };
+
+  // componentDidMount() {
+  //   this.getMock();
+  // }
+
+  getMock = () => {
+    const targetKeys = [];
+    const mockData = [];
+    for (let i = 0; i < 20; i++) {
+      const data = {
+        key: i.toString(),
+        title: `content${i + 1}`,
+        description: `description of content${i + 1}`,
+        chosen: Math.random() * 2 > 1,
+        flag:i,
+      };
+      if (data.flag<15) {
+        targetKeys.push(data.key);
+      }
+      mockData.push(data);
+    }
+    this.setState({ mockData, targetKeys });
+  };
+
+  handleChange = targetKeys => {
+    console.log(targetKeys)
+    this.setState({ targetKeys });
+  };
+
+  renderFooter = () => (
+    <Button size="small" style={{ float: 'right', margin: 5 }} onClick={this.getMock}>
+      reload
+    </Button>
+  );
+
   render() {
     const { Index } = this.props;
     const { TableList } = Index;
@@ -192,6 +230,21 @@ class Test extends React.Component {
 
           <Col span={8}>水水水水水水水水</Col>
         </Row>
+        <Transfer
+        dataSource={this.state.mockData}
+        showSearch
+        listStyle={{
+          width: 250,
+          height: 300,
+        }}
+        operations={['to right', 'to left']}
+        targetKeys={this.state.targetKeys}
+        onChange={this.handleChange}
+        render={item => `${item.title}-${item.description}`}
+        footer={this.renderFooter}
+        placeholder="wwwwwww"
+        locale={{searchPlaceholder:"请输入搜索条件"}}
+      />
       </div>
     );
   }

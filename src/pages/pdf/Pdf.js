@@ -11,19 +11,61 @@ import EchartsLine from '../echarts/charts/echartsLine';
 import styles from "./component/style.less";
 import html2canvas from 'html2canvas';
 const CANVAS_SCALE = 3.0;
-
+//要加载Js 相对路径
 const context =require.context("./",true,/js$/);
 const periodId =moment().format("YYYYMMDD");
+const dataG=[
+  {
+    title:"1111111",
+    name:"222222224444"
+  },
+  {
+    title:"11111114444",
+    name:"22222222"
+  },
+  {
+    title:"11111114",
+    name:"22222222"
+  },
+  {
+    title:"1111111",
+    name:"222222224"
+  },
+  {
+    title:"1111111345345",
+    name:"22222222"
+  },
+  {
+    title:"111111134",
+    name:"22222222"
+  },
+  {
+    title:"1111111",
+    name:"22222222"
+  },
+  {
+    title:"1111111",
+    name:"22222222"
+  },
+]
 const PdfCim = (props) => {
   //   state = { loading: false };
   const [loading, setLoading] = useState(false);
   const [pageCotentList,setpageCotentList]=useState([])
   const pageListRef=useRef();
+  const waterMarker=()=>{
+    const userNme="张衡";
+    const userCode="K0410007";
+    if(document.getElementById("PDFG")){
+        console.log(pageListRef.current.children[1])
+    }
+  }
   useEffect(()=>{
     setpageCotentList([
       ["component/pdfOne.js"],
       ["component/pdfTwo.js"],
     ])
+    waterMarker();
   },[])
   const scrollFun = e => {
     if (e && e.preventDefault) {
@@ -99,6 +141,8 @@ const PdfCim = (props) => {
      html2canvas(documentBody,{
        scale:CANVAS_SCALE, //添加scale参数
        allowTaint:true,
+       background:'red',
+       background: "#dddddd",// 如果指定的div没有设置背景色会默认成黑色,这里是个坑
      }).then((canvas)=>{
           resolve(canvas)
      }).catch((e)=>{
@@ -117,6 +161,7 @@ const PdfCim = (props) => {
     const PDF =new jsPDF('','pt',[canvasDomHomeWidth/2.08,(_.sum(_.map(pages,'clientHeight'))+pageoneHeight)/2.08]);
     let YScroll =0;
     const fileName=`日报${"p"}.pdf`;
+    PDF.background="red";
     try {
       const pageone=pages[0];
       setTimeout(()=>{
@@ -132,6 +177,7 @@ const PdfCim = (props) => {
           document.body.removeEventListener("mousewheel",scrollFun,{passive:false})
           PDF.save(fileName);
           setLoading(false);
+         
         });
       },0);
       document.body.onmousewheel=function(){return true;}
@@ -159,6 +205,20 @@ const PdfCim = (props) => {
   }
   return (
     <div id="lizi">
+      <div className={styles.Box}>
+      {
+        dataG.map((item,index)=>{
+          return(
+            <div>
+                <span className={styles.lengedTitle}>
+                  <span></span>
+                  {item.title}</span>
+                <span className={styles.lengedName}>{item.name}</span>
+            </div>
+          )
+        })
+      }
+      </div>
       <div>
         <Button type="primary" onClick={handPdf}>
           导出PDF
@@ -187,7 +247,7 @@ const PdfCim = (props) => {
            if(_.isEmpty(moduleList)){
              return <div key={index} id={`pageList_${index}`} style={{display:"none"}}></div>
            }
-           if(moduleList[0].indexOf("pdfOneW") !== -1){
+           if ( loading===false &&moduleList[0].indexOf("pdfOne") !== -1){
                       return(
                         <div key={index} id={`pageList_${index}`} style={{display:"none"}} className={styles.PDFpage}>
                           <div>

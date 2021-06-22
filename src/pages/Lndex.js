@@ -88,7 +88,8 @@ function Index(props) {
     // console.log(userContent)
     // console.log(`useEffect=>You clicked ${count} times`)
   })
-  const handClick = () => {
+  const handClick = (e) => {
+    console.log(e)
     setCount(count + 1)
     setSex("女");
     setWork("测试");

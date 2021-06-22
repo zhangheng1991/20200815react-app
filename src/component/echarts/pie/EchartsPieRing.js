@@ -34,6 +34,30 @@ class EchartsPieRing extends React.Component {
           color: 'white',
           fontSize: textFont,
         },
+        // formatter(params){
+        //     console.log(params)
+        //     return  [
+        //       '{a|a}{b|b}'
+        //   ].join('\n')
+        // },
+      //   formatter: [
+      //     '{a|这段文本采用样式a}',
+      //     '{b|这段文本采用样式b}这段用默认样式{x|这段用样式x}'
+      // ].join('\n'),
+      formatter: function (name) {
+      
+            var total = 0;
+            var tarValue;
+            for (var i = 0, l = data.length; i < l; i++) {
+              total += data[i].value;
+              if (data[i].name == name) {
+                tarValue = data[i].value;
+              }
+            }
+            var p = ((tarValue / total) * 100).toFixed(2);
+            return name + " " + " " + p + "%";
+
+      },
       },
       series: [
         {

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Table, Form, Select, Button, Col } from 'antd';
 import WheatherApi from './../component/Weather/Weather';
+import china from 'echarts/map/js/china.js';
 import style from './component/style.less';
 const data=[
   {
@@ -283,6 +284,7 @@ class Weather extends React.Component {
       pagination: false,
     };
     const { getFieldDecorator } = this.props.form;
+    console.log(china)
     return (
       <div className={`${style['copyBox']}`}>
         <div className={`${style['EncryptedStringBox']}`}>

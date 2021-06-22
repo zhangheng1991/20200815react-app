@@ -2,6 +2,7 @@ import React from 'react';
 import Dragger from 'react-dragger-r';
 import _ from 'loadsh';
 import { Table, Select, AutoComplete, Col } from 'antd';
+import "./style.less";
 const { Option } = Select;
 
 // const columns = [
@@ -137,6 +138,43 @@ class DoubleTable extends React.Component {
     // // console.log(`Selected: ${value}`);
     this.setState({ total: _.sum(NumTotal) });
   };
+  componentDidMount(){
+    this.waterMarker()
+  }
+  //
+  waterMarker(){
+      if(document.getElementById("watersMarker")){
+           console.log(document.getElementById("watersMarker").clientHeight)
+           const userNme="张衡";
+           const userCode="K0410007";
+           const cpyName=`${userNme}${userCode}`
+           const can=document.createElement('canvas');
+           const report =document.getElementsByClassName("content")[0];
+           const height =document.getElementById("watersMarker").clientHeight;
+           report.appendChild(can);
+           can.height=report.clientHeight;
+           can.height=height;
+          //  can.style.display="none";
+           const cans = can.getContext('2d');
+           cans.rotate(-35*Math.PI/180);
+           cans.font="20px";
+           cans.fillStyle="red";
+           if(cans.measureText(cpyName).width>180){
+               cans.font="20px";
+           }
+           
+          for(let i=report.offsetWidth*(-0.5);i<report.offsetWidth;i+=250){
+            for(let j=0;j<document.body.offsetHeight*2;j+=250){
+                       cans.fillText(cpyName,i,j);
+            }      
+          }
+          if(document.body.offsetHeight){
+                    report.style.backgroundImage=`url(${can.toDataURL("image/png")})`;
+          }
+
+
+      }
+  }
   render() {
     const { columns, total, value } = this.state;
     // console.log(columns,value)
@@ -144,29 +182,8 @@ class DoubleTable extends React.Component {
     // console.log(columns,total)
     // console.log(_.sum(NumTotal))
     return (
-      <div>
-        <div>
-          {dataD.map((item, index) => {
-            return (
-              // <Col span="6" style={{height:"50px",lineHeight:"50px",background:"white",position:"relative"}}>
-              <Dragger
-                style={{
-                  height: '50px',
-                  lineHeight: '50px',
-                  background: 'white',
-                  position: 'relative',
-                  display: 'inline-block',
-                  width: '25%',
-                }}
-                key={index}
-              >
-                <div >{item.title}</div>
-              </Dragger>
-              // </Col>
-            );
-          })}
-        </div>
-        <AutoComplete
+       <div>
+            <AutoComplete
           style={{
             width: 200,
           }}
@@ -196,17 +213,42 @@ class DoubleTable extends React.Component {
           {columns && (
             <Table
               columns={columns}
-              expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
+            
               dataSource={data}
               onExpand={this.onExpand}
               rowKey="key"
               defaultExpandAllRows={true}
               // expandedRowKeys={this.state.expandedRowKeys}
               scroll={{ x: total }}
-              expandable={{defaultExpandAllRows:true}}
+              expandable={{defaultExpandAllRows:true,expandIconColumnIndex:2,expandIcon:null,  expandedRowRender:record => <p style={{ margin: 0 }}>{record.description}</p>}}
             />
           )}
         </div>
+        <div id="watersMarker" style={{position:"relative"}}>
+           <div className="content">
+          {dataD.map((item, index) => {
+            return (
+              // <Col span="6" style={{height:"50px",lineHeight:"50px",background:"white",position:"relative"}}>
+              <Dragger
+                style={{
+                  height: '50px',
+                  lineHeight: '50px',
+                  background: 'white',
+                  position: 'relative',
+                  display: 'inline-block',
+                  width: '25%',
+                }}
+                key={index}
+              >
+                <div >{item.title}</div>
+              </Dragger>
+              // </Col>
+            );
+          })}
+       
+     
+        </div>
+      </div>
       </div>
     );
   }

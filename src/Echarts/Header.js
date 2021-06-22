@@ -1,7 +1,10 @@
 import React from 'react';
 import Echarts from 'echarts';
-import { Modal, Button, Select, Radio, Table } from 'antd';
+import _ from "loadsh";
+import { Modal, Button, Select, Radio, Table,Tag,message  } from 'antd';
+import moment from "moment";
 import HeaderBody from './component/HeaderBody';
+import style from "./style.less";
 const { Option } = Select;
 
 const children = [];
@@ -20,6 +23,7 @@ const renderContent = (value, row, index) => {
   return obj;
 };
 const mergeCells=(text, data, key, index)=> {
+  console.log(text, data, key, index)
   // 上一行该列数据是否一样
   if (index !== 0 && text === data[index - 1][key]) {
     return 0
@@ -34,112 +38,7 @@ const mergeCells=(text, data, key, index)=> {
   }
   return rowSpan
 }
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    render: (text, record,index) => {
-      const obj = {
-        children: text !== null ? text : '',
-        props: {}
-      }
-      obj.props.rowSpan =mergeCells(text, data, 'name', index)
-      return obj
-    },
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    rowSpan: 0,
-    render: renderContent,
-  },
-  {
-    title: 'Home phone',
-    // colSpan: 2,
-    rowSpan: 0,
-    dataIndex: 'tel',
-    // render: (value, row, index) => {
-    //   const obj = {
-    //     children: value,
-    //     props: {},
-    //   };
-    //   if (index === 2) {
-    //     obj.props.rowSpan = 2;
-    //   }
-    //   // These two are merged into above cell
-    //   if (index === 3) {
-    //     obj.props.rowSpan = 0;
-    //   }
-    //   if (index === 4) {
-    //     obj.props.colSpan = 0;
-    //   }
-    //   return obj;
-    // },
-  },
-  {
-    title: 'Phone',
-    // colSpan: 0,
-    dataIndex: 'phone',
-    // render: renderContent,
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    // render: renderContent,
-  },
-];
 
-const data = [
- 
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    tel: '0571-22098909',
-    phone: 18889898989,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'John Brown',
-    tel: '0571-22098333',
-    phone: 18889898888,
-    age: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    tel: '0575-22098909',
-    phone: 18900010002,
-    address: 'Sidney No. 1 Lake Park',
-  },
-  {
-    key: '4',
-    name: 'Jim Red',
-    age: 18,
-    tel: '0575-22098909',
-    phone: 18900010002,
-    address: 'London No. 2 Lake Park',
-  },
-  {
-    key: '5',
-    name: 'Jake White',
-    age: 18,
-    tel: '0575-22098909',
-    phone: 18900010002,
-    address: 'Dublin No. 2 Lake Park',
-  },
-  {
-    key: '6',
-    name: 'Jake White',
-    age: 18,
-    tel: '0575-22098909',
-    phone: 18900010002,
-    address: 'Dublin No. 2 Lake Park',
-  },
-];
 
 class Header extends React.Component {
   componentDidMount() {
@@ -147,7 +46,9 @@ class Header extends React.Component {
       this.epieP();
     }
   }
-  state = { visible: false };
+  state = { visible: false,
+  list:[],
+ };
 
   showModal = () => {
     this.setState({
@@ -387,17 +288,304 @@ class Header extends React.Component {
   handleChange = value => {
     // console.log(`Selected: ${value}`);
   };
+   columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      render: (text, record,index) => {
+        const obj = {
+          children: text !== null ? text : '',
+          props: {}
+        }
+        obj.props.rowSpan =mergeCells(text, this.data, 'name', index,record.name)
+        return obj
+      },
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      rowSpan: 0,
+      render: (text, record,index) => {
+        const obj = {
+          children: text !== null ? text : '',
+          props: {}
+        }
+        obj.props.rowSpan =mergeCells(text, this.data, 'age', index,record.name)
+        return obj
+      },
+    },
+    {
+      title: 'Home phone',
+      // colSpan: 2,
+      rowSpan: 0,
+      dataIndex: 'tel',
+      // render: (value, row, index) => {
+      //   const obj = {
+      //     children: value,
+      //     props: {},
+      //   };
+      //   if (index === 2) {
+      //     obj.props.rowSpan = 2;
+      //   }
+      //   // These two are merged into above cell
+      //   if (index === 3) {
+      //     obj.props.rowSpan = 0;
+      //   }
+      //   if (index === 4) {
+      //     obj.props.colSpan = 0;
+      //   }
+      //   return obj;
+      // },
+    },
+    {
+      title: 'Phone',
+      // colSpan: 0,
+      dataIndex: 'phone',
+      // render: renderContent,
+    },
+    {
+      title: '状态',
+      dataIndex: 'age',
+      // render: renderContent,
+      render: (text, record,index) => {
+        console.log(record.status)
+        const obj = {
+          children: record.status !== null&&record.status===1 ? "已完成" :"未完成",
+          props: {}
+        }
+        obj.props.rowSpan =mergeCells(text, this.data, 'age', index,record.name)
+        return obj
+      },
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      // render: renderContent,
+    },
+    {
+      title: '操作',
+      dataIndex: 'operate',
+      render: (text,record)=><div onClick={this.handClickConfirm.bind(this,record)}>确定</div>,
+    },
+  ];
+  
+   data = [
+   
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      tel: '0571-22098909',
+      phone: 18889898989,
+      address: 'New York No. 1 Lake Park',
+      status:1,
+    },
+    {
+      key: '2',
+      name: 'John Brown',
+      tel: '0571-22098333',
+      phone: 18889898888,
+      age: 32,
+      address: 'London No. 1 Lake Park',
+      status:1,
+    },
+    {
+      key: '23',
+      name: 'John Brown',
+      tel: '0571-22098333',
+      phone: 18889898888,
+      age: 92,
+      address: 'London No. 1 Lake Park',
+      status:2,
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      tel: '0575-22098909',
+      phone: 18900010002,
+      address: 'Sidney No. 1 Lake Park',
+      status:2,
+    },
+    {
+      key: '4',
+      name: 'Jim Red',
+      age: 18,
+      tel: '0575-22098909',
+      phone: 18900010002,
+      address: 'London No. 2 Lake Park',
+      status:2,
+    },
+    {
+      key: '5',
+      name: 'Jake White',
+      age: 28,
+      tel: '0575-22098909',
+      phone: 18900010002,
+      address: 'Dublin No. 2 Lake Park',
+      status:2,
+    },
+    {
+      key: '6',
+      name: 'Jake White',
+      age: 18,
+      tel: '0575-22098909',
+      phone: 18900010002,
+      address: 'Dublin No. 2 Lake Park',
+      status:1,
+    },
+  ];
+  handClickConfirm=(obj)=>{
+    const {list}=this.state;
+    let data=list;
+    data.push({...obj,
+      key:moment().format("YYYYMMDDHH:mm:ss.SSS")
+    })
+    this.setState({list:[...new Set(data)]})
+      // console.log(obj)
+  }
+  onClose=(e,objD)=>{
+    const {list}=this.state;
+      // console.log(e,objD)
+      const data=_.map(_.filter(list,item=>e.key!==item.key),item=>(
+        {
+          ...item
+        }
+      ))
+      // console.log(data)
+      this.setState({list:[...new Set(data)]})
+  }
 
+   columnsR = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      width: 150,
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      width: 150,
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+    },
+    {
+      title: '操作',
+      dataIndex: 'operate',
+      render: (text,record)=><div onClick={this.handClickConfirm.bind(this,record)}>确定</div>,
+    },
+  ];
+  
+   dataR = [];
+ 
+
+   dataSource = [
+    {
+      name: '张三',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 1,
+      flag: 1,
+      code:"015780",
+    },
+    {
+      name: '李四',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 2,
+      flag: 1,
+      code:"015781",
+    },
+    {
+      name: '王二',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 3,
+      flag: 2,
+      code:"015782",
+    },
+    {
+      name: '刘大',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 4,
+      flag: 3,
+      code:"015783",
+    },
+    {
+      name: '胡六',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 5,
+      flag: 4,
+      code:"015784",
+    },
+    {
+      name: '杨七',
+      sex: '男',
+      age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 6,
+      flag: 1,
+      code:"015785",
+    },
+  ];
   render() {
+    const {list}=this.state;
+    for (let i = 0; i < 100; i++) {
+      this.dataR.push({
+        key: i,
+        name: `Edward King ${i}`,
+        age:1+i,
+        address: `London, Park Lane no. ${i}`,
+      });
+    }
+    const dataU=_.map(this.dataSource,item=>item.name);
+    // console.log(dataU)
+    const dataY=_.map(_.filter(this.dataSource,item=>item.name !=="杨七"),item=>({
+      ...item
+    }));
+    // console.log(dataY)
+    // console.log(moment().format("YYYYMMDDHH:mm:ss.SSS"))
     return (
       <div>
         我是echarts第二个页面折线图 ddddddddddddd
         <div>
           <HeaderBody />
           <Button type="primary" onClick={this.showModal}>
-            Open Modal
+            添加
           </Button>
-          <Table columns={columns} dataSource={data} bordered />
+          <div className={style.TagBox} >
+        {
+          list.map((item,index)=>{
+            return(
+              <div className={style.TagText} key={item.key}>
+                   <div className={style.TagContainer} title={item.name+"("+item.code+")"}>
+                   <Tag closable={true} onClose={this.onClose.bind(this,item)}>  {item.name}({item.code})</Tag>
+                   {
+                     list.length-1===index?"":"  --->"
+                   }
+               
+                   </div>
+              </div>
+            )
+          })
+        }
+        </div>
+       
           <Select
             mode="tags"
             // size={size}
@@ -408,19 +596,23 @@ class Header extends React.Component {
           >
             {children}
           </Select>
+          <Table columns={this.columns} dataSource={this.data} bordered  rowKey="key"/>
           <Modal
             title="Basic Modal"
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            width={800}
           >
+             <Table columns={this.columnsR} dataSource={this.dataSource} bordered  rowKey="name"/>
             <p>Some contents...</p>
             <p>Some contents...</p>
             <p>Some contents...</p>
-            <div id="MyBoard" style={{ height: '600px' }} />
+            {/* <div id="MyBoard" style={{ height: '600px' }} /> */}
           </Modal>
         </div>
         <div />
+        <Table columns={this.columnsR} dataSource={this.dataR} bordered  rowKey="name" pagination={{pageSize:10,total:100 }}/>
       </div>
     );
   }

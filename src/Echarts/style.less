@@ -1,0 +1,49 @@
+:global{
+    .content{
+        width: 100%;
+        overflow: hidden;
+        cursor: default;
+        pointer-events: none;
+        user-select: none;
+        // position: absolute;
+        // left: 0;
+        // top: 0;
+        // right: 0;
+        // bottom: 0;
+        // z-index: 1000;
+        canvas{
+            display: block;
+            width: 100%  !important;
+            opacity: 0.3;
+            height: 100%  !important;
+            background: none;
+        }
+    }
+}
+.TagBox{
+    text-align: left;
+    .TagText{
+        display: inline-block;
+        width: 170px;
+        text-align: center;
+        .TagContainer{
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+    }
+    :global{
+        .ant-tag{
+            width: 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+        .ant-tag-hidden{
+            display: inline-block;
+        }
+    }
+}
