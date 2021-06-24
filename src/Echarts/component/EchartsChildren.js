@@ -180,7 +180,7 @@ class Echarts extends React.Component {
     this.playStars(); //绘制闪动的星星
     this.playRains(); //绘制流星
     this.TimeID = setInterval(() => this.Tick(), 100);
-    this.TimeIDd = setInterval(() => this.Tickd(), 2);
+    this.TimeIDd = setInterval(() => this.Tickd(), 100);
     // };
     // }
   }

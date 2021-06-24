@@ -244,10 +244,13 @@ class Echarts extends React.Component {
     }
     // setTimeout(this.playRains(),2);
   };
-
+  componentWillUnmount(){
+    this.setState({Flagt:false})
+  }
   render() {
     // console.log(this.state.timeD)
     const { Flagt } = this.state;
+    console.log(Flagt)
     return (
       <div className={style.box}>
         我是echarts的仪表盘
@@ -267,10 +270,10 @@ class Echarts extends React.Component {
 
           {this.state.copied ? <span style={{ color: 'red' }}>Copied.</span> : null}
         </div>
-        <ParentComponent />
+        <ParentComponent key={moment().format('YYYY-MM-DD-HH:MM:SS')}/>
         {/* {moment().format('YYYY-MM-DD-HH:MM:SS') && <canvas id="stars" />} */}
         {/* key={this.state.timeD} */}
-        {Flagt && <EchartsChildren />}
+        {Flagt && <EchartsChildren  />}
         <div className={`${style['EchartsBox']}`}>
           {PublicData.map((item, index) => {
             return <PublicEcharts id={'SecondEecharts' + item.id} data={item} num={item.id} />;
