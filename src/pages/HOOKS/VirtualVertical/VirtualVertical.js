@@ -80,7 +80,6 @@ const VirtualVertical = () => {
 
   const getRowRender = (tasks) => ({index, style}) => {
     const task = tasks[index];
-    console.log(style)
     // style.top = style.top + index * 8;
     return (
       <Draggable key={task.id} draggableId={task.id} index={index}>
@@ -105,7 +104,7 @@ const VirtualVertical = () => {
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
-    console.log(result)
+  
     if (!destination) {
       return;
     }

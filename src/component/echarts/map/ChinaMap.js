@@ -115,7 +115,7 @@ class chinaMap extends React.Component {
             normal: {
               color: function(params) {
                 var num = params.data.numValue;
-                // console.log(params.data.type);
+               
                 var type = params.data.type;
                 if (type === 1) {
                   return color1[0];
@@ -154,7 +154,7 @@ class chinaMap extends React.Component {
             },
           },
           symbolSize: function(val) {
-            // console.log(val);
+           
             return 10;
           },
           itemStyle: {
@@ -163,7 +163,7 @@ class chinaMap extends React.Component {
             },
           },
           data: tempData[1].map(function(dataItem) {
-            console.log(dataItem);
+           
             return {
               name: dataItem[0].name,
               value: geoCoordMap[dataItem[0].name].concat([dataItem[0].value]),
@@ -210,7 +210,7 @@ class chinaMap extends React.Component {
           show: true,
           trigger: 'item',
           formatter: function(params) {
-            console.log(params);
+         
             if (params.seriesType === 'scatter' && params.name != tempData[0]) {
               return (
                 '<br>' +
@@ -310,7 +310,7 @@ class chinaMap extends React.Component {
       };
     }
     if (MyEcharts) {
-      console.log(option);
+     
       MyEcharts.setOption(option);
     }
     window.addEventListener('resize', () => {

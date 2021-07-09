@@ -23,7 +23,7 @@ const renderContent = (value, row, index) => {
   return obj;
 };
 const mergeCells=(text, data, key, index)=> {
-  console.log(text, data, key, index)
+ 
   // 上一行该列数据是否一样
   if (index !== 0 && text === data[index - 1][key]) {
     return 0
@@ -57,14 +57,14 @@ class Header extends React.Component {
   };
 
   handleOk = e => {
-    // console.log(e);
+  
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = e => {
-    // console.log(e);
+    
     this.setState({
       visible: false,
     });
@@ -286,7 +286,7 @@ class Header extends React.Component {
     }
   }
   handleChange = value => {
-    // console.log(`Selected: ${value}`);
+   
   };
    columns = [
     {
@@ -348,7 +348,7 @@ class Header extends React.Component {
       dataIndex: 'age',
       // render: renderContent,
       render: (text, record,index) => {
-        console.log(record.status)
+      
         const obj = {
           children: record.status !== null&&record.status===1 ? "已完成" :"未完成",
           props: {}
@@ -442,17 +442,17 @@ class Header extends React.Component {
       key:moment().format("YYYYMMDDHH:mm:ss.SSS")
     })
     this.setState({list:[...new Set(data)]})
-      // console.log(obj)
+    
   }
   onClose=(e,objD)=>{
     const {list}=this.state;
-      // console.log(e,objD)
+     
       const data=_.map(_.filter(list,item=>e.key!==item.key),item=>(
         {
           ...item
         }
       ))
-      // console.log(data)
+     
       this.setState({list:[...new Set(data)]})
   }
 
@@ -554,12 +554,11 @@ class Header extends React.Component {
       });
     }
     const dataU=_.map(this.dataSource,item=>item.name);
-    // console.log(dataU)
+   
     const dataY=_.map(_.filter(this.dataSource,item=>item.name !=="杨七"),item=>({
       ...item
     }));
-    // console.log(dataY)
-    // console.log(moment().format("YYYYMMDDHH:mm:ss.SSS"))
+  
     return (
       <div>
         我是echarts第二个页面折线图 ddddddddddddd

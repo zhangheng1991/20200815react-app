@@ -21,7 +21,7 @@ function MyHooks(props) {
     setPageNumber(numPages);
   }
   useEffect(() => {
-    //  console.log(props)
+   
      //hooks写法调用接口形式也可以用老的写法
      props.dispatch({
       type: "Index/homePage", payload: { username:"admin"}

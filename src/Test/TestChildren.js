@@ -18,14 +18,9 @@ class TestChildren extends React.Component {
   };
 
   save = e => {
-    // console.log(e.target.value)
     const { record, handleSave } = this.props;
-    // console.log(record);
-    // console.log(e.target.value);
     this.props.form.validateFields((error, values) => {
-      // console.log(values[0]);
       for (let key in values) {
-        // console.log(key + '---' + values[key]);
         values[key]=e.target.value;
       }
       // values[0] = e.target.value;
@@ -38,11 +33,8 @@ class TestChildren extends React.Component {
   };
 
   renderCell = form => {
-    // console.log(this)
-    // console.log(form)
     this.form = form;
     const { children, dataIndex, record, title } = this.props;
-    // console.log(children, dataIndex, record, title);
     const { editing } = this.state;
     return editing ? (
       <Form.Item style={{ margin: 0,pading:"0px" }}>

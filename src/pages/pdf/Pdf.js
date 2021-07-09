@@ -57,7 +57,7 @@ const PdfCim = (props) => {
     const userNme="张衡";
     const userCode="K0410007";
     if(document.getElementById("PDFG")){
-        console.log(pageListRef.current.children[1])
+       
     }
   }
   useEffect(()=>{
@@ -91,7 +91,7 @@ const PdfCim = (props) => {
       allowTaint: true,
       scale: CANVAS_SCALE,
     }).then(function(canvas) {
-      console.log(canvas);
+    
       const { width, height } = element.getBoundingClientRect();
       const pageData = canvas.toDataURL('image/jpeg', 0.2);
       pdf.addImage(pageData, 'JPEG', 0, 0, width / 2, height / 2);
@@ -105,7 +105,7 @@ const PdfCim = (props) => {
   
   };
 
-  console.log(loading);
+ 
   const EchartsLine1 = {
     data: '',
     title: 'XXX1公司员工薪资分布',

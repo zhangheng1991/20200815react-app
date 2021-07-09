@@ -40,12 +40,11 @@ class EchartsIndex extends React.Component {
     clearTimeout(this.TimeID); //清除定时器
   }
   handPdf=()=>{
-   console.log(1111)
+   
   }
   render() {
     const { span } = this.props;
     const { time } = this.state;
-    // console.log(time)
     const EchartsLine1 = {
       data: '',
       title: 'XXX1公司员工薪资分布',
@@ -450,12 +449,12 @@ class EchartsIndex extends React.Component {
       ],
       ChattTitle: ' 时间：',
       height: '400px',
-      id: 'DataAnalysisTourists24',
+      id: 'DataAnalysisTourists333333',
     };
     const TouristTransaction1 = {
       id: 'TouristTransaction1',
       title: '游客交易量占比',
-      data: [0.6],
+      data: [0.45],
       ChattTitle: '西樵山旅游对佛山市消费贡献度',
       textFont: '25',
       height: '400px',
@@ -2146,12 +2145,16 @@ class EchartsIndex extends React.Component {
           <Col span={span}>
             <AnalysistouristGender {...AnalysistouristGender1} />
           </Col>
+
+          {/* 这两个报错   "echarts-liquidfill": "^2.0.6", echarts-liquidfil版本要用2.0.6的 */}
           <Col span={span}>
             <DataAnalysisTourists {...DataAnalysisTourists1} />
           </Col>
           <Col span={span}>
             <TouristTransaction {...TouristTransaction1} />
           </Col>
+
+
           <Col span={span}>
             <TouristTransactionVolume {...TouristTransactionVolume1} />
           </Col>

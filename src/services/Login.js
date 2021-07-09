@@ -8,6 +8,6 @@ export function mylogin(values) {
       return response;
     })
     .catch((error) => {
-      // console.log(error);
+      
     });
 }

@@ -6,6 +6,8 @@ import { Row, Col, Checkbox,Transfer, Button } from 'antd';
 import { Select, Table } from 'antd';
 import { connect } from 'dva';
 import style from './index.less';
+import TestCom from "./test/TestCom";
+import TestOneCom from "./test/testOneCom"
 const { Option } = Select;
 const data = [
   {
@@ -42,10 +44,10 @@ class Test extends React.Component {
     this.getMock();
   }
   onChange = value => {
-    // console.log(`selected ${value}`);
+   
   };
   onSearch = value => {
-    // console.log(`selected ${value}`);
+    
   };
   dataSource = [
     {
@@ -132,7 +134,7 @@ class Test extends React.Component {
     },
   ];
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    // console.log(selectedRowKeys, selectedRows);
+    
     this.setState({ selectedRowKeys });
   };
 
@@ -160,7 +162,7 @@ class Test extends React.Component {
   };
 
   handleChange = targetKeys => {
-    console.log(targetKeys)
+  
     this.setState({ targetKeys });
   };
 
@@ -174,7 +176,7 @@ class Test extends React.Component {
     const { Index } = this.props;
     const { TableList } = Index;
     const { selectedRowKeys } = this.state;
-    // console.log(TableList);
+    
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -186,6 +188,9 @@ class Test extends React.Component {
     };
     return (
       <div className={`${style['IndexBox']}`}>
+        {/* <TestOneCom /> */}
+        <TestCom />
+        111
         <Table
           rowKey="id"
           dataSource={TableList && TableList.length > 0 ? TableList : this.dataSource}

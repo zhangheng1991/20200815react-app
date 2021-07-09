@@ -3,7 +3,9 @@ import echarts from "echarts";
 import "echarts-liquidfill";
 class EchartsLiquidfill extends React.Component {
   componentDidMount() {
+
     const { data,  textFont,id } = this.props;
+    const Yvalue=100-100*Number(data[0])-5;
     let MyEcharts = echarts.init(document.getElementById(id))
     let option = {
       title: {
@@ -29,7 +31,7 @@ class EchartsLiquidfill extends React.Component {
           fontSize: textFont,
           align: 'center',
           baseline: 'bottom',
-          position:['50%','35%'],
+          position:['50%',`${Yvalue}%`],
         },
         outline: {
           show: true,

@@ -108,7 +108,7 @@ class DoubleTable extends React.Component {
     value: ['Name', 'Age', 'Address'],
   };
   onExpand = (expanded, record) => {
-    // console.log(record.key);
+  
     if (expanded) {
       this.setState({ expandedRowKeys: record.key });
     } else {
@@ -117,11 +117,11 @@ class DoubleTable extends React.Component {
   };
 
   handleChange = value => {
-    // console.log(value)
+   
     // const {columns}=this.state;
     let column = [];
     value.map(item => {
-      // console.log(item)
+     
       column.push({
         title: item,
         key: item,
@@ -129,13 +129,11 @@ class DoubleTable extends React.Component {
         width: 200,
       });
     });
-    // console.log(colum)
+  
     // this.setState({ columns: column,value:value });
     this.setState({ value: value });
     const NumTotal = _.map(column, record => record.width);
-    // console.log(NumTotal)
-    // console.log(_.sum(NumTotal))
-    // // console.log(`Selected: ${value}`);
+  
     this.setState({ total: _.sum(NumTotal) });
   };
   componentDidMount(){
@@ -144,7 +142,7 @@ class DoubleTable extends React.Component {
   //
   waterMarker(){
       if(document.getElementById("watersMarker")){
-           console.log(document.getElementById("watersMarker").clientHeight)
+      
            const userNme="张衡";
            const userCode="K0410007";
            const cpyName=`${userNme}${userCode}`
@@ -177,10 +175,7 @@ class DoubleTable extends React.Component {
   }
   render() {
     const { columns, total, value } = this.state;
-    // console.log(columns,value)
     // const NumTotal= _.map(colums,record=>record.width);
-    // console.log(columns,total)
-    // console.log(_.sum(NumTotal))
     return (
        <div>
             <AutoComplete

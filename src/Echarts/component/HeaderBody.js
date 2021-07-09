@@ -35,7 +35,7 @@ class ResizableTitleBody extends React.Component {
       ],
     };
     handDelete=(obj)=>{
-          //  console.log(obj)
+        
     }
     components = {
       header: {

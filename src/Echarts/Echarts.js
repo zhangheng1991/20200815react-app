@@ -248,9 +248,9 @@ class Echarts extends React.Component {
     this.setState({Flagt:false})
   }
   render() {
-    // console.log(this.state.timeD)
+    
     const { Flagt } = this.state;
-    console.log(Flagt)
+  
     return (
       <div className={style.box}>
         我是echarts的仪表盘

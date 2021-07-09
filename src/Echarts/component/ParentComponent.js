@@ -6,12 +6,12 @@ function HOOKSC(props) {
   // const [numPages, setNumPages] = useState(null);
   const [total, setTotal] = useState(0);
   useEffect(() => {
-    // console.log(props)
+   
     // getChildrenMsg()
     // props.parent.getChildrenMsg(this, 'sssssss');
   }, [childrenMsg]);
   const getChildrenMsg = (data) => {
-    // console.log(data)
+    
     setChildrenMsg(data);
     // this.setState({
     //     childrenMsg: this.refs['children'].state.msg
@@ -21,7 +21,7 @@ const handClick = () => {
     // const total=count+1;
     setTotal(total+1)
   };
-// console.log(childrenMsg)
+
   return (
     <div>
       <div>
@@ -56,8 +56,6 @@ export default HOOKSC;
 //     // this.getChildrenMsg()
 //   }
 //     getChildrenMsg = (result, msg) => {
-//     console.log(result, msg)
-//         // console.log(result, msg)
 //         // 很奇怪这里的result就是子组件那bind的第一个参数this，msg是第二个参数
 //         this.setState({
 //             childrenMsg: msg

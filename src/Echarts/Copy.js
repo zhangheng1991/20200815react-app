@@ -125,8 +125,26 @@ class CopyCom extends React.Component {
     dataG:dataLine,
     dataK:dataLine,
   };
+  componentDidMount(){
+    _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+      console.log(key,value);
+    });
+    const dataP=[];
+    const dataV=[1,2,3,4];
+    const dataB =[{value:1,name:"1111"},{value:2,name:"2222"},{value:5,name:"5555"}]
+    // console.log(_.filter(dataV, dataB))
+    _.forEach(dataB,function (valueF) {//若一个参数，返回的便是其value值
+      _.forEach(dataV,function (valueT) {//若一个参数，返回的便是其value值
+         if(valueF.value===valueT){
+              // console.log(valueF)
+              dataP.push(valueF)
+         }
+      });
+    });
+    console.log(dataP)
+  }
   onCopy = record => {
-    // console.log(record);
+   
     message.info("当前复制:"+record.address,0.5);//时间秒
     this.setState({ textT: record.address, persent: record.persent });
     // Modal.info({
@@ -141,11 +159,11 @@ class CopyCom extends React.Component {
     // });
   };
   onChangeNumber = value => {
-    //  console.log(value)
+    
     this.setState({ persent: value });
   };
    handClick=(obj)=>{
-    console.log(obj)
+    
     const {dataL}=this.state;
     const data= _.map(dataL,item=>({
          ...item,
@@ -166,11 +184,11 @@ class CopyCom extends React.Component {
     // }))
 
     this.setState({dataL:data,dataU:dataT, time:moment().format("YYYYMMDDHH:mm:ss.SSS"),})
-    console.log(dataT)
+  
  }
 
  handClickD=(obj)=>{
-  console.log(obj)
+ 
   const {dataG,dataK}=this.state;
   const dataR= _.map(dataG,item=>({
     ...item,
@@ -298,11 +316,11 @@ class CopyCom extends React.Component {
     const EchartsLine1={
       id:"EchartsLine1",height:"400px", chartData:dataK,
     }
-    console.log(dataK)
+  
     const dataME=_.map(_.filter(dataO,item=>({
       num:item.num
     })))
-    console.log(dataME,dataO)
+   
     return (
       <div className={`${style['copyBox']}`}>
         {/* <div className={style.Mytest}>渣渣辉</div> */}

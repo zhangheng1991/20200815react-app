@@ -77,18 +77,14 @@ class BasicLayout extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    // console.log(1111)
-    // console.log(nextProps.keyId)
     if (nextProps.keyId &&  nextProps.keyId != this.state.keyId) {
       this.setState({ keyId: nextProps.keyId })
     }
   }
   // shouldComponentUpdate(nextStates) { // 应该使用这个方法，否则无论state是否有变化都将会导致组件重新渲染
-  //   console.log(nextStates)
+  
   // }
   handleClick = (e) => {
-    // console.log(e);
-
     this.setState({
       keyId: e.key,
     });
@@ -96,7 +92,7 @@ class BasicLayout extends React.Component {
   render() {
     const {Index}=this.props;
     const {NavData}=Index;
-    // console.log(NavData)
+   
     const loop = data => data.map((item, index) => {
       if (item.child && item.child.length > 0) {
         return (

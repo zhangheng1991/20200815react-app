@@ -8,7 +8,7 @@ export default {
         appid: '53783933', // 到该网站上注册申请（操作很简单）
         appsecret: 'AYHXKr8a',
     };
-    console.log(data);
+   
     axios({
       url: 'https://www.tianqiapi.com/api/',
       method: 'get',
@@ -21,10 +21,10 @@ export default {
       data: [],
     }).then(res => {
         dataW=res.data
-    //   console.log(res.data);
+    
       return dataW;
       // let todayData = res.data.data[0];
-      // console.log(todayData);
+     
     });
     return dataW;
   },

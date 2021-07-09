@@ -114,10 +114,6 @@ class EchartsBar extends React.Component {
       },
       tooltip: {
         show: false,
-        // formatter(params) {
-        //   console.log(params)
-        //   ///
-        // }
       },
       yAxis: {
         type: 'value',

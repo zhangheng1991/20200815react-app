@@ -52,8 +52,7 @@ export function *loadData(url) {
  * 加载远程数据
  */
 export function *loadServerData(url,item) {
-  // console.log(url);
-  // console.log(item);
+ 
   let data = yield service.loadServerData(url , item);
   return filterMessage(data);
 
@@ -93,7 +92,7 @@ export function loadConfig() {
         return filterMessage(response);
       })
       .catch(function (error) {
-        // console.log(error);
+      
         redictSSOPage(error);
       });
 
@@ -110,7 +109,7 @@ export async function isUnique(url ,callback , message , sendData ) {
       }
     })
     .catch(function (error) {
-      // console.log(error);
+      
     });
 }
 
@@ -118,8 +117,6 @@ export async function isUnique(url ,callback , message , sendData ) {
  * 加载远程数据公用
  */
 export function *loadServerDataP(url,item) {
-  // console.log(url);
-  // console.log(item);
   let data = yield service.loadServerDataP(url , item);
   return filterMessage(data);
 

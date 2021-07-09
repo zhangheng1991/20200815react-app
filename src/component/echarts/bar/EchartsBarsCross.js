@@ -195,7 +195,7 @@ class EchartsBarsCross extends React.Component {
                   '#0093FF',
                   '#0093FF',
                 ];
-                // console.log(params)
+              
                 if ((params.dataIndex === 0)) {
                   return '#F36C6C';
                 }

@@ -26,17 +26,17 @@ import LndexChildren from "./LndexChildren";
 // class Index extends React.Component {
 
 //   componentWillMount() {
-//     console.log(this.props)
+
 //     const {dispatch}=this.props;
 //     dispatch({
 //       type:"Index/homepage",payload:{aa:"111"}
 //     })
-//     console.log(sessionStorage.getItem("userInfo"))
+
 //   }
 
 //   render() {
 //     // const {id} =this.props;
-//     console.log(this.props)
+
 //     return (
 //       <div className={styles.normal}>
 //         <h1>小丑欢迎您！！！！！</h1>
@@ -78,8 +78,7 @@ import LndexChildren from "./LndexChildren";
 // }
 const CountContext = createContext();
 const Index=(props)=> {
-  // console.log(config)
-  // console.log(props)
+  
   const timer= useRef();
   const [count, setCount] = useState(0);
   const [age, setAge] = useState(18)
@@ -95,11 +94,10 @@ const Index=(props)=> {
   const Tick=()=>{
     setNumberT(numberT+1)
   }
-  console.log(numberT)
+ 
   useEffect(() => {
-    console.log(timer)
-    // console.log(userContent)
-    // console.log(`useEffect=>You clicked ${count} times`)
+   
+    
     // return () => {
     //   QingFunction();
     // };
@@ -110,11 +108,12 @@ const Index=(props)=> {
     // ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     // return () => {
     //   ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
-    console.log('count: ', count);
+    
     // goStart(1 );
     return () => {
-      console.log('component will unmount')
+      
       setCount(0)
+      clearInterval(timer.current);
     }
     // };
   },[])
@@ -122,8 +121,6 @@ const Index=(props)=> {
   const goStart = (index) => {
     // setStatus(index)
     timer.current = setInterval(() => {
-
-        console.log(timer)
 //注意此处，不是直接通过setNums(),修改里面的值，因为闭包原因，如果通过这种方式会一直为1，通过测试，不是更改值方式的原因，如果通过useReducer更改值也不会改变依然是1
         setNums(n => {
            return n + 1
@@ -131,14 +128,11 @@ const Index=(props)=> {
     },1000)
 }
 const goClear = () => {
-  console.log(timer)
   // timer.current.clearInterval();
  clearInterval(timer.current);
 }
 
-  console.log(qingchu,"1111111111111111111111111",count,nums)
   const handClick = (e) => {
-    console.log(e)
     setCount(count + 1)
     setSex("女");
     setWork("测试");
@@ -147,6 +141,7 @@ const goClear = () => {
   return (
     <div>三生三世
       <div>
+      <p>定时器： {nums} </p>
       <Button type="primary" onClick={()=>{goStart(1)}}>开始</Button>
       <Button type="primary" onClick={()=>{goClear(1)}}>清除</Button>
       {/* <div onClick={()=>{goStart(1)}}>开始</div>

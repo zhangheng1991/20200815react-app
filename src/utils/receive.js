@@ -52,7 +52,7 @@ function connStomp(url , userId , dispatch){
     });
 
     client.subscribe("/topic/"+userId ,function(message){
-      // console.log(message);
+    
     });
   };
 
@@ -74,14 +74,14 @@ function success(msg , dispatch){
     //调用弹窗
     dispatch({type:'selectByEMEId' , payload:msg.data });
   }else if(msg.code=='2000'){
-    // console.log(msg);
+   
     // dispatch({type:'share/updateShare' , payload:msg.data });
   }
 }
 
 
 function* loadServer() {
-  // console.log(1231);
+ 
 
 }
 

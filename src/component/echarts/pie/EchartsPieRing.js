@@ -20,7 +20,7 @@ class EchartsPieRing extends React.Component {
       tooltip: {
         trigger: 'item',
         // formatter: function(params) {
-        //   console.log(params);
+      
         //   return '<div>' + 22 + '</div>';
         // },
       },
@@ -35,7 +35,7 @@ class EchartsPieRing extends React.Component {
           fontSize: textFont,
         },
         // formatter(params){
-        //     console.log(params)
+      
         //     return  [
         //       '{a|a}{b|b}'
         //   ].join('\n')

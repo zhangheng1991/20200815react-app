@@ -6,7 +6,6 @@ function MyHooks(props) {
   // const [numPages, setNumPages] = useState(null);
 
   useEffect(() => {
-    console.log(props);
     // props.getChildrenMsg('我是子组件的默认穿过去的值');
   }, []);
   const handClick = () => {
@@ -39,7 +38,6 @@ export default MyHooks;
 //         this.props.parent.getChildrenMsg(this, "sssssss")
 //     }
 //     toParent = () => {
-//         // console.log(this.props.parent.getChildrenMsg.bind(this, this.state.msg))
 //         this.props.parent.getChildrenMsg(this, this.state.msg)
 
 //     }

@@ -45,13 +45,9 @@ export function *insert(url,values ,flag=false) {
  * 加载远程数据
  */
 export function *loadServerData(url,item ,flag=false) {
-  // console.log(url);
-  // console.log(22222);
-  // console.log(item);
-  // console.log(3333);
   let msg =yield service.loadServerData(url,item);
   back(msg,flag);
-  //console.log(msg)
+  
   return msg;
 
 }
@@ -89,13 +85,10 @@ export function *updateById(url,sendData,flag=true) {
  * 加载远程数据公用
  */
 export function *loadServerDataP(url,item ,flag=false) {
-  // console.log(url);
-  // console.log(22222);
-  // console.log(item);
-  // console.log(3333);
+  
   let msg =yield service.loadServerDataP(url,item);
   back(msg,flag);
-  //console.log(msg)
+ 
   return msg;
 
 }

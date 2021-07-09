@@ -68,7 +68,7 @@ class Weather extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        // console.log('Received values of form: ', values);
+       
         if (values.numberDays === 7) {
           this.param.version = 'v1';
         } else if (values.numberDays === 40) {
@@ -84,7 +84,7 @@ class Weather extends React.Component {
   };
   //重置
   handreSet = () => {
-    //   console.log(this.props.form)
+  
     this.props.form.resetFields();
     this.param = {
       version: 'v1', //获取天气天数
@@ -95,13 +95,13 @@ class Weather extends React.Component {
     this.getWeather(this.param);
   };
   onChange = (pagination, filters, sorter) => {
-    console.log(pagination, filters, sorter);
+   
     this.setState({ current: pagination.current });
   };
   render() {
-    // console.log(WheatherApi.getWeather(this.param));
+   
     const { dataSource, current, updateTime } = this.state;
-    // console.log(current);
+    
     const columns = [
       {
         title: '序号',
@@ -284,7 +284,7 @@ class Weather extends React.Component {
       pagination: false,
     };
     const { getFieldDecorator } = this.props.form;
-    console.log(china)
+  
     return (
       <div className={`${style['copyBox']}`}>
         <div className={`${style['EncryptedStringBox']}`}>

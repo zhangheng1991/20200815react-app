@@ -63,12 +63,10 @@ class BasicLayout extends React.Component {
       type: 'Index/SelectListD',
       payload: { username: 'admin' },
     }).then(res => {
-      console.log(res);
+     
     });
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-    // console.log(1111)
-    // console.log(nextProps.location.pathname)
     if (
       nextProps.location &&
       nextProps.location.pathname &&
@@ -78,11 +76,10 @@ class BasicLayout extends React.Component {
     }
   }
   // shouldComponentUpdate(nextStates) { // 应该使用这个方法，否则无论state是否有变化都将会导致组件重新渲染
-  //   console.log(nextStates)
+ 
   // }
   handleClick = e => {
-    // console.log(e);
-
+  
     this.setState({
       keyId: e.key,
     });
@@ -102,17 +99,16 @@ class BasicLayout extends React.Component {
   //       'Content-type': 'application/x-www-form-urlencoded',
   //     },
   //     data: [],
-  //   }).then(res => {
-  //     console.log(res.data);
+ 
   //     // let todayData = res.data.data[0];
-  //     // console.log(todayData);
+
   //   });
   // }
 
   render() {
     const { Index } = this.props;
     const { NavData } = Index;
-    // console.log(NavData)
+   
     const loop = data =>
       data &&
       data.map((item, index) => {

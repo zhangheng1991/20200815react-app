@@ -43,7 +43,7 @@ class EchartsLiquidfillBar extends React.Component {
       tooltip: {
         trigger: 'item',
         formatter: function (res) {
-          // console.log(res)
+        
           if (res.componentSubType === 'liquidFill') {
             return res.seriesName + ': ' + (res.value * 100).toFixed(2) + '%';
             // return (res.value * 10000 / 100).toFixed(2) + '%';
@@ -101,7 +101,7 @@ class EchartsLiquidfillBar extends React.Component {
           label: {
             normal: {
               formatter: function (params) {
-                // console.log(params)
+              
               },
               formatter:"",
               textStyle: {
@@ -161,7 +161,7 @@ class EchartsLiquidfillBar extends React.Component {
       ]
     }
     MyEcharts.on('click', function (params) {
-      console.log(params)
+     
       if (params.componentType === "series") {
 
       }

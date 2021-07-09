@@ -11,7 +11,6 @@ const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
 class Login extends React.Component {
   componentDidMount() {
-    // console.log(this.props)
     // const { dispatch } = this.props;
     // dispatch({
     //   type: "Login/testFunc", payload: { aa: "111" }
@@ -27,15 +26,14 @@ class Login extends React.Component {
         dispatch({
           type: "Login/UserLogin", payload: values
         })
-        // console.log('Received values of form: ', values);
+     
       }
     });
   };
   onFinishFailed = errorInfo => {
-    // console.log('Failed:', errorInfo);
+   
   };
   disabledDate = (current) => {
-    // console.log(current)
     // Can not select days before today and today
     // return current && current.valueOf() < moment().subtract(1, "month");
     return current && current.valueOf() < Date.now();

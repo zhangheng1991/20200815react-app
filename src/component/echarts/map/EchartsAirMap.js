@@ -202,8 +202,7 @@ class EchartsAirMap extends React.Component {
       geoCoordMap[name] = v.properties.cp;
     });
 
-    console.log(data);
-    console.log(toolTipData);
+   
     var max = 480,
       min = 9; // todo
     var maxSize4Pin = 300,
@@ -251,8 +250,7 @@ class EchartsAirMap extends React.Component {
                 }
               }
             }
-            console.log(toolTiphtml);
-            // console.log(convertData(data))
+          
             return toolTiphtml;
           } else {
             var toolTiphtml = '';
@@ -265,8 +263,8 @@ class EchartsAirMap extends React.Component {
                 }
               }
             }
-            console.log(toolTiphtml);
-            // console.log(convertData(data))
+           
+         
             return toolTiphtml;
           }
         },

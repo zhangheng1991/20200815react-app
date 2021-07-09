@@ -46,7 +46,7 @@ const SignalVertical = () => {
   };
 
   const onDragEnd = (result) => {
-    // console.log(result)
+    
     if (!result.destination) {
       return;
     }

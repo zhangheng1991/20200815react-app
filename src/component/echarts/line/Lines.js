@@ -6,7 +6,7 @@ class EchartsLine extends React.Component {
         chartData:[],
     }
     UNSAFE_componentWillReceiveProps(nextProps){
-          console.log(nextProps)
+       
           if(nextProps.chartData &&nextProps.chartData !=this.state.chartData){
               this.setState({chartData:nextProps.chartData})
               this.EChartsFunc(nextProps.chartData);

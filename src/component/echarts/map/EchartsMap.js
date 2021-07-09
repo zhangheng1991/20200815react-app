@@ -314,7 +314,7 @@ class EchartsMap extends React.Component {
           },
         },
         // symbolSize: function (val) {
-        //   // console.log(val)
+       
         //   return val[2] / 2;
         // },
         itemStyle: {
