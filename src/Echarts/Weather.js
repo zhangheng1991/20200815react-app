@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Table, Form, Select, Button, Col } from 'antd';
 import WheatherApi from './../component/Weather/Weather';
+import _ from "loadsh";
 import china from 'echarts/map/js/china.js';
 import style from './component/style.less';
 const data=[
@@ -284,7 +285,29 @@ class Weather extends React.Component {
       pagination: false,
     };
     const { getFieldDecorator } = this.props.form;
-  
+    let results =
+    [ { 
+      nickname: '1',
+      balance: "eeeeee2.00" }, { 
+      nickname: '1',
+      balance: "eeeeee4.00" },
+    {
+      nickname: '2',
+      balance: "eeeeee3.00" } 
+    ]
+ 
+   console.log( _.sortBy(results, function (item) { return item.balance }))
+   const dd=_.map(_.filter(results,item=>item.balance),item=>({
+     ...item
+   }))
+   const bb= _.map(results,item=>item.balance);
+   console.log(bb,2222)
+   const cc= _.sortBy(bb, function (item) { return -item });
+   console.log(cc,4444)
+   const result = _.sortBy(results, function (item) { return item.balance });
+   console.log(result,result[result.length-1].balance.replace(/[^0-9]/ig,""),dd)
+   console.log(_.get({LL:222},"LL"))
+
     return (
       <div className={`${style['copyBox']}`}>
         <div className={`${style['EncryptedStringBox']}`}>
