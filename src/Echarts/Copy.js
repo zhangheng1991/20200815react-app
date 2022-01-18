@@ -6,6 +6,7 @@ import style from './component/style.less';
 import moment from "moment";
 import TouristTransactionVolume from '../pages/echarts/charts/TouristTransactionVolume';
 import EchartsLine from "../component/echarts/line/Lines";
+import { scaleTimeCat } from '@antv/g2';
 // const dataR=[
 //   {
 //     name:"1111",
@@ -128,7 +129,7 @@ class CopyCom extends React.Component {
     loading: false,
     loadingF: false,
     parameter: { name: "name", sort: "ascend" },
-    flagParm:"nameup"
+    flagParm:"name-up"
   };
   componentDidMount() {
     _.forEach({ 'a': 1, 'b': 2 }, function (value, key) {
@@ -283,12 +284,12 @@ class CopyCom extends React.Component {
 
   handleUp=(key,name)=>{
      console.log(key,name)
-     this.setState({flagParm:key+name})
+     this.setState({flagParm:key+"-"+name})
   }
 
   render() {
     const { textT, persent, dataL, dataU, time, dataG, dataK, parameter,flagParm } = this.state;
-    console.log(parameter)
+    console.log(flagParm.match(/(\S*)-/)[1],flagParm.match(/-(\S*)/)[1])
     const data = [];
     const dataD = []
     const dataSource = [
@@ -440,8 +441,8 @@ class CopyCom extends React.Component {
       title: <div style={{display:"flex",alignItems:"center"}}>
         <div>{columnsData[key]}</div>
         <div>
-          <div  style={{cursor:"pointer",color:flagParm===key+"up"?"#1890ff":""}} onClick={this.handleUp.bind(this,key,"up")}>↑</div>
-          <div  style={{cursor:"pointer",color:flagParm===key+"down"?"#1890ff":""}} onClick={this.handleUp.bind(this,key,"down")}>↓</div>
+          <div  style={{cursor:"pointer",color:flagParm===key+"-"+"up"?"#1890ff":"",transform:"scale(0.8)"}} onClick={this.handleUp.bind(this,key,"up")}>↑</div>
+          <div  style={{cursor:"pointer",color:flagParm===key+"-"+"down"?"#1890ff":"",transform:"scale(0.8)"}} onClick={this.handleUp.bind(this,key,"down")}>↓</div>
         </div>
         </div>,
       key,
