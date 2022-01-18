@@ -126,6 +126,9 @@ class CopyCom extends React.Component {
     dataK: dataLine,
     count: 0,
     loading: false,
+    loadingF: false,
+    parameter: { name: "name", sort: "ascend" },
+    flagParm:"nameup"
   };
   componentDidMount() {
     _.forEach({ 'a': 1, 'b': 2 }, function (value, key) {
@@ -249,22 +252,45 @@ class CopyCom extends React.Component {
   handThrouD = () => {
     // this.throttle(this.handle.bind(this,this), 5000);
     const { count } = this.state;
-    this.setState({ count: count + 1, loading: true })
+    this.setState({ count: count + 1, loadingF: true })
     this.seachFunction({ id: 21111 })
   }
 
   fetchData = (data) => {
     console.log(data, "data")
-    this.setState({ loading: false })
+    this.setState({ loadingF: false })
   }
 
   seachFunction = _.debounce(this.fetchData, 5000)
 
+  handChange = (pagination, filters, sorter, extra) => {
+    console.log(pagination, filters, sorter, extra)
+    const data = { name: sorter.field, sort: sorter.order }
+    this.setState({ parameter: data })
+  }
 
+  handleClick = (name) => {
+    console.log(name, "name")
+  }
+
+  columsSort = (key, a, b) => {
+    console.log(key, a, b)
+    if (a[key]) {
+      return a[key][this.columsSort(b[key], "zh")];
+      // return a[key]-b[key]
+    }
+  }
+
+  handleUp=(key,name)=>{
+     console.log(key,name)
+     this.setState({flagParm:key+name})
+  }
 
   render() {
-    const { textT, persent, dataL, dataU, time, dataG, dataK } = this.state;
+    const { textT, persent, dataL, dataU, time, dataG, dataK, parameter,flagParm } = this.state;
+    console.log(parameter)
     const data = [];
+    const dataD = []
     const dataSource = [
       // {
       //   key: '1',
@@ -296,6 +322,14 @@ class CopyCom extends React.Component {
         address: '西湖区湖底公园' + i + "号",
         persent: i,
       })
+
+      dataD.push({
+        key: i,
+        name: `Edward King ${i}`,
+        age: 32,
+        address: `London, Park Lane no. ${i}`,
+      });
+
     }
     const columns = [
       {
@@ -303,24 +337,35 @@ class CopyCom extends React.Component {
         dataIndex: 'name',
         key: 'name',
         width: "20%",
+        onFilter: (value, record) => record.name.indexOf(value) === 0,
+        sorter: (a, b) => a.name.length - b.name.length,
+        defaultSortOrder: "ascend",
+        sortDirections: ["ascend", "descend", "ascend"],
       },
       {
         title: '年龄',
         dataIndex: 'age',
         key: 'age',
         width: "10%",
+        sorter: (a, b) => a.age - b.age,
+        sortDirections: ["ascend", "descend", "ascend"],
       },
       {
         title: '百分比',
         dataIndex: 'persent',
         key: 'persent',
         width: "10%",
+        sorter: (a, b) => a.persent - b.persent,
+        sortDirections: ["ascend", "descend", "ascend"],
       },
       {
-        title: '住址',
+        title: <span>住址<span onClick={this.handleClick.bind(this, "address")}>自定义</span></span>,
         dataIndex: 'address',
         key: 'address',
         width: "50%",
+        sorter: (a, b) => a.address.length - b.address.length,
+        defaultSortOrder: "ascend",
+        sortDirections: ["ascend", "descend", "ascend"],
       },
       {
         title: '操作',
@@ -380,9 +425,42 @@ class CopyCom extends React.Component {
       num: item.num
     })))
 
+
+
+
+
+    const columnsData = {
+      name: "Name",
+      age: "Age",
+      sex: "Sex",
+      phone: "Phone",
+      address: "Address",
+    }
+    const columnsD = _.map(Object.keys(columnsData), key => ({
+      title: <div style={{display:"flex",alignItems:"center"}}>
+        <div>{columnsData[key]}</div>
+        <div>
+          <div  style={{cursor:"pointer",color:flagParm===key+"up"?"#1890ff":""}} onClick={this.handleUp.bind(this,key,"up")}>↑</div>
+          <div  style={{cursor:"pointer",color:flagParm===key+"down"?"#1890ff":""}} onClick={this.handleUp.bind(this,key,"down")}>↓</div>
+        </div>
+        </div>,
+      key,
+      dataIndex: key,
+      align: "center",
+      // sorter: (a, b) => a[key] - b[key],
+      // sorter: (a, b) => this.columsSort.bind(this,key,a,b),
+      // defaultSortOrder: "ascend",
+      // sortDirections: ["ascend", "descend", "ascend"],
+    }))
+    const dataV = {
+      dataSource: dataD,
+      columns: columnsD,
+    }
+    console.log(columnsD, "columnsD")
+
     return (
       <div className={`${style['copyBox']}`}>
-        <Button type="primary" onClick={this.handThrouD} loading={this.state.loading}>防抖截留</Button>
+        <Button type="primary" onClick={this.handThrouD} loading={this.state.loadingF}>防抖截留</Button>
         <Button type="primary" onClick={this.handThrou} loading={this.state.loading}>防抖节流</Button>
         {/* <div className={style.Mytest}>渣渣辉</div> */}
         {/* <div className={style.MytestD}>左上</div>
@@ -429,8 +507,8 @@ class CopyCom extends React.Component {
             })
           }
         </div>
-
-        <Table {...dataT} />
+        <Table {...dataV} onChange={this.handChange} />
+        <Table {...dataT} onChange={this.handChange} />
         <TouristTransactionVolume {...TouristTransactionVolume1}
           key={time}
         //  data={dataL}

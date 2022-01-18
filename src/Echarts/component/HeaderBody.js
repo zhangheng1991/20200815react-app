@@ -95,7 +95,7 @@ class ResizableTitleBody extends React.Component {
     const keys = Object.keys(a);
     if (keys.length !== Object.keys(b).length) return false;
 
-    return keys.every(k =>this.equals(a[k], b[k]));
+    return keys.every(k => this.equals(a[k], b[k]));
   };
 
 
@@ -109,12 +109,16 @@ class ResizableTitleBody extends React.Component {
       }),
     }));
     const data = { qq: 111 };
-    const data2 = { qq: 111 ,dd:"rrrrr"};
+    const data2 = { qq: 111, dd: "rrrrr" };
     const dataF = this.equals(data, data2);
     console.log(dataF)
 
     return (
-      <Table bordered components={this.components} columns={columns} dataSource={this.data} />
+      <div>
+        <span>判断对象是否完全一致:data与data2{dataF.toString()}</span>
+        <Table bordered components={this.components} columns={columns} dataSource={this.data} />
+      </div>
+
     )
   }
 }
