@@ -75,7 +75,8 @@ class PdfOne extends React.Component {
   render() {
     return (
       <div>
-        <Table dataSource={this.dataSource} columns={this.columns} />
+        {/* <Table dataSource={this.dataSource} columns={this.columns} pagination={false} /> */}
+        <Table dataSource={this.dataSource} columns={this.columns} pagination={false} />
       </div>
     );
   }

@@ -236,11 +236,13 @@ class pdfFour extends React.Component {
                 225,
             ],
         };
+        
         return (
             <div>
                 <ChinaPneumoniaAir {...ChinaPneumoniaAir1} />
                 <ChinaPneumoniaAir {...ChinaPneumoniaAir2} />
                 <ChinaPneumoniaAir {...ChinaPneumoniaAir3} />
+                <div>sssss</div>
             </div>
         )
     }
