@@ -220,7 +220,7 @@ class DoubleTable extends React.Component {
           )}
         </div>
         <div id="watersMarker" style={{position:"relative"}}>
-           <div className="content">
+           <div className="content" >
           {dataD.map((item, index) => {
             return (
               // <Col span="6" style={{height:"50px",lineHeight:"50px",background:"white",position:"relative"}}>
