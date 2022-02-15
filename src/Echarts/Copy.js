@@ -338,9 +338,11 @@ class CopyCom extends React.Component {
     const mark = document.createDocumentFragment();
     // 水印节点的起始坐标
     const position = getOffset(element);
+    console.log(position,"position")
     let x = position.x + _config.start_x, y = position.y + _config.start_y;
     // 先循环y轴插入水印
     do {
+      console.log(x,y)
       // 再循环x轴插入水印
       do {
         // 创建单个水印节点
