@@ -1,6 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Table, InputNumber, Progress, message, Modal, Button, Space } from 'antd';
+import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect } from 'antd';
 import _ from "loadsh";
 import style from './component/style.less';
 import moment from "moment";
@@ -129,7 +129,8 @@ class CopyCom extends React.Component {
     loading: false,
     loadingF: false,
     parameter: { name: "name", sort: "ascend" },
-    flagParm: "name-up"
+    flagParm: "name-up",
+    value: undefined,
   };
   componentDidMount() {
     _.forEach({ 'a': 1, 'b': 2 }, function (value, key) {
@@ -338,11 +339,11 @@ class CopyCom extends React.Component {
     const mark = document.createDocumentFragment();
     // 水印节点的起始坐标
     const position = getOffset(element);
-    console.log(position,"position")
+    console.log(position, "position")
     let x = position.x + _config.start_x, y = position.y + _config.start_y;
     // 先循环y轴插入水印
     do {
-      console.log(x,y)
+      console.log(x, y)
       // 再循环x轴插入水印
       do {
         // 创建单个水印节点
@@ -390,6 +391,10 @@ class CopyCom extends React.Component {
     // 插入文档碎片
     element.append(mark);
   }
+  onChangeT = value => {
+    console.log(value);
+    this.setState({ value });
+  };
   render() {
     const { textT, persent, dataL, dataU, time, dataG, dataK, parameter, flagParm } = this.state;
     console.log(flagParm.match(/(\S*)-/)[1], flagParm.match(/-(\S*)/)[1])
@@ -562,8 +567,42 @@ class CopyCom extends React.Component {
     }
     console.log(columnsD, "columnsD")
 
+    const treeData = [
+      {
+        title: 'Node1',
+        value: '0-0',
+        key: '0-0',
+        children: [
+          {
+            title: 'Child Node1',
+            value: '0-0-1',
+            key: '0-0-1',
+          },
+          {
+            title: 'Child Node2',
+            value: '0-0-2',
+            key: '0-0-2',
+          },
+        ],
+      },
+      {
+        title: 'Node2',
+        value: '0-1',
+        key: '0-1',
+      },
+    ];
+
     return (
       <div className={`${style['copyBox']}`} id="content">
+        <TreeSelect
+          style={{ width: '100%' }}
+          value={this.state.value}
+          dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+          treeData={treeData}
+          placeholder="Please select"
+          treeDefaultExpandAll
+          onChange={this.onChangeT}
+        />
         <Button type="primary" onClick={this.handThrouD} loading={this.state.loadingF}>防抖截留</Button>
         <Button type="primary" onClick={this.handThrou} loading={this.state.loading}>防抖节流</Button>
         {/* <div className={style.Mytest}>渣渣辉</div> */}
