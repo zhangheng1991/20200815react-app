@@ -99,6 +99,8 @@ const PdfCim = (props) => {
 
       const { width, height } = element.getBoundingClientRect();
       const pageData = canvas.toDataURL('image/jpeg', 0.2);
+      canvas.fillStyle = '#fff';
+      canvas.background = '#fff'; 
       pdf.addImage(pageData, 'JPEG', 0, 0, width / 2, height / 2);
       document.body.removeEventListener('mousewheel', scrollFun, { passive: false });
       pdf.save(fileName);
@@ -146,8 +148,10 @@ const PdfCim = (props) => {
     html2canvas(documentBody, {
       scale: CANVAS_SCALE, //添加scale参数
       allowTaint: true,
-      background: 'red',
-      background: "#dddddd",// 如果指定的div没有设置背景色会默认成黑色,这里是个坑
+      // background: 'red',
+      background: "#dfdfdf",// 如果指定的div没有设置背景色会默认成黑色,这里是个坑
+      fillStyle:"#dfdfdf",
+      backgroundColo:"#dfdfdf",
     }).then((canvas) => {
       resolve(canvas)
     }).catch((e) => {
@@ -169,12 +173,15 @@ const PdfCim = (props) => {
     let YScroll = 0;
     const fileName = `日报${"p"}.pdf`;
     PDF.background = "red";
+    PDF.fillStyle = 'red'; 
     try {
       const pageone = pages[0];
       setTimeout(() => {
         Promise.all(_.map(pages, item => html2canvasPromise(item))).then((canvasDoms) => {
           for (let i = 0; i < canvasDoms.length; i++) {
             const canvas = canvasDoms[i];
+            canvas.fillStyle = '#fff';
+            canvas.background = '#fff'; 
             const { width, height } = pages[i].getBoundingClientRect();
             const canvasData = canvas.toDataURL('image/jpeg', 0.2);
             PDF.addImage(canvasData, 'JPEG', 0, YScroll / 2.08, width / 2.08, height / 2.08);
