@@ -60,7 +60,9 @@ class DynamicFieldSet extends React.Component {
                 sm: { span: 20, offset: 4 },
             },
         };
-        getFieldDecorator('keys', { initialValue: [id] });
+        const keysList=[0,1,2,3];
+        let nu = _.max(keysList);
+        getFieldDecorator('keys', { initialValue: [nu] });
         const keys = getFieldValue('keys');
         const formItems = keys.map((k, index) => (
             <div className={`${style.FormItemBox}`}   key={k}>
@@ -108,13 +110,44 @@ class DynamicFieldSet extends React.Component {
                             },
                         ],
                     })(<Input placeholder="addres" style={{ width: '90%', marginRight: 0 }} />)}
-                    {/* {keys.length > 1 ? (
-                        <Icon
-                            className="dynamic-delete-button"
-                            type="minus-circle-o"
-                            onClick={() => this.remove(k)}
-                        />
-                    ) : null} */}
+                </Form.Item>
+                <Form.Item
+                    // {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                    {...formItemLayout}
+                    label={'email'}
+                    required={false}
+                    key={`email[${k}]`}
+                // style={{ display: "block" }}
+                >
+                    {getFieldDecorator(`email[${k}]`, {
+                        validateTrigger: ['onChange', 'onBlur'],
+                        rules: [
+                            {
+                                required: true,
+                                whitespace: true,
+                                message: "Please input email",
+                            },
+                        ],
+                    })(<Input placeholder="email" style={{ width: '90%', marginRight: 0 }} />)}
+                </Form.Item>
+                <Form.Item
+                    // {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                    {...formItemLayout}
+                    label={'home'}
+                    required={false}
+                    key={`home[${k}]`}
+                // style={{ display: "block" }}
+                >
+                    {getFieldDecorator(`home[${k}]`, {
+                        validateTrigger: ['onChange', 'onBlur'],
+                        rules: [
+                            {
+                                required: true,
+                                whitespace: true,
+                                message: "Please input home",
+                            },
+                        ],
+                    })(<Input placeholder="home" style={{ width: '90%', marginRight: 0 }} />)}
                 </Form.Item>
                 <Form.Item
                     // {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
