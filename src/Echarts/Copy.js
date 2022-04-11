@@ -1,6 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect ,DatePicker} from 'antd';
+import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect, DatePicker } from 'antd';
 import _ from "loadsh";
 import moment from "moment";
 import style from './component/style.less';
@@ -398,7 +398,7 @@ class CopyCom extends React.Component {
     this.setState({ value });
   };
 
-  range=(start, end)=> {
+  range = (start, end) => {
     const result = [];
     for (let i = start; i < end; i++) {
       result.push(i);
@@ -406,17 +406,17 @@ class CopyCom extends React.Component {
     return result;
   }
 
-  disabledDate=(current)=> {
+  disabledDate = (current) => {
     // Can not select days before today and today
-   // moment().subtract(1,"moments".format("YYYY-MM-DD"))
-    console.log(moment(current).format("YYYYMMDD"),moment().endOf('day').format("YYYYMMDD"),moment().subtract(-1,"months").format("YYYY-MM-DD"))
+    // moment().subtract(1,"moments".format("YYYY-MM-DD"))
+    console.log(moment(current).format("YYYYMMDD"), moment().endOf('day').format("YYYYMMDD"), moment().subtract(-1, "months").format("YYYY-MM-DD"))
     // return current &&  moment().endOf('day')<current<moment().subtract(-1,"months");
     // return current && current< moment().endOf('day')&&current<moment().subtract(-1,"months");
     // return current &&(current< moment().endOf('day')||moment().subtract(-1,"months")<current) ;
-    return current &&(current< moment().subtract(15,"day")||moment().subtract(-15,"day")<current) ;
+    return current && (current < moment().subtract(15, "day") || moment().subtract(-15, "day") < current);
   }
 
-  disabledDateTime=()=>{
+  disabledDateTime = () => {
     return {
       disabledHours: () => this.range(0, 24).splice(4, 20),
       disabledMinutes: () => this.range(30, 60),
@@ -424,7 +424,7 @@ class CopyCom extends React.Component {
     };
   }
 
-  disabledRangeTime=(_, type)=> {
+  disabledRangeTime = (_, type) => {
     if (type === 'start') {
       return {
         disabledHours: () => this.range(0, 60).splice(4, 20),
@@ -636,91 +636,95 @@ class CopyCom extends React.Component {
     ];
 
     return (
-      <div className={`${style['copyBox']}`} id="content">
-        <RangePicker
-          disabledDate={this.disabledDate}
-          disabledTime={this.disabledRangeTime}
-          showTime={{
-            hideDisabledOptions: true,
-            defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('11:59:59', 'HH:mm:ss')],
-          }}
-          format="YYYY-MM-DD HH:mm:ss"
-        />
+      <div>
         <AddFormItem />
-        <TreeSelect
-          style={{ width: '100%' }}
-          value={this.state.value}
-          dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-          treeData={treeData}
-          placeholder="Please select"
-          treeDefaultExpandAll
-          onChange={this.onChangeT}
-        />
-        <Button type="primary" onClick={this.handThrouD} loading={this.state.loadingF}>防抖截留</Button>
-        <Button type="primary" onClick={this.handThrou} loading={this.state.loading}>防抖节流</Button>
-        {/* <div className={style.Mytest}>渣渣辉</div> */}
-        {/* <div className={style.MytestD}>左上</div>
+
+        <div className={`${style['copyBox']}`} id="content">
+          <RangePicker
+            disabledDate={this.disabledDate}
+            disabledTime={this.disabledRangeTime}
+            showTime={{
+              hideDisabledOptions: true,
+              defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('11:59:59', 'HH:mm:ss')],
+            }}
+            format="YYYY-MM-DD HH:mm:ss"
+          />
+
+          <TreeSelect
+            style={{ width: '100%' }}
+            value={this.state.value}
+            dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+            treeData={treeData}
+            placeholder="Please select"
+            treeDefaultExpandAll
+            onChange={this.onChangeT}
+          />
+          <Button type="primary" onClick={this.handThrouD} loading={this.state.loadingF}>防抖截留</Button>
+          <Button type="primary" onClick={this.handThrou} loading={this.state.loading}>防抖节流</Button>
+          {/* <div className={style.Mytest}>渣渣辉</div> */}
+          {/* <div className={style.MytestD}>左上</div>
         <div className={style.MytestT}>右上</div>
         <div className={style.MytestL}>左下</div>
         <div className={style.MytestR}>右下</div> */}
-        <InputNumber
-          min={0}
-          max={100}
-          // defaultValue={persent}
-          value={persent}
-          onChange={this.onChangeNumber}
-        />
-        <h2>当前百分比：{persent}</h2>
-        <Progress
-          strokeColor={{
-            '0%': '#108ee9',
-            '20': 'red',
-            '40': 'green',
-            '60': 'blue',
-            '80%': 'yellow',
-            '100%': '#87d068',
-          }}
-          percent={persent}
-        />
-        <h2>当前选中复制：{textT}</h2>
-        <EchartsLine   {...EchartsLine1}
-        //  key={time}
-        />
-        <div className={style.Top}>
+          <InputNumber
+            min={0}
+            max={100}
+            // defaultValue={persent}
+            value={persent}
+            onChange={this.onChangeNumber}
+          />
+          <h2>当前百分比：{persent}</h2>
+          <Progress
+            strokeColor={{
+              '0%': '#108ee9',
+              '20': 'red',
+              '40': 'green',
+              '60': 'blue',
+              '80%': 'yellow',
+              '100%': '#87d068',
+            }}
+            percent={persent}
+          />
+          <h2>当前选中复制：{textT}</h2>
+          <EchartsLine   {...EchartsLine1}
+          //  key={time}
+          />
+          <div className={style.Top}>
+            {
+              dataG.map((item, index) => {
+                return (
+                  <div
+                    className={item.flag === 1 ? `${style["elemenTag"]} ${style["selected"]}` : `${style["public"]} ${style["elemenTag"]}`}
+
+                    onClick={this.handClickD.bind(this, item)}
+
+                  >
+                    <div className={style.legnedBox}><span className={style.circle} style={{ background: colors[index] }}></span>{item.name}</div>
+
+                  </div>
+                )
+              })
+            }
+          </div>
+          <Table {...dataV} onChange={this.handChange} />
+          <Table {...dataT} onChange={this.handChange} />
+          <TouristTransactionVolume {...TouristTransactionVolume1}
+            key={time}
+          //  data={dataL}
+          />
           {
-            dataG.map((item, index) => {
+            dataL.map((item, index) => {
               return (
                 <div
-                  className={item.flag === 1 ? `${style["elemenTag"]} ${style["selected"]}` : `${style["public"]} ${style["elemenTag"]}`}
+                  className={item.flag === 1 ? `${style["selected"]}` : `${style["public"]}`}
 
-                  onClick={this.handClickD.bind(this, item)}
+                  onClick={this.handClick.bind(this, item)}
 
-                >
-                  <div className={style.legnedBox}><span className={style.circle} style={{ background: colors[index] }}></span>{item.name}</div>
-
-                </div>
+                ><span></span>{item.name}</div>
               )
             })
           }
         </div>
-        <Table {...dataV} onChange={this.handChange} />
-        <Table {...dataT} onChange={this.handChange} />
-        <TouristTransactionVolume {...TouristTransactionVolume1}
-          key={time}
-        //  data={dataL}
-        />
-        {
-          dataL.map((item, index) => {
-            return (
-              <div
-                className={item.flag === 1 ? `${style["selected"]}` : `${style["public"]}`}
-
-                onClick={this.handClick.bind(this, item)}
-
-              ><span></span>{item.name}</div>
-            )
-          })
-        }
       </div>
     );
   }
