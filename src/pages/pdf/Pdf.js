@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Spin, Alert, message } from 'antd';
 import moment from "moment";
+import { DatePicker } from 'antd';
 import _ from "loadsh";
 import PdfOne from './component/pdfOne';
 import PdfTwo from './component/pdfTwo';
@@ -11,6 +12,7 @@ import jsPDF from 'jspdf';
 import EchartsLine from '../echarts/charts/echartsLine';
 import styles from "./component/style.less";
 import html2canvas from 'html2canvas';
+const { MonthPicker, RangePicker } = DatePicker;
 const CANVAS_SCALE = 3.0;
 //要加载Js 相对路径
 const context = require.context("./", true, /js$/);
@@ -100,7 +102,7 @@ const PdfCim = (props) => {
       const { width, height } = element.getBoundingClientRect();
       const pageData = canvas.toDataURL('image/jpeg', 0.2);
       canvas.fillStyle = '#fff';
-      canvas.background = '#fff'; 
+      canvas.background = '#fff';
       pdf.addImage(pageData, 'JPEG', 0, 0, width / 2, height / 2);
       document.body.removeEventListener('mousewheel', scrollFun, { passive: false });
       pdf.save(fileName);
@@ -150,8 +152,8 @@ const PdfCim = (props) => {
       allowTaint: true,
       // background: 'red',
       background: "#dfdfdf",// 如果指定的div没有设置背景色会默认成黑色,这里是个坑
-      fillStyle:"#dfdfdf",
-      backgroundColo:"#dfdfdf",
+      fillStyle: "#dfdfdf",
+      backgroundColo: "#dfdfdf",
     }).then((canvas) => {
       resolve(canvas)
     }).catch((e) => {
@@ -173,7 +175,7 @@ const PdfCim = (props) => {
     let YScroll = 0;
     const fileName = `日报${"p"}.pdf`;
     PDF.background = "red";
-    PDF.fillStyle = 'red'; 
+    PDF.fillStyle = 'red';
     try {
       const pageone = pages[0];
       setTimeout(() => {
@@ -181,7 +183,7 @@ const PdfCim = (props) => {
           for (let i = 0; i < canvasDoms.length; i++) {
             const canvas = canvasDoms[i];
             canvas.fillStyle = '#fff';
-            canvas.background = '#fff'; 
+            canvas.background = '#fff';
             const { width, height } = pages[i].getBoundingClientRect();
             const canvasData = canvas.toDataURL('image/jpeg', 0.2);
             PDF.addImage(canvasData, 'JPEG', 0, YScroll / 2.08, width / 2.08, height / 2.08);
@@ -221,6 +223,7 @@ const PdfCim = (props) => {
   }
   return (
     <div id="lizi">
+     
       <div className={styles.Box}>
         {
           dataG.map((item, index) => {

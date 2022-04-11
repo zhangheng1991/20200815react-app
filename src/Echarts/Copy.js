@@ -1,12 +1,14 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect } from 'antd';
+import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect ,DatePicker} from 'antd';
 import _ from "loadsh";
-import style from './component/style.less';
 import moment from "moment";
+import style from './component/style.less';
 import TouristTransactionVolume from '../pages/echarts/charts/TouristTransactionVolume';
 import EchartsLine from "../component/echarts/line/Lines";
+import AddFormItem from "./copy/AddFormItem";
 import { scaleTimeCat } from '@antv/g2';
+const { MonthPicker, RangePicker } = DatePicker;
 // const dataR=[
 //   {
 //     name:"1111",
@@ -395,6 +397,47 @@ class CopyCom extends React.Component {
     console.log(value);
     this.setState({ value });
   };
+
+  range=(start, end)=> {
+    const result = [];
+    for (let i = start; i < end; i++) {
+      result.push(i);
+    }
+    return result;
+  }
+
+  disabledDate=(current)=> {
+    // Can not select days before today and today
+   // moment().subtract(1,"moments".format("YYYY-MM-DD"))
+    console.log(moment(current).format("YYYYMMDD"),moment().endOf('day').format("YYYYMMDD"),moment().subtract(-1,"months").format("YYYY-MM-DD"))
+    // return current &&  moment().endOf('day')<current<moment().subtract(-1,"months");
+    // return current && current< moment().endOf('day')&&current<moment().subtract(-1,"months");
+    // return current &&(current< moment().endOf('day')||moment().subtract(-1,"months")<current) ;
+    return current &&(current< moment().subtract(15,"day")||moment().subtract(-15,"day")<current) ;
+  }
+
+  disabledDateTime=()=>{
+    return {
+      disabledHours: () => this.range(0, 24).splice(4, 20),
+      disabledMinutes: () => this.range(30, 60),
+      disabledSeconds: () => [55, 56],
+    };
+  }
+
+  disabledRangeTime=(_, type)=> {
+    if (type === 'start') {
+      return {
+        disabledHours: () => this.range(0, 60).splice(4, 20),
+        disabledMinutes: () => this.range(30, 60),
+        disabledSeconds: () => [55, 56],
+      };
+    }
+    return {
+      disabledHours: () => this.range(0, 60).splice(20, 4),
+      disabledMinutes: () => this.range(0, 31),
+      disabledSeconds: () => [55, 56],
+    };
+  }
   render() {
     const { textT, persent, dataL, dataU, time, dataG, dataK, parameter, flagParm } = this.state;
     console.log(flagParm.match(/(\S*)-/)[1], flagParm.match(/-(\S*)/)[1])
@@ -594,6 +637,16 @@ class CopyCom extends React.Component {
 
     return (
       <div className={`${style['copyBox']}`} id="content">
+        <RangePicker
+          disabledDate={this.disabledDate}
+          disabledTime={this.disabledRangeTime}
+          showTime={{
+            hideDisabledOptions: true,
+            defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('11:59:59', 'HH:mm:ss')],
+          }}
+          format="YYYY-MM-DD HH:mm:ss"
+        />
+        <AddFormItem />
         <TreeSelect
           style={{ width: '100%' }}
           value={this.state.value}
