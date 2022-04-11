@@ -136,7 +136,7 @@ class DynamicFieldSet extends React.Component {
                     label={'home'}
                     required={false}
                     key={`home[${k}]`}
-                // style={{ display: "block" }}
+                // style={{ display: "block" }} 
                 >
                     {getFieldDecorator(`home[${k}]`, {
                         validateTrigger: ['onChange', 'onBlur'],
