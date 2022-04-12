@@ -60,12 +60,12 @@ class DynamicFieldSet extends React.Component {
                 sm: { span: 20, offset: 4 },
             },
         };
-        const keysList=[0,1,2,3];
+        const keysList = [0, 1, 2, 3];
         let nu = _.max(keysList);
         getFieldDecorator('keys', { initialValue: [nu] });
         const keys = getFieldValue('keys');
         const formItems = keys.map((k, index) => (
-            <div className={`${style.FormItemBox}`}   key={k}>
+            <div className={`${style.FormItemBox}`} key={k}>
                 <Form.Item
                     // {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
                     {...formItemLayout}
@@ -75,7 +75,7 @@ class DynamicFieldSet extends React.Component {
                 // style={{ display: "block" }}
                 >
                     {getFieldDecorator(`names[${k}]`, {
-                        validateTrigger: ['onChange', 'onBlur'],
+                        // validateTrigger: ['onChange', 'onBlur'],
                         rules: [
                             {
                                 required: true,
@@ -101,7 +101,7 @@ class DynamicFieldSet extends React.Component {
                 // style={{ display: "block" }}
                 >
                     {getFieldDecorator(`addres[${k}]`, {
-                        validateTrigger: ['onChange', 'onBlur'],
+                        // validateTrigger: ['onChange', 'onBlur'],
                         rules: [
                             {
                                 required: true,
@@ -120,7 +120,7 @@ class DynamicFieldSet extends React.Component {
                 // style={{ display: "block" }}
                 >
                     {getFieldDecorator(`email[${k}]`, {
-                        validateTrigger: ['onChange', 'onBlur'],
+                        // validateTrigger: ['onChange', 'onBlur'],
                         rules: [
                             {
                                 required: true,
@@ -139,7 +139,7 @@ class DynamicFieldSet extends React.Component {
                 // style={{ display: "block" }} 
                 >
                     {getFieldDecorator(`home[${k}]`, {
-                        validateTrigger: ['onChange', 'onBlur'],
+                        // validateTrigger: ['onChange', 'onBlur'],
                         rules: [
                             {
                                 required: true,
@@ -158,7 +158,7 @@ class DynamicFieldSet extends React.Component {
                 // style={{ display: "block" }}
                 >
                     {getFieldDecorator(`city[${k}]`, {
-                        validateTrigger: ['onChange', 'onBlur'],
+                        // validateTrigger: ['onChange', 'onBlur'],
                         rules: [
                             {
                                 required: true,
@@ -184,7 +184,7 @@ class DynamicFieldSet extends React.Component {
                 // style={{ display: "block" }}
                 >
                     {getFieldDecorator(`age[${k}]`, {
-                        validateTrigger: ['onChange', 'onBlur'],
+                        // validateTrigger: ['onChange', 'onBlur'],
                         rules: [
                             {
                                 required: true,
@@ -192,7 +192,15 @@ class DynamicFieldSet extends React.Component {
                                 message: "Please input age",
                             },
                         ],
-                    })(<Input placeholder="age" style={{ width: '80%', marginRight: 8 }} />)}
+                    })(<Input placeholder="age" style={{ width: '90%', marginRight: 8 }} />)}
+
+                </Form.Item>
+                <div className={`${style.FormItemIcon}`}>
+                    <Icon
+                        className="dynamic-add-button"
+                        type="plus"
+                        onClick={this.add}
+                    />
                     {keys.length > 1 ? (
                         <Icon
                             className="dynamic-delete-button"
@@ -200,12 +208,9 @@ class DynamicFieldSet extends React.Component {
                             onClick={() => this.remove(k)}
                         />
                     ) : null}
-                    <Icon
-                        className="dynamic-add-button"
-                        type="plus"
-                        onClick={this.add}
-                    />
-                </Form.Item>
+
+                </div>
+
             </div>
         ));
         return (
