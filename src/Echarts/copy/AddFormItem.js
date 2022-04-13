@@ -1,12 +1,23 @@
 import React from "react";
 
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input, Icon, Button, Upload,message  } from 'antd';
 import _ from "loadsh";
+import Papa from "papaparse";
+import * as XLSX from "xlsx";
+import jschardet from "jschardet";
+import "react-datasheet/lib/react-datasheet.css";
+import ReactData from "react-datasheet";
+
 import "./style.less";
 import style from "./style.less";
 let id = 0;
 
 class DynamicFieldSet extends React.Component {
+    state={
+        fileList:[],
+        grid:[],
+        position:{}
+    }
     remove = k => {
         const { form } = this.props;
         // can use data-binding to get
@@ -47,6 +58,115 @@ class DynamicFieldSet extends React.Component {
             }
         });
     };
+
+    getJson = (arr) => {
+        const data = _.map(arr, item => {
+            return _.map(item, o => {
+                return { value: o }
+            })
+        })
+        return data;
+    }
+
+    checkEncoding = (base64Str) => {
+        let encording = jschardet.detect(base64Str).encoding;
+        if (encording === "windows-1252") {
+            encording = "ANSI";
+        }
+        return encording;
+    }
+
+    beforeUpload = (file, fileList) => {
+        console.log(file, fileList)
+        console.log(XLSX,"XLSX")
+        const { current } = this.state;
+        const that = this;
+        const filename = _.split(file.name, '.');
+        const accept = filename[filename.length - 1];
+        console.log(accept,"accept")
+        if (accept !== "xlsx" && accept !== "xls" && accept !== "csv") {
+            message.error("请上传Excel文件或者CVS文件");
+            return;
+        }
+        const reader = new FileReader();
+        const fi = fileList[0];
+        reader.onload = function (e) {
+            const data = e.target.result;
+            if (accept === "csv") {
+                 const encoding =that.checkEncoding(data);
+                 Papa.parse(file,{
+                   header:false,
+                   encoding,
+                   complete:that.updateDate
+                 })
+            } else {
+                console.log(XLSX,"XLSX")
+                const workbook = XLSX.read(data, {
+                    type: "binary",
+                });
+                //假设我们的数据在第一个标签
+                const first_worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                //XLSX自带了一个工具把导入的数据转化成json
+                const jsonArr = XLSX.utils.sheet_to_json(first_worksheet, {
+                    header: 1,
+                    defval: "",
+                });
+                //通过自定义的方法处理json ，比如加入state来展示
+                const handleImportJson = that.getJson(_.take(jsonArr, 5))
+                that.setState({
+                    grid: handleImportJson,
+                    sheetButton: workbook.SheetNames,
+                    currentSheet: workbook.SheetNames[0],
+                    sheets: workbook.SheetNames,
+                    flieType: accept === ('xlsx' || 'xls' || 'XLSX' || 'XLS') ? 'excel' : accept
+                })
+            }
+
+        }
+        reader.readAsBinaryString(fi);
+        this.setState({
+            fileList:[file],
+            file,
+        })
+        return false
+    }
+
+    valueRenderer=(cell)=>{
+      cell.readOnly=true;
+      return cell.value;
+    }
+   
+    dataRenderer=(cell)=>{
+      console.log(cell)
+    }
+
+    onCellsChanged=(changes)=>{
+       const {grid}=this.state;
+       const gridList=grid;
+       changes.forEach(({cell,row,col,value})=>{
+        gridList[row][col]={...grid[row][col],value}
+       })
+       this.setState({grid:gridList})
+    }
+
+
+    handleCopy=({event,dataRenderer,valueRenderer,data,start,end,range})=>{
+       console.log(event,dataRenderer,valueRenderer,data,start,end,range)
+    }
+
+    onContextMenu=(e,cell,i,j)=>(cell.readOnly?e.preventDefault():null)
+
+    onSelect=(query)=>{
+        this.setState({position:query})
+    }
+
+    parsePaste=(query)=>{
+       console.log(query,"parsePaste")
+    }
+
+    onMouseup=()=>{
+        
+    }
 
     render() {
         const { getFieldDecorator, getFieldValue } = this.props.form;
@@ -213,8 +333,48 @@ class DynamicFieldSet extends React.Component {
 
             </div>
         ));
+        const height = document.body.clientHeight;
+        console.log(height, "height")
+        console.log(this.state.grid)
+        const propsT = {
+            name: 'file',
+            beforeUpload: this.beforeUpload,
+            fileList:this.state.fileList,
+            // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+            // headers: {
+            //   authorization: 'authorization-text',
+            // },
+            // onChange(info) {
+            //   if (info.file.status !== 'uploading') {
+            //     console.log(info.file, info.fileList);
+            //   }
+            //   if (info.file.status === 'done') {
+            //     message.success(`${info.file.name} file uploaded successfully`);
+            //   } else if (info.file.status === 'error') {
+            //     message.error(`${info.file.name} file upload failed.`);
+            //   }
+            // },
+        };
         return (
             <div style={{ width: "100%", margin: "0 auto" }}>
+                <Upload {...propsT}>
+                    <Button>
+                        <Icon type="upload" /> Click to Upload
+                    </Button>
+                </Upload>
+                <ReactData 
+                 data={this.state.grid}
+                 valueRenderer={this.valueRenderer}
+                 dataRenderer={this.dataRenderer}
+                 onContextMenu={this.onContextMenu}
+                 onCellsChanged={this.onCellsChanged}
+                 handleCopy={this.handleCopy}
+                 onSelect={this.onSelect}
+                 parsePaste={this.parsePaste}
+                 onMouseup={this.onMouseup}
+                 selected={this.state.position}
+                 />
+
                 <Form onSubmit={this.handleSubmit}>
                     {formItems}
                     {/* <Form.Item >
@@ -232,5 +392,6 @@ class DynamicFieldSet extends React.Component {
         );
     }
 }
+
 
 export default Form.create({ name: 'dynamic_form_item' })(DynamicFieldSet);

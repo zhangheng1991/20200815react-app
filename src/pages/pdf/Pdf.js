@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Button, Spin, Alert, message } from 'antd';
+import { Button, Spin, Alert, message, Upload, Icon } from 'antd';
 import moment from "moment";
 import { DatePicker } from 'antd';
 import _ from "loadsh";
@@ -12,6 +12,8 @@ import jsPDF from 'jspdf';
 import EchartsLine from '../echarts/charts/echartsLine';
 import styles from "./component/style.less";
 import html2canvas from 'html2canvas';
+import XLSX from "xlsx";
+import Paragraph from 'antd/lib/skeleton/Paragraph';
 const { MonthPicker, RangePicker } = DatePicker;
 const CANVAS_SCALE = 3.0;
 //要加载Js 相对路径
@@ -221,9 +223,78 @@ const PdfCim = (props) => {
     }
     return "";
   }
+
+  // const beforeUpload = (file, fileList) => {
+  //   console.log(file, fileList)
+  //   const { current } = this.state;
+  //   const that = this;
+  //   const filename = _.split(file.name, '.');
+  //   const accept = filename[filename.length - 1];
+  //   if (accept !== "xlsx" && accept == "xls" && accept !== "csv") {
+  //     message.error("请上传Excel文件或者CVS文件");
+  //     return;
+  //   }
+  //   const reader = new FileReader();
+  //   const fi = fileList[0];
+  //   reader.onload = function (e) {
+  //     const data = e.target.result;
+  //     if(accept==="csv"){
+  //       //  const encoding =that.checkEncoding(dara);
+  //       //  Papa.parse(file,{
+  //       //    header:false,
+  //       //    encoding,
+  //       //    complete:that.updateDate
+  //       //  })
+  //     }else{
+  //       const workbook = XLSX.read(data, {
+  //         type: "binary",
+  //       });
+  //       //假设我们的数据在第一个标签
+  //       const first_worksheet=workbook.Sheets[workbook.SheetNames[0]];
+  //       //XLSX自带了一个工具把导入的数据转化成json
+  //       const jsonArr=XLSX.units.sheet_to_json(first_worksheet,{
+  //         header:1,
+  //         defval:"",
+  //       });
+  //       //通过自定义的方法处理json ，比如加入state来展示
+  //       const handleImportJson= That.getJson(_.take(jsonArr,5))
+  //       that.setState({
+  //         grid:handleImportJson,
+  //         sheetButton:workbook.SheetNames,
+  //         currentSheet:workbook.SheetNames[0],
+  //         sheets:workbook.SheetNames,
+  //         flieType:accept===('xlsx'||'xls'||'XLSX'||'XLS')?'excel':accept
+  //       })
+  //     }
+     
+  //   }
+  // }
+
+  const propsT = {
+    // name: 'file',
+    // beforeUpload: beforeUpload
+    // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    // headers: {
+    //   authorization: 'authorization-text',
+    // },
+    // onChange(info) {
+    //   if (info.file.status !== 'uploading') {
+    //     console.log(info.file, info.fileList);
+    //   }
+    //   if (info.file.status === 'done') {
+    //     message.success(`${info.file.name} file uploaded successfully`);
+    //   } else if (info.file.status === 'error') {
+    //     message.error(`${info.file.name} file upload failed.`);
+    //   }
+    // },
+  };
   return (
     <div id="lizi">
-     
+      {/* <Upload {...propsT}>
+        <Button>
+          <Icon type="upload" /> Click to Upload
+        </Button>
+      </Upload> */}
       <div className={styles.Box}>
         {
           dataG.map((item, index) => {
