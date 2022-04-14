@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Form, Input, Icon, Button, Upload,message  } from 'antd';
+import { Form, Input, Icon, Button, Upload, message } from 'antd';
 import _ from "loadsh";
 import Papa from "papaparse";
 import * as XLSX from "xlsx";
@@ -13,10 +13,10 @@ import style from "./style.less";
 let id = 0;
 
 class DynamicFieldSet extends React.Component {
-    state={
-        fileList:[],
-        grid:[],
-        position:{}
+    state = {
+        fileList: [],
+        grid: [],
+        position: {}
     }
     remove = k => {
         const { form } = this.props;
@@ -78,12 +78,12 @@ class DynamicFieldSet extends React.Component {
 
     beforeUpload = (file, fileList) => {
         console.log(file, fileList)
-        console.log(XLSX,"XLSX")
+        console.log(XLSX, "XLSX")
         const { current } = this.state;
         const that = this;
         const filename = _.split(file.name, '.');
         const accept = filename[filename.length - 1];
-        console.log(accept,"accept")
+        console.log(accept, "accept")
         if (accept !== "xlsx" && accept !== "xls" && accept !== "csv") {
             message.error("请上传Excel文件或者CVS文件");
             return;
@@ -93,14 +93,14 @@ class DynamicFieldSet extends React.Component {
         reader.onload = function (e) {
             const data = e.target.result;
             if (accept === "csv") {
-                 const encoding =that.checkEncoding(data);
-                 Papa.parse(file,{
-                   header:false,
-                   encoding,
-                   complete:that.updateDate
-                 })
+                const encoding = that.checkEncoding(data);
+                Papa.parse(file, {
+                    header: false,
+                    encoding,
+                    complete: that.updateDate
+                })
             } else {
-                console.log(XLSX,"XLSX")
+                console.log(XLSX, "XLSX")
                 const workbook = XLSX.read(data, {
                     type: "binary",
                 });
@@ -112,7 +112,7 @@ class DynamicFieldSet extends React.Component {
                     defval: "",
                 });
                 //通过自定义的方法处理json ，比如加入state来展示
-                const handleImportJson = that.getJson(_.take(jsonArr, 5))
+                const handleImportJson = that.getJson(_.take(jsonArr, jsonArr.length))
                 that.setState({
                     grid: handleImportJson,
                     sheetButton: workbook.SheetNames,
@@ -125,47 +125,50 @@ class DynamicFieldSet extends React.Component {
         }
         reader.readAsBinaryString(fi);
         this.setState({
-            fileList:[file],
+            fileList: [file],
             file,
+            position:{}
         })
         return false
     }
 
-    valueRenderer=(cell)=>{
-      cell.readOnly=true;
-      return cell.value;
-    }
-   
-    dataRenderer=(cell)=>{
-      console.log(cell)
+    valueRenderer = (cell) => {
+        cell.readOnly = true;
+        return cell.value;
     }
 
-    onCellsChanged=(changes)=>{
-       const {grid}=this.state;
-       const gridList=grid;
-       changes.forEach(({cell,row,col,value})=>{
-        gridList[row][col]={...grid[row][col],value}
-       })
-       this.setState({grid:gridList})
+    dataRenderer = (cell) => {
+        console.log(cell)
+    }
+
+    onCellsChanged = (changes) => {
+        console.log(changes,"changes")
+        const { grid } = this.state;
+        const gridList = grid;
+        changes.forEach(({ cell, row, col, value }) => {
+            gridList[row][col] = { ...grid[row][col], value }
+        })
+        this.setState({ grid: gridList })
     }
 
 
-    handleCopy=({event,dataRenderer,valueRenderer,data,start,end,range})=>{
-       console.log(event,dataRenderer,valueRenderer,data,start,end,range)
+    handleCopy = ({ event, dataRenderer, valueRenderer, data, start, end, range }) => {
+        console.log(event, dataRenderer, valueRenderer, data, start, end, range)
     }
 
-    onContextMenu=(e,cell,i,j)=>(cell.readOnly?e.preventDefault():null)
+    onContextMenu = (e, cell, i, j) => (cell.readOnly ? e.preventDefault() : null)
 
-    onSelect=(query)=>{
-        this.setState({position:query})
+    onSelect = (query) => {
+        console.log(query, "onSelect")
+        this.setState({ position: query })
     }
 
-    parsePaste=(query)=>{
-       console.log(query,"parsePaste")
+    parsePaste = (query) => {
+        console.log(query, "parsePaste")
     }
 
-    onMouseup=()=>{
-        
+    onMouseup = () => {
+
     }
 
     render() {
@@ -339,7 +342,7 @@ class DynamicFieldSet extends React.Component {
         const propsT = {
             name: 'file',
             beforeUpload: this.beforeUpload,
-            fileList:this.state.fileList,
+            fileList: this.state.fileList,
             // action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
             // headers: {
             //   authorization: 'authorization-text',
@@ -362,18 +365,21 @@ class DynamicFieldSet extends React.Component {
                         <Icon type="upload" /> Click to Upload
                     </Button>
                 </Upload>
-                <ReactData 
-                 data={this.state.grid}
-                 valueRenderer={this.valueRenderer}
-                 dataRenderer={this.dataRenderer}
-                 onContextMenu={this.onContextMenu}
-                 onCellsChanged={this.onCellsChanged}
-                 handleCopy={this.handleCopy}
-                 onSelect={this.onSelect}
-                 parsePaste={this.parsePaste}
-                 onMouseup={this.onMouseup}
-                 selected={this.state.position}
-                 />
+                <div className={`${style.dataSheet}`}>
+                    <ReactData
+                        data={this.state.grid}
+                        valueRenderer={this.valueRenderer}
+                        dataRenderer={this.dataRenderer}
+                        onContextMenu={this.onContextMenu}
+                        onCellsChanged={this.onCellsChanged}
+                        handleCopy={this.handleCopy}
+                        onSelect={this.onSelect}
+                        parsePaste={this.parsePaste}
+                        onMouseup={this.onMouseup}
+                        selected={this.state.position}
+                    />
+                </div>
+
 
                 <Form onSubmit={this.handleSubmit}>
                     {formItems}
