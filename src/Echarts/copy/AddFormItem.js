@@ -76,6 +76,15 @@ class DynamicFieldSet extends React.Component {
         return encording;
     }
 
+    updateDate = (result) => {
+        const dataT = _.take(result.data, 5);//限制展示数据的长度
+        const data = _.map(dataT, item => {
+            return _.map(item, o => {
+                return { value: 0, readOnly: true }
+            })
+        })
+    }
+
     beforeUpload = (file, fileList) => {
         console.log(file, fileList)
         console.log(XLSX, "XLSX")
@@ -127,7 +136,7 @@ class DynamicFieldSet extends React.Component {
         this.setState({
             fileList: [file],
             file,
-            position:{}
+            position: {}
         })
         return false
     }
@@ -142,7 +151,7 @@ class DynamicFieldSet extends React.Component {
     }
 
     onCellsChanged = (changes) => {
-        console.log(changes,"changes")
+        console.log(changes, "changes")
         const { grid } = this.state;
         const gridList = grid;
         changes.forEach(({ cell, row, col, value }) => {
