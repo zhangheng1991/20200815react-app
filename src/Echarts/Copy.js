@@ -635,22 +635,29 @@ class CopyCom extends React.Component {
       },
     ];
 
-    const dataUR = [[111, 3333], [444, 5555], [66666,5555]];
-    let dataMK=[];
+    const dataUR = [[111, 3333], [444, 5555], [66666, 5555]];
+    let dataMK = [];
     dataUR.map((item, index) => {
       console.log(item, index)
-      dataMK=dataMK.concat(item)
+      dataMK = dataMK.concat(item)
     })
 
-    console.log(dataMK,"dataMK",[...new Set(dataMK)])
+    console.log(dataMK, "dataMK", [...new Set(dataMK)])
 
-    const dataNB=[{id:3,num:3,name:"zhangheng3"},{id:5,num:5,name:"zhangheng5"},
-    {id:1,num:1,name:"zhangheng1"},{id:2,num:2,name:"zhangheng2"},{id:4,num:4,name:"zhangheng4"},];
+    //数据排序
 
-    const dataHu=_.sortBy(dataNB,function(item){
+    const dataNB = [{ id: 3, num: 3, name: "zhangheng3" }, { id: 5, num: 5, name: "zhangheng5" },
+    { id: 1, num: 1, name: "zhangheng1" }, { id: 2, num: 23, name: "zhangheng2" }, { id: 4, num: 4, name: "zhangheng4" },];
+
+    const dataHu = _.sortBy(dataNB, function (item) {
       return item.num;
     })
-    console.log(dataHu,"dataHu")
+    console.log(dataHu, "dataHu")
+    //_.orderBy(users, ['user', 'age'], ['asc', 'desc']);
+    const dataKL = _.orderBy(dataNB, ["num", "id"], ["desc"]);
+    const dataKK = _.orderBy(dataNB, ["id", "num"], ["desc"]);
+    console.log(dataKL, "dataKL")
+    console.log(dataKK, "dataKK")
 
     return (
       <div>
