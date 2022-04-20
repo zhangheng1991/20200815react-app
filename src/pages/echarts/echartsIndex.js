@@ -23,6 +23,7 @@ import AirQuality from './charts/AirQuality';
 import ChinaPneumonia from './charts/ChinaPneumonia';
 import ChinaPneumoniaAir from './charts/ChinaPneumoniaAir';
 import ChinaEpidemic from './charts/ChinaEpidemic';
+import TestLineBar from "./charts/TestLineBar";
 class EchartsIndex extends React.Component {
   static defaultProps = {
     span: 8,
@@ -39,8 +40,8 @@ class EchartsIndex extends React.Component {
   componentWillUnmount() {
     clearTimeout(this.TimeID); //清除定时器
   }
-  handPdf=()=>{
-   
+  handPdf = () => {
+
   }
   render() {
     const { span } = this.props;
@@ -801,248 +802,248 @@ class EchartsIndex extends React.Component {
                                 {
                                   name: '王大庄村',
                                   value: 98,
-                                //   children: [
-                                //   {
-                                //     name: '中国',
-                                //     children: [
-                                //       {
-                                //         name: '江苏',
-                                //         children: [
-                                //           {
-                                //             name: '南京',
-                                //             value: 938,
-                                //           },
-                                //           {
-                                //             name: '苏州',
-                                //             value: 338,
-                                //           },
-                                //           {
-                                //             name: '徐州',
-                                //             value: 538,
-                                //           },
-                                //           {
-                                //             name: '无锡',
-                                //             value: 638,
-                                //           },
-                                //           {
-                                //             name: '昆山',
-                                //             value: 3344,
-                                //           },
-                                //           {
-                                //             name: '常州',
-                                //             value: 1338,
-                                //           },
-                                //           {
-                                //             name: '连云港',
-                                //             value: 4338,
-                                //           },
-                                //         ],
-                                //       },
-                                //       {
-                                //         name: '河南',
-                                //         children: [
-                                //           {
-                                //             name: '郑州市',
-                                //             value: 338,
-                                //           },
-                                //           {
-                                //             name: '南阳市',
-                                //             value: 538,
-                                //           },
-                                //           {
-                                //             name: '信阳市',
-                                //             value: 638,
-                                //           },
-                                //           {
-                                //             name: '开封市',
-                                //             value: 3344,
-                                //           },
-                                //           {
-                                //             name: '周口市',
-                                //             value: 1338,
-                                //           },
-                                //           {
-                                //             name: '新乡市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '洛阳市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '安阳市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '商丘市',
-                                //             value: 938,
-                                //             children: [
-                                //               {
-                                //                 name: '梁园区',
-                                //                 value: 98,
-                                //                 children: [
-                                //                   {
-                                //                     name: '观堂镇',
-                                //                     value: 98,
-                                //                     children: [
-                                //                       {
-                                //                         name: '花坟村',
-                                //                         value: 98,
-                                //                         children: [
-                                //                           {
-                                //                             name: '王大庄村',
-                                //                             value: 98,
-                                //                           },
-                                //                         ],
-                                //                       },
-                                //                     ],
-                                //                   },
-                                //                   {
-                                //                     name: '水池铺乡',
-                                //                     value: 98,
-                                //                     children: [
-                                //                       {
-                                //                         name: '赵百户',
-                                //                         value: 98,
-                                //                         children: [
-                                //                           {
-                                //                             name: '高庄',
-                                //                             value: 98,
-                                //                           },
-                                //                         ],
-                                //                       },
-                                //                     ],
-                                //                   },
-                                //                   {
-                                //                     name: '谢集镇',
-                                //                     value: 98,
-                                //                   },
-                                //                   {
-                                //                     name: '双八镇',
-                                //                     value: 98,
-                                //                   },
-                                //                   {
-                                //                     name: '刘口镇',
-                                //                     value: 98,
-                                //                   },
-                                //                   {
-                                //                     name: '李庄镇',
-                                //                     value: 98,
-                                //                   },
-                                //                   {
-                                //                     name: '王楼乡',
-                                //                     value: 98,
-                                //                   },
-                                //                   {
-                                //                     name: '孙福集乡',
-                                //                     value: 98,
-                                //                   },
-                                //                 ],
-                                //               },
-                                //               {
-                                //                 name: '睢园区',
-                                //                 value: 38,
-                                //               },
-                                //               {
-                                //                 name: '宁陵县',
-                                //                 value: 138,
-                                //               },
-                                //               {
-                                //                 name: '柘城县',
-                                //                 value: 938,
-                                //               },
-                                //               {
-                                //                 name: '永城市',
-                                //                 value: 938,
-                                //               },
-                                //               {
-                                //                 name: '睢县县',
-                                //                 value: 938,
-                                //               },
-                                //               {
-                                //                 name: '民权县',
-                                //                 value: 938,
-                                //               },
-                                //               {
-                                //                 name: '虞城县',
-                                //                 value: 938,
-                                //               },
-                                //               {
-                                //                 name: '夏邑县',
-                                //                 value: 938,
-                                //               },
-                                //             ],
-                                //           },
-                                //           {
-                                //             name: '鹤壁市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '焦作市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '濮阳市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '许昌市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '漯河市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '三门峡市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '漯河市',
-                                //             value: 4338,
-                                //           },
-                                //           {
-                                //             name: '驻马店市',
-                                //             value: 4338,
-                                //           },
-                                //         ],
-                                //       },
-                                //       {
-                                //         name: '山东',
-                                //         children: [
-                                //           {
-                                //             name: '济南',
-                                //             value: 938,
-                                //           },
-                                //           {
-                                //             name: '烟台',
-                                //             value: 338,
-                                //           },
-                                //           {
-                                //             name: '青岛',
-                                //             value: 538,
-                                //           },
-                                //           {
-                                //             name: '威海',
-                                //             value: 638,
-                                //           },
-                                //           {
-                                //             name: '枣庄',
-                                //             value: 3344,
-                                //           },
-                                //           {
-                                //             name: '淄博',
-                                //             value: 1338,
-                                //           },
-                                //           {
-                                //             name: '临沂',
-                                //             value: 4338,
-                                //           },
-                                //         ],
-                                //       },
-                                //     ],
-                                //   },
-                                // ]
+                                  //   children: [
+                                  //   {
+                                  //     name: '中国',
+                                  //     children: [
+                                  //       {
+                                  //         name: '江苏',
+                                  //         children: [
+                                  //           {
+                                  //             name: '南京',
+                                  //             value: 938,
+                                  //           },
+                                  //           {
+                                  //             name: '苏州',
+                                  //             value: 338,
+                                  //           },
+                                  //           {
+                                  //             name: '徐州',
+                                  //             value: 538,
+                                  //           },
+                                  //           {
+                                  //             name: '无锡',
+                                  //             value: 638,
+                                  //           },
+                                  //           {
+                                  //             name: '昆山',
+                                  //             value: 3344,
+                                  //           },
+                                  //           {
+                                  //             name: '常州',
+                                  //             value: 1338,
+                                  //           },
+                                  //           {
+                                  //             name: '连云港',
+                                  //             value: 4338,
+                                  //           },
+                                  //         ],
+                                  //       },
+                                  //       {
+                                  //         name: '河南',
+                                  //         children: [
+                                  //           {
+                                  //             name: '郑州市',
+                                  //             value: 338,
+                                  //           },
+                                  //           {
+                                  //             name: '南阳市',
+                                  //             value: 538,
+                                  //           },
+                                  //           {
+                                  //             name: '信阳市',
+                                  //             value: 638,
+                                  //           },
+                                  //           {
+                                  //             name: '开封市',
+                                  //             value: 3344,
+                                  //           },
+                                  //           {
+                                  //             name: '周口市',
+                                  //             value: 1338,
+                                  //           },
+                                  //           {
+                                  //             name: '新乡市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '洛阳市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '安阳市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '商丘市',
+                                  //             value: 938,
+                                  //             children: [
+                                  //               {
+                                  //                 name: '梁园区',
+                                  //                 value: 98,
+                                  //                 children: [
+                                  //                   {
+                                  //                     name: '观堂镇',
+                                  //                     value: 98,
+                                  //                     children: [
+                                  //                       {
+                                  //                         name: '花坟村',
+                                  //                         value: 98,
+                                  //                         children: [
+                                  //                           {
+                                  //                             name: '王大庄村',
+                                  //                             value: 98,
+                                  //                           },
+                                  //                         ],
+                                  //                       },
+                                  //                     ],
+                                  //                   },
+                                  //                   {
+                                  //                     name: '水池铺乡',
+                                  //                     value: 98,
+                                  //                     children: [
+                                  //                       {
+                                  //                         name: '赵百户',
+                                  //                         value: 98,
+                                  //                         children: [
+                                  //                           {
+                                  //                             name: '高庄',
+                                  //                             value: 98,
+                                  //                           },
+                                  //                         ],
+                                  //                       },
+                                  //                     ],
+                                  //                   },
+                                  //                   {
+                                  //                     name: '谢集镇',
+                                  //                     value: 98,
+                                  //                   },
+                                  //                   {
+                                  //                     name: '双八镇',
+                                  //                     value: 98,
+                                  //                   },
+                                  //                   {
+                                  //                     name: '刘口镇',
+                                  //                     value: 98,
+                                  //                   },
+                                  //                   {
+                                  //                     name: '李庄镇',
+                                  //                     value: 98,
+                                  //                   },
+                                  //                   {
+                                  //                     name: '王楼乡',
+                                  //                     value: 98,
+                                  //                   },
+                                  //                   {
+                                  //                     name: '孙福集乡',
+                                  //                     value: 98,
+                                  //                   },
+                                  //                 ],
+                                  //               },
+                                  //               {
+                                  //                 name: '睢园区',
+                                  //                 value: 38,
+                                  //               },
+                                  //               {
+                                  //                 name: '宁陵县',
+                                  //                 value: 138,
+                                  //               },
+                                  //               {
+                                  //                 name: '柘城县',
+                                  //                 value: 938,
+                                  //               },
+                                  //               {
+                                  //                 name: '永城市',
+                                  //                 value: 938,
+                                  //               },
+                                  //               {
+                                  //                 name: '睢县县',
+                                  //                 value: 938,
+                                  //               },
+                                  //               {
+                                  //                 name: '民权县',
+                                  //                 value: 938,
+                                  //               },
+                                  //               {
+                                  //                 name: '虞城县',
+                                  //                 value: 938,
+                                  //               },
+                                  //               {
+                                  //                 name: '夏邑县',
+                                  //                 value: 938,
+                                  //               },
+                                  //             ],
+                                  //           },
+                                  //           {
+                                  //             name: '鹤壁市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '焦作市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '濮阳市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '许昌市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '漯河市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '三门峡市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '漯河市',
+                                  //             value: 4338,
+                                  //           },
+                                  //           {
+                                  //             name: '驻马店市',
+                                  //             value: 4338,
+                                  //           },
+                                  //         ],
+                                  //       },
+                                  //       {
+                                  //         name: '山东',
+                                  //         children: [
+                                  //           {
+                                  //             name: '济南',
+                                  //             value: 938,
+                                  //           },
+                                  //           {
+                                  //             name: '烟台',
+                                  //             value: 338,
+                                  //           },
+                                  //           {
+                                  //             name: '青岛',
+                                  //             value: 538,
+                                  //           },
+                                  //           {
+                                  //             name: '威海',
+                                  //             value: 638,
+                                  //           },
+                                  //           {
+                                  //             name: '枣庄',
+                                  //             value: 3344,
+                                  //           },
+                                  //           {
+                                  //             name: '淄博',
+                                  //             value: 1338,
+                                  //           },
+                                  //           {
+                                  //             name: '临沂',
+                                  //             value: 4338,
+                                  //           },
+                                  //         ],
+                                  //       },
+                                  //     ],
+                                  //   },
+                                  // ]
                                 },
                               ],
                             },
@@ -2338,10 +2339,28 @@ class EchartsIndex extends React.Component {
         },
       ],
     };
+    const TestLineBar1 = {
+      title: '不同来源地游客占比',
+      data: [30, 20, 10, 15, 15, 2, 2, 2, 2, 2],
+      Xdata: ['广州', '深圳', '佛山', '东莞', '中山', '珠海', '江门', '肇庆', '惠州', '粤东'],
+      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+        { offset: 0, color: '#0099F2' }, //柱图渐变色
+        // { offset: 0.5, color: '#0059A7' },                 //柱图渐变色
+        { offset: 1, color: '#002561' }, //柱图渐变色
+      ]),
+      id: 'linebar11',
+      textFont: '14',
+      height: '400px',
+
+    }
     return (
       <div style={{ background: '#dfdfdf' }} id="padr">
         <Button onClick={this.handPdf} type="primart">导出PDF</Button>
         <Row>
+          <Col span="24">
+            <TestLineBar {...TestLineBar1} />eeeeeeeeeeee
+          </Col>
+
           <Col span="24">
             <ChinaEpidemic {...ChinaEpidemic1} />
           </Col>
