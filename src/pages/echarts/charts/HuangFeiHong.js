@@ -5,7 +5,7 @@ import EchartBox from './../../../component/echarts/container/EchartsBox';
 
 class HuangFeiHong extends React.Component {
   render() {
-    const { title, textFont, id, height, ChattTitle, TitleUnit, geoCoordMap, dataT } = this.props;
+    const { title, textFont, id, heigth, ChattTitle, TitleUnit, geoCoordMap, dataT } = this.props;
     return (
       <div>
         <Lazyload debounce={300}>
@@ -18,7 +18,7 @@ class HuangFeiHong extends React.Component {
                 id={id}
                 geoCoordMap={geoCoordMap}
                 dataT={dataT}
-                height={height}
+                heigth={heigth}
               />
             }
           </EchartBox>

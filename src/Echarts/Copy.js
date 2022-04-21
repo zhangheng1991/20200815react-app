@@ -264,7 +264,7 @@ class CopyCom extends React.Component {
 
   fetchData = (data) => {
     console.log(data, "data")
-    this.setState({ loadingF: false })
+    this.setState({ loadingF: false,loading:false })
   }
 
   seachFunction = _.debounce(this.fetchData, 5000)

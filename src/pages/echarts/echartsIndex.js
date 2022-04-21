@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Button } from 'antd';
+import { Col, Row, Button, message,Select } from 'antd';
 import echarts from 'echarts';
 import moment from 'moment';
 //3/4饼状图
@@ -24,15 +24,23 @@ import ChinaPneumonia from './charts/ChinaPneumonia';
 import ChinaPneumoniaAir from './charts/ChinaPneumoniaAir';
 import ChinaEpidemic from './charts/ChinaEpidemic';
 import TestLineBar from "./charts/TestLineBar";
+
+const { Option } = Select;
+
 class EchartsIndex extends React.Component {
   static defaultProps = {
-    span: 8,
+    span: 12,
+    // state:{
+    //   selectedValue:"12",
+    // }
   };
+
   componentDidMount() {
     // this.TimeID = setInterval(() => this.Tick(), 1000);
   }
   state = {
     time: moment().format('YYYYMMDDHH:mmss'),
+    selectedValue: "12",
   };
   Tick() {
     // this.setState({ time: moment().format('YYYYMMDDHH:mmss') });
@@ -41,11 +49,24 @@ class EchartsIndex extends React.Component {
     clearTimeout(this.TimeID); //清除定时器
   }
   handPdf = () => {
-
+    message.error({content:"不用看了，啥也没有操作！！。导出在导出Pdf页面",top:"50%"})
+    // message.config({
+    //   top: 500,
+    //   duration: 2,
+    //   maxCount: 3,
+    //   content:"不用看了，啥也没有操作！！。导出在导出Pdf页面",
+    // });
+    // console.log(33333)
   }
+
+  handleChange = (value) => {
+    console.log(value)
+    this.setState({ selectedValue: value })
+  }
+
   render() {
     const { span } = this.props;
-    const { time } = this.state;
+    const { time, selectedValue } = this.state;
     const EchartsLine1 = {
       data: '',
       title: 'XXX1公司员工薪资分布',
@@ -1847,6 +1868,7 @@ class EchartsIndex extends React.Component {
       ],
       id: 'HuangFeiHongA',
       textFont: 16,
+      heigth: '425px',
     };
     const SourceOfTourists1 = {
       geoCoordMap: {
@@ -2338,7 +2360,7 @@ class EchartsIndex extends React.Component {
           value: 9,
         },
       ],
-      
+
     };
     const TestLineBar1 = {
       title: '不同来源地游客占比',
@@ -2372,7 +2394,7 @@ class EchartsIndex extends React.Component {
         }
       ],
       seriesData: [300, 280, 250, 260, 270, 300, 550, 500, 400, 390, 380, 390, 400, 500, 600, 750, 800, 700, 600, 400],
-      background:"wheat",
+      background: "wheat",
     }
 
     const TestLineBar2 = {
@@ -2407,13 +2429,20 @@ class EchartsIndex extends React.Component {
         }
       ],
       seriesData: [3600, 12280, 9250, 6260, 9270, 5300, 2550, 45500, 8400, 3190, 1380, 87390, 98400, 7500, 50000, 3750, 6800, 6700, 7600, 8400],
-      background:"wheat",
+      background: "wheat",
     }
     return (
       <div style={{ background: '#dfdfdf' }} id="padr">
         <Button onClick={this.handPdf} type="primart">导出PDF</Button>
+
+        <Select disabled value={selectedValue} style={{ width: 120 }} onChange={this.handleChange}>
+          <Option value="24">一排</Option>
+          <Option value="12">两排</Option>
+          <Option value="8">三排</Option>
+        </Select>
+
         <Row>
-        <Col span="12">
+          <Col span="12">
             <TestLineBar {...TestLineBar2} />
           </Col>
           <Col span="12">
@@ -2450,56 +2479,56 @@ class EchartsIndex extends React.Component {
           <Col span="24">
             <TheOrganization {...TheOrganization1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <EchartsLine {...EchartsLine1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <EchartsBar {...EchartsBar1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <ConsumptionDataAnalysis {...ConsumptionDataAnalysis1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <FoodBeverage {...FoodBeverage1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <FoodBeverage {...FoodBeverage2} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <FoodBeverage {...FoodBeverage3} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <NearlyDaysTourists {...NearlyDaysTourists1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <WorldCloud {...WorldCloud1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <AnalysistouristGender {...AnalysistouristGender1} />
           </Col>
 
           {/* 这两个报错   "echarts-liquidfill": "^2.0.6", echarts-liquidfil版本要用2.0.6的 */}
-          <Col span={span}>
+          <Col span={selectedValue}>
             <DataAnalysisTourists {...DataAnalysisTourists1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <TouristTransaction {...TouristTransaction1} />
           </Col>
 
 
-          <Col span={span}>
+          <Col span={selectedValue}>
             <TouristTransactionVolume {...TouristTransactionVolume1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <NighttimeConsumptionBias {...NighttimeConsumptionBias1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <AgeDistributionVisitors {...AgeDistributionVisitors1} />
           </Col>
-          <Col span={span}>
+          <Col span={selectedValue}>
             <EachChannelNumber {...EachChannelNumber1} />
           </Col>
-          <Col span="24">
+          <Col span={selectedValue}>
             <HuangFeiHong {...HuangFeiHong1} />
           </Col>
         </Row>
