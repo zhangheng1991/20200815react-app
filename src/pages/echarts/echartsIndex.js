@@ -2338,27 +2338,86 @@ class EchartsIndex extends React.Component {
           value: 9,
         },
       ],
+      
     };
     const TestLineBar1 = {
       title: '不同来源地游客占比',
-      data: [30, 20, 10, 15, 15, 2, 2, 2, 2, 2],
-      Xdata: ['广州', '深圳', '佛山', '东莞', '中山', '珠海', '江门', '肇庆', '惠州', '粤东'],
-      color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#0099F2' }, //柱图渐变色
-        // { offset: 0.5, color: '#0059A7' },                 //柱图渐变色
-        { offset: 1, color: '#002561' }, //柱图渐变色
-      ]),
       id: 'linebar11',
       textFont: '14',
       height: '400px',
+      xAxisData: ['00:00', '01:15', '02:30', '03:45', '05:00', '06:15', '07:30', '08:45', '10:00', '11:15', '12:30', '13:45', '15:00', '16:15', '17:30', '18:45', '20:00', '21:15', '22:30', '23:45'],
+      piecesData: [
+        {
+          lte: 6,
+          color: 'green'
+        },
+        {
+          gt: 6,
+          lte: 8,
+          color: 'red'
+        },
+        {
+          gt: 8,
+          lte: 14,
+          color: 'green'
+        },
+        {
+          gt: 14,
+          lte: 17,
+          color: 'red'
+        },
+        {
+          gt: 17,
+          color: 'green'
+        }
+      ],
+      seriesData: [300, 280, 250, 260, 270, 300, 550, 500, 400, 390, 380, 390, 400, 500, 600, 750, 800, 700, 600, 400],
+      background:"wheat",
+    }
 
+    const TestLineBar2 = {
+      title: '不同来源地游客占比',
+      id: 'linebar12',
+      textFont: '14',
+      height: '400px',
+      xAxisData: ['00:00', '01:15', '02:30', '03:45', '05:00', '06:15', '07:30', '08:45', '10:00', '11:15', '12:30', '13:45', '15:00', '16:15', '17:30', '18:45', '20:00', '21:15', '22:30', '23:45'],
+      piecesData: [
+        {
+          lte: 6,
+          color: 'green'
+        },
+        {
+          gt: 6,
+          lte: 8,
+          color: 'red'
+        },
+        {
+          gt: 8,
+          lte: 14,
+          color: 'green'
+        },
+        {
+          gt: 14,
+          lte: 17,
+          color: 'red'
+        },
+        {
+          gt: 17,
+          color: 'green'
+        }
+      ],
+      seriesData: [3600, 12280, 9250, 6260, 9270, 5300, 2550, 45500, 8400, 3190, 1380, 87390, 98400, 7500, 50000, 3750, 6800, 6700, 7600, 8400],
+      background:"wheat",
     }
     return (
       <div style={{ background: '#dfdfdf' }} id="padr">
         <Button onClick={this.handPdf} type="primart">导出PDF</Button>
         <Row>
-          <Col span="24">
-            <TestLineBar {...TestLineBar1} />eeeeeeeeeeee
+        <Col span="12">
+            <TestLineBar {...TestLineBar2} />
+          </Col>
+          <Col span="12">
+            <TestLineBar {...TestLineBar1} />
           </Col>
 
           <Col span="24">

@@ -3,9 +3,9 @@ import style from './style.less';
 
 class EchartsBox extends React.Component {
   render() {
-    const { title } = this.props;
+    const { title,background } = this.props;
     return (
-      <div class={`${style['PublicBox']}`}>
+      <div class={`${style['PublicBox']}`} style={{background:background||""}}>
         <h1>{title}</h1>
         {this.props.children}
       </div>
