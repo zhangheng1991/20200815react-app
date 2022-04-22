@@ -196,6 +196,10 @@ class DynamicFieldSet extends React.Component {
         let nu = _.max(keysList);
         getFieldDecorator('keys', { initialValue: [nu] });
         const keys = getFieldValue('keys');
+        const dataList={
+            PassengersList:["1"],
+            addresList:["xin"],
+        }
         const formItems = keys.map((k, index) => (
             <div className={`${style.FormItemBox}`} key={k}>
                 <Form.Item
@@ -208,12 +212,21 @@ class DynamicFieldSet extends React.Component {
                 >
                     {getFieldDecorator(`names[${k}]`, {
                         // validateTrigger: ['onChange', 'onBlur'],
+                        initialValue:dataList.PassengersList[index]&&dataList.PassengersList[index]||" ",
                         rules: [
                             {
                                 required: true,
                                 whitespace: true,
                                 message: "Please input passenger",
                             },
+                            {
+                                max:10,
+                                message: "Please input passenge长度不能超过10",
+                            },
+                            // {
+                            //     whitespace:true,
+                            //     message: "不能输入空格",
+                            // }
                         ],
                     })(<Input placeholder="passenger name" style={{ width: '90%', marginRight: 8 }} />)}
                     {/* {keys.length > 1 ? (
@@ -234,6 +247,7 @@ class DynamicFieldSet extends React.Component {
                 >
                     {getFieldDecorator(`addres[${k}]`, {
                         // validateTrigger: ['onChange', 'onBlur'],
+                        initialValue:dataList.addresList[index]&&dataList.addresList[index]||" ",
                         rules: [
                             {
                                 required: true,
