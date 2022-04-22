@@ -689,7 +689,7 @@ class CopyCom extends React.Component {
           {/* <div className={style.MytestD}>左上</div>
         <div className={style.MytestT}>右上</div>
         <div className={style.MytestL}>左下</div>
-        <div className={style.MytestR}>右下</div> */}
+        <div className={style.MytestR}>右下</div> */} 
           <InputNumber
             min={0}
             max={100}
