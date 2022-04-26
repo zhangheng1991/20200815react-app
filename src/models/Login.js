@@ -5,6 +5,7 @@
 import * as services from './../services/ServiceCommon';
 import {message} from "antd";
 import router from 'umi/router';
+
 export default{
   namespace: 'Login',                             //models命名空间，需全局唯一
   state: {

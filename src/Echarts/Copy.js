@@ -3,10 +3,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect, DatePicker } from 'antd';
 import _ from "loadsh";
 import moment from "moment";
+import { router } from "react-router";
 import style from './component/style.less';
 import TouristTransactionVolume from '../pages/echarts/charts/TouristTransactionVolume';
 import EchartsLine from "../component/echarts/line/Lines";
 import AddFormItem from "./copy/AddFormItem";
+
 import { scaleTimeCat } from '@antv/g2';
 const { MonthPicker, RangePicker } = DatePicker;
 // const dataR=[
@@ -134,6 +136,9 @@ class CopyCom extends React.Component {
     flagParm: "name-up",
     value: undefined,
   };
+
+  clientFormRef = React.createRef();// 搜索
+
   componentDidMount() {
     _.forEach({ 'a': 1, 'b': 2 }, function (value, key) {
       console.log(key, value);
@@ -257,6 +262,22 @@ class CopyCom extends React.Component {
   }
   handThrouD = () => {
     // this.throttle(this.handle.bind(this,this), 5000);
+    // router.push("/")
+    // console.log(this,this.refs[0],"this")
+    const data = this.getInfo.props.form.getFieldsValue();
+
+    this.getInfo.props.form.validateFields((err, values) => {
+      if (!err) {
+        const { keys, names } = values;
+        // this.props.handleSubmitP(values)
+        console.log('Received values of form: ', values);
+        console.log('Merged values:', keys.map(key => names[key]));
+        return values;
+      }
+    });
+
+
+    console.log(data, "data")
     const { count } = this.state;
     this.setState({ count: count + 1, loadingF: true })
     this.seachFunction({ id: 21111 })
@@ -438,6 +459,28 @@ class CopyCom extends React.Component {
       disabledSeconds: () => [55, 56],
     };
   }
+
+  handleSubmitP = (values) => {
+    // console.log(this.clientFormRef,this.clientFormRef.current.resetFields(),"onSubmit")
+    console.log(values, "values")
+    console.log(this.getInfo, "this.getInfo")
+    this.getInfo.props.form.validateFields((err, values) => {
+      if (!err) {
+        const { keys, names } = values;
+        // this.props.handleSubmitP(values)
+        console.log('Received values of form: ', values);
+        console.log('Merged values:', keys.map(key => names[key]));
+        return values;
+      }
+    });
+
+  }
+
+  // getInfo={}
+  oNref = (ref) => {
+    this.getInfo = ref;
+  }
+
   render() {
     const { textT, persent, dataL, dataU, time, dataG, dataK, parameter, flagParm } = this.state;
     console.log(flagParm.match(/(\S*)-/)[1], flagParm.match(/-(\S*)/)[1])
@@ -659,9 +702,12 @@ class CopyCom extends React.Component {
     console.log(dataKL, "dataKL")
     console.log(dataKK, "dataKK")
 
+    console.log(router, "router")
+
     return (
       <div>
-        <AddFormItem />
+        <AddFormItem clientFormRef={this.clientFormRef} handleSubmitP={this.handleSubmitP}
+          oNref={this.oNref} />
 
         <div className={`${style['copyBox']}`} id="content">
           <RangePicker
@@ -689,7 +735,7 @@ class CopyCom extends React.Component {
           {/* <div className={style.MytestD}>左上</div>
         <div className={style.MytestT}>右上</div>
         <div className={style.MytestL}>左下</div>
-        <div className={style.MytestR}>右下</div> */} 
+        <div className={style.MytestR}>右下</div> */}
           <InputNumber
             min={0}
             max={100}

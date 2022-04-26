@@ -18,6 +18,12 @@ class DynamicFieldSet extends React.Component {
         grid: [],
         position: {}
     }
+    componentDidMount(){
+     const {oNref}=this.props;
+     if(oNref){
+        this.props.oNref(this)
+     }
+    }
     remove = k => {
         const { form } = this.props;
         // can use data-binding to get
@@ -53,8 +59,10 @@ class DynamicFieldSet extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 const { keys, names } = values;
+                this.props.handleSubmitP(values)
                 console.log('Received values of form: ', values);
                 console.log('Merged values:', keys.map(key => names[key]));
+                return values;
             }
         });
     };
@@ -181,6 +189,7 @@ class DynamicFieldSet extends React.Component {
     }
 
     render() {
+        const { clientFormRef } = this.props;
         const { getFieldDecorator, getFieldValue } = this.props.form;
         const formItemLayout = {
             labelCol: { span: 6 },
@@ -196,9 +205,9 @@ class DynamicFieldSet extends React.Component {
         let nu = _.max(keysList);
         getFieldDecorator('keys', { initialValue: [nu] });
         const keys = getFieldValue('keys');
-        const dataList={
-            PassengersList:["1"],
-            addresList:["xin"],
+        const dataList = {
+            PassengersList: ["1"],
+            addresList: ["xin"],
         }
         const formItems = keys.map((k, index) => (
             <div className={`${style.FormItemBox}`} key={k}>
@@ -212,15 +221,17 @@ class DynamicFieldSet extends React.Component {
                 >
                     {getFieldDecorator(`names[${k}]`, {
                         // validateTrigger: ['onChange', 'onBlur'],
-                        initialValue:dataList.PassengersList[index]&&dataList.PassengersList[index]||" ",
+                        initialValue: dataList.PassengersList[index] && dataList.PassengersList[index] || " ",
                         rules: [
+
                             {
                                 required: true,
                                 whitespace: true,
                                 message: "Please input passenger",
                             },
+                            { type: "string" },
                             {
-                                max:10,
+                                max: 10,
                                 message: "Please input passenge长度不能超过10",
                             },
                             // {
@@ -247,7 +258,7 @@ class DynamicFieldSet extends React.Component {
                 >
                     {getFieldDecorator(`addres[${k}]`, {
                         // validateTrigger: ['onChange', 'onBlur'],
-                        initialValue:dataList.addresList[index]&&dataList.addresList[index]||" ",
+                        initialValue: dataList.addresList[index] && dataList.addresList[index] || " ",
                         rules: [
                             {
                                 required: true,
@@ -382,7 +393,7 @@ class DynamicFieldSet extends React.Component {
             // },
         };
 
-        
+
         return (
             <div style={{ width: "100%", margin: "0 auto" }}>
                 <Upload {...propsT}>
@@ -406,8 +417,32 @@ class DynamicFieldSet extends React.Component {
                 </div>
 
 
-                <Form onSubmit={this.handleSubmit}>
+                <Form
+                    onSubmit={this.handleSubmit}
+                    ref={clientFormRef}>
                     {formItems}
+
+                    {/* <Form.Item
+                    {...formItemLayout}
+                    // {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                    label='pagesList'
+                    required={false}
+                    ref={ref=>this.name=ref}
+                    // key={`age[${k}]`}
+                // style={{ display: "block" }}
+                >
+                    {getFieldDecorator(`pagesList`, {
+                        // validateTrigger: ['onChange', 'onBlur'],
+                        rules: [
+                            {
+                                required: true,
+                                whitespace: true,
+                                message: "Please input pagesList",
+                            },
+                        ],
+                    })(<Input placeholder="pagesList" style={{ width: '90%', marginRight: 8 }} />)}
+
+                </Form.Item> */}
                     {/* <Form.Item >
                         <Button type="dashed" onClick={this.add} style={{ width: '200px' }}>
                             <Icon type="plus" /> Add field
