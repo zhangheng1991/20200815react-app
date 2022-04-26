@@ -49,7 +49,13 @@ class EchartsIndex extends React.Component {
     clearTimeout(this.TimeID); //清除定时器
   }
   handPdf = () => {
-    message.error({content:"不用看了，啥也没有操作！！。导出在导出Pdf页面",top:"50%"})
+    message.error({content:"不用看了，啥也没有操作！！。导出在导出Pdf页面!!!",top:300})
+    // message.config({
+    //   top: 100,
+    //   // duration: 2,
+    //   // maxCount: 3,
+    //   content:"不用看了，啥也没有操作！！。导出在导出Pdf页面",
+    // });
     // message.config({
     //   top: 500,
     //   duration: 2,
