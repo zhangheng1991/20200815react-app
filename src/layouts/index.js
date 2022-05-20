@@ -63,7 +63,7 @@ class BasicLayout extends React.Component {
       type: 'Index/SelectListD',
       payload: { username: 'admin' },
     }).then(res => {
-     
+
     });
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -76,10 +76,10 @@ class BasicLayout extends React.Component {
     }
   }
   // shouldComponentUpdate(nextStates) { // 应该使用这个方法，否则无论state是否有变化都将会导致组件重新渲染
- 
+
   // }
   handleClick = e => {
-  
+
     this.setState({
       keyId: e.key,
     });
@@ -99,7 +99,7 @@ class BasicLayout extends React.Component {
   //       'Content-type': 'application/x-www-form-urlencoded',
   //     },
   //     data: [],
- 
+
   //     // let todayData = res.data.data[0];
 
   //   });
@@ -108,7 +108,7 @@ class BasicLayout extends React.Component {
   render() {
     const { Index } = this.props;
     const { NavData } = Index;
-   
+
     const loop = data =>
       data &&
       data.map((item, index) => {
@@ -136,11 +136,15 @@ class BasicLayout extends React.Component {
         <div className={styles.Header}>
           <h1 className={styles.title}>Yay! Welcome to echarts!</h1>
         </div>
-        <div className={styles.NormalBody}>
-          <Menu onClick={this.handleClick} selectedKeys={[this.state.keyId]} mode="horizontal">
-            {loop(NavData && NavData.length > 0 ? NavData : MenuData)}
-          </Menu>
-          {this.props.children}
+        <div className={styles.NormalBody} >
+          <div className={styles.NormalBodyMenu}>
+            <Menu onClick={this.handleClick} selectedKeys={[this.state.keyId]} mode="horizontal" >
+              {loop(NavData && NavData.length > 0 ? NavData : MenuData)}
+            </Menu>
+          </div>
+          <div className={styles.NormalBodyContent}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

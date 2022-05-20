@@ -27,6 +27,7 @@ const App = () =>  {
           onCollapse={(collapsed, type) => {
            
           }}
+          style={{minHeight:"660px",position:"fixed"}}
         >
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} onSelect={handleSelectMenu}>
@@ -48,7 +49,7 @@ const App = () =>  {
           </Menu>
         </Sider>
         <Layout>
-          <Content style={{ margin: '24px 16px 0' }}>
+          <Content style={{ margin: '24px 16px 0 220px' }}>
             {currentKey === '1' ? <SignalVertical/> : null}
             {currentKey === '2' ? <SignalHorizontal/> : null}
             {currentKey === '3' ? <MultiVertical/> : null}

@@ -107,12 +107,12 @@ const MultiVertical = () => {
 
   useEffect(() => {
     setTaskList({
-      'list1': getTaskList(10, 'item'),
-      'list2': getTaskList(10, 'task'),
-      'list3': getTaskList(10, 'record')
+      'list1': getTaskList(30, 'item'),
+      'list2': getTaskList(30, 'task'),
+      'list3': getTaskList(30, 'record')
     })
   }, []);
-  
+  console.log(taskList,"taskList")
   return (
     <div>
       <DragDropContext onDragEnd={onDragEnd}>

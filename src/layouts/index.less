@@ -14,6 +14,23 @@
   padding-top: 50px;
   align-items: center;
   justify-content: center;
+ 
+  
+}
+
+.NormalBodyMenu{
+  // border: 1px solid red;
+  :global{
+    .ant-menu{
+      position: fixed;
+      z-index: 1000;
+      width: 100%;
+      // border: 1px solid red;
+    }
+  }
+}
+.NormalBodyContent{
+  padding-top: 50px;
 }
 .title {
   /* height:4rem;
@@ -35,7 +52,7 @@
 .NormalBodyS{
   position: fixed;
   width: 100%;
-  z-index: 1000;
+  z-index: 100000;
   height: 50px;
   line-height: 50px;
   background: darkslateblue;

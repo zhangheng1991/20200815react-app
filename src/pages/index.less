@@ -15,3 +15,105 @@
     }
   }
 }
+.file,.reconciliation,.export{
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    height: 24px;
+    border-radius: 4px;
+    border: 1px solid red;
+    // margin-bottom: 20px;
+}
+.process{
+  display: flex;
+  align-items: center;
+  .processBox{
+    display: block;
+    height: 100%;
+    div{
+      display: block;
+    }
+  }
+}
+.arrow{
+  width: 80px;
+  font-size: 40px;
+  position: relative;
+  text-align: center;
+  // margin: 20px 30px 0px 30px;
+}
+
+// .processBox>.file:first-child::after{
+//   height: 12px;
+// }
+.processBoxContent{
+  display: flex !important;
+  align-items: center;
+  height: 40px;
+  position: relative;
+  // border:1px solid yellow;
+  .fileLine{
+    display: inline-block;
+    width: 50px;
+    height: 1px;
+    background: red;
+    // margin-top: 18px;
+    // margin-top: -20px;
+  }
+  .fileContent{
+    display: inline-block;
+    /* float: left; */
+    /* left: 20%; */
+    /* float: left; */
+    position: absolute;
+    /* left: 20px; */
+    right: 35px;
+    font-size: 20px;
+    top: 3px;
+    cursor: pointer;
+  }
+  p{
+    display: inline-block;
+    width: 1px;
+    height: 40px;
+    background: red;
+    position: relative;
+    // top: 15px;
+  }
+}
+.processBox{
+  display: flex !important;
+  align-items: center;
+}
+.processBox>.processBoxContent:first-child{
+  
+  p{
+    height: 30px;
+    top: 23px;
+    // margin-top: 10px;
+    // position: relative;
+    // top: 30px;
+   
+  }
+}
+.processBox>.processBoxContent:last-child{
+  
+  p{
+    height: 30px;
+    top: -6px;
+    // margin-top: 10px;
+    // position: relative;
+    // top: 30px;
+   
+  }
+}
+// .processBoxContent::after{
+//   display: inline-block;
+//   position: absolute;
+//   width: 1px;
+//   height: 100%;
+//   content: " ";
+//   background: red;
+//   top: 109px;
+//   // left: 150px;
+// }

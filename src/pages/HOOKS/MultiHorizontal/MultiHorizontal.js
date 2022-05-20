@@ -104,9 +104,9 @@ const MultiHorizontal = () => {
 
   useEffect(() => {
     setTaskList({
-      'list1': getTaskList(10, 'item'),
-      'list2': getTaskList(10, 'task'),
-      'list3': getTaskList(10, 'record')
+      'list1': getTaskList(27, 'item'),
+      'list2': getTaskList(27, 'task'),
+      'list3': getTaskList(27, 'record')
     })
   }, []);
   

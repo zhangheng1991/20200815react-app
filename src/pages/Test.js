@@ -2,12 +2,13 @@
  * Created by zhangheng on 2019/5/18.
  */
 import React from 'react';
-import { Row, Col, Checkbox,Transfer, Button } from 'antd';
+import { Row, Col, Checkbox, Transfer, Button } from 'antd';
 import { Select, Table } from 'antd';
 import { connect } from 'dva';
 import style from './index.less';
 import TestCom from "./test/TestCom";
-import TestOneCom from "./test/testOneCom"
+import TestOneCom from "./test/testOneCom";
+import _ from "loadsh";
 const { Option } = Select;
 const data = [
   {
@@ -33,6 +34,73 @@ class Test extends React.Component {
     selectedRowKeys: [1], // Check here to configure the default column
     mockData: [],
     targetKeys: [],
+    dataListNew : [
+      {
+        title: "类型1",
+        type: 1,
+        name: "文件",
+        data: [
+          {
+            title: "文件1",
+            type: 1,
+          },
+          {
+            title: "文件2",
+            type: 1,
+          },
+          {
+            title: "文件3",
+            type: 1,
+          },
+          {
+            title: "文件4",
+            type: 1,
+          },
+          {
+            title: "文件5",
+            type: 1,
+          },
+          {
+            title: "文件6",
+            type: 1,
+          },
+        ]
+      },
+      {
+        title: "类型2",
+        type: 2,
+        name: "对账",
+        data: [
+          {
+            title: "对账1",
+            type: 2,
+          },
+          {
+            title: "对账3",
+            type: 2,
+          },
+          {
+            title: "对账3",
+            type: 2,
+          },
+        ]
+      },
+      {
+        title: "类型3",
+        type: 3,
+        name: "导出",
+        data: [
+          {
+            title: "导出1",
+            type: 3,
+          },
+          {
+            title: "导出2",
+            type: 3,
+          },
+        ]
+      },
+    ]
   };
 
   componentDidMount() {
@@ -44,10 +112,10 @@ class Test extends React.Component {
     this.getMock();
   }
   onChange = value => {
-   
+
   };
   onSearch = value => {
-    
+
   };
   dataSource = [
     {
@@ -134,7 +202,7 @@ class Test extends React.Component {
     },
   ];
   onSelectChange = (selectedRowKeys, selectedRows) => {
-    
+
     this.setState({ selectedRowKeys });
   };
 
@@ -151,9 +219,9 @@ class Test extends React.Component {
         title: `content${i + 1}`,
         description: `description of content${i + 1}`,
         chosen: Math.random() * 2 > 1,
-        flag:i,
+        flag: i,
       };
-      if (data.flag<15) {
+      if (data.flag < 15) {
         targetKeys.push(data.key);
       }
       mockData.push(data);
@@ -162,7 +230,7 @@ class Test extends React.Component {
   };
 
   handleChange = targetKeys => {
-  
+
     this.setState({ targetKeys });
   };
 
@@ -172,11 +240,30 @@ class Test extends React.Component {
     </Button>
   );
 
+  handAdd = (obj) => {
+    const {dataListNew}=this.state;
+    
+    const data=obj;
+    data.title=obj.name;
+    const dataC=data;
+    data.data=[dataC]
+    // delete data.data;
+    console.log(obj, "obj")
+    console.log(data,"data")
+    // item.data.concat(data)
+    // const dataList=_.map(dataListNew,item=>({
+    //    ...item,
+    //    data:item.type===obj.type?_.concat(item.data,data):item.data
+    // }))
+    // this.setState({dataListNew:dataList})
+
+  }
+
   render() {
     const { Index } = this.props;
     const { TableList } = Index;
-    const { selectedRowKeys } = this.state;
-    
+    const { selectedRowKeys,dataListNew } = this.state;
+
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -186,9 +273,144 @@ class Test extends React.Component {
         flag: record.flag,
       }),
     };
+
+    const dataList = [
+      {
+        title: "文件1",
+        type: 1,
+      },
+      {
+        title: "文件2",
+        type: 1,
+      },
+      {
+        title: "文件3",
+        type: 1,
+      },
+      {
+        title: "文件4",
+        type: 1,
+      },
+      {
+        title: "文件5",
+        type: 1,
+      },
+      {
+        title: "文件6",
+        type: 1,
+      },
+      {
+        title: "对账1",
+        type: 2,
+      },
+      {
+        title: "对账2",
+        type: 2,
+      },
+      {
+        title: "对账3",
+        type: 2,
+      },
+      {
+        title: "导出1",
+        type: 3,
+      },
+      {
+        title: "导出2",
+        type: 3,
+      },
+    ]
+
+  
+    console.log(document.getElementsByClassName("processBox"))
+
     return (
       <div className={`${style['IndexBox']}`}>
+
+        <div className={style.process}>
+          <div className={style.processBox}>
+            {
+              dataListNew.map((item, index) => {
+                console.log(item, "item")
+                return <div className={style.processBoxContainer}>
+                  {
+                    item.data.map((itemD, index) => {
+                      if (itemD.type !== 3) {
+                        return <div className={style.processBoxContent}> <div className={style.file}>
+                          {itemD.title}
+                        </div>  <span onClick={this.handAdd.bind(this, item)} className={style.fileContent}>+</span><span className={style.fileLine}></span><p></p></div>
+                      } else {
+                        return <div className={style.processBoxContent}> <div className={style.file}>
+                          {itemD.title}
+                        </div> </div>
+                      }
+
+
+                    })
+                  }
+
+                </div>
+                // if (item.type ) {
+
+                //   {
+                //     item.data.map((itemD, index) => {
+
+                //         // <div></div>
+                //         return <div className={style.processBoxContent}> <div className={style.file}>
+                //           {itemD.title}
+                //         </div>  <span></span><p></p></div>
+
+                //     })
+                //   }
+                // }
+              })
+            }
+          </div>
+        </div>
         {/* <TestOneCom /> */}
+        {/* <div className={style.process}>
+          <div className={style.processBox}>
+            {
+              dataList.map((item, index) => {
+                if (item.type === 1) {
+                  // <div></div>
+                  return <div className={style.processBoxContent}> <div className={style.file}>
+                    {item.title}
+                  </div>  <span></span><p></p></div>
+                }
+
+              })
+            }
+          </div>
+          <div className={style.arrow}> → </div>
+          <div className={style.processBox}>
+            {
+              dataList.map((item, index) => {
+
+                if (item.type === 2) {
+                  return <div className={style.processBoxContent}> <div className={style.reconciliation}>
+                    {item.title}
+                  </div> <span></span><p></p> </div>
+                }
+
+              })
+            }
+          </div>
+          <div className={style.arrow}>+ →</div>
+          <div className={style.processBox}>
+            {
+              dataList.map((item, index) => {
+
+                if (item.type === 3) {
+                  return <div className={style.processBoxContent}><div className={style.export}>
+                    {item.title}
+                  </div> </div>
+                }
+              })
+            }
+          </div>
+        </div> */}
+
         <TestCom />
         111
         <Table
@@ -236,20 +458,20 @@ class Test extends React.Component {
           <Col span={8}>水水水水水水水水</Col>
         </Row>
         <Transfer
-        dataSource={this.state.mockData}
-        showSearch
-        listStyle={{
-          width: 250,
-          height: 300,
-        }}
-        operations={['to right', 'to left']}
-        targetKeys={this.state.targetKeys}
-        onChange={this.handleChange}
-        render={item => `${item.title}-${item.description}`}
-        footer={this.renderFooter}
-        placeholder="wwwwwww"
-        locale={{searchPlaceholder:"请输入搜索条件"}}
-      />
+          dataSource={this.state.mockData}
+          showSearch
+          listStyle={{
+            width: 250,
+            height: 300,
+          }}
+          operations={['to right', 'to left']}
+          targetKeys={this.state.targetKeys}
+          onChange={this.handleChange}
+          render={item => `${item.title}-${item.description}`}
+          footer={this.renderFooter}
+          placeholder="wwwwwww"
+          locale={{ searchPlaceholder: "请输入搜索条件" }}
+        />
       </div>
     );
   }
