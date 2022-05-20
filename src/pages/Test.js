@@ -2,7 +2,7 @@
  * Created by zhangheng on 2019/5/18.
  */
 import React from 'react';
-import { Row, Col, Checkbox, Transfer, Button } from 'antd';
+import { Row, Col, Checkbox, Transfer, Button,Icon } from 'antd';
 import { Select, Table } from 'antd';
 import { connect } from 'dva';
 import style from './index.less';
@@ -34,7 +34,7 @@ class Test extends React.Component {
     selectedRowKeys: [1], // Check here to configure the default column
     mockData: [],
     targetKeys: [],
-    dataListNew : [
+    dataListNew: [
       {
         title: "类型1",
         type: 1,
@@ -43,26 +43,34 @@ class Test extends React.Component {
           {
             title: "文件1",
             type: 1,
+            name: "文件",
+            key: "1-1",
           },
           {
             title: "文件2",
             type: 1,
+            name: "文件",
+            key: "1-2",
           },
           {
             title: "文件3",
             type: 1,
+            name: "文件",
           },
           {
             title: "文件4",
             type: 1,
+            name: "文件",
           },
           {
             title: "文件5",
             type: 1,
+            name: "文件",
           },
           {
             title: "文件6",
             type: 1,
+            name: "文件",
           },
         ]
       },
@@ -74,14 +82,17 @@ class Test extends React.Component {
           {
             title: "对账1",
             type: 2,
+            name: "对账",
           },
           {
             title: "对账3",
             type: 2,
+            name: "对账",
           },
           {
             title: "对账3",
             type: 2,
+            name: "对账",
           },
         ]
       },
@@ -93,16 +104,99 @@ class Test extends React.Component {
           {
             title: "导出1",
             type: 3,
+            name: "导出",
           },
           {
             title: "导出2",
             type: 3,
+            name: "导出",
           },
         ]
       },
-    ]
+    ],
+    dataLis: [
+      {
+        title: "文件1",
+        type: 1,
+        name: "文件",
+        key: "1-1",
+      },
+      {
+        title: "文件2",
+        type: 1,
+        name: "文件",
+        key: "1-2",
+      },
+      {
+        title: "文件3",
+        type: 1,
+        name: "文件",
+        key: "1-3",
+      },
+      {
+        title: "文件4",
+        type: 1,
+        name: "文件",
+        key: "1-4",
+      },
+      {
+        title: "文件5",
+        type: 1,
+        name: "文件",
+        key: "1-5",
+      },
+      {
+        title: "文件6",
+        type: 1,
+        name: "文件",
+        key: "1-6",
+      },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      },
+    ],
+    offsetWidth: _.get(document.getElementById("process"), "offsetWidth") || 1200
   };
-
+  saveRef = React.createRef()
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -110,6 +204,9 @@ class Test extends React.Component {
       payload: {},
     });
     this.getMock();
+    console.log(this.saveRef.current, "this.saveRef")
+    console.log(document.getElementById("process").offsetWidth, "offsetWidth")
+    this.setState({ offsetWidth: _.get(document.getElementById("process"), "offsetWidth") || 1200 })
   }
   onChange = value => {
 
@@ -241,20 +338,21 @@ class Test extends React.Component {
   );
 
   handAdd = (obj) => {
-    const {dataListNew}=this.state;
-    
-    const data=obj;
-    data.title=obj.name;
-    const dataC=data;
-    data.data=[dataC]
-    // delete data.data;
+    const { dataListNew } = this.state;
     console.log(obj, "obj")
-    console.log(data,"data")
+    const data = obj;
+    // data.title=obj.name;
+    const dataC = data;
+    data.data = [dataC]
+    // delete data.data;
+
+    console.log(data, "data")
     // item.data.concat(data)
-    // const dataList=_.map(dataListNew,item=>({
-    //    ...item,
-    //    data:item.type===obj.type?_.concat(item.data,data):item.data
-    // }))
+    const dataList = _.map(dataListNew, item => ({
+      ...item,
+      data: item.type === obj.type ? _.concat(item.data, data) : item.data
+    }))
+    console.log(dataList, "dataList")
     // this.setState({dataListNew:dataList})
 
   }
@@ -262,7 +360,7 @@ class Test extends React.Component {
   render() {
     const { Index } = this.props;
     const { TableList } = Index;
-    const { selectedRowKeys,dataListNew } = this.state;
+    const { selectedRowKeys, dataListNew, dataLis, offsetWidth } = this.state;
 
     const rowSelection = {
       selectedRowKeys,
@@ -321,15 +419,91 @@ class Test extends React.Component {
       },
     ]
 
-  
-    console.log(document.getElementsByClassName("processBox"))
+    console.log(offsetWidth, 150)
+    const fiedLine = parseInt(offsetWidth / 150)
+    console.log(fiedLine, "fiedLine")
+
+    const dataLine = _.chunk(dataLis, fiedLine);
+    console.log(dataLine, "dataLine")
+
+
 
     return (
       <div className={`${style['IndexBox']}`}>
 
-        <div className={style.process}>
+        <div className={style.process} id="process">
           <div className={style.processBox}>
             {
+              dataLine.map((item, index) => {
+                console.log(item, "item")
+                // return <div className={style.processBoxContent}> <div className={style.file}>
+                //   {item.title}
+                // </div>  </div>
+                return <div  className={(index % 2 === 0)?`${style["processBoxSecond"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`}>
+                  {
+                    item.map((itemD, key) => {
+                      if (key + 1 === fiedLine) {
+                        return <div className={`${style["processBoxContent"]} ${style["processBoxContentF"]}`}> <div className={style.file}>
+                          {itemD.title}-first
+                        </div> <div>+</div>  <Icon type="arrow-down" /> </div>
+                      } if (index % 2 === 0) {
+                        return <div className={style.processBoxContent}> <div className={style.file}>
+                          {itemD.title}-second
+                        </div> <div>+→</div> </div>
+                      }
+                      return <div className={`${style["processBoxContent"]} ${style["processBoxContentT"]}`}> <div>←+</div> <div className={style.file}>
+                        {itemD.title}-three
+                      </div> </div>
+                    })
+                  }
+                </div>
+
+              })
+            }
+          </div>
+
+          {/* <div className={style.process} id="process">
+          <div className={style.processBox}>
+            {
+              dataLis.map((item, index) => {
+                return <div className={style.processBoxContent}> <div className={style.file}>
+                  {item.title}
+                </div>  </div>
+
+              })
+            }
+          </div> */}
+
+
+          {/* <div className={style.processBox}>
+            {
+              dataLis.map((item,index)=>{
+                if(item.type===2){
+                  return <div className={style.processBoxContent}> <div className={style.file}>
+                  {item.title}
+                </div>  <span></span><p></p></div>
+                }
+               
+              })
+            }
+          </div>
+          <div className={style.processBox}>
+            {
+              dataLis.map((item,index)=>{
+                if(item.type===3){
+                  return <div className={style.processBoxContent}> <div className={style.file}>
+                  {item.title}
+                </div> </div>
+                }
+               
+              })
+            }
+          </div> */}
+        </div>
+
+        <div className={style.process}>
+          <div className={style.processBox}>
+            {/* {
               dataListNew.map((item, index) => {
                 console.log(item, "item")
                 return <div className={style.processBoxContainer}>
@@ -338,7 +512,7 @@ class Test extends React.Component {
                       if (itemD.type !== 3) {
                         return <div className={style.processBoxContent}> <div className={style.file}>
                           {itemD.title}
-                        </div>  <span onClick={this.handAdd.bind(this, item)} className={style.fileContent}>+</span><span className={style.fileLine}></span><p></p></div>
+                        </div>  <span onClick={this.handAdd.bind(this, itemD)} className={style.fileContent}>+</span><span className={style.fileLine}></span><p></p></div>
                       } else {
                         return <div className={style.processBoxContent}> <div className={style.file}>
                           {itemD.title}
@@ -364,7 +538,7 @@ class Test extends React.Component {
                 //   }
                 // }
               })
-            }
+            } */}
           </div>
         </div>
         {/* <TestOneCom /> */}

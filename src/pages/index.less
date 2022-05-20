@@ -17,7 +17,7 @@
 }
 .file,.reconciliation,.export{
     display: inline-block;
-    width: 150px;
+    min-width: 110px;
     text-align: center;
     height: 24px;
     border-radius: 4px;
@@ -47,9 +47,10 @@
 //   height: 12px;
 // }
 .processBoxContent{
+  width: 150px;
   display: flex !important;
   align-items: center;
-  height: 40px;
+  // height: 40px;
   position: relative;
   // border:1px solid yellow;
   .fileLine{
@@ -83,7 +84,14 @@
 }
 .processBox{
   display: flex !important;
+  flex: 1 1;
   align-items: center;
+  margin: 0 auto;
+  width: 1200px;
+  align-items: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: end;
 }
 .processBox>.processBoxContent:first-child{
   
@@ -117,3 +125,22 @@
 //   top: 109px;
 //   // left: 150px;
 // }
+.processBoxSecond{
+  display: flex !important;
+}
+.processBoxSecondN{
+  display: flex !important;
+  // flex-direction: column-reverse;
+  flex-direction: row-reverse;
+}
+.processBoxContentT{
+  // flex-direction: column-reverse;
+  margin-top: 30px;
+}
+.processBoxContentF{
+   display: block !important;
+   width: 110px;
+   text-align: center;
+   position: relative;
+    top: 25px;
+}
