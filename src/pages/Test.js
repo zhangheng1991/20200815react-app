@@ -999,13 +999,13 @@ class Test extends React.Component {
                       if (key + 1 === fiedLine) {
                         return <div className={`${style["processBoxContent"]} ${style["processBoxContentF"]}`} style={{marginRight:index % 2 === 1?"17px":"0px"}}> <div className={style.file}>
                           {itemD.title}-first
-                        </div> <div>+11</div>  <Icon type="arrow-down" /> </div>
+                        </div> <div><Icon type="plus-circle" /></div>  <Icon type="arrow-down" /> </div>
                       } if (index % 2 === 0) {
                         return <div className={style.processBoxContent}> <div className={style.file}>
                           {itemD.title}-second
-                        </div> <div>+→</div> </div>
+                        </div> <div><Icon type="plus-circle" /><Icon type="arrow-right" /></div> </div>
                       }
-                      
+
                       // if (index % 2 === 1) {
                       //   return <div className={style.processBoxContent}> <div className={style.file}>
                       //     {itemD.title}-four
@@ -1018,7 +1018,7 @@ class Test extends React.Component {
                       // }
                       
                       
-                      return <div className={`${style["processBoxContent"]} ${style["processBoxContentT"]}`}> <div>←+</div> <div className={style.file}>
+                      return <div className={`${style["processBoxContent"]} ${style["processBoxContentT"]}`}> <div><Icon type="arrow-left" /><Icon type="plus-circle" /></div> <div className={style.file}>
                         {itemD.title}-three
                       </div> </div>
                     })
