@@ -193,8 +193,241 @@ class Test extends React.Component {
         name: "导出",
         key: "3-4",
       },
+      {
+        title: "文件1",
+        type: 1,
+        name: "文件",
+        key: "1-1",
+      },
+      {
+        title: "文件2",
+        type: 1,
+        name: "文件",
+        key: "1-2",
+      },
+      {
+        title: "文件3",
+        type: 1,
+        name: "文件",
+        key: "1-3",
+      },
+      {
+        title: "文件4",
+        type: 1,
+        name: "文件",
+        key: "1-4",
+      },
+      {
+        title: "文件5",
+        type: 1,
+        name: "文件",
+        key: "1-5",
+      },
+      {
+        title: "文件6",
+        type: 1,
+        name: "文件",
+        key: "1-6",
+      },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      }, {
+        title: "文件1",
+        type: 1,
+        name: "文件",
+        key: "1-1",
+      },
+      {
+        title: "文件2",
+        type: 1,
+        name: "文件",
+        key: "1-2",
+      },
+      {
+        title: "文件3",
+        type: 1,
+        name: "文件",
+        key: "1-3",
+      },
+      {
+        title: "文件4",
+        type: 1,
+        name: "文件",
+        key: "1-4",
+      },
+      {
+        title: "文件5",
+        type: 1,
+        name: "文件",
+        key: "1-5",
+      },
+      {
+        title: "文件6",
+        type: 1,
+        name: "文件",
+        key: "1-6",
+      },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      },
+      {
+        title: "文件1",
+        type: 1,
+        name: "文件",
+        key: "1-1",
+      },
+      {
+        title: "文件2",
+        type: 1,
+        name: "文件",
+        key: "1-2",
+      },
+      {
+        title: "文件3",
+        type: 1,
+        name: "文件",
+        key: "1-3",
+      },
+      {
+        title: "文件4",
+        type: 1,
+        name: "文件",
+        key: "1-4",
+      },
+      {
+        title: "文件5",
+        type: 1,
+        name: "文件",
+        key: "1-5",
+      },
+      {
+        title: "文件6",
+        type: 1,
+        name: "文件",
+        key: "1-6",
+      },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      },
     ],
-    offsetWidth: _.get(document.getElementById("process"), "offsetWidth") || 1200
+    offsetWidth:0,
   };
   saveRef = React.createRef()
   componentDidMount() {
@@ -204,8 +437,8 @@ class Test extends React.Component {
       payload: {},
     });
     this.getMock();
-    console.log(this.saveRef.current, "this.saveRef")
-    console.log(document.getElementById("process").offsetWidth, "offsetWidth")
+    // console.log(this.saveRef.current, "this.saveRef")
+    // console.log(document.getElementById("process").offsetWidth, "offsetWidth")
     this.setState({ offsetWidth: _.get(document.getElementById("process"), "offsetWidth") || 1200 })
   }
   onChange = value => {
@@ -339,20 +572,20 @@ class Test extends React.Component {
 
   handAdd = (obj) => {
     const { dataListNew } = this.state;
-    console.log(obj, "obj")
+    // console.log(obj, "obj")
     const data = obj;
     // data.title=obj.name;
     const dataC = data;
     data.data = [dataC]
     // delete data.data;
 
-    console.log(data, "data")
+    // console.log(data, "data")
     // item.data.concat(data)
     const dataList = _.map(dataListNew, item => ({
       ...item,
       data: item.type === obj.type ? _.concat(item.data, data) : item.data
     }))
-    console.log(dataList, "dataList")
+    // console.log(dataList, "dataList")
     // this.setState({dataListNew:dataList})
 
   }
@@ -419,14 +652,13 @@ class Test extends React.Component {
       },
     ]
 
-    console.log(offsetWidth, 150)
+    // console.log(offsetWidth, 150)
     const fiedLine = parseInt(offsetWidth / 150)
-    console.log(fiedLine, "fiedLine")
+    // console.log(fiedLine, "fiedLine")
 
     const dataLine = _.chunk(dataLis, fiedLine);
-    console.log(dataLine, "dataLine")
-
-
+    // console.log(dataLine, "dataLine")
+    
 
     return (
       <div className={`${style['IndexBox']}`}>
@@ -435,13 +667,17 @@ class Test extends React.Component {
           <div className={style.processBox}>
             {
               dataLine.map((item, index) => {
-                console.log(item, "item")
+                // console.log(item, "item")
                 // return <div className={style.processBoxContent}> <div className={style.file}>
                 //   {item.title}
                 // </div>  </div>
+                // className={(index % 2 === 0)?`${style["processBoxSecond"]}`:(index % 2 === 1)?`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondFive"]}`}>
                 return <div  className={(index % 2 === 0)?`${style["processBoxSecond"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`}>
                   {
                     item.map((itemD, key) => {
+                      console.log(index,fiedLine,"key","fiedLine")
+                      // console.log(fiedLine,"fiedLine")
+
                       if (key + 1 === fiedLine) {
                         return <div className={`${style["processBoxContent"]} ${style["processBoxContentF"]}`}> <div className={style.file}>
                           {itemD.title}-first
@@ -451,6 +687,18 @@ class Test extends React.Component {
                           {itemD.title}-second
                         </div> <div>+→</div> </div>
                       }
+                      // if (index % 2 === 1) {
+                      //   return <div className={style.processBoxContent}> <div className={style.file}>
+                      //     {itemD.title}-four
+                      //   </div> <div>+→</div> </div>
+                      // }
+                      // if (index % 3 === 2) {
+                      //   return <div className={`${style["processBoxContent"]} ${style["processBoxContentFive"]}`}> <div className={style.file}>
+                      //     {itemD.title}-five
+                      //   </div> <div>+→</div> </div>
+                      // }
+                      
+                      
                       return <div className={`${style["processBoxContent"]} ${style["processBoxContentT"]}`}> <div>←+</div> <div className={style.file}>
                         {itemD.title}-three
                       </div> </div>
