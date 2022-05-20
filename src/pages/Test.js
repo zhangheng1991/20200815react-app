@@ -463,6 +463,284 @@ class Test extends React.Component {
         name: "文件",
         key: "1-6",
       },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      },
+      {
+        title: "文件1",
+        type: 1,
+        name: "文件",
+        key: "1-1",
+      },
+      {
+        title: "文件2",
+        type: 1,
+        name: "文件",
+        key: "1-2",
+      },
+      {
+        title: "文件3",
+        type: 1,
+        name: "文件",
+        key: "1-3",
+      },
+      {
+        title: "文件4",
+        type: 1,
+        name: "文件",
+        key: "1-4",
+      },
+      {
+        title: "文件5",
+        type: 1,
+        name: "文件",
+        key: "1-5",
+      },
+      {
+        title: "文件6",
+        type: 1,
+        name: "文件",
+        key: "1-6",
+      },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      },
+      {
+        title: "文件1",
+        type: 1,
+        name: "文件",
+        key: "1-1",
+      },
+      {
+        title: "文件2",
+        type: 1,
+        name: "文件",
+        key: "1-2",
+      },
+      {
+        title: "文件3",
+        type: 1,
+        name: "文件",
+        key: "1-3",
+      },
+      {
+        title: "文件4",
+        type: 1,
+        name: "文件",
+        key: "1-4",
+      },
+      {
+        title: "文件5",
+        type: 1,
+        name: "文件",
+        key: "1-5",
+      },
+      {
+        title: "文件6",
+        type: 1,
+        name: "文件",
+        key: "1-6",
+      },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      },
+      {
+        title: "文件1",
+        type: 1,
+        name: "文件",
+        key: "1-1",
+      },
+      {
+        title: "文件2",
+        type: 1,
+        name: "文件",
+        key: "1-2",
+      },
+      {
+        title: "文件3",
+        type: 1,
+        name: "文件",
+        key: "1-3",
+      },
+      {
+        title: "文件4",
+        type: 1,
+        name: "文件",
+        key: "1-4",
+      },
+      {
+        title: "文件5",
+        type: 1,
+        name: "文件",
+        key: "1-5",
+      },
+      {
+        title: "文件6",
+        type: 1,
+        name: "文件",
+        key: "1-6",
+      },
+      {
+        title: "对账1",
+        type: 2,
+        name: "对账",
+        key: "2-1",
+      },
+      {
+        title: "对账2",
+        type: 2,
+        name: "对账",
+        key: "2-2",
+      },
+      {
+        title: "对账3",
+        type: 2,
+        name: "对账",
+        key: "2-3",
+      },
+      {
+        title: "导出1",
+        type: 3,
+        name: "导出",
+        key: "3-1",
+      },
+      {
+        title: "导出2",
+        type: 3,
+        name: "导出",
+        key: "3-2",
+      },
+      {
+        title: "导出3",
+        type: 3,
+        name: "导出",
+        key: "3-3",
+      },
+      {
+        title: "导出4",
+        type: 3,
+        name: "导出",
+        key: "3-4",
+      },
+    
+    
     ],
     offsetWidth:0,
   };
@@ -704,6 +982,7 @@ class Test extends React.Component {
           <div className={style.processBox}>
             {
               dataLine.map((item, index) => {
+                console.log(index,"index")
                 // console.log(item, "item")
                 // return <div className={style.processBoxContent}> <div className={style.file}>
                 //   {item.title}
@@ -711,10 +990,10 @@ class Test extends React.Component {
                 // className={(index % 2 === 0)?`${style["processBoxSecond"]}`:(index % 2 === 1)?`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondFive"]}`}>
                 // className={(index % 2 === 0)?`${style["processBoxSecond"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`}
                 // className={(index % 3 === 0)?`${style["processBoxSecond"]}`:(index % 3 === 1)?`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondFive"]}`}>
-                return <div style={{width:"1462px !important"}}  className={(index % 2 === 0)?`${style["processBoxSecond"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`}>
+                return <div style={{width:"1462px !important"}}  className={index % 2 === 0?`${style["processBoxSecond"]}`:`${style["processBoxSecond"]} ${style["processBoxSecondN"]}`}>
                   {
                     item.map((itemD, key) => {
-                      console.log(key,fiedLine,"key","fiedLine")
+                      // console.log(key,fiedLine,"key","fiedLine")
                       // console.log(fiedLine,"fiedLine")
 
                       if (key + 1 === fiedLine) {
