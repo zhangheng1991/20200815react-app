@@ -997,7 +997,7 @@ class Test extends React.Component {
                       // console.log(fiedLine,"fiedLine")
 
                       if (key + 1 === fiedLine) {
-                        return <div className={`${style["processBoxContent"]} ${style["processBoxContentF"]}`}> <div className={style.file}>
+                        return <div className={`${style["processBoxContent"]} ${style["processBoxContentF"]}`} style={{marginRight:index % 2 === 1?"17px":"0px"}}> <div className={style.file}>
                           {itemD.title}-first
                         </div> <div>+11</div>  <Icon type="arrow-down" /> </div>
                       } if (index % 2 === 0) {
