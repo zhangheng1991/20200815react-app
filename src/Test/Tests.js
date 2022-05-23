@@ -295,7 +295,7 @@ class Tests extends React.Component {
   };
 
 
-   mergeCells = (text, data, key, index) => {
+  mergeCells = (text, data, key, index) => {
     // 上一行该列数据是否一样
     if (index !== 0 && text === data[index - 1][key]) {
       return 0;
@@ -310,7 +310,7 @@ class Tests extends React.Component {
     }
     return rowSpan;
   };
-  
+
 
   render() {
     const { dataSource } = this.state;
@@ -341,19 +341,27 @@ class Tests extends React.Component {
     const dataR = [
       {
         classnName: "1111",
-        title: "22222"
+        kpiName: "22222", 
+        startValue:"w",
+        endValue:"1",
       },
       {
         classnName: "1111",
-        title: "22222"
+        kpiName: "22222",
+        startValue:"w1",
+        endValue:"2",
       },
       {
         classnName: "1111",
-        title: "22222"
+        kpiName: "22222",
+        startValue:"w2",
+        endValue:"3",
       },
       {
         classnName: "1111",
-        title: "22222"
+        kpiName: "22222",
+        startValue:"w3",
+        endValue:"4",
       },
     ]
     const columnsR = [
