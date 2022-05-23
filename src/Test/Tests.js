@@ -28,22 +28,22 @@ const EditableRow = ({ form, index, ...props }) => (
 );
 
 const EditableFormRow = Form.create()(EditableRow);
-const dataP =[
+const dataP = [
   {
-    title:"右面",
-    key:"right",
+    title: "右面",
+    key: "right",
   },
   {
-    title:"底部",
-    key:"bottom",
+    title: "底部",
+    key: "bottom",
   },
   {
-    title:"左面",
-    key:"left",
+    title: "左面",
+    key: "left",
   },
   {
-    title:"顶部",
-    key:"top",
+    title: "顶部",
+    key: "top",
   },
 ]
 @connect(({ TestModel }) => ({ TestModel }))
@@ -195,9 +195,9 @@ class Tests extends React.Component {
       tableList: [],
       value: '',
       copied: false,
-      visible:false,
-      placement:"right",
-      name:"右面",
+      visible: false,
+      placement: "right",
+      name: "右面",
     };
   }
   componentDidMount() {
@@ -214,16 +214,16 @@ class Tests extends React.Component {
   }
   //删除行
   handleDelete = key => {
- 
+
     const dataSource = [...this.state.dataSource];
-    
+
     this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
     const { TestModel, dispatch } = this.props;
     dispatch({
       type: 'TestModel/save',
       payload: { tableList: dataSource.filter(item => item.key !== key) },
     });
-   
+
   };
   //新增行
   handleAdd = () => {
@@ -249,12 +249,12 @@ class Tests extends React.Component {
       type: 'TestModel/save',
       payload: { tableList: [...dataSource, newData] },
     });
-  
+
   };
   //input框输入保存
   handleSave = row => {
     const { TestModel, dispatch } = this.props;
-    
+
     const newData = [...this.state.dataSource];
     const index = newData.findIndex(item => row.key === item.key);
     const item = newData[index];
@@ -270,11 +270,11 @@ class Tests extends React.Component {
       type: 'TestModel/save',
       payload: { tableList: newData },
     });
-   
+
   };
   //打印当前表格数据
   handledCurrent = () => {
-    
+
     // alert(this.state.dataSource)
   };
   //全部删除
@@ -286,13 +286,31 @@ class Tests extends React.Component {
     });
     this.setState({ dataSource: this.data });
   };
-   showDrawer = (obj) => {
-   this.setState({visible:true,placement:obj.key,name:obj.title})
+  showDrawer = (obj) => {
+    this.setState({ visible: true, placement: obj.key, name: obj.title })
   };
 
-   onClose = () => {
-    this.setState({visible:false})
+  onClose = () => {
+    this.setState({ visible: false })
   };
+
+
+   mergeCells = (text, data, key, index) => {
+    // 上一行该列数据是否一样
+    if (index !== 0 && text === data[index - 1][key]) {
+      return 0;
+    }
+    let rowSpan = 1;
+    // 判断下一行是否相等
+    for (let i = index + 1; i < data.length; i++) {
+      if (text !== data[i][key]) {
+        break;
+      }
+      rowSpan++;
+    }
+    return rowSpan;
+  };
+  
 
   render() {
     const { dataSource } = this.state;
@@ -319,22 +337,89 @@ class Tests extends React.Component {
         }),
       };
     });
+
+    const dataR = [
+      {
+        classnName: "1111",
+        title: "22222"
+      },
+      {
+        classnName: "1111",
+        title: "22222"
+      },
+      {
+        classnName: "1111",
+        title: "22222"
+      },
+      {
+        classnName: "1111",
+        title: "22222"
+      },
+    ]
+    const columnsR = [
+      {
+        title: '项目',
+        dataIndex: 'classnName',
+        key: 'classnName',
+        render: (text, record, index) => {
+          const obj = {
+            children: text !== null ? text : '',
+            attrs: {},
+            props: {},
+          };
+          obj.props.rowSpan = this.mergeCells(text, dataR, 'classnName', index);
+          return obj;
+        },
+      },
+      {
+        title: '细项',
+        dataIndex: 'kpiName',
+        key: 'kpiName',
+        ellipsis: true,
+
+      },
+      {
+        title: '上年底数值',
+        dataIndex: 'startValue',
+        key: 'startValue',
+        renderType: 'money',
+        align: 'right',
+
+      },
+      {
+        title: '手工调整值',
+        dataIndex: 'endValue',
+        key: 'endValue',
+        renderType: 'money',
+        align: 'right',
+
+      },
+    ];
     return (
       <div>
-        {/* <div className={styles.backGround}></div> */}
+        <Table
+          // components={components}
+          rowClassName={() => 'editable-row'}
+          bordered
+          dataSource={dataR}
+          columns={columnsR}
+          pageSize="10000000"
+          pagintion={false}
+        />
+        {/* <div className={styles.backGround}></div> */}111111111111111
         <div className={styles.content}>
           {
-            dataP.map((item,index)=>{
-              return(
-                <Button type="primary" onClick={this.showDrawer.bind(this,item)} key={item.key}>
-                   {item.title}
-              </Button>
+            dataP.map((item, index) => {
+              return (
+                <Button type="primary" onClick={this.showDrawer.bind(this, item)} key={item.key}>
+                  {item.title}
+                </Button>
               )
             })
           }
-        
+
           <Drawer
-            title={"抽屉方向("+this.state.name+")"}
+            title={"抽屉方向(" + this.state.name + ")"}
             closable={false}
             onClose={this.onClose}
             visible={this.state.visible}
