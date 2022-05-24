@@ -341,27 +341,27 @@ class Tests extends React.Component {
     const dataR = [
       {
         classnName: "1111",
-        kpiName: "22222", 
-        startValue:"w",
-        endValue:"1",
+        kpiName: "22222",
+        startValue: "w",
+        endValue: "1",
       },
       {
         classnName: "1111",
         kpiName: "22222",
-        startValue:"w1",
-        endValue:"2",
+        startValue: "w1",
+        endValue: "2",
       },
       {
         classnName: "1111",
-        kpiName: "22222",
-        startValue:"w2",
-        endValue:"3",
+        kpiName: "2222244",
+        startValue: "w2",
+        endValue: "3",
       },
       {
         classnName: "1111",
-        kpiName: "22222",
-        startValue:"w3",
-        endValue:"4",
+        kpiName: "2222244",
+        startValue: "w3",
+        endValue: "4",
       },
     ]
     const columnsR = [
@@ -376,6 +376,11 @@ class Tests extends React.Component {
             props: {},
           };
           obj.props.rowSpan = this.mergeCells(text, dataR, 'classnName', index);
+          // obj.props.colSpan=5;
+          // if (index > 2) {
+          //   console.log(2222)
+          //   obj.props.colSpan = 2;
+          // }
           return obj;
         },
       },
@@ -384,7 +389,18 @@ class Tests extends React.Component {
         dataIndex: 'kpiName',
         key: 'kpiName',
         ellipsis: true,
+        render: (text, record, index) => {
+          // console.log(index,"index")
+          const obj = {
+            children: text !== null ? text : '',
+            attrs: {},
+            props: {},
+          };
+          obj.props.rowSpan = this.mergeCells(text, dataR, 'kpiName', index);
 
+         
+          return obj;
+        },
       },
       {
         title: '上年底数值',

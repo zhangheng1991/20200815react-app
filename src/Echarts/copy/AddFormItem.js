@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Form, Input, Icon, Button, Upload, message } from 'antd';
+import { Form, Input, Icon, Button, Upload, Table ,message} from 'antd';
 import _ from "loadsh";
 import Papa from "papaparse";
 import * as XLSX from "xlsx";
@@ -16,13 +16,14 @@ class DynamicFieldSet extends React.Component {
     state = {
         fileList: [],
         grid: [],
-        position: {}
+        position: {},
+        dataSource:[],
     }
-    componentDidMount(){
-     const {oNref}=this.props;
-     if(oNref){
-        this.props.oNref(this)
-     }
+    componentDidMount() {
+        const { oNref } = this.props;
+        if (oNref) {
+            this.props.oNref(this)
+        }
     }
     remove = k => {
         const { form } = this.props;
@@ -187,10 +188,88 @@ class DynamicFieldSet extends React.Component {
     onMouseup = () => {
 
     }
+    //生成表格
+    handTables=(isHeader)=>{
+         const {position,grid,finderType,dataSource}=this.state;
+         if(JSON.stringify(position) !=='{}'){
+                        const start= _.get(position,"start");
+                        const end =_.get(position,"end");
+                        const startCol=_.get(start,'j');
+                        const endCol =_.get(end,"j");
+                        let originaldDataSource=dataSource;
+                        if(isHeader==="Y"){
+                            for(let i=startCol;i<=endCol;i++){
+                                if( _.find(dataSource,o=>o.label===_.get(grid[_.get(start,'i')][i],'value'))){
+                                       message.error("lable值不能重复");
+                                       return
+                                }
+                                originaldDataSource=_.concat(originaldDataSource,{
+                                    label:_.get(grid[_.get(start,'i')][i],"value"),
+                                    index:i,
+                                    type:"string",
+                                    name:_.get(grid[_.get(start,'i')][i],"value"),
+                                    processorConfigList:[],
+                                    display:"0",
+                                })
+                             }
+                             this.setState({
+                                 startLine:_.get(start,'i'),
+                                 flag:_.get(grid[_.get(start,"i")][startCol],"value")
+                             })
+                        }else{
+                            for(let i=startCol;i<=endCol;i++){
+                                originaldDataSource=_.concat(originaldDataSource,{
+                                    label:"",
+                                    index:i,
+                                    type:"staring",
+                                    name:"",
+                                    processorConfigList:[],
+                                    display:"0",
+                                })
+                            }
+                            this.setState({
+                                startLine:_.get(start,'i'),
+                                flag:_.get(grid[_.get(start,"i")][startCol],"value")
+                            })
+                        }
+                        this.setState({
+                            dataSource:originaldDataSource,
+                            position:{}
+                        })
+
+         }else{
+             message.error("请选择要设置的表头在生成表格")
+         }
+    }
+
+    columns=[
+        {
+            title:"label",
+            dataIndex:"label",
+            key:"label"
+        },
+        {
+            title:"name",
+            dataIndex:"name",
+            key:"name"
+        },
+        {
+            title:"type",
+            dataIndex:"type",
+            key:"type"
+        },
+        {
+            title:"Index",
+            dataIndex:"index",
+            key:"index"
+        },
+    ]
 
     render() {
         const { clientFormRef } = this.props;
         const { getFieldDecorator, getFieldValue } = this.props.form;
+        const { dataSource}=this.state;
+        console.log(dataSource,"dataSource")
         const formItemLayout = {
             labelCol: { span: 6 },
             wrapperCol: { span: 18 },
@@ -371,8 +450,8 @@ class DynamicFieldSet extends React.Component {
             </div>
         ));
         const height = document.body.clientHeight;
-        console.log(height, "height")
-        console.log(this.state.grid)
+        // console.log(height, "height")
+        // console.log(this.state.grid)
         const propsT = {
             name: 'file',
             beforeUpload: this.beforeUpload,
@@ -392,6 +471,7 @@ class DynamicFieldSet extends React.Component {
             //   }
             // },
         };
+        
 
 
         return (
@@ -415,8 +495,13 @@ class DynamicFieldSet extends React.Component {
                         selected={this.state.position}
                     />
                 </div>
-
-
+                <Button type="primary" onClick={this.handTables.bind(this,"Y")}>
+                    设置表头
+                </Button>
+                <Button type="primary" onClick={this.handTables.bind(this,"N")}>
+                    设置索引
+                </Button>
+                <Table  columns={this.columns} dataSource={dataSource}/>
                 <Form
                     onSubmit={this.handleSubmit}
                     ref={clientFormRef}>
