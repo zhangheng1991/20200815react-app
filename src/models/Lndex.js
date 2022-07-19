@@ -10,7 +10,7 @@ export default{
   state: {
     NavData: [],//导航数据
     TableList:[],
-    type:"111"
+    type:"初始化"
   },                                      //models存储的数据store
   subscriptions: {                                             //订阅，在app.start()即启动项目时被执行
     setup({ dispatch, history }) {
@@ -83,7 +83,7 @@ export default{
     *stepConfig( {payload:values},{call,put,select}){
       console.log(values,"values")
       const back = values||"2222"; 
-      let type="44444"
+      let type=values||"调用接口没有返回值默认值：2111"
       yield put({
         type:"save",
         payload:{type}

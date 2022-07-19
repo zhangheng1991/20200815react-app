@@ -33,11 +33,11 @@ function MyHooks(props) {
   const handClick = () => {
     setCount(count - 1);
     stepConfig()
-    
+
   };
 
   const stepConfig = () => {
-    props.stepConfig("45435345")
+    props.stepConfig("点击传值")
   }
 
   const homePage = () => {
@@ -57,7 +57,7 @@ function MyHooks(props) {
   const onError = e => {
     logger.logError(e, 'error in file-viewer');
   };
-  console.log(props.type,"props.type")
+  console.log(props.type, "props.type")
   // const onDocumentLoadSuccess=()=> {
   //   // setNumPages(numPages);
   // }
@@ -65,6 +65,8 @@ function MyHooks(props) {
   return (
     <div className={style.box}>
       <div>
+        props.type:
+        {props.type}
         <Document
           file="./11.pdf"
           onLoadSuccess={onDocumentLoadSuccess}
