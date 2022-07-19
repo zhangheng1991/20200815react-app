@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FileViewer from 'react-file-viewer';
 import logger from 'logging-library';
-import {connect} from "dva";
+import { connect } from "dva";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import { CustomErrorComponent } from 'custom-error';
 // import {Pdf} from 'react-pdf-js';
@@ -14,40 +14,66 @@ import style from './style.less';
 const type = 'docx';
 
 function MyHooks(props) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(11);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   function onDocumentLoadSuccess({ numPages }) {
     setPageNumber(numPages);
   }
   useEffect(() => {
-   
-     //hooks写法调用接口形式也可以用老的写法
-     props.dispatch({
-      type: "Index/homePage", payload: { username:"admin"}
-    })
-  },[]);
+    homePage()
+    SelectListD()
+    //hooks写法调用接口形式也可以用老的写法
+    // props.dispatch({
+    //   type: "Index/homePage", payload: { username: "admin" }
+    // })
+    console.log(count, "count")
+    console.log(props, "props")
+  }, [count]);
   const handClick = () => {
     setCount(count - 1);
+    stepConfig()
+    
   };
+
+  const stepConfig = () => {
+    props.stepConfig("45435345")
+  }
+
+  const homePage = () => {
+    props.homePage({ username: "admin" }).then((res) => {
+      console.log(res, "res")
+    })
+  }
+
+  const SelectListD = () => {
+    props.SelectListD({ username: "admin" }).then((res) => {
+      console.log(res, "res")
+    })
+  }
+  // if(count){
+  //   setCount(333)
+  // }
   const onError = e => {
     logger.logError(e, 'error in file-viewer');
   };
+  console.log(props.type,"props.type")
   // const onDocumentLoadSuccess=()=> {
   //   // setNumPages(numPages);
   // }
+  // console.log(NavData, "NavData")
   return (
     <div className={style.box}>
       <div>
-      <Document
-        file="./11.pdf"
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <p>Page {pageNumber} of {numPages}</p>
-    </div>
-       {/* <Document
+        <Document
+          file="./11.pdf"
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          <Page pageNumber={pageNumber} />
+        </Document>
+        <p>Page {pageNumber} of {numPages}</p>
+      </div>
+      {/* <Document
         file="./11.pdf"
         onLoadSuccess={onDocumentLoadSuccess}
       >
@@ -91,4 +117,20 @@ function MyHooks(props) {
   );
 }
 
-export default connect(({Index})=>({Index}))(MyHooks) ;
+const mapDispatchToprops = {
+  SelectListD: query => ({
+    type: "Index/SelectListD", payload: query || {}
+  }),
+  homePage: query => ({
+    type: "Index/homePage", payload: query || {}
+  }),
+  stepConfig: query => ({
+    type: "Index/stepConfig", payload: query || {}
+  })
+}
+const mapStateProps = state => ({
+  type: state.Index.type
+})
+
+// export default connect(({ Index }) => ({ Index }))(MyHooks);
+export default connect(mapStateProps, mapDispatchToprops)(MyHooks);

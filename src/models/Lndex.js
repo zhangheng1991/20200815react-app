@@ -10,6 +10,7 @@ export default{
   state: {
     NavData: [],//导航数据
     TableList:[],
+    type:"111"
   },                                      //models存储的数据store
   subscriptions: {                                             //订阅，在app.start()即启动项目时被执行
     setup({ dispatch, history }) {
@@ -32,6 +33,7 @@ export default{
       if(sessionStorage.getItem("userInfo")){
         const back = yield call(services.loadServerData,"react/umi/homePage", values); 
         if(back.data.status==1){
+          console.log(back.data.data,"back.data.data")
           yield put({
             type:"save",
             payload:{
@@ -77,6 +79,17 @@ export default{
       //     TableList:back.data.data
       //   }
       // })
+    },
+    *stepConfig( {payload:values},{call,put,select}){
+      console.log(values,"values")
+      const back = values||"2222"; 
+      let type="44444"
+      yield put({
+        type:"save",
+        payload:{type}
+      })
+      return back;
+     
     },
   },
   reducers: {

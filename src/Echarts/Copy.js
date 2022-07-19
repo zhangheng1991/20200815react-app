@@ -8,7 +8,7 @@ import style from './component/style.less';
 import TouristTransactionVolume from '../pages/echarts/charts/TouristTransactionVolume';
 import EchartsLine from "../component/echarts/line/Lines";
 import AddFormItem from "./copy/AddFormItem";
-
+import "./style.less";
 import { scaleTimeCat } from '@antv/g2';
 const { MonthPicker, RangePicker } = DatePicker;
 // const dataR=[
@@ -481,6 +481,15 @@ class CopyCom extends React.Component {
     this.getInfo = ref;
   }
 
+  rowClassNameFunc=(obj)=>{
+       console.log(obj,"obj")
+       if(obj.type==="true"){
+          return "red";
+       }else{
+         return "yellow"
+       }
+  }
+
   render() {
     const { textT, persent, dataL, dataU, time, dataG, dataK, parameter, flagParm } = this.state;
     console.log(flagParm.match(/(\S*)-/)[1], flagParm.match(/-(\S*)/)[1])
@@ -509,6 +518,7 @@ class CopyCom extends React.Component {
         name: `Edward King ${i}`,
         age: 32,
         address: `London, Park Lane no. ${i}`,
+        type:i % 2 == 0?"true":"false",
       });
       dataSource.push({
         key: i,
@@ -516,6 +526,7 @@ class CopyCom extends React.Component {
         age: i,
         address: '西湖区湖底公园' + i + "号",
         persent: i,
+        type:i % 2 == 0?"true":"false",
       })
 
       dataD.push({
@@ -577,6 +588,7 @@ class CopyCom extends React.Component {
     const dataT = {
       dataSource: dataSource,
       columns: columns,
+      rowClassName:this.rowClassNameFunc,
     };
     const TouristTransactionVolume1 = {
       id: 'TouristTransactionVolumeY',

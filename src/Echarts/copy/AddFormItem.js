@@ -501,7 +501,7 @@ class DynamicFieldSet extends React.Component {
                 <Button type="primary" onClick={this.handTables.bind(this,"N")}>
                     设置索引
                 </Button>
-                <Table  columns={this.columns} dataSource={dataSource}/>
+                <Table pagination={false} rowKey="index"  columns={this.columns} dataSource={dataSource}/>
                 <Form
                     onSubmit={this.handleSubmit}
                     ref={clientFormRef}>

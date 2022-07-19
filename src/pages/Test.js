@@ -905,6 +905,10 @@ class Test extends React.Component {
 
   }
 
+  handDelete=(obj)=>{
+       console.log(obj,"obj")
+  }
+
   render() {
     const { Index } = this.props;
     const { TableList } = Index;
@@ -998,12 +1002,12 @@ class Test extends React.Component {
 
                       if (key + 1 === fiedLine) {
                         return <div className={`${style["processBoxContent"]} ${style["processBoxContentF"]}`} style={{marginRight:index % 2 === 1?"8px":"0px"}}> <div className={style.file}>
-                          {itemD.title}-first
-                        </div> <div><Icon type="plus-circle" /></div>  <Icon type="arrow-down" /> </div>
+                          {itemD.title} <span className={style.deleteBox} onClick={this.handDelete.bind(this,itemD)}>×</span>
+                        </div> <div><Icon style={{cursor:"pointer"}} type="plus-circle" /></div>  <Icon type="arrow-down" /> </div>
                       } if (index % 2 === 0) {
                         return <div className={style.processBoxContent}> <div className={style.file}>
-                          {itemD.title}-second
-                        </div> <div><Icon type="plus-circle" /><Icon type="arrow-right" /></div> </div>
+                          {itemD.title}<span className={style.deleteBox} onClick={this.handDelete.bind(this,itemD)}>×</span>
+                        </div> <div><Icon style={{cursor:"pointer"}} type="plus-circle" /><Icon type="arrow-right" /></div> </div>
                       }
 
                       // if (index % 2 === 1) {
@@ -1018,8 +1022,8 @@ class Test extends React.Component {
                       // }
                       
                       
-                      return <div className={`${style["processBoxContent"]} ${style["processBoxContentT"]}`}> <div><Icon type="arrow-left" /><Icon type="plus-circle" /></div> <div className={style.file}>
-                        {itemD.title}-three
+                      return <div className={`${style["processBoxContent"]} ${style["processBoxContentT"]}`}> <div><Icon  type="arrow-left" /><Icon style={{cursor:"pointer"}} type="plus-circle" /></div> <div className={style.file}>
+                        {itemD.title}<span className={style.deleteBox} onClick={this.handDelete.bind(this,itemD)}>×</span>
                       </div> </div>
                     })
                   }

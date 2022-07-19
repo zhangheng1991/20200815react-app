@@ -5,6 +5,7 @@ import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styles from './Tests.less';
 import Echarts from 'echarts';
+// import { MonacoDiffEditor } from 'react-monaco-editor';
 import { Table, Input, Button, Popconfirm, Form, Drawer } from 'antd';
 import EditableCell from './TestChildren';
 import { connect } from 'dva';
@@ -398,7 +399,7 @@ class Tests extends React.Component {
           };
           obj.props.rowSpan = this.mergeCells(text, dataR, 'kpiName', index);
 
-         
+
           return obj;
         },
       },
@@ -408,6 +409,18 @@ class Tests extends React.Component {
         key: 'startValue',
         renderType: 'money',
         align: 'right',
+        render: (text, record, index) => {
+          // console.log(index,"index")
+          const obj = {
+            children: text !== null ? text : '',
+            attrs: {},
+            props: {},
+          };
+          obj.props.rowSpan = this.mergeCells(text, dataR, 'startValue', index);
+
+
+          return obj;
+        },
 
       },
       {
@@ -419,8 +432,21 @@ class Tests extends React.Component {
 
       },
     ];
+    const code1 = "// your original code...";
+    const code2 = "// a different version...";
+    const options = {
+      //renderSideBySide: false
+    };
     return (
       <div>
+        {/* <MonacoDiffEditor
+          width="800"
+          height="600"
+          language="javascript"
+          original={code1}
+          value={code2}
+          options={options}
+        /> */}
         <Table
           // components={components}
           rowClassName={() => 'editable-row'}
