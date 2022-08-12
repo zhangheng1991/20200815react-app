@@ -29,16 +29,16 @@ function MyHooks(props) {
     // })
     console.log(count, "count")
     console.log(props, "props");
-    // return function cleanup(){
-    //   stepConfig()
-    //   // setCount(1)
-    // }
-  }, [count]);//count 改变就会调用接口
+    return function cleanup(){
+      stepConfig()
+      // setCount(1)
+    }
+  }, []);//count 改变就会调用接口
 
 
   const handClick = () => {
     setCount(count + 1);
-    // stepConfig()
+    stepConfig()
 
   };
 

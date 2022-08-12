@@ -19,7 +19,7 @@ const SignalVertical = () => {
     margin: `0 0 ${grid}px 0`,
 
     // change background color if dragging
-    background: isDragging ? "lightgreen" : "grey",
+    background: isDragging ? "red" : "grey",
 
     // styles we need to apply on draggables
     ...draggableStyle
@@ -28,7 +28,8 @@ const SignalVertical = () => {
   const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? "lightblue" : "lightgrey",
     padding: grid,
-    width: 250
+    width: "100%",
+    textAlign:"center"
   });
 
   /**
@@ -60,7 +61,7 @@ const SignalVertical = () => {
   }
 
   useEffect(() => {
-    setTaskList(getItems(10))
+    setTaskList(getItems(100))
   }, []);
   
   return (

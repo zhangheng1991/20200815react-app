@@ -74,6 +74,7 @@ const MultiVertical = () => {
   }
 
   const onDragEnd = (result) => {
+    console.log(result,"result")
     const { source, destination } = result;
    
     if (!destination) {
