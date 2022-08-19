@@ -4,6 +4,7 @@ import _ from "loadsh";
 import { Modal, Button, Select, Radio, Table,Tag,message  } from 'antd';
 import moment from "moment";
 import HeaderBody from './component/HeaderBody';
+import EditableTable from "./Header/HeaderBody";
 import style from "./style.less";
 const { Option } = Select;
 
@@ -612,6 +613,9 @@ class Header extends React.Component {
         </div>
         <div />
         <Table columns={this.columnsR} dataSource={this.dataR} bordered  rowKey="name" pagination={{pageSize:10,total:100 }}/>
+        <div>
+           <EditableTable />
+        </div>
       </div>
     );
   }

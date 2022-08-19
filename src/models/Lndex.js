@@ -88,7 +88,7 @@ export default{
         type:"save",
         payload:{type}
       })
-      return back;
+      // return back;
      
     },
   },

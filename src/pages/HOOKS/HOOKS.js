@@ -64,6 +64,7 @@ function MyHooks(props) {
     logger.logError(e, 'error in file-viewer');
   };
   console.log(props.type, "props.type")
+  console.log(props,"props")
   // const onDocumentLoadSuccess=()=> {
   //   // setNumPages(numPages);
   // }
