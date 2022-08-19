@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Input, InputNumber, Popconfirm, Form } from 'antd';
+import style from "./style.less"
 const EditableContext = React.createContext();
 class EditableCell extends React.Component {
 
@@ -11,7 +12,7 @@ class EditableCell extends React.Component {
         if (inputType === 'number') {
             return <InputNumber />;
         }else if(inputType==="other"){
-            return <Input onClick={this.handClick}/>;
+            return <Input onClick={this.handClick} readOnly="true" className={style.editInput}/>;
         }
         return <Input />;
     };

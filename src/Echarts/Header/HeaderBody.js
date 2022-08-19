@@ -2,13 +2,13 @@ import React from "react";
 import { Table, Input, InputNumber, Popconfirm, Form, Modal } from 'antd';
 import EditableCell from "./HeaderChildren";
 const data = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 10; i++) {
     data.push({
         key: i.toString(),
         name: `Edrward ${i}`,
-        age: 32,
+        age: i,
         address: `London Park no. ${i}`,
-        test: ""
+        test: i,
     });
 }
 const EditableContext = React.createContext();
@@ -103,6 +103,7 @@ class EditableTable extends React.Component {
                 newData.push(row);
                 this.setState({ data: newData, editingKey: '' });
             }
+            console.log(newData,"newData")
         });
     }
 
@@ -213,11 +214,11 @@ class EditableTable extends React.Component {
                 key: 'test',
             },
             {
-                title: 'operation',
+                title: '操作',
                 dataIndex: 'operation',
                 render: (text, record) => {
                     return (
-                        <a onClick={this.handClickOperation.bind(this, record)}>操作</a>
+                        <a onClick={this.handClickOperation.bind(this, record)}>确认</a>
                     )
                 }
             }
@@ -239,7 +240,7 @@ class EditableTable extends React.Component {
                     />
                 </EditableContext.Provider>
                 <Modal
-                    title="Basic Modal"
+                    title="请选择"
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
