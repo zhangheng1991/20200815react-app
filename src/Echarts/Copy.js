@@ -716,6 +716,11 @@ class CopyCom extends React.Component {
 
     console.log(router, "router")
 
+    const dataKKK=[{id:"1",name:"2222"},{id:"2",name:"2222"},{id:"3",name:"333"},]
+
+    console.log(_.groupBy(dataKKK,"name"))
+
+
     return (
       <div>
         <AddFormItem clientFormRef={this.clientFormRef} handleSubmitP={this.handleSubmitP}

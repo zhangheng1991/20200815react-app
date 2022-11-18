@@ -2,6 +2,7 @@
 import React, { useEffect, useState, createContext,useRef } from 'react';
 import { connect } from "dva";
 import { Button } from "antd";
+import _ from "loadsh";
 import PropTypes from "prop-types";
 import LndexChildren from "./LndexChildren";
 // import styles from './index.css';
@@ -138,6 +139,13 @@ const goClear = () => {
     setWork("测试");
     setAge(age+1);
   }
+
+  
+  const dataKKK=[{id:"1",name:"2222"},{id:"2",name:"2222"},{id:"3",name:"333"},]
+  const dataK=_.groupBy(dataKKK,"name");
+  console.log(_.get(dataK,"2222"),_.get(dataK,"333"))
+  console.log(_.groupBy(dataKKK,"name"))
+
   return (
     <div>三生三世
       <div>
