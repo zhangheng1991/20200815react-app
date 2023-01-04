@@ -8,6 +8,7 @@ import moment from 'moment';
 import { DatePicker } from 'antd';
 import _ from "loadsh";
 import PublicTable from "./components/PublicTable";
+import AppPublic from "./components/App"
 import style from "../user/user.less";
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
@@ -267,14 +268,15 @@ class Login extends React.Component {
             </Form.Item>
           </Form>
         </div>
-        <PublicTable
+        <AppPublic />
+        {/* <PublicTable
           {...dataTable}
           dataFunction={this.dataFunction}
           handInputChange={this.handInputChange}
           handleSelectChange={this.handleSelectChange}
           handClickAdd={this.handClickAdd}
           handChagePage={this.handChagePage}
-        />
+        /> */}
       </div>
     )
   }
