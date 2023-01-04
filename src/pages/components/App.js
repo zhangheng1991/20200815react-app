@@ -1,7 +1,9 @@
 import React from "react";
-import PublicTable from "./PublicTable";
 import _ from "loadsh";
 
+
+import PublicTable from "./PublicTable";
+import PublicForm from "./PublicForm";
 
 class App extends React.Component {
 
@@ -24,10 +26,16 @@ class App extends React.Component {
         ],
         current: 1,
         pageSize: 10,
+        selectData: [],
+        selectKeyList: []
     }
 
     dataFunction = (data, id) => {
         console.log(data, id, "data,id")
+        this.setState({
+            selectData: data,
+            selectKeyList: id
+        })
     }
 
     handInputChange = (obj, index, value) => {
@@ -81,7 +89,7 @@ class App extends React.Component {
     }
 
     render() {
-        const { dataSource, current, pageSize } = this.state;
+        const { dataSource, current, pageSize,selectData } = this.state;
         const dataTable = {
             dataSource: dataSource,
             columns: [
@@ -102,7 +110,7 @@ class App extends React.Component {
                     dataIndex: 'typeKey',
                     key: 'typeKey',
                     type: "Select",
-                    selectList: [{ name: "输入框", key: "Input" }, { name: "下拉框", key: "select" }]
+                    selectList: [{ name: "输入框", key: "Input" }, { name: "下拉框", key: "Select" }]
                 },
                 {
                     title: '页面',
@@ -135,14 +143,19 @@ class App extends React.Component {
 
 
             <div>
-                <PublicTable
-                    {...dataTable}
-                    dataFunction={this.dataFunction}
-                    handInputChange={this.handInputChange}
-                    handleSelectChange={this.handleSelectChange}
-                    handClickAdd={this.handClickAdd}
-                    handChagePage={this.handChagePage}
-                />
+                <div>
+                    <PublicTable
+                        {...dataTable}
+                        dataFunction={this.dataFunction}
+                        handInputChange={this.handInputChange}
+                        handleSelectChange={this.handleSelectChange}
+                        handClickAdd={this.handClickAdd}
+                        handChagePage={this.handChagePage}
+                    />
+                </div>
+                <div>
+                    <PublicForm selectData={selectData} />
+                </div>
             </div>
         )
     }
