@@ -1,6 +1,6 @@
 import React from "react";
 import _ from "loadsh";
-
+import { Button } from "antd";
 
 import PublicTable from "./PublicTable";
 import PublicForm from "./PublicForm";
@@ -88,8 +88,18 @@ class App extends React.Component {
         this.setState({ current: pageSize === pagination.pageSize ? pagination.current : 1, pageSize: pagination.pageSize })
     }
 
+    GetRef = (ref) => {
+        if (ref) {
+            this.getRefForm = ref;
+        }
+    }
+
+    handSearch=()=>{
+        console.log(this.getRefForm,"this.getRefForm")
+    }
+
     render() {
-        const { dataSource, current, pageSize,selectData } = this.state;
+        const { dataSource, current, pageSize, selectData } = this.state;
         const dataTable = {
             dataSource: dataSource,
             columns: [
@@ -154,7 +164,8 @@ class App extends React.Component {
                     />
                 </div>
                 <div>
-                    <PublicForm selectData={selectData} />
+                    <PublicForm selectData={selectData} GetRef={this.GetRef} />
+                    <Button type="primary" onClick={this.handSearch}>查询</Button>
                 </div>
             </div>
         )
