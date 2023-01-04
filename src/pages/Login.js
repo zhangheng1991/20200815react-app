@@ -106,19 +106,27 @@ class Login extends React.Component {
 
   handClickAdd = () => {
     const { dataSource } = this.state;
-    const id=_.max(_.map(dataSource,item=>item.id));
-    console.log(id,"id")
+    const id = _.max(_.map(dataSource, item => item.id));
+    console.log(id, "id")
     const dataNew = [
       {
-        key: id+1,
+        key: id + 1,
         name: '',
         age: "",
         address: '',
-        id: id+1,
+        id: id + 1,
       }
     ];
-    const data=dataSource.concat(dataNew);
-    this.setState({dataSource:data})
+    const data = dataSource.concat(dataNew);
+    this.setState({ dataSource: data })
+  }
+
+  handConfigDelete = (obj, index) => {
+    const { dataSource } = this.state;
+    const data = _.map(_.filter(dataSource, item => item.id !== obj.id), item => ({
+      ...item
+    }))
+    this.setState({ dataSource: data })
   }
 
   render() {
@@ -163,7 +171,7 @@ class Login extends React.Component {
           dataIndex: 'typeKey',
           key: 'typeKey',
           type: "Select",
-          selectList: [{ name: "number", key: "number" }, { name: "string", key: "string" }]
+          selectList: [{ name: "输入框", key: "Input" }, { name: "下拉框", key: "select" }]
         },
         {
           title: '页面',
@@ -171,9 +179,33 @@ class Login extends React.Component {
           key: 'page',
           type: "Input",
         },
+
+        // {
+        //   title:"Action",
+        //   key:"action",
+        //   render:(text, record) => (
+        //     <span>
+        //       <a>Invite {record.lastName}</a>
+        //       {/* <Divider type="vertical" /> */}
+        //       <a>Delete</a>
+        //     </span>
+        //   ),
+        // }
       ],
       rowKey: "id",
       rowSelectionFlag: true,
+      operationList: [{
+        title: 'operation',
+        dataIndex: 'operation',
+        key: 'operation',
+        render: (text, record, index) => {
+          return (
+            <div>
+              <a onClick={this.handConfigDelete.bind(this, record, index)}>删除</a>
+            </div>
+          )
+        }
+      },]
     }
 
     console.log(dataSource, "dataSource")

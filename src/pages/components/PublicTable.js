@@ -40,20 +40,24 @@ class PublicTable extends React.Component {
     }
 
     columns = (data) => {
+        const { operationList } = this.props;
 
         console.log(data, "data")
 
-        const dataList = _.map(data, item => ({
+        let dataList = _.map(data, item => ({
             ...item,
             render: (text, record, index) => <div>{this.columnsType(text, item, index)}</div>
         }))
+        if (operationList) {
+            dataList=  dataList.concat(operationList)
+        }
 
         return dataList;
 
     }
 
-    handClickAdd=()=>{
-         this.props.handClickAdd()
+    handClickAdd = () => {
+        this.props.handClickAdd()
     }
 
     render() {
@@ -103,7 +107,7 @@ class PublicTable extends React.Component {
         console.log(selectedData, "selectedData")
         return (
             <div>
-                <div style={{textAlign:"right",margin:"5px 0px"}}>
+                <div style={{ textAlign: "right", margin: "5px 0px" }}>
                     <Button type="primary" onClick={this.handClickAdd}>新增</Button>
                 </div>
                 <Table
