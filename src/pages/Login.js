@@ -29,6 +29,8 @@ class Login extends React.Component {
         id: 2
       },
     ],
+    current:1,
+    pageSize:10,
   }
   componentDidMount() {
     // const { dispatch } = this.props;
@@ -129,9 +131,14 @@ class Login extends React.Component {
     this.setState({ dataSource: data })
   }
 
+  handChagePage=(pagination, filters, sorter)=>{
+    const{current,pageSize}=this.state;
+    this.setState({current:pageSize===pagination.pageSize? pagination.current:1,pageSize:pagination.pageSize})
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { dataSource } = this.state;
+    const { dataSource ,current,pageSize} = this.state;
     const layout = {
       labelCol: {
         span: 8,
@@ -205,7 +212,10 @@ class Login extends React.Component {
             </div>
           )
         }
-      },]
+      },],
+      current:current,
+      pageSize:pageSize,
+      paginationP:true,
     }
 
     console.log(dataSource, "dataSource")
@@ -263,6 +273,7 @@ class Login extends React.Component {
           handInputChange={this.handInputChange}
           handleSelectChange={this.handleSelectChange}
           handClickAdd={this.handClickAdd}
+          handChagePage={this.handChagePage}
         />
       </div>
     )
