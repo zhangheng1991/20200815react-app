@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Select, Col } from "antd";
+import { Form, Input, Select, Col,Button } from "antd";
 import _ from "loadsh";
 const { Option } = Select;
 
@@ -90,6 +90,9 @@ class PublicForm extends React.Component {
                             return this.formData(item, index)
                         })
                     }
+                    <Col span="6">
+                        <Button type="primary" onClick={this.handSearch}>查询</Button>
+                    </Col>
                 </Form>
             </div>
         )
