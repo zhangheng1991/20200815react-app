@@ -596,7 +596,9 @@ class Header extends React.Component {
           >
             {children}
           </Select>
-          <Table columns={this.columns} dataSource={this.data} bordered  rowKey="key"/>
+          <Table columns={this.columns} dataSource={this.data} bordered  rowKey="key" pagination={
+           { scroll:"2800px"}
+          }/>
           <Modal
             title="Basic Modal"
             visible={this.state.visible}

@@ -394,7 +394,7 @@ class Weather extends React.Component {
             <span>更新时间：{updateTime}</span>
           </div>
           {/* pagination={false} */}
-          <Table {...TableList} onChange={this.onChange} pagination={false} />
+          <Table {...TableList} onChange={this.onChange} pagination={{scroll:{x:"2800px"}}} scroll={{ x: '2800px', y: 240 }}/>
         </div>
       </div>
     );
