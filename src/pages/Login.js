@@ -108,7 +108,7 @@ class Login extends React.Component {
 
   handClickAdd = () => {
     const { dataSource } = this.state;
-    const id = _.max(_.map(dataSource, item => item.id));
+    const id = _.max(_.map(dataSource, item => item.id))||0;
     console.log(id, "id")
     const dataNew = [
       {
