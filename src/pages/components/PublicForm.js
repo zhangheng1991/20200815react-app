@@ -1,8 +1,15 @@
 import React from "react";
 import { Form, Input, Select } from "antd";
+import _ from "loadsh";
 const { Option } = Select;
 
 class PublicForm extends React.Component {
+
+    componentDidMount() {
+        if (this.props.GetRef) {
+            this.props.GetRef(this)
+        }
+    }
 
 
     formData = (item, index) => {
@@ -11,37 +18,24 @@ class PublicForm extends React.Component {
 
         if (item.typeKey === "Input") {
             return (
-                <Form.Item label="地名">
-                    {getFieldDecorator('placeNames', {
+                <Form.Item label={_.get(item,"name")|| " "}>
+                    {getFieldDecorator(item.keyName, {
                         initialValue: item.name,
                         rules: [{ required: false, message: '请选择地名' }],
                     })(
                         <Input />
-                        //   <Select style={{ width: '100%' }} onChange={this.handleChange}>
-                        //     {
-                        //       data.map((item,index)=>{
-                        //         return(
-                        //           <Option value={item.title} title={item.title}>{item.title}</Option>
-                        //         )
-                        //       })
-                        //     }
-                        //     {/* <Option value="南京">南京</Option>
-                        //     <Option value="商丘">商丘</Option>
-                        //     <Option value="郑州">郑州</Option>
-                        //     <Option value="北京">北京</Option> */}
-                        //   </Select>,
                     )}
                 </Form.Item>
             )
         } else if (item.typeKey === "Select") {
             return (
-                <Form.Item label="地名">
-                    {getFieldDecorator('placeNames', {
+                <Form.Item label={_.get(item,"name")|| " "}>
+                    {getFieldDecorator(item.keyName, {
                         initialValue: item.name,
                         rules: [{ required: false, message: '请选择地名' }],
                     })(
 
-                        <Select style={{ width: '100%' }} onChange={this.handleChange}>
+                        <Select style={{ width: '100%' }} >
                             <Option value="南京">南京</Option>
                             <Option value="商丘">商丘</Option>
                             <Option value="郑州">郑州</Option>
