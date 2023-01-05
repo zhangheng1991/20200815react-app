@@ -10,6 +10,15 @@ class PublicTable extends React.Component {
         selectedData: [],
     }
 
+    componentWillReceiveProps(nextProps) {
+        const { selectedRowKeys } = nextProps;
+
+        if (selectedRowKeys && selectedRowKeys !== this.state.selectedRowKeys) {
+            this.setState({ selectedRowKeys: selectedRowKeys })
+        }
+
+    }
+
     handInputChange = (record, index, e) => {
         console.log(record, index, e.target.value)
         this.props.handInputChange(record, index, e.target.value)
@@ -49,7 +58,7 @@ class PublicTable extends React.Component {
             render: (text, record, index) => <div>{this.columnsType(text, item, index)}</div>
         }))
         if (operationList) {
-            dataList=  dataList.concat(operationList)
+            dataList = dataList.concat(operationList)
         }
 
         return dataList;
@@ -60,18 +69,18 @@ class PublicTable extends React.Component {
         this.props.handClickAdd()
     }
 
-    handChagePage=(pagination, filters, sorter)=>{
+    handChagePage = (pagination, filters, sorter) => {
 
-        console.log(pagination, filters, sorter,"pagination, filters, sorter")
-       
-        if(this.props.handChagePage){
+        console.log(pagination, filters, sorter, "pagination, filters, sorter")
+
+        if (this.props.handChagePage) {
             this.props.handChagePage(pagination, filters, sorter)
         }
 
     }
 
     render() {
-        const { dataSource, columns, rowSelectionFlag, rowKey,current,paginationP,pageSize } = this.props;
+        const { dataSource, columns, rowSelectionFlag, rowKey, current, paginationP, pageSize } = this.props;
 
 
         const column = this.columns(columns);
@@ -112,7 +121,7 @@ class PublicTable extends React.Component {
                     that.setState({ selectedRowKeys: keys, selectedData: data });
                     that.props.dataFunction(data, keys)
 
-                    console.log(_.differenceBy(selectedData, dataList,'id'),"2222")
+                    console.log(_.differenceBy(selectedData, dataList, 'id'), "2222")
 
                 }
             },
@@ -129,11 +138,11 @@ class PublicTable extends React.Component {
                     rowSelection={rowSelectionFlag ? rowSelection : false}
                     rowKey={rowKey}
                     onChange={this.handChagePage}
-                    pagination={paginationP?{
-                        current:current,
-                        pageSize:pageSize,
-                        total:dataSource.length
-                    }:false}
+                    pagination={paginationP ? {
+                        current: current,
+                        pageSize: pageSize,
+                        total: dataSource.length
+                    } : false}
                 />
             </div>
         )
