@@ -90,9 +90,9 @@ class PublicForm extends React.Component {
                             return this.formData(item, index)
                         })
                     }
-                    <Col span="6">
+                    {/* <Col span="6">
                         <Button type="primary" onClick={this.handSearch}>查询</Button>
-                    </Col>
+                    </Col> */}
                 </Form>
             </div>
         )

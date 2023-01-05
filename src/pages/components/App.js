@@ -149,6 +149,8 @@ class App extends React.Component {
             paginationP: true,
         }
 
+        console.log(_.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x'),"2222")
+
         return (
 
 
@@ -165,7 +167,7 @@ class App extends React.Component {
                 </div>
                 <div>
                     <PublicForm selectData={selectData} GetRef={this.GetRef} />
-                    {/* <Button type="primary" onClick={this.handSearch}>查询</Button> */}
+                    <Button type="primary" onClick={this.handSearch}>查询</Button>
                 </div>
             </div>
         )

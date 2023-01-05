@@ -111,6 +111,9 @@ class PublicTable extends React.Component {
                     const data = _.filter(selectedData, (item, index) => !dataList.some(itemD => itemD.id === item.id));
                     that.setState({ selectedRowKeys: keys, selectedData: data });
                     that.props.dataFunction(data, keys)
+
+                    console.log(_.differenceBy(selectedData, dataList,'id'),"2222")
+
                 }
             },
         };
