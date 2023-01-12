@@ -8,7 +8,8 @@ import moment from 'moment';
 import { DatePicker } from 'antd';
 import _ from "loadsh";
 import PublicTable from "./components/PublicTable";
-import AppPublic from "./components/App"
+import AppPublic from "./components/App";
+import ExampleApp  from './components/ExampleApp';
 import style from "../user/user.less";
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
@@ -30,8 +31,8 @@ class Login extends React.Component {
         id: 2
       },
     ],
-    current:1,
-    pageSize:10,
+    current: 1,
+    pageSize: 10,
   }
   componentDidMount() {
     // const { dispatch } = this.props;
@@ -109,7 +110,7 @@ class Login extends React.Component {
 
   handClickAdd = () => {
     const { dataSource } = this.state;
-    const id = _.max(_.map(dataSource, item => item.id))||0;
+    const id = _.max(_.map(dataSource, item => item.id)) || 0;
     console.log(id, "id")
     const dataNew = [
       {
@@ -132,14 +133,14 @@ class Login extends React.Component {
     this.setState({ dataSource: data })
   }
 
-  handChagePage=(pagination, filters, sorter)=>{
-    const{current,pageSize}=this.state;
-    this.setState({current:pageSize===pagination.pageSize? pagination.current:1,pageSize:pagination.pageSize})
+  handChagePage = (pagination, filters, sorter) => {
+    const { current, pageSize } = this.state;
+    this.setState({ current: pageSize === pagination.pageSize ? pagination.current : 1, pageSize: pagination.pageSize })
   }
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { dataSource ,current,pageSize} = this.state;
+    const { dataSource, current, pageSize } = this.state;
     const layout = {
       labelCol: {
         span: 8,
@@ -214,12 +215,14 @@ class Login extends React.Component {
           )
         }
       },],
-      current:current,
-      pageSize:pageSize,
-      paginationP:true,
+      current: current,
+      pageSize: pageSize,
+      paginationP: true,
     }
 
     console.log(dataSource, "dataSource")
+
+    
 
     return (
       <div>
@@ -268,7 +271,11 @@ class Login extends React.Component {
             </Form.Item>
           </Form>
         </div>
-        <AppPublic />
+
+        <div>
+          <ExampleApp />
+        </div>
+       
         {/* <PublicTable
           {...dataTable}
           dataFunction={this.dataFunction}

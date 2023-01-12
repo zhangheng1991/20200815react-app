@@ -7,6 +7,13 @@ import PublicForm from "./PublicForm";
 
 class App extends React.Component {
 
+    componentDidMount() {
+        const { refProps } = this.props;
+        if (refProps) {
+            this.props.refProps(this);
+        }
+    }
+
     state = {
         dataSource: [
             {
@@ -94,15 +101,16 @@ class App extends React.Component {
         }
     }
 
-    handSearch=()=>{
-        console.log(this.getRefForm,"this.getRefForm")
+    handSearch = () => {
+        console.log(this.getRefForm, "this.getRefForm")
     }
 
     render() {
         const { dataSource, current, pageSize, selectData } = this.state;
+        const { columns } = this.props;
         const dataTable = {
             dataSource: dataSource,
-            columns: [
+            columns: columns || [
                 {
                     title: '搜索名称',
                     dataIndex: 'name',
@@ -149,7 +157,7 @@ class App extends React.Component {
             paginationP: true,
         }
 
-        console.log(_.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x'),"2222")
+        console.log(_.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x'), "2222")
 
         return (
 
@@ -165,10 +173,10 @@ class App extends React.Component {
                         handChagePage={this.handChagePage}
                     />
                 </div>
-                <div>
+                {/* <div>
                     <PublicForm selectData={selectData} GetRef={this.GetRef} />
                     <Button type="primary" onClick={this.handSearch}>查询</Button>
-                </div>
+                </div> */}
             </div>
         )
     }

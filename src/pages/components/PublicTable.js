@@ -21,12 +21,16 @@ class PublicTable extends React.Component {
 
     handInputChange = (record, index, e) => {
         console.log(record, index, e.target.value)
-        this.props.handInputChange(record, index, e.target.value)
+        if (this.props.handInputChange) {
+            this.props.handInputChange(record, index, e.target.value)
+        }
     }
 
     handleSelectChange = (record, index, key) => {
         console.log(record, index, key, "record,index,key")
-        this.props.handleSelectChange(record, index, key)
+        if (this.props.handleSelectChange) {
+            this.props.handleSelectChange(record, index, key)
+        }
     }
 
     columnsType = (value, obj, index) => {
@@ -66,7 +70,9 @@ class PublicTable extends React.Component {
     }
 
     handClickAdd = () => {
-        this.props.handClickAdd()
+        if (this.props.handClickAdd) {
+            this.props.handClickAdd()
+        }
     }
 
     handChagePage = (pagination, filters, sorter) => {
