@@ -20,14 +20,14 @@ class PublicTable extends React.Component {
     }
 
     handInputChange = (record, index, e) => {
-        console.log(record, index, e.target.value)
+        // console.log(record, index, e.target.value)
         if (this.props.handInputChange) {
             this.props.handInputChange(record, index, e.target.value)
         }
     }
 
     handleSelectChange = (record, index, key) => {
-        console.log(record, index, key, "record,index,key")
+        // console.log(record, index, key, "record,index,key")
         if (this.props.handleSelectChange) {
             this.props.handleSelectChange(record, index, key)
         }
@@ -55,7 +55,7 @@ class PublicTable extends React.Component {
     columns = (data) => {
         const { operationList } = this.props;
 
-        console.log(data, "data")
+        // console.log(data, "data")
 
         let dataList = _.map(data, item => ({
             ...item,
@@ -77,7 +77,7 @@ class PublicTable extends React.Component {
 
     handChagePage = (pagination, filters, sorter) => {
 
-        console.log(pagination, filters, sorter, "pagination, filters, sorter")
+        // console.log(pagination, filters, sorter, "pagination, filters, sorter")
 
         if (this.props.handChagePage) {
             this.props.handChagePage(pagination, filters, sorter)
@@ -90,14 +90,14 @@ class PublicTable extends React.Component {
 
 
         const column = this.columns(columns);
-        console.log(column, "column")
+        // console.log(column, "column")
 
         const { selectedRowKeys, selectedData } = this.state;
         const that = this;
         const rowSelection = {
             selectedRowKeys,
             onSelect: (record, selected) => {
-                console.log(record, selected)
+                // console.log(record, selected)
                 if (!selected) { // 去掉选中删除本条tradeId
                     const keys = _.filter(selectedRowKeys, key => key !== record.id);
                     const data = _.map(_.filter(selectedData, item => item.id !== record.id), item => ({
@@ -127,12 +127,12 @@ class PublicTable extends React.Component {
                     that.setState({ selectedRowKeys: keys, selectedData: data });
                     that.props.dataFunction(data, keys)
 
-                    console.log(_.differenceBy(selectedData, dataList, 'id'), "2222")
+                    // console.log(_.differenceBy(selectedData, dataList, 'id'), "2222")
 
                 }
             },
         };
-        console.log(selectedData, "selectedData")
+        // console.log(selectedData, "selectedData")
         return (
             <div>
                 <div style={{ textAlign: "right", margin: "5px 0px" }}>

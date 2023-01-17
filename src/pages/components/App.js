@@ -38,7 +38,7 @@ class App extends React.Component {
     }
 
     dataFunction = (data, id) => {
-        console.log(data, id, "data,id")
+        // console.log(data, id, "data,id")
         this.setState({
             selectData: data,
             selectKeyList: id
@@ -68,7 +68,7 @@ class App extends React.Component {
     handClickAdd = () => {
         const { dataSource } = this.state;
         const id = _.max(_.map(dataSource, item => item.id)) || 0;
-        console.log(id, "id")
+        // console.log(id, "id")
         const dataNew = [
             {
                 key: id + 1,
@@ -102,7 +102,7 @@ class App extends React.Component {
     }
 
     handSearch = () => {
-        console.log(this.getRefForm, "this.getRefForm")
+        // console.log(this.getRefForm, "this.getRefForm")
     }
 
     render() {
@@ -157,7 +157,7 @@ class App extends React.Component {
             paginationP: true,
         }
 
-        console.log(_.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x'), "2222")
+        // console.log(_.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x'), "2222")
 
         return (
 

@@ -33,7 +33,7 @@ class ExampleApp extends React.Component {
             serachData:_.get(dataSearch,"state.selectData"),
             tableData:_.get(dataTable,"state.selectData"),
         };
-        console.log(data,"data")
+        // console.log(data,"data")
     }
 
     render() {

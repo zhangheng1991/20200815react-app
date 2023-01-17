@@ -9,7 +9,7 @@ import { DatePicker } from 'antd';
 import _ from "loadsh";
 import PublicTable from "./components/PublicTable";
 import AppPublic from "./components/App";
-import ExampleApp  from './components/ExampleApp';
+import ExampleApp from './components/ExampleApp';
 import style from "../user/user.less";
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
@@ -33,6 +33,7 @@ class Login extends React.Component {
     ],
     current: 1,
     pageSize: 10,
+    testDisabled: false,
   }
   componentDidMount() {
     // const { dispatch } = this.props;
@@ -42,17 +43,38 @@ class Login extends React.Component {
   }
   handleSubmit = e => {
     e.preventDefault();
-
     const { dispatch } = this.props;
+    // this.props.form.setFieldsValue({username:""})
+    // this.props.form.resetFields("password")
+    const data = this.props.form.getFieldsValue();
+    console.log(data, "data")
+    if(_.get(data, "password")===""||_.get(data, "password")===undefined){
+      this.props.form.resetFields("password")
+    }
+    if (_.get(data, "username")) {
+      //  return
+    } else {
+      this.props.form.setFieldsValue({ username: "" })
+    }
 
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        dispatch({
-          type: "Login/UserLogin", payload: values
-        })
+    this.setState(
+      () => ({
+        testDisabled: false
+      })
 
-      }
-    });
+    )
+
+    setTimeout(() => {
+      this.props.form.validateFields((err, values) => {
+        console.log(err,values)
+        if (!err) {
+          dispatch({
+            type: "Login/UserLogin", payload: values
+          })
+
+        }
+      });
+    }, 1000)
   };
   onFinishFailed = errorInfo => {
 
@@ -138,9 +160,43 @@ class Login extends React.Component {
     this.setState({ current: pageSize === pagination.pageSize ? pagination.current : 1, pageSize: pagination.pageSize })
   }
 
+  handClickTest = () => {
+    this.setState(
+      () => ({
+        testDisabled: true
+      })
+
+    )
+    // this.setState({ testDisabled: true })
+    // console.log(this.props,"22")
+    const data = this.props.form.getFieldsValue();
+    console.log(data, "data")
+    if(_.get(data, "username")===""||_.get(data, "username")===undefined){
+      this.props.form.resetFields("username")
+    }
+    if (_.get(data, "password")) {
+      //  return
+    } else {
+      this.props.form.setFieldsValue({ password: "" })
+    }
+
+    // this.props.form.resetFields("username")
+    setTimeout(() => {
+      this.props.form.validateFields((err, values) => {
+        if (!err) {
+          console.log(values, "values")
+        }
+      });
+    }, 1000)
+
+  }
+
+
+
+
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { dataSource, current, pageSize } = this.state;
+    const { dataSource, current, pageSize, testDisabled } = this.state;
     const layout = {
       labelCol: {
         span: 8,
@@ -220,9 +276,9 @@ class Login extends React.Component {
       paginationP: true,
     }
 
-    console.log(dataSource, "dataSource")
+    // console.log(dataSource, "dataSource")
 
-    
+    // console.log(testDisabled, "testDisabled")
 
     return (
       <div>
@@ -238,22 +294,25 @@ class Login extends React.Component {
           //   defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('11:59:59', 'HH:mm:ss')],
           // }}
         /> */}
-          <Form onSubmit={this.handleSubmit} className="login-form">
+
+          <Form onSubmit={this.handleSubmit} className="login-form" id={testDisabled + "1"} key={testDisabled + "1"}>
             <Form.Item>
               {getFieldDecorator('username', {
-                initialValue: Dform.username,
-                rules: [{ required: true, message: 'Please input your username!' }],
+                // initialValue: Dform.username,
+                rules: testDisabled ? [{ required: true, message: 'Please input your username!' }] : [{ required: false, message: 'Please input your username!' }],
               })(
                 <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Username"
                 />,
               )}
+
             </Form.Item>
+
             <Form.Item>
               {getFieldDecorator('password', {
-                initialValue: Dform.password,
-                rules: [{ required: true, message: 'Please input your Password!' }],
+                // initialValue: Dform.password,
+                rules: !testDisabled ? [{ required: true, message: 'Please input your Password!' }] : [{ required: false, message: 'Please input your Password!' }],
               })(
                 <Input
                   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -267,6 +326,7 @@ class Login extends React.Component {
               <Button type="primary" htmlType="submit" className="login-form-button">
                 登录
               </Button>
+              <Button type="primary" onClick={this.handClickTest}>测试</Button>
 
             </Form.Item>
           </Form>
@@ -275,7 +335,7 @@ class Login extends React.Component {
         <div>
           <ExampleApp />
         </div>
-       
+
         {/* <PublicTable
           {...dataTable}
           dataFunction={this.dataFunction}

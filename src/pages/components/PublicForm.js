@@ -13,7 +13,7 @@ class PublicForm extends React.Component {
 
 
     formData = (item, index) => {
-        console.log(item, index, "ffff")
+        // console.log(item, index, "ffff")
         const { getFieldDecorator } = this.props.form;
 
         if (item.typeKey === "Input") {
@@ -79,7 +79,7 @@ class PublicForm extends React.Component {
                 },
             },
         };
-        console.log(selectData, "selectData")
+        // console.log(selectData, "selectData")
 
         return (
             <div>
