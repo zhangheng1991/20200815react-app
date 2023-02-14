@@ -29,11 +29,11 @@ class ExampleApp extends React.Component {
         const dataTable = this.FunctionTable;
         const dataSearch = this.FunctionSearch;
         // console.log(dataTable, dataSearch)
-        data={
-            serachData:_.get(dataSearch,"state.selectData"),
-            tableData:_.get(dataTable,"state.selectData"),
+        data = {
+            serachData: _.get(dataSearch, "state.selectData"),
+            tableData: _.get(dataTable, "state.selectData"),
         };
-        // console.log(data,"data")
+        console.log(data, "data")
     }
 
     render() {
@@ -96,6 +96,75 @@ class ExampleApp extends React.Component {
 
             ],
         }
+        const dataU = {
+            "dataRcon": "rrr",
+            "dataRcon.dataRcon1": "rrr1",
+            "dataRcon.dataRcon2": "rrr2",
+
+            "dataImport": "rrr",
+            "dataImport.dataImport1": "rrr1",
+            "dataImport.dataImport2": "rrr2",
+            "dataImport.dataImport3": "rrr3",
+
+            "dataAdd": "rrr",
+            "dataAdd.dataImport1": "rrr1",
+            "dataAdd.dataImport2": "rrr2",
+            "dataAdd.dataImport3": "rrr3",
+
+        };
+        const dataT = _.map(dataU, (item, key, obj) => ({
+            name: item,
+            initialkey: key,
+            key:key,
+        }))
+
+        const dataK = [];
+
+        for (let i = 0; i < dataT.length; i++) {
+            // console.log(dataT[i], dataT[i].key.indexOf("."))
+            if (dataT[i].initialkey.indexOf(".") === -1) {
+                dataK.push(dataT[i])
+                // dataK.child = dataK.child || [];
+                for (let j = 0; j < dataT.length; j++) {
+                    // console.log(dataT[i], dataT[i].key.indexOf("."))
+                    // if (dataT[i].key.indexOf(".") === -1) {
+                    //     dataK.push(dataT[i])
+                    // }
+
+                    console.log(dataT[i], dataT[j], dataT[j].initialkey.indexOf(dataT[i].initialkey), "222")
+
+                    if (dataT[i].initialkey !== dataT[j].initialkey && dataT[j].initialkey.indexOf(dataT[i].initialkey) === 0) {
+                        console.log(dataK, dataT[i], dataT[j], "333")
+
+                        dataK.map((item, index) => {
+                            if (item.initialkey === dataT[i].initialkey) {
+
+                                // 截取最后一个 > 前面的字符串
+                                let index = dataT[j].initialkey.lastIndexOf(".")
+                                let str = dataT[j].initialkey.substring(index+1, dataT[j].initialkey.length);
+                                dataT[j].key=str;
+                                console.log(str, "str")
+                                console.log(item, "item", dataT[j].initialkey.substring("end", "."))
+                                if (!item.child) {
+                                    item.child = [dataT[j]]
+                                } else {
+                                    item.child.push(dataT[j])
+                                }
+                                //    item.child.push(dataT[j])
+                                // item.child=item.child.concat([dataT[j]])
+                            }
+                        })
+
+                    }
+                }
+
+            }
+        }
+
+        // dataT.map((item,index))
+
+        console.log(dataT, dataK, "dataT")
+
 
         return (
             <div>
@@ -108,7 +177,7 @@ class ExampleApp extends React.Component {
                     </div>
 
                 </div>
-                <div style={{textAlign:"center"}}>
+                <div style={{ textAlign: "center" }}>
                     <Button type="primary" onClick={this.handClickSubmit}>保存</Button>
                 </div>
             </div>

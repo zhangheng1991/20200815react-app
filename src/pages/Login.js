@@ -314,11 +314,12 @@ class Login extends React.Component {
                 // initialValue: Dform.password,
                 rules: !testDisabled ? [{ required: true, message: 'Please input your Password!' }] : [{ required: false, message: 'Please input your Password!' }],
               })(
-                <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  type="password"
-                  placeholder="Password"
-                />,
+                // <Input
+                //   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                //   type="password"
+                //   placeholder="Password"
+                // />,
+                <Input.Password  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="input password" />
               )}
             </Form.Item>
             <Form.Item>

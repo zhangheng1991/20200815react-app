@@ -94,6 +94,7 @@ class BasicLayout extends React.Component {
     const {NavData}=Index;
    
     const loop = data => data.map((item, index) => {
+      console.log(data,"data")
       if (item.child && item.child.length > 0) {
         return (
           <SubMenu key={item.url} title={<span title={item.title}>{item.title}</span>} >
