@@ -3,13 +3,15 @@
  */
 import React from 'react';
 import { connect } from "dva";
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Upload, message, } from 'antd';
 import moment from 'moment';
 import { DatePicker } from 'antd';
 import _ from "loadsh";
 import PublicTable from "./components/PublicTable";
 import AppPublic from "./components/App";
 import ExampleApp from './components/ExampleApp';
+import EditApp from "./components/EditApp";
+import EditComponent from "./components/EditComponent";
 import style from "../user/user.less";
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
@@ -48,14 +50,14 @@ class Login extends React.Component {
     // this.props.form.resetFields("password")
     const data = this.props.form.getFieldsValue();
     console.log(data, "data")
-    if(_.get(data, "password")===""||_.get(data, "password")===undefined){
-      this.props.form.resetFields("password")
-    }
-    if (_.get(data, "username")) {
-      //  return
-    } else {
-      this.props.form.setFieldsValue({ username: "" })
-    }
+    // if (_.get(data, "password") === "" || _.get(data, "password") === undefined) {
+    //   this.props.form.resetFields("password")
+    // }
+    // if (_.get(data, "username")) {
+    //   //  return
+    // } else {
+    //   this.props.form.setFieldsValue({ username: "" })
+    // }
 
     this.setState(
       () => ({
@@ -66,7 +68,7 @@ class Login extends React.Component {
 
     setTimeout(() => {
       this.props.form.validateFields((err, values) => {
-        console.log(err,values)
+        console.log(err, values)
         if (!err) {
           dispatch({
             type: "Login/UserLogin", payload: values
@@ -171,7 +173,7 @@ class Login extends React.Component {
     // console.log(this.props,"22")
     const data = this.props.form.getFieldsValue();
     console.log(data, "data")
-    if(_.get(data, "username")===""||_.get(data, "username")===undefined){
+    if (_.get(data, "username") === "" || _.get(data, "username") === undefined) {
       this.props.form.resetFields("username")
     }
     if (_.get(data, "password")) {
@@ -280,6 +282,32 @@ class Login extends React.Component {
 
     // console.log(testDisabled, "testDisabled")
 
+    const props = {
+      name: 'file',
+      action: 'https://www.baidu.com/?tn=48021271_13_hao_pg&H123Tmp=nunew11#talentn=21002492_51_hao_pg',
+      headers: {
+        authorization: 'authorization-text',
+      },
+      onChange(info) {
+        console.log(info, "info")
+        if (info.file.status !== 'uploading') {
+          console.log(info.file, info.fileList);
+        }
+        if (info.file.status === 'done') {
+          message.success(`${info.file.name} file uploaded successfully`);
+        } else if (info.file.status === 'error') {
+          message.error(`${info.file.name} file upload failed.`);
+        }
+      },
+    };
+
+    const options = [
+      { label: 'Apple', value: 'Apple' },
+      { label: 'Pear', value: 'Pear' },
+      { label: 'Orange', value: 'Orange' },
+    ];
+    const plainOptions = ['Apple', 'Pear', 'Orange'];
+
     return (
       <div>
         <div className={`${style["UserLogin"]}`}>
@@ -299,7 +327,8 @@ class Login extends React.Component {
             <Form.Item>
               {getFieldDecorator('username', {
                 // initialValue: Dform.username,
-                rules: testDisabled ? [{ required: true, message: 'Please input your username!' }] : [{ required: false, message: 'Please input your username!' }],
+                // rules: testDisabled ? [{ required: true, message: 'Please input your username!' }] : [{ required: false, message: 'Please input your username!' }],
+                rules:[{ required: true, message: 'Please input your username!' }],
               })(
                 <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -312,29 +341,51 @@ class Login extends React.Component {
             <Form.Item>
               {getFieldDecorator('password', {
                 // initialValue: Dform.password,
-                rules: !testDisabled ? [{ required: true, message: 'Please input your Password!' }] : [{ required: false, message: 'Please input your Password!' }],
+                // rules: !testDisabled ? [{ required: true, message: 'Please input your Password!' }] : [{ required: false, message: 'Please input your Password!' }],
+                rules: [{ required: true, message: 'Please input your Password!' }] ,
               })(
                 // <Input
                 //   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 //   type="password"
                 //   placeholder="Password"
                 // />,
-                <Input.Password  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="input password" />
+                <Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="input password" />
               )}
             </Form.Item>
+
             <Form.Item>
+              {/* <Form.Item>
+                {getFieldDecorator('Checkbox', {
+                  valuePropName: 'checked',
+                  initialValue: "true",
+                  rules: testDisabled ? [{ required: true, message: 'Please input your username!' }] : [{ required: false, message: 'Please input your username!' }],
+                })(
+                  
+                  <Checkbox >Checkbox</Checkbox>
+                )}
+
+              </Form.Item> */}
+              {/* // <Checkbox.Group options={plainOptions}
+                  //  defaultValue={['Apple']}
+                  //   /> */}
 
               <Button type="primary" htmlType="submit" className="login-form-button">
                 登录
               </Button>
-              <Button type="primary" onClick={this.handClickTest}>测试</Button>
+              {/* <Button type="primary" onClick={this.handClickTest}>测试</Button> */}
 
             </Form.Item>
           </Form>
         </div>
-
+        <Upload {...props}>
+          <Button>
+            <Icon type="upload" /> Click to Upload
+          </Button>
+        </Upload>
         <div>
           <ExampleApp />
+          <EditApp />
+          {/* <EditComponent /> */}
         </div>
 
         {/* <PublicTable

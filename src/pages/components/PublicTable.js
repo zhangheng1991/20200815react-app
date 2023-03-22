@@ -127,12 +127,24 @@ class PublicTable extends React.Component {
                     that.setState({ selectedRowKeys: keys, selectedData: data });
                     that.props.dataFunction(data, keys)
 
-                    // console.log(_.differenceBy(selectedData, dataList, 'id'), "2222")
+                    console.log(_.differenceBy(selectedData, dataList, 'id'), "2222")
 
                 }
             },
         };
         // console.log(selectedData, "selectedData")
+        // const dataK=[1,2,3,4,5,6,7];
+        // const dataU=[2.,3,4,5];
+
+        // console.log(_.pullAll(dataK,dataU),"dataK")
+
+        const dataO=[1,2,3];
+
+        const dataList=[{id:1,name:"1111"},{id:2,name:"2222"},{id:3,name:"3333"},{id:4,name:"444"},{id:5,name:"5555"},];
+
+        const dataR=_.filter(dataList,(item,index)=>!dataO.some(itemD=>item.id===itemD));
+        console.log(dataR,"dataR")
+
         return (
             <div>
                 <div style={{ textAlign: "right", margin: "5px 0px" }}>

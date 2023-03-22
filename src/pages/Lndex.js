@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, createContext,useRef } from 'react';
+import React, { useEffect, useState, createContext, useRef } from 'react';
 import { connect } from "dva";
 import { Button } from "antd";
 import _ from "loadsh";
@@ -78,27 +78,27 @@ import LndexChildren from "./LndexChildren";
 //   }
 // }
 const CountContext = createContext();
-const Index=(props)=> {
-  
-  const timer= useRef();
+const Index = (props) => {
+
+  const timer = useRef();
   const [count, setCount] = useState(0);
   const [age, setAge] = useState(18)
   const [sex, setSex] = useState('男')
   const [work, setWork] = useState('前端程序员')
-  const [qingchu,setQingchu]=useState(true);
+  const [qingchu, setQingchu] = useState(true);
   const [nums, setNums] = useState(0);
-  const QingFunction=()=>{
+  const QingFunction = () => {
     setQingchu(false)
   }
   const [isOnline, setIsOnline] = useState(null);
   const [numberT, setNumberT] = useState(0);
-  const Tick=()=>{
-    setNumberT(numberT+1)
+  const Tick = () => {
+    setNumberT(numberT + 1)
   }
- 
+
   useEffect(() => {
-   
-    
+
+
     // return () => {
     //   QingFunction();
     // };
@@ -109,50 +109,57 @@ const Index=(props)=> {
     // ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     // return () => {
     //   ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
-    
+
     // goStart(1 );
     return () => {
-      
+
       setCount(0)
       clearInterval(timer.current);
     }
     // };
-  },[])
+  }, [])
 
   const goStart = (index) => {
     // setStatus(index)
     timer.current = setInterval(() => {
-//注意此处，不是直接通过setNums(),修改里面的值，因为闭包原因，如果通过这种方式会一直为1，通过测试，不是更改值方式的原因，如果通过useReducer更改值也不会改变依然是1
-        setNums(n => {
-           return n + 1
-        });
-    },1000)
-}
-const goClear = () => {
-  // timer.current.clearInterval();
- clearInterval(timer.current);
-}
+      //注意此处，不是直接通过setNums(),修改里面的值，因为闭包原因，如果通过这种方式会一直为1，通过测试，不是更改值方式的原因，如果通过useReducer更改值也不会改变依然是1
+      setNums(n => {
+        return n + 1
+      });
+    }, 1000)
+  }
+  const goClear = () => {
+    // timer.current.clearInterval();
+    clearInterval(timer.current);
+  }
 
   const handClick = (e) => {
+    const { stepConfig, type } = props;
+    console.log(props, "values")
     setCount(count + 1)
     setSex("女");
     setWork("测试");
-    setAge(age+1);
+    setAge(age + 1);
+    // stepConfig("dddd" + type)
+    // save("ffffff" + type)
+
   }
 
-  
-  const dataKKK=[{id:"1",name:"2222"},{id:"2",name:"2222"},{id:"3",name:"333"},]
-  const dataK=_.groupBy(dataKKK,"name");
-  console.log(_.get(dataK,"2222"),_.get(dataK,"333"))
-  console.log(_.groupBy(dataKKK,"name"))
+
+  const dataKKK = [{ id: "1", name: "2222" }, { id: "2", name: "2222" }, { id: "3", name: "333" },]
+  const dataK = _.groupBy(dataKKK, "name");
+  // console.log(_.get(dataK,"2222"),_.get(dataK,"333"))
+  // console.log(_.groupBy(dataKKK,"name"))
+  const { type } = props;
+  console.log(type, "type")
 
   return (
     <div>三生三世
       <div>
-      <p>定时器： {nums} </p>
-      <Button type="primary" onClick={()=>{goStart(1)}}>开始</Button>
-      <Button type="primary" onClick={()=>{goClear(1)}}>清除</Button>
-      {/* <div onClick={()=>{goStart(1)}}>开始</div>
+        <p>定时器： {nums} </p>
+        <Button type="primary" onClick={() => { goStart(1) }}>开始</Button>
+        <Button type="primary" onClick={() => { goClear(1) }}>清除</Button>
+        {/* <div onClick={()=>{goStart(1)}}>开始</div>
       <div onClick={()=>{goClear(1)}}>清除</div> */}
         <p>You clicked {count} times</p>
         <Button type="primary" onClick={handClick}>click me</Button>
@@ -163,23 +170,35 @@ const goClear = () => {
 
         </div>
       </div>
-
+      {
+        type
+      }
       <CountContext.Provider value={count}>
-        <LndexChildren  value={count}/>
+        <LndexChildren value={count} />
       </CountContext.Provider>
     </div>
   )
 }
 Index.prototype = {
   time: PropTypes.string.isRequired,
-  homePage:PropTypes.func.isRequired,
+  homePage: PropTypes.func.isRequired,
+
 }
 const mapStateToProps = state => ({
-  NavData:state.Index.NavData
+  NavData: state.Index.NavData,
+  type: state.Index.type
 })
 
 const mapDispatchToProps = {
-  homePage:"Index/homePage"
+  homePage: query => ({
+    type: "Index/homePage", payload: query || {}
+  }),
+  stepConfig: query => ({
+    type: "Index/stepConfig", payload: query || {}
+  }),
+  save: query => ({
+    type: "Index/save", payload: query || {}
+  })
 }
 // export default Index;
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

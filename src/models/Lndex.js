@@ -10,7 +10,8 @@ export default{
   state: {
     NavData: [],//导航数据
     TableList:[],
-    type:"初始化"
+    type:"初始化",
+    dataList:[{id:1,name:"2"}]
   },                                      //models存储的数据store
   subscriptions: {                                             //订阅，在app.start()即启动项目时被执行
     setup({ dispatch, history }) {
@@ -91,9 +92,13 @@ export default{
       // return back;
      
     },
+    *saveFunction({payload:values},{call,put,select}){
+       console.log(values,"values")
+    }
   },
   reducers: {
-    save(state, { payload }) {                    //更新store，用新数据合并state的旧数据
+    save(state, { payload }) {     
+      console.log(state,payload)               //更新store，用新数据合并state的旧数据
       return { ...state, ...payload };
     }
   },
