@@ -33,7 +33,7 @@ class ExampleApp extends React.Component {
             serachData: _.get(dataSearch, "state.selectData"),
             tableData: _.get(dataTable, "state.selectData"),
         };
-        console.log(data, "data")
+        // console.log(data, "data")
     }
 
     render() {
@@ -131,10 +131,10 @@ class ExampleApp extends React.Component {
                     //     dataK.push(dataT[i])
                     // }
 
-                    console.log(dataT[i], dataT[j], dataT[j].initialkey.indexOf(dataT[i].initialkey), "222")
+                    // console.log(dataT[i], dataT[j], dataT[j].initialkey.indexOf(dataT[i].initialkey), "222")
 
                     if (dataT[i].initialkey !== dataT[j].initialkey && dataT[j].initialkey.indexOf(dataT[i].initialkey) === 0) {
-                        console.log(dataK, dataT[i], dataT[j], "333")
+                        // console.log(dataK, dataT[i], dataT[j], "333")
 
                         dataK.map((item, index) => {
                             if (item.initialkey === dataT[i].initialkey) {
@@ -143,8 +143,8 @@ class ExampleApp extends React.Component {
                                 let index = dataT[j].initialkey.lastIndexOf(".")
                                 let str = dataT[j].initialkey.substring(index+1, dataT[j].initialkey.length);
                                 dataT[j].key=str;
-                                console.log(str, "str")
-                                console.log(item, "item", dataT[j].initialkey.substring("end", "."))
+                                // console.log(str, "str")
+                                // console.log(item, "item", dataT[j].initialkey.substring("end", "."))
                                 if (!item.child) {
                                     item.child = [dataT[j]]
                                 } else {
@@ -163,7 +163,7 @@ class ExampleApp extends React.Component {
 
         // dataT.map((item,index))
 
-        console.log(dataT, dataK, "dataT")
+        // console.log(dataT, dataK, "dataT")
 
 
         return (

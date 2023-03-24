@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="robots" content="all">
+    <meta name="referrer" content="always">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="keywords" content="XML格式化,XML在线解析,XML压缩">
+    <meta name="description" content="XML格式化工具是一款XML在线解析工具，提供XML格式化、XML压缩功能，格式化后的XML代码有着很高的可读性，颜色高亮显示代码，是程序员必备工具之一。">
+    <title>XML格式化 XML在线解析工具 iP138在线工具</title>
+    <link rel="canonical" href="https://tool.ip138.com/xml/" />
+    <link rel="stylesheet" href="static/css/responsive.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="static/css/page.css" />
+    
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="container">
+
+            <div class="content">
+
+                <div class="mod-panel">
+                   
+                    <div class="bd">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form>
+                                    <div class="form-group">
+                                        <div id="input" style="height:400px;">&lt;books&gt;
+                                            &lt;book&gt;
+                                            &lt;author&gt;李刚&lt;/author&gt;
+                                            &lt;title&gt;疯狂XML讲义&lt;/title&gt;
+                                            &lt;publisher>电子工业出版社&lt;/publisher&gt;
+                                            &lt;/book&gt;
+                                            &lt;book&gt;
+                                            &lt;author&gt;Developer&lt;/author&gt;
+                                            &lt;title&gt;XML格式化工具&lt;/title&gt;
+                                            &lt;publisher&gt;ip138.com&lt;/publisher&gt;
+                                            &lt;/book&gt;
+                                            &lt;/books&gt;</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-inline">
+                                            <button class="btn btn-primary" data-type="beauty"
+                                                type="button">格式化</button>
+                                           
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="static/js/ace.js"></script>
+            <script type="text/javascript" src="static/js/vkbeautify.js"></script>
+            <script type="text/javascript">
+                (function () {
+                    var $mod_panel = $('.mod-panel');
+                    var $input = $mod_panel.find('#input');
+                    var editor = ace.edit("input");
+                    editor.setShowPrintMargin(false);
+                    editor.setTheme("ace/theme/tomorrow_night");
+                    editor.getSession().setMode("ace/mode/xml");
+                    $mod_panel.find('.btn').click(function (e) {
+                        var input = editor.getValue(),
+                            type = $(this).data('type'),
+                            result = '';
+                        if (type == 'beauty') {
+                            result = vkbeautify.xml(input);
+                        } else {
+                            result = vkbeautify.xmlmin(input);
+                        }
+                        result = $.trim(result);
+                        editor.setValue(result);
+                    });
+                })();
+            </script>
+
+        </div>
+</body>
+
+</html>

@@ -13,6 +13,13 @@ import ExampleApp from './components/ExampleApp';
 import EditApp from "./components/EditApp";
 import EditComponent from "./components/EditComponent";
 import style from "../user/user.less";
+// import JsonFormault from "./components/JsonFormault";
+// import MonacoEditor from "././components/MonacoEditor";
+// import XmlFormaultD from "./../component/XmlFormault";
+import CodemirrorFormault from "./components/CodemirrorFormault";
+import JSonFormault from "./comm/JSonFormault";
+import AecComponent from "./components/Ace";
+
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
 class Login extends React.Component {
@@ -191,6 +198,10 @@ class Login extends React.Component {
       });
     }, 1000)
 
+  }
+
+  hadnclickdd=(value)=>{
+      console.log(value,"sss")
   }
 
 
@@ -383,9 +394,15 @@ class Login extends React.Component {
           </Button>
         </Upload>
         <div>
-          <ExampleApp />
-          <EditApp />
+          <AecComponent hadnclick={this.hadnclickdd} />
+          <JSonFormault />
+          {/* <ExampleApp />
+          <EditApp /> */}
+          {/* <XmlFormaultD /> */}
           {/* <EditComponent /> */}
+          {/* <JsonFormault /> */}
+          {/* <MonacoEditor /> */}
+          {/* <CodemirrorFormault /> */}
         </div>
 
         {/* <PublicTable
