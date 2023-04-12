@@ -4,6 +4,7 @@
 import React from 'react';
 import { connect } from "dva";
 import { Form, Icon, Input, Button, Checkbox, Upload, message, } from 'antd';
+
 import moment from 'moment';
 import { DatePicker } from 'antd';
 import _ from "loadsh";
@@ -19,6 +20,9 @@ import style from "../user/user.less";
 import CodemirrorFormault from "./components/CodemirrorFormault";
 import JSonFormault from "./comm/JSonFormault";
 import AecComponent from "./components/Ace";
+
+import Graph from "./components/Graph/index";
+import ExampleGrapg from './components//Graph/example';
 
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
@@ -200,11 +204,14 @@ class Login extends React.Component {
 
   }
 
-  hadnclickdd=(value)=>{
-      console.log(value,"sss")
+  hadnclickdd = (value) => {
+    console.log(value, "sss")
   }
 
-
+  disabledDate(current) {
+    // Can not select days before today and today
+    return current && current < moment().endOf('day');
+  }
 
 
   render() {
@@ -319,6 +326,77 @@ class Login extends React.Component {
     ];
     const plainOptions = ['Apple', 'Pear', 'Orange'];
 
+    const nodesList={
+      // nodes:[
+      //   {
+
+      //   }
+      // ],
+      nodes: [
+        {
+          name: 'Node 1',
+          x: 300,
+          y: 300
+        },
+        {
+          name: 'Node 2',
+          x: 800,
+          y: 300
+        },
+        {
+          name: 'Node 3',
+          x: 550,
+          y: 100
+        },
+        {
+          name: 'Node 4',
+          x: 550,
+          y: 500
+        }
+      ],
+      // links: [],
+      links: [
+        {
+          source: 0,
+          target: 1,
+          symbolSize: [5, 20],
+          label: {
+            show: true
+          },
+          lineStyle: {
+            width: 5,
+            curveness: 0.2
+          }
+        },
+        {
+          source: 'Node 2',
+          target: 'Node 1',
+          label: {
+            show: true
+          },
+          lineStyle: {
+            curveness: 0.2
+          }
+        },
+        {
+          source: 'Node 1',
+          target: 'Node 3'
+        },
+        {
+          source: 'Node 2',
+          target: 'Node 3'
+        },
+        {
+          source: 'Node 2',
+          target: 'Node 4'
+        },
+        {
+          source: 'Node 1',
+          target: 'Node 4'
+        }
+      ],
+    }
+
     return (
       <div>
         <div className={`${style["UserLogin"]}`}>
@@ -339,7 +417,7 @@ class Login extends React.Component {
               {getFieldDecorator('username', {
                 // initialValue: Dform.username,
                 // rules: testDisabled ? [{ required: true, message: 'Please input your username!' }] : [{ required: false, message: 'Please input your username!' }],
-                rules:[{ required: true, message: 'Please input your username!' }],
+                rules: [{ required: true, message: 'Please input your username!' }],
               })(
                 <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -353,7 +431,7 @@ class Login extends React.Component {
               {getFieldDecorator('password', {
                 // initialValue: Dform.password,
                 // rules: !testDisabled ? [{ required: true, message: 'Please input your Password!' }] : [{ required: false, message: 'Please input your Password!' }],
-                rules: [{ required: true, message: 'Please input your Password!' }] ,
+                rules: [{ required: true, message: 'Please input your Password!' }],
               })(
                 // <Input
                 //   prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -388,12 +466,15 @@ class Login extends React.Component {
             </Form.Item>
           </Form>
         </div>
+        <DatePicker showTime   disabledDate={this.disabledDate} />
         <Upload {...props}>
           <Button>
             <Icon type="upload" /> Click to Upload
           </Button>
         </Upload>
         <div>
+          <ExampleGrapg {...nodesList} />
+          {/* <Graph /> */}
           <AecComponent hadnclick={this.hadnclickdd} />
           <JSonFormault />
           {/* <ExampleApp />

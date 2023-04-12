@@ -49,9 +49,13 @@ class AecComponent extends React.Component {
         return (
             <div>
                 <AceEditor
+                    width="100%"
                     value={value}
                     defaultValue="yyyyyy"
                     mode="xml"
+                    showPrintMargin={false}
+                    // maxLines="0"
+                    // minLines="0"
                     // theme="github"
                     onChange={this.onChange.bind(this,)}
                     name="UNIQUE_ID_OF_DIV"
