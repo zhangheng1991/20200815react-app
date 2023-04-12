@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './style.less';
-import * as d3 from 'd3';
+import  d3 from 'd3';
 // import data from './data';
 
 const data = [
@@ -23,7 +23,9 @@ class NetworkVisualGraph extends Component {
     }
 
     drawGraph = () => {
-        const svg = d3.select('#networkVisual')
+        // console.log(document.getElementById("networkVisual"),"222");
+        console.log(d3,"d3")
+        const svg = d3.select('networkVisual')
             .append('svg')
             .attr('width', '100%')
             .attr('height', '100%')
