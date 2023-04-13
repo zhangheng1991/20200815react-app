@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Select, Slider } from 'antd';
-
+import _ from "loadsh";
 import mockData from './data';
 import node from './base_node';
 import RelationEdge from './edge';
@@ -22,45 +22,89 @@ class DagreLayout extends Component {
     }
 
     componentDidMount() {
-        this.DagreLayoutInitialization()
+        const { data } = this.props;
+        if (_.get(data, "nodes")) {
+            this.DagreLayoutInitialization()
+        }
 
     }
 
     DagreLayoutInitialization = () => {
-        let root = document.getElementById('dag-canvas');
-        this.canvas = new DagreCanvas({
-            root: root,
-            disLinkable: true, // 可删除连线
-            linkable: true,    // 可连线
-            draggable: true,   // 可拖动
-            zoomable: false,    // 可放大
-            moveable: true,    // 可平移
-            layout: {
-                type: 'dagreLayout',
-                options: {
-                    rankdir: 'TB',
-                    nodesep: 40,
-                    ranksep: 40,
-                    controlPoints: false,
+        const { id, data,handClick } = this.props;
+        const nodes = _.map(_.get(data, "nodes"), item => ({
+            ...item,
+            Class: node,
+        }))
+
+        let dataObj = {
+            edges: data.edges,
+            nodes: nodes,
+        }
+        if (id) {
+            let root = document.getElementById(id || "dag-canvas");
+            this.canvas = new DagreCanvas({
+                root: root,
+                disLinkable: true, // 可删除连线
+                linkable: true,    // 可连线
+                draggable: true,   // 可拖动
+                zoomable: false,    // 可放大
+                moveable: true,    // 可平移
+                layout: {
+                    type: 'dagreLayout',
+                    options: {
+                        rankdir: 'TB',
+                        nodesep: 40,
+                        ranksep: 40,
+                        controlPoints: false,
+                    },
                 },
-            },
-            theme: {
-                edge: {
-                    shapeType: 'AdvancedBezier',
-                    arrow: true,
-                    arrowPosition: 0.5,
-                    Class: RelationEdge
+                theme: {
+                    edge: {
+                        // shapeType <String> 线条类型可以是：Bezier(贝塞尔曲线)，
+                        // Flow(折线)，Straight(直线)，Manhattan(曼哈顿路由线)，
+                        // AdvancedBezier(更美丽的贝塞尔曲线)，Bezier2-1，Bezier2-2，
+                        // Bezier2-3(二阶贝塞尔曲线)，BrokenLine(折线)；默认为Straight
+                        shapeType: 'AdvancedBezier',
+                        arrow: true,
+                        arrowPosition: 0.5,
+                        Class: RelationEdge
+                    }
                 }
-            }
-        });
-        this.canvas.draw(mockData);
-        this.canvas.on('events', (data) => {
-            // eslint-disable-next-line no-console
+            });
+            this.canvas.on('events', (Obj) => {
+                // eslint-disable-next-line no-console
+               
+                if (Obj.type === "node:click") {
+                    console.log(Obj);
+                    if(handClick){
+                        handClick(Obj)
+                    }
+                   
+                    // const nodeNew=_.map(nodes,item=>({
+                    //     ...item,
+                    //     className:item.id==data.node.id?'nodeBackground-color nodeSelect': 'nodeBackground-color'
+                    // }))
+
+                    // const nodeNew = _.map(_.get(data, "nodes"), item => ({
+                    //     ...item,
+                    //     Class: node,
+                    //     className:item.id==Obj.node.id?'nodeBackground-color nodeSelect': 'nodeBackground-color'
+                    // }))
+                    // let dataObjNew = {
+                    //     edges: data.edges,
+                    //     nodes: nodeNew,
+                    // }
+                    // // dataObj.nodes=nodeNew;
+                    // console.log(dataObjNew,"dataObjNew")
+                    // this.canvas.draw(dataObjNew);//dataObj  mockData
+                }
+           
+            });
           
-            if(data.type==="node:click"){
-                console.log(data);
-            }
-        });
+            this.canvas.draw(dataObj);//dataObj  mockData
+           
+        }
+
     }
 
     // 添加节点
@@ -119,12 +163,14 @@ class DagreLayout extends Component {
 
     // 配置项改变
     optionsChange(key, value) {
+        console.log(key, value)
         let oldOptions = this.canvas.layout.options;
         let newOptions = { ...oldOptions, [key]: value };
         this.canvas.drageReDraw(newOptions);
     }
 
     render() {
+        const { id, height } = this.props;
         return (
             <div className='dagreLayout-page'>
                 <div className='operate-bar'>
@@ -162,7 +208,10 @@ class DagreLayout extends Component {
                         <Slider defaultValue={40} onAfterChange={this.optionsChange.bind(this, 'ranksep')} />
                     </div>
                 </div>
-                <div className="flow-canvas" id="dag-canvas">
+                <div style={{ height: height || "400px" }}>
+                    <div className="flow-canvas" id={id || "dag-canvas"}>
+                    </div>
+
                 </div>
             </div>
         );

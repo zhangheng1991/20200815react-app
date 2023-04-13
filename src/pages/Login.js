@@ -217,6 +217,10 @@ class Login extends React.Component {
     return current && current < moment().endOf('day');
   }
 
+  handClickDrage=(obj)=>{
+     console.log(obj,"obj")
+  }
+
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -401,6 +405,137 @@ class Login extends React.Component {
       ],
     }
 
+   const DagreLayoutObj={
+    id:"DagreLayoutObj",
+    height:"700px",
+    data:{
+      nodes: [{
+        id: 'test1',
+        name: 'test1',
+         
+        className: 'nodeBackground-color'
+      },
+      {
+        id: 'test2',
+        name: 'test2',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test3',
+        name: 'test3',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test4',
+        name: 'test4',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test5',
+        name: 'test5',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test6',
+        name: 'test6',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test7',
+        name: 'test7',
+  
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test8',
+        name: 'test8',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test9',
+        name: 'test9',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test10',
+        name: 'test10',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test11',
+        name: 'test11',
+         
+        className: 'nodeBackground-color'
+      }, {
+        id: 'test12',
+        name: 'test12',
+         
+        className: 'nodeBackground-color'
+      }
+      ],
+      edges: [{
+        source: 'test1',
+        target: 'test2',
+      },
+      {
+        source: 'test6',
+        target: 'test8',
+      },
+      // {
+      //   source: 'test1',
+      //   target: 'test8',
+      // },
+      {
+        source: 'test1',
+        target: 'test3'
+      }, {
+        source: 'test2',
+        target: 'test4'
+      }, {
+        source: 'test3',
+        target: 'test4'
+      }, {
+        source: 'test4',
+        target: 'test5'
+      }, {
+        source: 'test4',
+        target: 'test6'
+      },
+      {
+        source: 'test4',
+        target: 'test7'
+      },
+      {
+        source: 'test7',
+        target: 'test9'
+      },
+      {
+        source: 'test7',
+        target: 'test10'
+      },
+      {
+        source: 'test7',
+        target: 'test11'
+      },
+      {
+        source: 'test7',
+        target: 'test8'
+      },
+      {
+        source: 'test8',
+        target: 'test12'
+      },
+      {
+        source: 'test11',
+        target: 'test12'
+      },
+      {
+        source: 'test1',
+        target: 'test9'
+      }
+      ]
+    },handClick:this.handClickDrage
+   }
+
     return (
       <div>
         <div className={`${style["UserLogin"]}`}>
@@ -477,7 +612,7 @@ class Login extends React.Component {
           </Button>
         </Upload>
         <div>
-          <div style={{height:"800px"}}><DagreLayout /></div>
+          <div style={{height:"800px"}}><DagreLayout {...DagreLayoutObj}/></div>
           {/* <div style={{height:"800px"}}>  <ButtterflyDag /></div> */}
           <div> <AecComponent hadnclick={this.hadnclickdd} /></div>
           <div><JSonFormault /></div>

@@ -37,15 +37,24 @@ export default {
     name: 'test7',
     Class: node,
     className: 'nodeBackground-color'
+  }, {
+    id: 'test8',
+    name: 'test8',
+    Class: node,
+    className: 'nodeBackground-color'
   }
   ],
   edges: [{
     source: 'test1',
     target: 'test2',
   },
+  {
+    source: 'test6',
+    target: 'test8',
+  },
   // {
   //   source: 'test1',
-  //   target: 'test6',
+  //   target: 'test8',
   // },
   {
     source: 'test1',
