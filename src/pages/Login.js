@@ -24,6 +24,10 @@ import AecComponent from "./components/Ace";
 import Graph from "./components/Graph/index";
 import ExampleGrapg from './components//Graph/example';
 
+import ButtterflyDag from "./components/butterflyDag/index";
+
+import DagreLayout from "./components/dagreLayout/index";
+
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
 class Login extends React.Component {
@@ -326,7 +330,7 @@ class Login extends React.Component {
     ];
     const plainOptions = ['Apple', 'Pear', 'Orange'];
 
-    const nodesList={
+    const nodesList = {
       // nodes:[
       //   {
 
@@ -466,17 +470,25 @@ class Login extends React.Component {
             </Form.Item>
           </Form>
         </div>
-        <DatePicker showTime   disabledDate={this.disabledDate} />
+        <DatePicker showTime disabledDate={this.disabledDate} />
         <Upload {...props}>
           <Button>
             <Icon type="upload" /> Click to Upload
           </Button>
         </Upload>
         <div>
-          <ExampleGrapg {...nodesList} />
+          <div style={{height:"800px"}}><DagreLayout /></div>
+          {/* <div style={{height:"800px"}}>  <ButtterflyDag /></div> */}
+          <div> <AecComponent hadnclick={this.hadnclickdd} /></div>
+          <div><JSonFormault /></div>
+          <div></div>
+          <div></div>
+
+        
+          {/* <ExampleGrapg {...nodesList} /> */}
           {/* <Graph /> */}
-          <AecComponent hadnclick={this.hadnclickdd} />
-          <JSonFormault />
+
+
           {/* <ExampleApp />
           <EditApp /> */}
           {/* <XmlFormaultD /> */}
