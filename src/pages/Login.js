@@ -414,7 +414,7 @@ class Login extends React.Component {
 
     const DagreLayoutObj = {
       id: "DagreLayoutObj",
-      height: "700px",
+      height: "800px",
       data: {
         nodes: [
           {
@@ -702,19 +702,19 @@ class Login extends React.Component {
             </Form.Item>
           </Form>
         </div>
-        <DatePicker showTime disabledDate={this.disabledDate} />
+        {/* <DatePicker showTime disabledDate={this.disabledDate} />
         <Upload {...props}>
           <Button>
             <Icon type="upload" /> Click to Upload
           </Button>
-        </Upload>
+        </Upload> */}
         <div>
-          <div style={{ height: "800px" }}><DagreLayout {...DagreLayoutObj} /></div>
+          <div ><DagreLayout {...DagreLayoutObj} /></div>
           {/* <div style={{height:"800px"}}>  <ButtterflyDag /></div> */}
-          <div> <AecComponent hadnclick={this.hadnclickdd} /></div>
+          {/* <div> <AecComponent hadnclick={this.hadnclickdd} /></div>
           <div><JSonFormault /></div>
           <div style={{ height: "800px" }}><CompactBoxTree /></div>
-          <div></div>
+          <div></div> */}
 
 
           {/* <ExampleGrapg {...nodesList} /> */}

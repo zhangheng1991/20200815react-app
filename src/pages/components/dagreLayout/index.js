@@ -192,7 +192,7 @@ class DagreLayout extends Component {
         const { id, height } = this.props;
         return (
             <div className='dagreLayout-page'>
-                <div className='operate-bar'>
+                <div className='operate-bar' style={{display:"none"}}>
                     <div className='operate-bar-title'>属性配置</div>
                     <div className='operate-item'>
                         <div className='operate-node'>增删节点:</div>
