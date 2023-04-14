@@ -19,6 +19,7 @@ class RelationEdge extends Edge {
   }
 
   drawLabel(text) {
+    console.log(text,"text")
     let dom = null;
     if (text) {
       dom = $(`<span class="butterflies-label">${text}</span>`)[0];
