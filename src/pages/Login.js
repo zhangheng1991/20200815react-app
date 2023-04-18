@@ -28,6 +28,8 @@ import ButtterflyDag from "./components/butterflyDag/index";
 
 import DagreLayout from "./components/dagreLayout/index";
 import CompactBoxTree from "./components/compact-box-tree/index";
+import RelationalBook from "./components/relationalBooks/index";
+import MinMap from "./components/mindMap/index";
 
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
@@ -424,99 +426,131 @@ class Login extends React.Component {
             height: 60,
             shape: 'circle',
             className: 'nodeBackground-first'
-          },{
-          id: 'test1',
-          name: 'test1',
-          className: 'nodeBackground-color',
-          list: [
-            {
-              Children: [{ id: "rrrr", name: "tttt" }, { id: "eee", name: "www" },],
+          }, {
+            id: 'test1',
+            name: 'test1',
+            className: 'nodeBackground-color',
+            list: [
+              {
+                Children: [{ id: "test1-1", name: "tttt",  }, { id: "test1-2", name: "www", },],
+                stepName: "step1",
+                id: 'test1',
+                sourceNodeId: '2', targetNodeId: '3'
+              },
+              {
+                Children: [{ id: "test2-1", name: "test2-2",  }, { id: "eee", name: "www", },],
+                stepName: "step2",
+                id: 'test1',
+                sourceNodeId: '4', targetNodeId: '5'
+              },
+            ],
+            data: [{
               stepName: "step1",
-            },
-            {
-              Children: [{ id: "rrrr", name: "tttt" }, { id: "eee", name: "www" },],
-              stepName: "step2",
-            },
-          ],
-        },
+              content: [
+                // { id: '1', name: "rrrr", content: 'id', sourceNodeId: '2', targetNodeId: '3' },
+                { id: '4', name: "tttt", content: 'isbn', sourceNodeId: '5', targetNodeId: '6' },
+                { id: '7', name: "ffff", content: 'title', sourceNodeId: '8', targetNodeId: '9' },
+              ],
+            }]
+          },
 
-        {
-          id: 'test2',
-          name: 'test2',
-          list: [
-            {
-              Children: [{ id: "rrrr", name: "tttt" }, { id: "eee", name: "www" },],
+
+          // {
+          //   source: '8',
+          //   target: '12',
+          //   sourceNode: 'test1',
+          //   targetNode: 'test2',
+          //   type: 'endpoint',
+          // },
+
+          {
+            id: 'test2',
+            name: 'test2',
+            color: "red",
+            list: [
+              {
+                Children: [{ id: "test3-1", name: "tttt" }, { id: "test3-2", name: "www" },],
+                stepName: "step1",
+                id: 'test2',
+                sourceNodeId: '6', targetNodeId: '7'
+              },
+            ],
+            data: [{
               stepName: "step1",
-            },
-          ],
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test3',
-          name: 'test3',
-          list: [
-            {
-              Children: [{ id: "rrrr", name: "tttt" }, { id: "eee", name: "www" },],
-              stepName: "step1",
-            },
-            {
-              Children: [{ id: "rrrr", name: "tttt" }, { id: "eee", name: "www" },],
-              stepName: "step2",
-            }, {
-              Children: [{ id: "rrrr", name: "tttt" }, { id: "eee", name: "www" },],
-              stepName: "step1",
-            },
-            {
-              Children: [{ id: "rrrr", name: "tttt" }, { id: "eee", name: "www" },],
-              stepName: "step2",
-            },
-          ],
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test4',
-          name: 'test4',
+              content: [
+                { id: '10', name: "rrrr", content: 'id', sourceNodeId: '11', targetNodeId: '12' },
+                // { id: '4', name: "tttt", content: 'isbn', sourceNodeId: '5', targetNodeId: '6' },
+                // { id: '7', name: "ffff", content: 'title', sourceNodeId: '8', targetNodeId: '9' },
+              ],
+            }],
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test3',
+            name: 'test3',
+            list: [
+              {
+                Children: [{ id: "test4-1", name: "tttt" }, { id: "test4-2", name: "www" },],
+                stepName: "step1",
+              },
+              {
+                Children: [{ id: "test5-1", name: "tttt" }, { id: "test5-2", name: "www" },],
+                stepName: "step2",
+              }, {
+                Children: [{ id: "test6-1", name: "tttt" }, { id: "test6-2", name: "www" },],
+                stepName: "step1",
+              },
+              {
+                Children: [{ id: "test7-1", name: "tttt" }, { id: "test7-2", name: "www" },],
+                stepName: "step2",
+              },
+            ],
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test4',
+            name: 'test4',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test5',
-          name: 'test5',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test5',
+            name: 'test5',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test7',
-          name: 'test7',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test7',
+            name: 'test7',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test6',
-          name: 'test6',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test6',
+            name: 'test6',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test8',
-          name: 'test8',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test8',
+            name: 'test8',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test9',
-          name: 'test9',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test9',
+            name: 'test9',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test10',
-          name: 'test10',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test10',
+            name: 'test10',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test11',
-          name: 'test11',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test11',
+            name: 'test11',
 
-          className: 'nodeBackground-color'
-        }, {
-          id: 'test12',
-          name: 'test12',
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test12',
+            name: 'test12',
 
-          className: 'nodeBackground-color'
-        }
+            className: 'nodeBackground-color'
+          }
         ],
         edges: [{
           source: 'test1',
@@ -529,11 +563,31 @@ class Login extends React.Component {
         },
         {
           source: 'test1',
-          target: 'test3'
-        }, {
-          source: 'test2',
+          target: 'test3',
+          color: "red"
+        },
+        {
+          source: 'root',
           target: 'test4'
-        }, {
+        },
+        //  {
+        //   source: '8',
+        //   target: 'test1',
+        //   sourceNode: '12',
+        //   targetNode: 'test2',
+        //   type: 'endpoint',
+        // }, 
+
+        {
+          source: '2',
+          target: '7',
+          sourceNode: 'test1',
+          targetNode: 'test2',
+          type: 'endpoint',
+        },
+
+
+        {
           source: 'test3',
           target: 'test4'
         }, {
@@ -633,6 +687,222 @@ class Login extends React.Component {
       shapeType: shapeType
     }
 
+    const minMapObj={
+      id:"minMapObj"
+    }
+
+    const DagreLayoutObj1 = {
+      id: "DagreLayoutObj1",
+      height: "800px",
+      data: {
+        nodes: [
+          {
+            id: 'root',
+            name: 'root',
+            width: 100,
+            height: 60,
+            shape: 'circle',
+            className: 'nodeBackground-first'
+          }, {
+            id: 'test1',
+            name: 'test1',
+            className: 'nodeBackground-color',
+            list: [
+              {
+                Children: [{ id: "test1-1", name: "tttt", sourceNodeId: '2', targetNodeId: '3' }, { id: "test1-2", name: "www" },],
+                stepName: "step1",
+              },
+              {
+                Children: [{ id: "test2-1", name: "test2-2" }, { id: "eee", name: "www" },],
+                stepName: "step2",
+              },
+            ],
+            data: [{
+              stepName: "step1",
+              content: [
+                // { id: '1', name: "rrrr", content: 'id', sourceNodeId: '2', targetNodeId: '3' },
+                { id: '4', name: "tttt", content: 'isbn', sourceNodeId: '5', targetNodeId: '6' },
+                { id: '7', name: "ffff", content: 'title', sourceNodeId: '8', targetNodeId: '9' },
+              ],
+            }]
+          },
+          {
+            id: 'test2',
+            name: 'test2',
+            color: "red",
+            list: [
+              {
+                Children: [{ id: "test3-1", name: "tttt" }, { id: "test3-2", name: "www" },],
+                stepName: "step1",
+              },
+            ],
+            data: [{
+              stepName: "step1",
+              content: [
+                { id: '10', name: "rrrr", content: 'id', sourceNodeId: '11', targetNodeId: '12' },
+                // { id: '4', name: "tttt", content: 'isbn', sourceNodeId: '5', targetNodeId: '6' },
+                // { id: '7', name: "ffff", content: 'title', sourceNodeId: '8', targetNodeId: '9' },
+              ],
+            }],
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test3',
+            name: 'test3',
+            list: [
+              {
+                Children: [{ id: "test4-1", name: "tttt" }, { id: "test4-2", name: "www" },],
+                stepName: "step1",
+              },
+              {
+                Children: [{ id: "test5-1", name: "tttt" }, { id: "test5-2", name: "www" },],
+                stepName: "step2",
+              }, {
+                Children: [{ id: "test6-1", name: "tttt" }, { id: "test6-2", name: "www" },],
+                stepName: "step1",
+              },
+              {
+                Children: [{ id: "test7-1", name: "tttt" }, { id: "test7-2", name: "www" },],
+                stepName: "step2",
+              },
+            ],
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test4',
+            name: 'test4',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test5',
+            name: 'test5',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test7',
+            name: 'test7',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test6',
+            name: 'test6',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test8',
+            name: 'test8',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test9',
+            name: 'test9',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test10',
+            name: 'test10',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test11',
+            name: 'test11',
+
+            className: 'nodeBackground-color'
+          }, {
+            id: 'test12',
+            name: 'test12',
+
+            className: 'nodeBackground-color'
+          }
+        ],
+        edges: [
+          {
+          source: 'test1',
+          target: 'test2',
+        },
+
+        {
+          source: 'root',
+          target: 'test1',
+        },
+        {
+          source: 'test1',
+          target: 'test3',
+          color: "red"
+        },
+        {
+          source: 'root',
+          target: 'test4'
+        },
+        
+
+        {
+          source: 'test3',
+          target: 'test4'
+        }, {
+          source: 'test4',
+          target: 'test5'
+        }, {
+          source: 'test4',
+          target: 'test7'
+        }, {
+          source: 'test4',
+          target: 'test6'
+        },
+        // {
+        //   source: 'test2',
+        //   target: 'test6'
+        // },
+        // {
+        //   source: 'test6',
+        //   target: 'test8',
+        // },
+        // {
+        //   source: 'test5',
+        //   target: 'test8',
+        // },
+        // {
+        //   source: 'test7',
+        //   target: 'test8',
+        // },
+        // {
+        //   source: 'test9',
+        //   target: 'test8',
+        // },
+        // {
+        //   source: 'test4',
+        //   target: 'test9',
+        // },
+        // {
+        //   source: 'test1',
+        //   target: 'test10',
+        // },
+        // {
+        //   source: 'test1',
+        //   target: 'test11',
+        // },
+        // {
+        //   source: 'test1',
+        //   target: 'test12',
+        // },
+        // {
+        //   source: 'test10',
+        //   target: 'test4',
+        // },
+        // {
+        //   source: 'test11',
+        //   target: 'test4',
+        // },
+        // {
+        //   source: 'test12',
+        //   target: 'test4',
+        // },
+         
+        ]
+      },
+      handClick: this.handClickDrage,
+      optionsChangeLine: this.optionsChangeLine,
+      shapeType: shapeType
+    }
+
     return (
       <div>
         <div className={`${style["UserLogin"]}`}>
@@ -709,7 +979,11 @@ class Login extends React.Component {
           </Button>
         </Upload> */}
         <div>
-          <div ><DagreLayout {...DagreLayoutObj} /></div>
+          {/* <div style={{ height: "800px" }}>  <MinMap {...minMapObj} /></div> */}
+          {/* <div ><DagreLayout {...DagreLayoutObj1} /></div> */}
+          {/* <div ><DagreLayout {...DagreLayoutObj} /></div> */}
+          <div style={{ height: "800px" }}><RelationalBook /></div>
+
           {/* <div style={{height:"800px"}}>  <ButtterflyDag /></div> */}
           {/* <div> <AecComponent hadnclick={this.hadnclickdd} /></div>
           <div><JSonFormault /></div>

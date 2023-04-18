@@ -33,6 +33,7 @@ class DagreLayout extends Component {
     DagreLayoutInitialization = () => {
         const { id, data, handClick, shapeType } = this.props;
         const { } = this.state;
+        // console.log(RelationEdge,"RelationEdge")
         const nodes = _.map(_.get(data, "nodes"), item => ({
             ...item,
             Class: node,
@@ -69,7 +70,11 @@ class DagreLayout extends Component {
                         shapeType: "AdvancedBezier",
                         arrow: true,
                         arrowPosition: 0.5,
-                        Class: RelationEdge
+                        isExpandWidth:true,
+                        // defaultAnimate:true,
+                        dragEdgeZindex: 10000, 
+                        Class: RelationEdge,
+                        isExpandWidth:true
                     }
                 }
             });
@@ -102,7 +107,7 @@ class DagreLayout extends Component {
                 }
 
             });
-
+            // this.canvas.setMinimap(true);
             this.canvas.draw(dataObj);//dataObj  mockData
 
         }

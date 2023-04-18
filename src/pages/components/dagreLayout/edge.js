@@ -3,6 +3,7 @@ import {Edge} from 'butterfly-dag';
 
 class RelationEdge extends Edge {
   draw(obj) {
+    console.log(obj,"obj")
     let path = super.draw(obj);
     if (this.options.color) {
       $(path).addClass(this.options.color);
@@ -11,6 +12,7 @@ class RelationEdge extends Edge {
   }
 
   drawArrow(isShow) {
+    console.log(isShow,"isShow")
     let dom = super.drawArrow(isShow);
     if (this.options.color) {
       $(dom).addClass(this.options.color);

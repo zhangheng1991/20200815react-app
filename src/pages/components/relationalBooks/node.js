@@ -1,8 +1,7 @@
-import $ from 'jquery';
 import { Node } from 'butterfly-dag';
+import $ from 'jquery';
 import _ from "loadsh";
-import './base_node.less';
-
+// import '../../static/iconfont.css';
 
 let getAttrObj = (namedNodeMap) => {
   return Array.prototype.reduce.call(namedNodeMap, function (pre, item, index, arr) {
@@ -15,16 +14,39 @@ class BaseNode extends Node {
   constructor(opts) {
     super(opts);
     this.options = opts;
-    this.childData = _.get(opts, "data.content") || [];
+    this.childData = _.get(opts,"data.content")||[];
+  }
+  draw = (opts) => {
+    console.log(opts,"opts")
+    let className = this.options.type;
+    let container = $('<div class="relational-book-base-node base-node"></div>')
+      .css('top', opts.top + 'px')
+      .css('left', opts.left + 'px')
+      .addClass(className)
+      .attr('id', opts.id);
+    // container.append("div")
+    // console.log(container, "container")
+    // console.log($(".base-node-box"),"base-node-box")
+    let containerBox=$(`<div class="base-node-box" style="width:"100%"></div>`);
+   
+    this._createTitle(container);
+    container.append(containerBox)
+    this._createChildNode(containerBox);
+
+    return container[0];
   }
 
-  nodeFunction = (data) => {
-    let pamsList = ``;
-    data.forEach((item, index) => {
-      pamsList += `<div><div class="txtName">${item.name}</div>
-      </div>`
-    })
-    return pamsList;
+  _createTitle(dom) {
+    let title = $(`
+    <div class='title'>
+      
+      <span>${this.options.name}</span>
+      
+    </div>`);
+
+    dom.append(title);
+    // this._onAddNode(title);
+    // this._onRemovedNode(title);
   }
 
   WidthFunction = (data) => {
@@ -33,72 +55,17 @@ class BaseNode extends Node {
     return width;
   }
 
-  LeftFunction = (data) => {
-    let width = "";
-    width = data && data.length > 0 ? (300 / data.length) : "";
-    return width;
-  }
-
-  draw = (opts) => {
-    console.log(opts, "opts")
-    let container = $('<div class="relation-node"></div>')
-      .css('top', opts.top)
-      .css('left', opts.left)
-      .attr('id', opts.id)
-      .addClass(opts.options.className);
-    let attributeList = _.get(opts, "options.list") || [];
-    let pamsList = ``;
-
-    attributeList.forEach((item, index) => {
-      pamsList += `<div  class=${"box-container"}  data-id="${item.id}" 
-      source-id="${item.sourceNodeId}" target-id="${item.targetNodeId}"  style="width:${this.WidthFunction(attributeList) + "%"}">
-      <div class="targetEndPoint butterflie-circle-endpoint" id="${item.targetNodeId}" style="top:110px;left:${(this.LeftFunction(attributeList) / 2 - 10) + "px"}"></div>
-      <div class="stepName">${item.stepName}</div>
-      <div>${this.nodeFunction(item.Children)}</div>
-      
-      </div>`
-    })
-
-    let logoContainer = _.get(opts, "id") === "root" ? $(`<div >
-    <div  >${opts.options.name}</div>
-   
-    </div>`) : $(`<div class="logo-container">
-    <div  class="header-container">${opts.options.name}</div>
-    <div >
-       <div class="dra-container">${pamsList}</div>
-    </div>
-    </div>`);
-    logoContainer.addClass(opts.options.className);
-
-    container.append(logoContainer);
-
-    // this._createTitle(container);
-    this._createChildNode(container);
-
-    return container[0];
-  }
-
-  _createTitle(dom) {
-    let title = $(`
-    <div class='title'>
-      <span class="remove"><i class="iconfont">&#xe654;</i></span>
-      <span>${this.options.name}</span>
-      <span class="add-node"><i class="iconfont">&#xe6a1;</i></span>
-    </div>`);
-
-    dom.append(title);
-    // this._onAddNode(title);
-    // this._onRemovedNode(title);
-  }
-
   _createChildNode(dom) {
+    console.log(this.childData, "this.childData")
+    console.log($(".base-node-box"),"base-node-box1")
     $.each(this.childData, (i, { id, content, sourceNodeId, targetNodeId }) => {
+      console.log(id, content, sourceNodeId, targetNodeId, "ddd")
       dom.append(`
-      <div class="content" data-id="${id}" source-id="${sourceNodeId}" target-id="${targetNodeId}">
+      <div class="content" style="width:${this.WidthFunction(this.childData) + "%"}"  data-id="${id}" source-id="${sourceNodeId}" target-id="${targetNodeId}" >
         <div class="targetEndPoint butterflie-circle-endpoint" id="${targetNodeId}"></div>
-        <span class="remove"><i class="iconfont">&#xe654;</i></span>
+       
         <span class="text">${content}</span>
-        <span class="edit"><i class="iconfont">&#xe66d;</i></span>
+      
         <div class="sourceEndPoint butterflie-circle-endpoint" id="${sourceNodeId}"></div>
       </div>`);
     });
@@ -110,26 +77,6 @@ class BaseNode extends Node {
   }
 
   mounted = () => {
-    console.log(this.options, "this.options11")
-
-    console.log(this.childData, "this.childData")
-    const dataList = _.get(this.options, "list") || [];
-
-    dataList.forEach((({ sourceNodeId, targetNodeId }) => {
-      console.log(sourceNodeId, targetNodeId,"sourceNodeId, targetNodeId")
-      this.addEndpoint({
-        id: sourceNodeId,
-        type: 'source',
-        dom: document.getElementById(sourceNodeId)
-      });
-      this.addEndpoint({
-        id: targetNodeId,
-        type: 'target',
-        dom: document.getElementById(targetNodeId)
-      });
-    }));
-
-
     this.childData.forEach((({ sourceNodeId, targetNodeId }) => {
       this.addEndpoint({
         id: sourceNodeId,
@@ -198,7 +145,5 @@ class BaseNode extends Node {
       this._onEditNode($('.content'));
     });
   }
-
 }
-
 export default BaseNode;

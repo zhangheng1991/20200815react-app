@@ -15,7 +15,7 @@ class BaseNode extends Node {
   constructor(opts) {
     super(opts);
     this.options = opts;
-    this.childData = _.get(opts, "data.content") || [];
+    this.childData = _.get(opts,"data.content")||[];
   }
 
   nodeFunction = (data) => {
@@ -27,16 +27,10 @@ class BaseNode extends Node {
     return pamsList;
   }
 
-  WidthFunction = (data) => {
-    let width = "";
-    width = data && data.length > 0 ? (100 / data.length) : "";
-    return width;
-  }
-
-  LeftFunction = (data) => {
-    let width = "";
-    width = data && data.length > 0 ? (300 / data.length) : "";
-    return width;
+  WidthFunction=(data)=>{
+     let width="";
+     width = data&&data.length>0? (100 / data.length)+"%":"";
+     return width;
   }
 
   draw = (opts) => {
@@ -46,23 +40,19 @@ class BaseNode extends Node {
       .css('left', opts.left)
       .attr('id', opts.id)
       .addClass(opts.options.className);
-    let attributeList = _.get(opts, "options.list") || [];
+    let attributeList = _.get(opts, "options.data") || [];
     let pamsList = ``;
 
     attributeList.forEach((item, index) => {
-      pamsList += `<div  class=${"box-container"}  data-id="${item.id}" 
-      source-id="${item.sourceNodeId}" target-id="${item.targetNodeId}"  style="width:${this.WidthFunction(attributeList) + "%"}">
-      <div class="targetEndPoint butterflie-circle-endpoint" id="${item.targetNodeId}" style="top:110px;left:${(this.LeftFunction(attributeList) / 2 - 10) + "px"}"></div>
-      <div class="stepName">${item.stepName}</div>
-      <div>${this.nodeFunction(item.Children)}</div>
-      
+      pamsList += `<div  class=${"box-container"}  style="width:${this.WidthFunction(attributeList)}"><div class="stepName">${item.stepName}</div>
+      <div>${this.nodeFunction(item.content)}</div>
       </div>`
     })
 
-    let logoContainer = _.get(opts, "id") === "root" ? $(`<div >
+    let logoContainer =_.get(opts,"id")=== "root"?$(`<div >
     <div  >${opts.options.name}</div>
    
-    </div>`) : $(`<div class="logo-container">
+    </div>`):$(`<div class="logo-container">
     <div  class="header-container">${opts.options.name}</div>
     <div >
        <div class="dra-container">${pamsList}</div>
@@ -87,12 +77,12 @@ class BaseNode extends Node {
     </div>`);
 
     dom.append(title);
-    // this._onAddNode(title);
-    // this._onRemovedNode(title);
+    this._onAddNode(title);
+    this._onRemovedNode(title);
   }
 
   _createChildNode(dom) {
-    $.each(this.childData, (i, { id, content, sourceNodeId, targetNodeId }) => {
+    $.each(this.childData, (i, {id, content, sourceNodeId, targetNodeId}) => {
       dom.append(`
       <div class="content" data-id="${id}" source-id="${sourceNodeId}" target-id="${targetNodeId}">
         <div class="targetEndPoint butterflie-circle-endpoint" id="${targetNodeId}"></div>
@@ -105,32 +95,12 @@ class BaseNode extends Node {
 
     let childNode = dom.find('.content');
 
-    // this._onRemovedNode(childNode);
-    // this._onEditNode(childNode);
+    this._onRemovedNode(childNode);
+    this._onEditNode(childNode);
   }
 
   mounted = () => {
-    console.log(this.options, "this.options11")
-
-    console.log(this.childData, "this.childData")
-    const dataList = _.get(this.options, "list") || [];
-
-    dataList.forEach((({ sourceNodeId, targetNodeId }) => {
-      console.log(sourceNodeId, targetNodeId,"sourceNodeId, targetNodeId")
-      this.addEndpoint({
-        id: sourceNodeId,
-        type: 'source',
-        dom: document.getElementById(sourceNodeId)
-      });
-      this.addEndpoint({
-        id: targetNodeId,
-        type: 'target',
-        dom: document.getElementById(targetNodeId)
-      });
-    }));
-
-
-    this.childData.forEach((({ sourceNodeId, targetNodeId }) => {
+    this.childData.forEach((({sourceNodeId, targetNodeId}) => {
       this.addEndpoint({
         id: sourceNodeId,
         type: 'source',
@@ -198,7 +168,7 @@ class BaseNode extends Node {
       this._onEditNode($('.content'));
     });
   }
-
+  
 }
 
 export default BaseNode;

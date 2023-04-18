@@ -1,0 +1,181 @@
+@import 'theme.less'; 
+:global{
+    .relational-books-page{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        .butterfly-minimap-container {
+          top: 30px;
+          right: 30px !important;
+        }
+        .flow-canvas {
+          width: 100%;
+          height: 100%;
+          .butterflies-link {
+            stroke: @butterfly-line-color;
+            stroke-width: 1px;
+          }
+          .butterfly-wrapper {
+            
+            #Root{
+              width: 200px !important;
+              height: 100px !important;
+              border-radius: 50% !important;
+              text-align: center;
+              line-height: 100px;
+              .title {
+                border: none;
+                height: 100px;
+                line-height: 100px;
+              }
+            }
+            .relational-book-base-node {
+              width: 300px;
+              position: absolute;
+              // height: 32px;
+              // line-height: 28px;
+              text-align: center;
+              vertical-align: middle;
+              border-radius: 5px;
+              color: @butterfly-normal-font-color;
+              box-shadow: @butterfly-box-shadow;
+              // border: 1px solid black;
+              cursor: pointer;
+              background-color: #DAE2F3;
+              .title {
+                line-height: 32px;
+                height: 32px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                // background: @butterfly-primary-color;
+                // border-radius: 15px 15px 0px 0px;
+                padding: 0 8px;
+                color:@butterfly-overlay-font-color;
+                border-bottom: 1px solid black;
+                .remove {
+                  cursor: pointer;
+                }
+                .add-node {
+                  cursor: pointer;
+                }
+              }
+              .base-node-box{
+                display: flex;
+              }
+              .content {
+                height: 100px;
+                // width: 200px;
+                // display: flex;
+                // justify-content: space-between;
+                // align-items: center;
+                display: inline-block;
+                // padding: 0 8px;
+                // background: @butterfly-theme-color;
+                // border: @butterfly-box-border;
+                padding: 5px;
+                margin: 5px;
+                border: 1px solid black;
+                position: relative;
+                color:@butterfly-overlay-font-color;
+                cursor: pointer;
+                .targetEndPoint{
+                  left: 50%;
+                  position: absolute;
+                }
+                .sourceEndPoint{
+                  // right: -3px;
+                  left: 50%;
+                  position: absolute;
+                  top: 90px;
+                }
+                .remove {
+                  display: none;
+                  cursor: pointer;
+                }
+                .text {
+                  .input-text {
+                    height: 28px;
+                    border: @butterfly-box-border;
+                    width: 130px;
+                    padding: 0 4px;
+                  }
+                }
+                .edit {
+                  display: none;
+                  cursor: pointer;
+                }
+              }
+              // .content:last-child {
+              //   border-radius: 0px 0px 15px 15px;
+              // }
+              .content:hover {
+                display: flex;
+                background: @butterfly-box-move-background-color;
+                .remove {
+                  display : contents;
+                  cursor: pointer;
+                }
+                .edit {
+                  display : contents;
+                  cursor: pointer;
+                }
+              }
+            }
+            .group-node {
+              width: 200px;
+              position: absolute;
+              .title {
+                line-height: 32px;
+                height: 32px;
+                display: flex;
+                justify-content: space-between;
+                background: @butterfly-primary-color;
+                border-radius: 15px 15px 0px 0px;
+                padding: 0 8px;
+                color:@butterfly-overlay-font-color;
+                .title-text {
+                  input {
+                    width: 140px;
+                    color: @butterfly-normal-font-color;
+                    height: 28px;
+                    border: @butterfly-box-border;
+                  }
+                }
+                #close {
+                  cursor: pointer;
+                }
+                .alis-node-edit {
+                  cursor: pointer;
+                }
+              }
+              .container {
+                display: flex;
+                padding: 8px;
+                justify-content: space-between;
+                border: @butterfly-box-border;
+                background: @butterfly-theme-color;
+                border-radius: 0px 0px 15px 15px;
+                color: @butterfly-normal-font-color;
+                p {
+                  textarea {
+                    min-height: 80px;
+                    width: 164px;
+                  }
+                }
+                .alis-node-edit {
+                  display: none;
+                }
+              }
+              .container:hover {
+                background: @butterfly-box-move-background-color;
+                .alis-node-edit {
+                  cursor: pointer;
+                  display: contents;
+                }
+              }
+            }
+          }
+        }
+      }
+}
