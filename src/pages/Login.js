@@ -2024,9 +2024,9 @@ class Login extends React.Component {
           
           {
             source: 'test-2',
-            target: 'custom-1',
+            target: 'cicle-1',
             sourceNode: 'test',
-            targetNode: 'custom',
+            targetNode: 'cicle',
             type: 'endpoint',
 
           },
@@ -2040,16 +2040,25 @@ class Login extends React.Component {
           },
 
           {
-            source: 'app-2',
+            source: 'app-3',
             target: 'custom-1',
             sourceNode: 'app',
             targetNode: 'custom',
             type: 'endpoint',
 
           },
+
+          // {
+          //   source: 'app-2',
+          //   target: 'red-1',
+          //   sourceNode: 'app',
+          //   targetNode: 'red',
+          //   type: 'endpoint',
+
+          // },
           
           {
-            source: 'fly-4',
+            source: 'fly-2',
             target: 'circle-1',
             sourceNode: 'fly',
             targetNode: 'circle',
@@ -2074,7 +2083,7 @@ class Login extends React.Component {
           },
 
           {
-            source: 'plate-4',
+            source: 'plate-2',
             target: 'apple-1',
             sourceNode: 'plate',
             targetNode: 'apple',
@@ -2208,7 +2217,7 @@ class Login extends React.Component {
           },
 
           {
-            source: 'rule-4',
+            source: 'rule-3',
             target: 'apple-1',
             sourceNode: 'rule',
             targetNode: 'apple',
