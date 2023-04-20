@@ -2001,14 +2001,14 @@ class Login extends React.Component {
 
           },
 
-          // {
-          //   source: 'Root-1',
-          //   target: 'rule-1',
-          //   sourceNode: 'Root',
-          //   targetNode: 'rule',
-          //   type: 'endpoint',
+          {
+            source: 'Root-1',
+            target: 'rule-1',
+            sourceNode: 'Root',
+            targetNode: 'rule',
+            type: 'endpoint',
 
-          // },
+          },
 
           
 
@@ -2128,14 +2128,14 @@ class Login extends React.Component {
 
           
 
-          // {
-          //   source: 'red-2',
-          //   target: 'result-1',
-          //   sourceNode: 'red',
-          //   targetNode: 'result',
-          //   type: 'endpoint',
+          {
+            source: 'red-3',
+            target: 'result-1',
+            sourceNode: 'red',
+            targetNode: 'result',
+            type: 'endpoint',
 
-          // },
+          },
           {
             source: 'custom-3',
             target: 'result-1',
@@ -2146,7 +2146,7 @@ class Login extends React.Component {
           },
 
           {
-            source: 'red-2',
+            source: 'red-3',
             target: 'black-1',
             sourceNode: 'red',
             targetNode: 'black',

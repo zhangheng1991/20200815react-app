@@ -144,10 +144,11 @@ class LiteGraph extends Component {
                         arrow: true,
                         arrowPosition: 0.9,
                         isExpandWidth: true,
+                        arrowOffset: 0.5,    //箭头偏移
                         // defaultAnimate:true,
                         dragEdgeZindex: 100,
                         // Class: RelationEdge,
-                        isExpandWidth: true,
+                        isExpandWidth: false,
                         width: 100,   // 选填，默认8px
                         height: 100,  // 选填，默认8px
                         // arrowShapeType:"fontSize:30px",
