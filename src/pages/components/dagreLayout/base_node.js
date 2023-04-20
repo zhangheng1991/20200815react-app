@@ -116,7 +116,7 @@ class BaseNode extends Node {
     const dataList = _.get(this.options, "list") || [];
 
     dataList.forEach((({ sourceNodeId, targetNodeId }) => {
-      console.log(sourceNodeId, targetNodeId,"sourceNodeId, targetNodeId")
+      console.log(sourceNodeId, targetNodeId,"")
       this.addEndpoint({
         id: sourceNodeId,
         type: 'source',

@@ -31,6 +31,10 @@ import CompactBoxTree from "./components/compact-box-tree/index";
 import RelationalBook from "./components/relationalBooks/index";
 import MinMap from "./components/mindMap/index";
 
+// import LiteGraph from "./components/liteGraph/index";
+
+import LiteGraphComponent from "./components/liteGraphNew/index";
+
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
 class Login extends React.Component {
@@ -432,13 +436,13 @@ class Login extends React.Component {
             className: 'nodeBackground-color',
             list: [
               {
-                Children: [{ id: "test1-1", name: "tttt",  }, { id: "test1-2", name: "www", },],
+                Children: [{ id: "test1-1", name: "tttt", }, { id: "test1-2", name: "www", },],
                 stepName: "step1",
                 id: 'test1',
                 sourceNodeId: '2', targetNodeId: '3'
               },
               {
-                Children: [{ id: "test2-1", name: "test2-2",  }, { id: "eee", name: "www", },],
+                Children: [{ id: "test2-1", name: "test2-2", }, { id: "eee", name: "www", },],
                 stepName: "step2",
                 id: 'test1',
                 sourceNodeId: '4', targetNodeId: '5'
@@ -687,8 +691,8 @@ class Login extends React.Component {
       shapeType: shapeType
     }
 
-    const minMapObj={
-      id:"minMapObj"
+    const minMapObj = {
+      id: "minMapObj"
     }
 
     const DagreLayoutObj1 = {
@@ -815,87 +819,87 @@ class Login extends React.Component {
         ],
         edges: [
           {
-          source: 'test1',
-          target: 'test2',
-        },
+            source: 'test1',
+            target: 'test2',
+          },
 
-        {
-          source: 'root',
-          target: 'test1',
-        },
-        {
-          source: 'test1',
-          target: 'test3',
-          color: "red"
-        },
-        {
-          source: 'root',
-          target: 'test4'
-        },
-        
+          {
+            source: 'root',
+            target: 'test1',
+          },
+          {
+            source: 'test1',
+            target: 'test3',
+            color: "red"
+          },
+          {
+            source: 'root',
+            target: 'test4'
+          },
 
-        {
-          source: 'test3',
-          target: 'test4'
-        }, {
-          source: 'test4',
-          target: 'test5'
-        }, {
-          source: 'test4',
-          target: 'test7'
-        }, {
-          source: 'test4',
-          target: 'test6'
-        },
-        // {
-        //   source: 'test2',
-        //   target: 'test6'
-        // },
-        // {
-        //   source: 'test6',
-        //   target: 'test8',
-        // },
-        // {
-        //   source: 'test5',
-        //   target: 'test8',
-        // },
-        // {
-        //   source: 'test7',
-        //   target: 'test8',
-        // },
-        // {
-        //   source: 'test9',
-        //   target: 'test8',
-        // },
-        // {
-        //   source: 'test4',
-        //   target: 'test9',
-        // },
-        // {
-        //   source: 'test1',
-        //   target: 'test10',
-        // },
-        // {
-        //   source: 'test1',
-        //   target: 'test11',
-        // },
-        // {
-        //   source: 'test1',
-        //   target: 'test12',
-        // },
-        // {
-        //   source: 'test10',
-        //   target: 'test4',
-        // },
-        // {
-        //   source: 'test11',
-        //   target: 'test4',
-        // },
-        // {
-        //   source: 'test12',
-        //   target: 'test4',
-        // },
-         
+
+          {
+            source: 'test3',
+            target: 'test4'
+          }, {
+            source: 'test4',
+            target: 'test5'
+          }, {
+            source: 'test4',
+            target: 'test7'
+          }, {
+            source: 'test4',
+            target: 'test6'
+          },
+          // {
+          //   source: 'test2',
+          //   target: 'test6'
+          // },
+          // {
+          //   source: 'test6',
+          //   target: 'test8',
+          // },
+          // {
+          //   source: 'test5',
+          //   target: 'test8',
+          // },
+          // {
+          //   source: 'test7',
+          //   target: 'test8',
+          // },
+          // {
+          //   source: 'test9',
+          //   target: 'test8',
+          // },
+          // {
+          //   source: 'test4',
+          //   target: 'test9',
+          // },
+          // {
+          //   source: 'test1',
+          //   target: 'test10',
+          // },
+          // {
+          //   source: 'test1',
+          //   target: 'test11',
+          // },
+          // {
+          //   source: 'test1',
+          //   target: 'test12',
+          // },
+          // {
+          //   source: 'test10',
+          //   target: 'test4',
+          // },
+          // {
+          //   source: 'test11',
+          //   target: 'test4',
+          // },
+          // {
+          //   source: 'test12',
+          //   target: 'test4',
+          // },
+
         ]
       },
       handClick: this.handClickDrage,
@@ -903,6 +907,373 @@ class Login extends React.Component {
       shapeType: shapeType
     }
 
+    const LiteGraphObj = {
+      id: "LiteGraph",
+      height: "800px",
+      data: {
+        nodes: [
+          {
+            id: 'Root',
+            text: 'Root',
+            group: 'testGroup',
+            position: [0, 1],
+
+            endpoints: [
+              {
+                id: 'Root_1',
+                color: 'system-green',
+
+              }
+            ]
+
+          },
+          {
+            id: 'testGroup1',
+            text: 'Flat Slots1',
+            group: 'testGroup',
+            position: [62, 162],
+            endpoints: [
+              {
+                id: 'testGroup1_01',
+                // content: "111",
+                // orientation: [0, -1],
+                // pos: [0.5, 0],
+                color: 'system-green',
+
+              }, {
+                id: 'testGroup1_02',
+                content: "222",
+                data: [
+                  {
+                    name: "111", id: "1111"
+                  },
+                  {
+                    name: "222", id: "222"
+                  },
+                ],
+                // orientation: [0, 1],
+                // pos: [0.22, 0],
+                color: 'system-green',
+
+              }, {
+                id: 'testGroup1_03',
+                content: "333",
+                // orientation: [0, 1],
+                // pos: [0.44, 0],
+                color: 'system-green',
+
+              }, {
+                id: 'testGroup1_04',
+                content: "4444",
+                // orientation: [0, 1],
+                // pos: [0.77, 0],
+                color: 'system-green',
+              }],
+
+          },
+          {
+            id: 'testGroup2',
+            height: 70,
+            width: 100,
+            position: [1, 2],
+            text: 'Flat Slots2',
+            group: 'testGroup',
+            endpoints: [{
+              id: 'testGroup2_01',
+              // content: "444",
+              // orientation: [0, -1],
+              // pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'testGroup2_02',
+              content: "555",
+              // orientation: [0, 1],
+              // pos: [0.33, 0],
+              color: 'system-gray',
+
+            }, {
+              id: 'testGroup2_03',
+              content: "666",
+              // orientation: [0, 1],
+              // pos: [0.66, 0],
+              color: 'system-gray',
+
+            }]
+          },
+          {
+            id: 'testGroup3',
+            text: 'Flat Slots3',
+            group: 'testGroup',
+            endpoints: [{
+              id: 'testGroup3_01',
+              // content: "777",
+              // orientation: [0, -1],
+              // pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'testGroup3_02',
+              content: "888",
+              // orientation: [0, 1],
+              // pos: [0.33, 0],
+              color: 'system-gray',
+
+            }, {
+              id: 'testGroup3_03',
+              content: "999",
+              // orientation: [0, 1],
+              // pos: [0.66, 0],
+              color: 'system-gray',
+
+            }]
+          },
+
+
+        ],
+        groups: [{
+          id: 'testGroup',
+          options: {
+            text: 'Group'
+          },
+          top: 60,
+          left: 10,
+
+        }],
+        edges: [
+          {
+            source: 'testGroup3_01',
+            target: 'testGroup1_03',
+            sourceNode: 'testGroup3',
+            targetNode: 'testGroup1',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'testGroup3_02',
+            target: 'testGroup1_04',
+            sourceNode: 'testGroup3',
+            targetNode: 'testGroup1',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'testGroup2_01',
+            target: 'testGroup1_02',
+            sourceNode: 'testGroup2',
+            targetNode: 'testGroup1',
+            type: 'endpoint',
+
+          }, {
+            source: 'Root_1',
+            target: 'testGroup1_01',
+            sourceNode: 'Root',
+            targetNode: 'testGroup1',
+            type: 'endpoint',
+
+          },]
+      },
+    }
+
+    const LiteGraphNew = {
+      id: "LiteGraphNew",
+      height: "800px",
+      data: {
+        nodes: [
+          {
+            id: 'Root',
+            // top: 160,
+            // left: 260,
+            // width: 70,
+            // height: 30,
+            text: 'Root',
+
+            endpoints: [{
+              id: 'Root-0',
+              orientation: [1, 0],
+              pos: [0, 0.5],
+              color: 'system-green',
+
+            }]
+          },
+          {
+            id: '0',
+            // top: 100,
+            // left: 100,
+            // width: 70,
+            // height: 30,
+            text: 'A + B',
+
+            endpoints: [{
+              id: 'right',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            },
+            {
+              id: 'right-1',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [0, 1],
+              pos: [0.22, 0],
+            
+              color: 'system-green',
+
+            }]
+          }, {
+            id: '1',
+            // top: 100,
+            // left: 250,
+            // height: 90,
+            // width: 140,
+            text: 'A + B + C',
+
+            endpoints: [{
+              id: 'left_2',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'left_3',
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'right_1',
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          }, {
+            id: 'knob',
+            
+            // top: 200,
+            // left: 100,
+            // height: 100,
+            // width: 70,
+            text: 'Knob333',
+          
+            endpoints: [
+              {
+                id: 'knbo_1-0',
+                orientation: [0, -1],
+                pos: [0.5, 0],
+                color: 'system-green',
+  
+              },{
+              id: 'knbo_1',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }]
+          },
+          {
+            id: 'customShapes',
+            // top: 111,
+            // left: 568,
+            // height: 60,
+            // width: 140,
+            text: 'Custom Shapes',
+
+            endpoints: [{
+              id: 'custom_01',
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }]
+          }],
+        // groups: [{
+        //   id: 'testGroup',
+        //   options: {
+        //     text: 'Group'
+        //   },
+        //   top: 360,
+        //   left: 100,
+        
+        // }],
+        edges: [
+          {
+            source: 'Root-0',
+            target: 'right',
+            sourceNode: 'Root',
+            targetNode: '0',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'right',
+            target: 'left_2',
+            sourceNode: '0',
+            targetNode: '1',
+            type: 'endpoint',
+
+          }, {
+            source: 'knbo_1',
+            target: 'left_3',
+            sourceNode: 'knob',
+            targetNode: '1',
+            type: 'endpoint',
+
+          }, {
+            source: 'testGroup3_01',
+            target: 'testGroup1_03',
+            sourceNode: 'testGroup3',
+            targetNode: 'testGroup1',
+            type: 'endpoint',
+
+          }, {
+            source: 'testGroup2_01',
+            target: 'testGroup1_02',
+            sourceNode: 'testGroup2',
+            targetNode: 'testGroup1',
+            type: 'endpoint',
+
+          }, {
+            source: 'widgest_1',
+            target: 'testGroup1_01',
+            sourceNode: 'widgest',
+            targetNode: 'testGroup1',
+            type: 'endpoint',
+
+          }, {
+            source: 'gamepad_1',
+            target: 'log_event_01',
+            sourceNode: 'gamepad',
+            targetNode: 'logEvent',
+            type: 'endpoint',
+
+          }, {
+            source: 'right_1',
+            target: 'custom_01',
+            sourceNode: '1',
+            targetNode: 'customShapes',
+            type: 'endpoint',
+
+          }]
+      },
+    }
     return (
       <div>
         <div className={`${style["UserLogin"]}`}>
@@ -982,7 +1353,10 @@ class Login extends React.Component {
           {/* <div style={{ height: "800px" }}>  <MinMap {...minMapObj} /></div> */}
           {/* <div ><DagreLayout {...DagreLayoutObj1} /></div> */}
           {/* <div ><DagreLayout {...DagreLayoutObj} /></div> */}
-          <div style={{ height: "800px" }}><RelationalBook /></div>
+          {/* <div ><RelationalBook /></div> */}
+          {/* <div style={{ height: "800px" }}>  <LiteGraph {...LiteGraphObj} /></div> */}
+          <div >    <LiteGraphComponent {...LiteGraphNew}  /></div>
+
 
           {/* <div style={{height:"800px"}}>  <ButtterflyDag /></div> */}
           {/* <div> <AecComponent hadnclick={this.hadnclickdd} /></div>

@@ -62,9 +62,10 @@ class RelationalBook extends Component {
     // });
   }
   render() {
+    const {id,height}=this.props;
     return (
       <div className='relational-books-page'>
-        <div className="flow-canvas" id="dag-canvas">
+        <div className="flow-canvas" id="dag-canvas" style={{height:height||"500px"}}>
         </div>
       </div>
     );

@@ -124,14 +124,14 @@ export default {
     {
       source: 'Root',
       target: '0',
-      sourceNode: 'root',
-      targetNode: '0',
+      // sourceNode: 'root',
+      // targetNode: '0',
     },
     {
       source: '0',
       target: '1',
-      sourceNode: '0',
-      targetNode: '1',
+      // sourceNode: '0',
+      // targetNode: '1',
       type: 'endpoint',
     },
     {
@@ -165,6 +165,13 @@ export default {
     {
       source: '23',
       target: '33',
+      sourceNode: '3',
+      targetNode: '4',
+      type: 'endpoint',
+    },
+    {
+      source: '23',
+      target: '30',
       sourceNode: '3',
       targetNode: '4',
       type: 'endpoint',
