@@ -114,7 +114,7 @@ class LiteGraph extends Component {
             this.canvas = new Canvas({
                 root: root,
                 disLinkable: false, // 可删除连线
-                linkable: true,    // 可连线
+                linkable: false,    // 可连线
                 draggable: true,   // 可拖动
                 zoomable: false,    // 可放大
                 moveable: true,    // 可平移
@@ -138,7 +138,7 @@ class LiteGraph extends Component {
                         arrowPosition: 0.8,
                         isExpandWidth: true,
                         // defaultAnimate:true,
-                        // dragEdgeZindex: 100,
+                        dragEdgeZindex: 100,
                         // Class: RelationEdge,
                         isExpandWidth: true,
                         width: 100,   // 选填，默认8px
