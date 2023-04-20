@@ -1218,17 +1218,6 @@ class Login extends React.Component {
               }]
           },
           {
-            id: 'customShapes',
-            text: 'Custom Shapes',
-            endpoints: [{
-              id: 'custom_01',
-              orientation: [-1, 0],
-              pos: [0, 0.8],
-              color: 'system-green',
-
-            }]
-          },
-          {
             id: 'fly',
             text: 'Fly',
             endpoints: [{
@@ -1284,6 +1273,690 @@ class Login extends React.Component {
 
             }]
           },
+          {
+            id: 'butterfly',
+            text: 'Butterfly',
+            endpoints: [{
+              id: 'butterfly-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'butterfly-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'butterfly-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'butterfly-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+          {
+            id: 'circle',
+            text: 'Circle',
+            endpoints: [{
+              id: 'circle-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'circle-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'circle-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'circle-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+          {
+            id: 'app',
+            text: 'App',
+            endpoints: [{
+              id: 'app-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'app-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'app-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'app-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+          {
+            id: 'red',
+            text: 'Red',
+            endpoints: [{
+              id: 'red-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'red-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'red-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'red-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+          {
+            id: 'black',
+            text: 'Black',
+            endpoints: [{
+              id: 'black-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'black-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'black-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'black-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+          {
+            id: 'apple',
+            text: 'Apple',
+            endpoints: [{
+              id: 'apple-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'apple-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'apple-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'apple-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+          {
+            id: 'orage',
+            text: 'Orage',
+            endpoints: [{
+              id: 'orage-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'orage-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'orage-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            },]
+          },
+
+          {
+            id: 'plate',
+            text: 'Plate',
+            endpoints: [{
+              id: 'plate-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'plate-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'plate-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'plate-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+          {
+            id: 'rule',
+            text: 'Rule',
+            endpoints: [{
+              id: 'rule-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'rule-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'rule-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'rule-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+          {
+            id: 'custom',
+            text: 'Custom',
+            endpoints: [{
+              id: 'custom-1',
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'custom-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'custom-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'custom-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+
+          {
+            id: 'result',
+            text: 'Result',
+            endpoints: [{
+              id: 'result-1',
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'result-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'result-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'result-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+
+          {
+            id: 'ice',
+            text: 'Ice',
+            endpoints: [{
+              id: 'ice-1',
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'ice-2',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, {
+              id: 'ice-3',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }, {
+              id: 'ice-4',
+              content: "222",
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
+            }]
+          },
+          {
+            id: 'air',
+            text: 'Air',
+            endpoints: [{
+              id: 'air-1',
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            },{
+              id: 'air-2',
+              orientation: [-1, 0],
+              pos: [0, 0.8],
+              color: 'system-green',
+
+            }, ]
+          },
         ],
         edges: [
           {
@@ -1302,6 +1975,7 @@ class Login extends React.Component {
             type: 'endpoint',
 
           },
+
           {
             source: 'Root-1',
             target: 'try-1',
@@ -1311,56 +1985,238 @@ class Login extends React.Component {
 
           },
           {
+            source: 'Root-1',
+            target: 'butterfly-1',
+            sourceNode: 'Root',
+            targetNode: 'butterfly',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'Root-1',
+            target: 'plate-1',
+            sourceNode: 'Root',
+            targetNode: 'plate',
+            type: 'endpoint',
+
+          },
+
+          // {
+          //   source: 'Root-1',
+          //   target: 'rule-1',
+          //   sourceNode: 'Root',
+          //   targetNode: 'rule',
+          //   type: 'endpoint',
+
+          // },
+
+          
+
+
+          {
             source: 'title-2',
             target: 'test-1',
             sourceNode: 'title',
             targetNode: 'test',
             type: 'endpoint',
 
-          }, {
-            source: 'try-2',
-            target: 'test-2',
-            sourceNode: 'try',
-            targetNode: 'test',
+          }, 
+          
+          {
+            source: 'test-2',
+            target: 'custom-1',
+            sourceNode: 'test',
+            targetNode: 'custom',
             type: 'endpoint',
 
           },
           {
-            source: 'testGroup3_01',
-            target: 'testGroup1_03',
-            sourceNode: 'testGroup3',
-            targetNode: 'testGroup1',
-            type: 'endpoint',
-
-          }, {
-            source: 'testGroup2_01',
-            target: 'testGroup1_02',
-            sourceNode: 'testGroup2',
-            targetNode: 'testGroup1',
-            type: 'endpoint',
-
-          }, {
-            source: 'widgest_1',
-            target: 'testGroup1_01',
-            sourceNode: 'widgest',
-            targetNode: 'testGroup1',
-            type: 'endpoint',
-
-          }, {
-            source: 'gamepad_1',
-            target: 'log_event_01',
-            sourceNode: 'gamepad',
-            targetNode: 'logEvent',
-            type: 'endpoint',
-
-          }, {
             source: 'test-3',
-            target: 'custom_01',
+            target: 'custom-1',
             sourceNode: 'test',
-            targetNode: 'customShapes',
+            targetNode: 'custom',
             type: 'endpoint',
 
-          }]
+          },
+
+          {
+            source: 'app-2',
+            target: 'custom-1',
+            sourceNode: 'app',
+            targetNode: 'custom',
+            type: 'endpoint',
+
+          },
+          
+          {
+            source: 'fly-4',
+            target: 'circle-1',
+            sourceNode: 'fly',
+            targetNode: 'circle',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'try-2',
+            target: 'circle-1',
+            sourceNode: 'try',
+            targetNode: 'circle',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'butterfly-3',
+            target: 'app-1',
+            sourceNode: 'butterfly',
+            targetNode: 'app',
+            type: 'endpoint',
+
+          },
+
+          {
+            source: 'plate-4',
+            target: 'apple-1',
+            sourceNode: 'plate',
+            targetNode: 'apple',
+            type: 'endpoint',
+
+          },
+
+
+          {
+            source: 'title-2',
+            target: 'app-1',
+            sourceNode: 'title',
+            targetNode: 'app',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'circle-3',
+            target: 'red-1',
+            sourceNode: 'circle',
+            targetNode: 'red',
+            type: 'endpoint',
+
+          },
+          // {
+          //   source: 'try-3',
+          //   target: 'apple-1',
+          //   sourceNode: 'try',
+          //   targetNode: 'apple',
+          //   type: 'endpoint',
+
+          // },
+
+          {
+            source: 'apple-3',
+            target: 'orage-1',
+            sourceNode: 'apple',
+            targetNode: 'orage',
+            type: 'endpoint',
+
+          },
+
+          // {
+          //   source: 'app-4',
+          //   target: 'apple-1',
+          //   sourceNode: 'app',
+          //   targetNode: 'apple',
+          //   type: 'endpoint',
+
+          // },
+
+          
+
+          // {
+          //   source: 'red-2',
+          //   target: 'result-1',
+          //   sourceNode: 'red',
+          //   targetNode: 'result',
+          //   type: 'endpoint',
+
+          // },
+          {
+            source: 'custom-3',
+            target: 'result-1',
+            sourceNode: 'custom',
+            targetNode: 'result',
+            type: 'endpoint',
+
+          },
+
+          {
+            source: 'red-2',
+            target: 'black-1',
+            sourceNode: 'red',
+            targetNode: 'black',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'red-4',
+            target: 'black-1',
+            sourceNode: 'red',
+            targetNode: 'black',
+            type: 'endpoint',
+
+          },
+
+          {
+            source: 'orage-2',
+            target: 'ice-1',
+            sourceNode: 'orage',
+            targetNode: 'ice',
+            type: 'endpoint',
+
+          },
+
+          {
+            source: 'orage-3',
+            target: 'ice-1',
+            sourceNode: 'orage',
+            targetNode: 'ice',
+            type: 'endpoint',
+
+          },
+
+
+          {
+            source: 'result-3',
+            target: 'air-1',
+            sourceNode: 'result',
+            targetNode: 'air',
+            type: 'endpoint',
+
+          },
+
+          {
+            source: 'black-4',
+            target: 'air-1',
+            sourceNode: 'black',
+            targetNode: 'air',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'ice-4',
+            target: 'air-1',
+            sourceNode: 'ice',
+            targetNode: 'air',
+            type: 'endpoint',
+
+          },
+
+          {
+            source: 'rule-4',
+            target: 'apple-1',
+            sourceNode: 'rule',
+            targetNode: 'apple',
+            type: 'endpoint',
+
+          },
+
+        ]
       },
     }
     return (

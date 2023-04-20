@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Canvas,Arrow } from 'butterfly-dag';
+import { Canvas, Arrow } from 'butterfly-dag';
 import _ from "loadsh";
 import mockData from './data.js';
 
@@ -122,20 +122,27 @@ class LiteGraph extends Component {
                     type: 'dagreLayout',
                     options: {
                         rankdir: 'TB',//"BT","LR","RL","TB",
-                        nodesep: 200,
+                        nodesep: 120,
                         ranksep: 80,
                         controlPoints: false,
                     },
                 },
                 theme: {
                     edge: {
-                        // shapeType <String> 线条类型可以是：Bezier(贝塞尔曲线)，
-                        // Flow(折线)，Straight(直线)，Manhattan(曼哈顿路由线)，
-                        // AdvancedBezier(更美丽的贝塞尔曲线)，Bezier2-1，Bezier2-2，
-                        // Bezier2-3(二阶贝塞尔曲线)，BrokenLine(折线)；默认为Straight
+                        // shapeType <String> 线条类型可以是：
+                        //Bezier(贝塞尔曲线)，
+                        // Flow(折线)，
+                        //Straight(直线)，
+                        //Manhattan(曼哈顿路由线)，
+                        // AdvancedBezier(更美丽的贝塞尔曲线)，
+                        //Bezier2-1，
+                        //Bezier2-2，
+                        // Bezier2-3(二阶贝塞尔曲线)，
+                        //BrokenLine(折线)；
+                        //默认为：Straight
                         shapeType: "Manhattan",
                         arrow: true,
-                        arrowPosition: 0.8,
+                        arrowPosition: 0.9,
                         isExpandWidth: true,
                         // defaultAnimate:true,
                         dragEdgeZindex: 100,
@@ -149,7 +156,7 @@ class LiteGraph extends Component {
             });
 
             // 自行注册的
-         
+
             // Arrow.registerArrow([{
             //     key: 'Root',
             //     type: 'svg',
