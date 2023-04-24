@@ -1173,6 +1173,22 @@ class Login extends React.Component {
               pos: [0, 0.7],
               color: 'system-green',
 
+            }, {
+              id: 'test-5',
+              content: "222",
+              type:2,
+              data: [
+                {
+                  name: "5555", id: "5555"
+                },
+                {
+                  name: "555", id: "555"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
             }]
           },
           {
@@ -1949,13 +1965,13 @@ class Login extends React.Component {
               pos: [0, 0.8],
               color: 'system-green',
 
-            },{
+            }, {
               id: 'air-2',
               orientation: [-1, 0],
               pos: [0, 0.8],
               color: 'system-green',
 
-            }, ]
+            },]
           },
         ],
         edges: [
@@ -2010,7 +2026,7 @@ class Login extends React.Component {
 
           },
 
-          
+
 
 
           {
@@ -2020,8 +2036,8 @@ class Login extends React.Component {
             targetNode: 'test',
             type: 'endpoint',
 
-          }, 
-          
+          },
+
           {
             source: 'test-2',
             target: 'cicle-1',
@@ -2056,7 +2072,7 @@ class Login extends React.Component {
           //   type: 'endpoint',
 
           // },
-          
+
           {
             source: 'fly-2',
             target: 'circle-1',
@@ -2135,7 +2151,7 @@ class Login extends React.Component {
 
           // },
 
-          
+
 
           {
             source: 'red-3',
@@ -2172,11 +2188,11 @@ class Login extends React.Component {
           },
 
           {
-            source: 'orage-2',
-            target: 'ice-1',
-            sourceNode: 'orage',
-            targetNode: 'ice',
-            type: 'endpoint',
+            source: 'orage',
+            target: 'ice',
+            // sourceNode: 'orage',
+            // targetNode: 'ice',
+            // type: 'endpoint',
 
           },
 
@@ -2340,6 +2356,11 @@ class Login extends React.Component {
           handClickAdd={this.handClickAdd}
           handChagePage={this.handChagePage}
         /> */}
+
+        <div style={{display:"flex"}}>
+          <div>2222</div>
+          <div>eeeee</div>
+        </div>
       </div>
     )
   }

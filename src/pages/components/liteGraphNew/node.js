@@ -14,6 +14,7 @@ class BaseNode extends Node {
 
   mounted() {
     this.childData.forEach((({ sourceNodeId, targetNodeId }) => {
+      console.log(sourceNodeId, targetNodeId,"sourceNodeId, targetNodeId")
       this.addEndpoint({
         id: sourceNodeId,
         type: 'source',
@@ -32,7 +33,7 @@ class BaseNode extends Node {
 
 
   draw = (data) => {
-    console.log(data, "data11")
+    // console.log(data, "data11")
     // console.log(_.get(data, "options.position"),"hhh")
     const positionList=_.get(data, "options.position")||[0,0];
     let container = $('<div class= "test-base-node"></div>')
@@ -79,8 +80,11 @@ class BaseNode extends Node {
   _createChildNode(dom) {
     console.log(this.childData, "this.childData")
     // console.log($(".base-node-box"), "base-node-box1")
-    $.each(this.childData, (i, { id, content, data, sourceNodeId, targetNodeId }) => {
-      console.log(id, content, sourceNodeId, targetNodeId, "i")
+    $.each(this.childData, (i,) => {// { id, content, data, sourceNodeId, targetNodeId }
+      // console.log(id, content, sourceNodeId, targetNodeId, "i")
+      const id=_.get(this.childData[i],"id");
+      const content=_.get(this.childData[i],"content");
+      const data=_.get(this.childData[i],"data");
       if (content) {
         dom.append(`
         <div class="content" style="width:${this.WidthFunction(this.childData) + "%"}"  >

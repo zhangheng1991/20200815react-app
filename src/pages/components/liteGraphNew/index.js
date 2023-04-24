@@ -76,6 +76,12 @@ class LiteGraph extends Component {
         return poc;
     }
 
+    TopFunction=(classObj,type)=>{
+
+        console.log(classObj,type,"classObj,type")
+
+    }
+
     DagreLayoutInitialization = () => {
         const { id, data, handClick, shapeType } = this.props;
         // const { } = this.state;
@@ -89,7 +95,8 @@ class LiteGraph extends Component {
                 ...itemD,
                 Class: BaseEndpoint, // 灰色系统锚点
                 orientation: item.id === "Root" ? [0, 1] : itemD.content ? [0, 1] : orientation,
-                pos: itemD.content ? this.positionFunction(item.endpoints, indexD) : pos,
+                pos: itemD.content ?item.type===2?[0.5,0]: this.positionFunction(item.endpoints, indexD) : pos,
+                
             }))
         }))
 
