@@ -3,7 +3,6 @@ import $ from 'jquery';
 
 class BaseEndpoint extends Endpoint {
   draw(obj) {
-    // console.log(obj,"obj")
     let point = super.draw(obj);
     if (obj.options && obj.options.color === 'system-gray') {
       // 系统灰色锚点

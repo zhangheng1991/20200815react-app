@@ -71,14 +71,18 @@ class LiteGraph extends Component {
     }
 
     positionFunction = (data, index) => {
+        const dataK=_.map(_.filter(data,item=>item.type===2),item=>({
+            ...item,
+        }));
+        // console.log(dataK,"dataK")
         // let pos = [0.5, 0];
-        let poc = [(1 / data.length) * index, 0]
+        let poc = [(1 / (dataK.length>0?data.length-1:data.length)) * index, 0.9]
         return poc;
     }
 
     TopFunction=(classObj,type)=>{
 
-        console.log(classObj,type,"classObj,type")
+        // console.log(classObj,type,"classObj,type")
 
     }
 
@@ -94,8 +98,8 @@ class LiteGraph extends Component {
             endpoints: _.map(item.endpoints, (itemD, indexD) => ({
                 ...itemD,
                 Class: BaseEndpoint, // 灰色系统锚点
-                orientation: item.id === "Root" ? [0, 1] : itemD.content ? [0, 1] : orientation,
-                pos: itemD.content ?item.type===2?[0.5,0]: this.positionFunction(item.endpoints, indexD) : pos,
+                orientation: item.id === "Root" ? [0, 1] :itemD.type===2?[0,0]: itemD.content ? [0, 1] : orientation,
+                pos: itemD.content ?this.positionFunction(item.endpoints, indexD) :itemD.type===2?[0.5,1.07]:  pos,
                 
             }))
         }))
@@ -150,15 +154,11 @@ class LiteGraph extends Component {
                         shapeType: "Manhattan",
                         arrow: true,
                         arrowPosition: 0.9,
-                        isExpandWidth: true,
-                        arrowOffset: 0.5,    //箭头偏移
+                        // isExpandWidth: true,
+                        // arrowOffset: 0.5,    //箭头偏移
                         // defaultAnimate:true,
-                        dragEdgeZindex: 100,
-                        // Class: RelationEdge,
-                        isExpandWidth: false,
-                        width: 100,   // 选填，默认8px
-                        height: 100,  // 选填，默认8px
-                        // arrowShapeType:"fontSize:30px",
+                        // dragEdgeZindex: 900,
+                     
                     }
                 }
             });

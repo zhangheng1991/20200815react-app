@@ -13,19 +13,19 @@ class BaseNode extends Node {
 
 
   mounted() {
-    this.childData.forEach((({ sourceNodeId, targetNodeId }) => {
-      console.log(sourceNodeId, targetNodeId,"sourceNodeId, targetNodeId")
-      this.addEndpoint({
-        id: sourceNodeId,
-        type: 'source',
-        dom: document.getElementById(sourceNodeId)
-      });
-      this.addEndpoint({
-        id: targetNodeId,
-        type: 'target',
-        dom: document.getElementById(targetNodeId)
-      });
-    }));
+    // this.childData.forEach((({ sourceNodeId, targetNodeId }) => {
+    //   console.log(sourceNodeId, targetNodeId,"sourceNodeId, targetNodeId")
+    //   this.addEndpoint({
+    //     id: sourceNodeId,
+    //     type: 'source',
+    //     dom: document.getElementById(sourceNodeId)
+    //   });
+    //   this.addEndpoint({
+    //     id: targetNodeId,
+    //     type: 'target',
+    //     dom: document.getElementById(targetNodeId)
+    //   });
+    // }));
 
   }
 
@@ -35,9 +35,9 @@ class BaseNode extends Node {
   draw = (data) => {
     // console.log(data, "data11")
     // console.log(_.get(data, "options.position"),"hhh")
-    const positionList=_.get(data, "options.position")||[0,0];
+    const positionList = _.get(data, "options.position") || [0, 0];
     let container = $('<div class= "test-base-node"></div>')
- 
+
       // left: 172 + (_ - get(item， "posision[a]")) * 400,
       //   top: 64 + (_.get(item, "posision[1]")  @) 200,
       // .css('left',172 + (_.get(positionList, "[0]")) * 400)  
@@ -78,14 +78,19 @@ class BaseNode extends Node {
   }
 
   _createChildNode(dom) {
-    console.log(this.childData, "this.childData")
+    // console.log(this.childData, "this.childData")
     // console.log($(".base-node-box"), "base-node-box1")
     $.each(this.childData, (i,) => {// { id, content, data, sourceNodeId, targetNodeId }
       // console.log(id, content, sourceNodeId, targetNodeId, "i")
-      const id=_.get(this.childData[i],"id");
-      const content=_.get(this.childData[i],"content");
-      const data=_.get(this.childData[i],"data");
-      if (content) {
+      const id = _.get(this.childData[i], "id");
+      const content = _.get(this.childData[i], "content");
+      const data = _.get(this.childData[i], "data");
+      const type = _.get(this.childData[i], "type");
+
+      // if(0<i<this.childData){
+
+      // }
+      if (content && type !== 2) {
         dom.append(`
         <div class="content" style="width:${this.WidthFunction(this.childData) + "%"}"  >
           <div class="text" title=${content}>${content}</div>
@@ -98,7 +103,8 @@ class BaseNode extends Node {
        
         </div>`);
       }
-
+      // console.log(id, type, "id")
+      // console.log($('#'+id).height(), "height11")
     });
 
     let childNode = dom.find('.content');

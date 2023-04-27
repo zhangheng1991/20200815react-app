@@ -21,19 +21,21 @@ import CodemirrorFormault from "./components/CodemirrorFormault";
 import JSonFormault from "./comm/JSonFormault";
 import AecComponent from "./components/Ace";
 
-import Graph from "./components/Graph/index";
-import ExampleGrapg from './components//Graph/example';
+// import Graph from "./components/Graph/index";
+// import ExampleGrapg from './components//Graph/example';
 
-import ButtterflyDag from "./components/butterflyDag/index";
+// import ButtterflyDag from "./components/butterflyDag/index";
 
-import DagreLayout from "./components/dagreLayout/index";
-import CompactBoxTree from "./components/compact-box-tree/index";
-import RelationalBook from "./components/relationalBooks/index";
-import MinMap from "./components/mindMap/index";
+// import DagreLayout from "./components/dagreLayout/index";
+// import CompactBoxTree from "./components/compact-box-tree/index";
+// import RelationalBook from "./components/relationalBooks/index";
+// import MinMap from "./components/mindMap/index";
 
 // import LiteGraph from "./components/liteGraph/index";
 
-import LiteGraphComponent from "./components/liteGraphNew/index";
+// import LiteGraphComponent from "./components/liteGraphNew/index";
+
+import RelationChart from "./components/realtionChart/index";
 
 const { MonthPicker, RangePicker } = DatePicker;
 @connect(({ Login }) => ({ Login }))
@@ -1175,8 +1177,8 @@ class Login extends React.Component {
 
             }, {
               id: 'test-5',
-              content: "222",
-              type:2,
+              // content: "222",
+              type: 2,
               data: [
                 {
                   name: "5555", id: "5555"
@@ -1668,6 +1670,22 @@ class Login extends React.Component {
               pos: [0, 0.7],
               color: 'system-green',
 
+            }, {
+              id: 'orage-4',
+              // content: "222",
+              type: 2,
+              data: [
+                {
+                  name: "111", id: "1111"
+                },
+                {
+                  name: "222", id: "222"
+                },
+              ],
+              orientation: [1, 0],
+              pos: [0, 0.7],
+              color: 'system-green',
+
             },]
           },
 
@@ -2047,7 +2065,7 @@ class Login extends React.Component {
 
           },
           {
-            source: 'test-3',
+            source: 'test-2',
             target: 'custom-1',
             sourceNode: 'test',
             targetNode: 'custom',
@@ -2197,7 +2215,7 @@ class Login extends React.Component {
           },
 
           {
-            source: 'orage-3',
+            source: 'orage-4',
             target: 'ice-1',
             sourceNode: 'orage',
             targetNode: 'ice',
@@ -2325,7 +2343,10 @@ class Login extends React.Component {
           {/* <div ><DagreLayout {...DagreLayoutObj} /></div> */}
           {/* <div ><RelationalBook /></div> */}
           {/* <div style={{ height: "800px" }}>  <LiteGraph {...LiteGraphObj} /></div> */}
-          <div >    <LiteGraphComponent {...LiteGraphNew} /></div>
+          {/* <div >    <LiteGraphComponent {...LiteGraphNew} /></div> */}
+          <div style={{ height: "600px" }}>
+            <RelationChart />
+          </div>
 
 
           {/* <div style={{height:"800px"}}>  <ButtterflyDag /></div> */}
@@ -2357,7 +2378,7 @@ class Login extends React.Component {
           handChagePage={this.handChagePage}
         /> */}
 
-        <div style={{display:"flex"}}>
+        <div style={{ display: "flex" }}>
           <div>2222</div>
           <div>eeeee</div>
         </div>
