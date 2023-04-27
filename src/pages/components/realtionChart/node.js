@@ -1,97 +1,116 @@
-import {Node} from 'butterfly-dag';
+import { Node } from 'butterfly-dag';
 import $ from 'jquery';
+import _ from "loadsh";
+
 
 class BaseNode extends Node {
   constructor(opts) {
     super(opts);
     this.titleBox = null;
+    this.options = opts;
+    this.childData = _.get(opts, "endpoints") || [];
   }
+
+
   mounted() {
-    if (this.grayDom_3) {
-      this.addEndpoint({
-        id: 'gamepad_0',
-        dom: this.grayDom_3,
-      });
-    }
-    if (this.greenDom_1) {
-      this.addEndpoint({
-        id: 'gamepad_1',
-        dom: this.greenDom_1
-      });
-    }
-    if (this.grayDom_2) {
-      this.addEndpoint({
-        id: 'gamepad_2',
-        dom: this.grayDom_2
-      });
-    }
-    if (this.logEventDom) {
-      this.addEndpoint({
-        id: 'log_event_01',
-        dom: this.logEventDom,
-      });
-    }
-    if (this.widEndpointDom) {
-      this.addEndpoint({
-        id: 'widgest_1',
-        orientation: [1, 0],
-        dom: this.widEndpointDom,
-      });
-    }
+    // this.childData.forEach((({ sourceNodeId, targetNodeId }) => {
+    //   console.log(sourceNodeId, targetNodeId,"sourceNodeId, targetNodeId")
+    //   this.addEndpoint({
+    //     id: sourceNodeId,
+    //     type: 'source',
+    //     dom: document.getElementById(sourceNodeId)
+    //   });
+    //   this.addEndpoint({
+    //     id: targetNodeId,
+    //     type: 'target',
+    //     dom: document.getElementById(targetNodeId)
+    //   });
+    // }));
+
   }
+
+
+
+
   draw = (data) => {
+    // console.log(data, "data11")
+    // console.log(_.get(data, "options.position"),"hhh")
+    const positionList = _.get(data, "options.position") || [0, 0];
     let container = $('<div class= "test-base-node"></div>')
-      .css('top', data.top)
+
+      // left: 172 + (_ - get(item， "posision[a]")) * 400,
+      //   top: 64 + (_.get(item, "posision[1]")  @) 200,
+      // .css('left',172 + (_.get(positionList, "[0]")) * 400)  
+      // .css('top', 64 + (_.get(data, "options.posision[1]")) * 200)
+      // .css('top', 62 + (_.get(positionList, "[1]")) * 200)
       .css('left', data.left)
-      .css('width', data.options.width)
-      .css('height', data.options.height)
+      .css('top', data.top)
+      // .css('width', data.options.width)
+      // .css('height', data.options.height)
       .attr('id', data.id);
-    switch (this.options.id) {
-      case 'gamepad' :
-        this.greenDom_1 = ($('<div class="custom-green-rectangle-point game-point_1"></div>'));
-        this.grayDom_2 = ($('<div class="custom-gray-point game-point_2"></div>'));
-        this.grayDom_3 = $('<div class="custom-gray-point game-point_3"></div>');
-        break;
-      case 'logEvent':
-        this.logEventDom = $('<div class="custom-green-rectangle-point log-event-point_1"></div>');
-        break;
-      case 'widgest':
-        this.widEndpointDom = $(`<div class="custom-green-circle-point widgest-point_1"></div>`);
-        break;
-      default:
-    }
-
-    if (data.options.endPointLabel) {
-      let endpoint1 = $('<div class="endpointInfo endpoint1"></div>');
-      let endpoint2 = $('<div class="endpointInfo endpoint2"></div>');
-      let endpoint3 = $('<div class="endpointInfo endpoint3"></div>');
-      data.options.endPointLabel.forEach(item => {
-        if (item.endpoint === 'greenDom_0') {
-          endpoint1.append(`<span class="label_span">${item.label}</span>`);
-          endpoint1.append(this.greenDom_1);
-        } else if (item.endpoint === 'grayDom_1') {
-          endpoint2.append(`<span class="label_span">${item.label}</span>`);
-          endpoint2.append(this.grayDom_2);
-        } else if (item.endpoint === 'grayDom_2') {
-          endpoint3.append(`<span class="label_span">${item.label}</span>`);
-          endpoint3.append(this.grayDom_3);
-        }
-      });
-      container.append(endpoint1);
-      container.append(endpoint2);
-      container.append(endpoint3);
-    }
-
-    if (this.logEventDom) {
-      container.append(this.logEventDom);
-    }
+    let containerBox = $(`<div class="base-node-box" style="width:"100%"></div>`);
+    this._createChildNode(containerBox);
 
     if (this.widEndpointDom) {
       container.append(this.widEndpointDom);
     }
 
     container.append(`<span class='text'>${data.options.text}</span>`);
+
+    if (_.get(data, "id") !== "Root") {
+      container.append(containerBox)
+    }
     return container[0];
+  }
+
+  WidthFunction = (data) => {
+    let width = "";
+    width = data && data.length > 0 ? (100 / data.length) : "";
+    return width;
+  }
+
+  nodeFunction = (data) => {
+    let pamsList = ``;
+    data.forEach((item, index) => {
+      pamsList += `<div class="txtName" title=${item.name}>${item.name}</div>`
+    })
+    return pamsList;
+  }
+
+  _createChildNode(dom) {
+    // console.log(this.childData, "this.childData")
+    // console.log($(".base-node-box"), "base-node-box1")
+    $.each(this.childData, (i,) => {// { id, content, data, sourceNodeId, targetNodeId }
+      // console.log(id, content, sourceNodeId, targetNodeId, "i")
+      const id = _.get(this.childData[i], "id");
+      const content = _.get(this.childData[i], "content");
+      const data = _.get(this.childData[i], "data");
+      const type = _.get(this.childData[i], "type");
+
+      // if(0<i<this.childData){
+
+      // }
+      if (content && type !== 2) {
+        dom.append(`
+        <div class="content" style="width:${this.WidthFunction(this.childData) + "%"}"  >
+          <div class="text" title=${content}>${content}</div>
+          <div>${this.nodeFunction(data || [])}</div>
+        </div>`);
+      } else {
+        dom.append(`
+        <div  >
+         
+       
+        </div>`);
+      }
+      // console.log(id, type, "id")
+      // console.log($('#'+id).height(), "height11")
+    });
+
+    let childNode = dom.find('.content');
+
+    // this._onRemovedNode(childNode);
+    // this._onEditNode(childNode);
   }
 }
 export default BaseNode;

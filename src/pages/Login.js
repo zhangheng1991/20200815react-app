@@ -2262,6 +2262,167 @@ class Login extends React.Component {
         ]
       },
     }
+
+    const relationChartObj = {
+      id: "relationChartObj",
+      height: "800px",
+      data: {
+        nodes: [
+
+          {
+            id: 'root',
+            text: 'Root',
+            endpoints: [{
+              id: 'root-1',
+              orientation: [0, 0],
+              pos: [0.5, 1],
+              color: 'system-green',
+            }]
+          },
+          {
+            id: 'test',
+            text: 'Test',
+            endpoints: [
+              {
+                id: 'test-1',
+                orientation: [0, -1],
+                pos: [0.5, 0],
+                color: 'system-green',
+              },
+              {
+                id: 'test-2',
+                orientation: [0, 0],
+                pos: [0.2, 0.9],
+                color: 'system-green',
+              },
+
+              {
+                id: 'test-3',
+                orientation: [0, 0],
+                pos: [0.8, 0.9],
+                color: 'system-green',
+              },
+              {
+                id: 'test-4',
+                orientation: [0, 0],
+                pos: [0.5, 1],
+                color: 'system-green',
+
+              },
+            ]
+          },
+          {
+            id: 'title',
+            text: 'Title',
+            endpoints: [{
+              id: 'title-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            }, {
+              id: 'title-2',
+              orientation: [0, 0],
+              pos: [0.2, 0.9],
+              color: 'system-green',
+
+            }, {
+              id: 'title-3',
+              orientation: [0, 0],
+              pos: [0.8, 0.9],
+              color: 'system-green',
+
+            }]
+          },
+          {
+            id: 'txt',
+            text: 'Txt',
+            endpoints: [{
+              id: 'txt-1',
+              orientation: [0, -1],
+              pos: [0.5, 0],
+              color: 'system-green',
+
+            },
+            {
+              id: 'txt-2',
+              orientation: [0, 0],
+              pos: [0.2, 0.9],
+              color: 'system-green',
+
+            }, {
+              id: 'txt-3',
+              orientation: [0, 0],
+              pos: [0.8, 0.9],
+              color: 'system-green',
+
+            }, {
+              id: 'txt-4',
+              orientation: [0, 0],
+              pos: [0.5, 1],
+              color: 'system-green',
+
+            }
+            ]
+          },
+          {
+            id: 'fly',
+            text: 'Fly',
+            endpoints: [{
+              id: 'fly-1',
+              orientation: [0, -1],
+              pos: [0.5, 1],
+              color: 'system-green',
+
+            }]
+          }],
+
+        edges: [
+          {
+            source: 'root-1',
+            target: 'test-1',
+            sourceNode: 'root',
+            targetNode: 'test',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'root-1',
+            target: 'txt-1',
+            sourceNode: 'root',
+            targetNode: 'txt',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'test-4',
+            target: 'title-1',
+            sourceNode: 'test',
+            targetNode: 'title',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'txt-4',
+            target: 'title-1',
+            sourceNode: 'txt',
+            targetNode: 'title',
+            type: 'endpoint',
+
+          },
+          {
+            source: 'title-3',
+            target: 'fly-1',
+            sourceNode: 'title',
+            targetNode: 'fly',
+            type: 'endpoint',
+
+          }
+        ]
+      },
+    }
+
+
     return (
       <div>
         <div className={`${style["UserLogin"]}`}>
@@ -2344,8 +2505,8 @@ class Login extends React.Component {
           {/* <div ><RelationalBook /></div> */}
           {/* <div style={{ height: "800px" }}>  <LiteGraph {...LiteGraphObj} /></div> */}
           {/* <div >    <LiteGraphComponent {...LiteGraphNew} /></div> */}
-          <div style={{ height: "600px" }}>
-            <RelationChart />
+          <div >
+            <RelationChart  {...relationChartObj} />
           </div>
 
 
