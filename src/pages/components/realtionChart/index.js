@@ -10,7 +10,7 @@ import BaseEndpoint from './endpoint';
 import mockData from './data.js';
 
 import 'butterfly-dag/dist/index.css';
-import './index.less';
+import style from './index.less';
 class LiteGraph extends Component {
     constructor() {
         super();
@@ -150,6 +150,17 @@ class LiteGraph extends Component {
             },
             theme: {
                 edge: {
+                    // shapeType <String> 线条类型可以是：
+                    //Bezier(贝塞尔曲线)，
+                    // Flow(折线)，
+                    //Straight(直线)，
+                    //Manhattan(曼哈顿路由线)，
+                    // AdvancedBezier(更美丽的贝塞尔曲线)，
+                    //Bezier2-1，
+                    //Bezier2-2，
+                    // Bezier2-3(二阶贝塞尔曲线)，
+                    //BrokenLine(折线)；
+                    //默认为：Straight
                     shapeType: 'AdvancedBezier',
                     arrow: true,
                     arrowPosition: 0.9,
@@ -174,10 +185,12 @@ class LiteGraph extends Component {
 
     render() {
         const { id, height } = this.props;
-        console.log(height, "height")
+      
         return (
-            <div className='litegraph-page'>
-                <div className='litegraph-canvas' id={id || 'dag-canvas'} style={{ height: height || "500px" }}></div>
+            <div className={style.canvasBox}>
+                <div className='litegraph-page'>
+                    <div className='litegraph-canvas' id={id || 'dag-canvas'} style={{ height: height || "500px" }}></div>
+                </div>
             </div>
         );
     }

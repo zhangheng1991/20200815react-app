@@ -37,6 +37,10 @@ const MenuData = [
     title: '表格',
     url: '/Echarts/DoubleTable',
   },
+  {
+    "title": "流程图",
+    "url": "/RelationChart",
+  },
 ];
 @connect(({ Index }) => ({ Index }))
 class BasicLayout extends React.Component {

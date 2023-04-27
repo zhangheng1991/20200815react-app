@@ -44,7 +44,7 @@ export default{
         }
       }
       else{
-        router.push('/user/login');
+        // router.push('/user/login');
         // router.push('/');
         
       }

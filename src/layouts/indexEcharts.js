@@ -56,6 +56,10 @@ const MenuData = [
     "title": "导出pdf",
     "url": "/Pdf",
   },
+  {
+    "title": "流程图",
+    "url": "/RelationChart",
+  },
   
 ]
 @connect(({ Index }) => ({ Index }))

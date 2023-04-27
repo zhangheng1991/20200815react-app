@@ -2623,9 +2623,9 @@ class Login extends React.Component {
           {/* <div ><RelationalBook /></div> */}
           {/* <div style={{ height: "800px" }}>  <LiteGraph {...LiteGraphObj} /></div> */}
           {/* <div >    <LiteGraphComponent {...LiteGraphNew} /></div> */}
-          <div >
+          {/* <div >
             <RelationChart  {...relationChartObj} />
-          </div>
+          </div> */}
 
 
           {/* <div style={{height:"800px"}}>  <ButtterflyDag /></div> */}
@@ -2657,10 +2657,10 @@ class Login extends React.Component {
           handChagePage={this.handChagePage}
         /> */}
 
-        <div style={{ display: "flex" }}>
+        {/* <div style={{ display: "flex" }}>
           <div>2222</div>
           <div>eeeee</div>
-        </div>
+        </div> */}
       </div>
     )
   }
