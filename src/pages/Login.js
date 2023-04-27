@@ -2419,7 +2419,8 @@ class Login extends React.Component {
                   name:"666",
                 },
               ]
-            }, {
+            }, 
+            {
               id: 'txt-3',
               // orientation: [0, 0],
               // pos: [0.8, 0.9],
@@ -2436,7 +2437,44 @@ class Login extends React.Component {
                   name:"666",
                 },
               ]
-            }, {
+            }, 
+            {
+              id: 'txt-5',
+              // orientation: [0, 0],
+              // pos: [0.8, 0.9],
+              color: 'system-green',
+              typeFlag:"normal",
+              content:"555",
+              data:[
+                {
+                  id:"555",
+                  name:"555",
+                },
+                {
+                  id:"666",
+                  name:"666",
+                },
+              ]
+            }, 
+            {
+              id: 'txt-6',
+              // orientation: [0, 0],
+              // pos: [0.8, 0.9],
+              color: 'system-green',
+              typeFlag:"normal",
+              content:"555",
+              data:[
+                {
+                  id:"555",
+                  name:"555",
+                },
+                {
+                  id:"666",
+                  name:"666",
+                },
+              ]
+            }, 
+            {
               id: 'txt-4',
               // orientation: [0, 0],
               // pos: [0.5, 1],
