@@ -25,6 +25,79 @@ class LiteGraph extends Component {
 
     }
 
+    sourceIdFunction = (id, data) => {
+
+        let sourceId = "";
+        data.map((item, index) => {
+            if (item.endpoints) {
+                item.endpoints.map((itemD, indexD) => {
+                    if (itemD.dataSetId === id) {
+                        sourceId = item.stepId;
+                    }
+                })
+            }
+        })
+
+        return sourceId;
+
+    }
+
+
+    positionFunction = (data, obj, index) => {
+        const datak = _.map(_.filter(data, item => item.typeFlag === "normal"), item => ({
+            ...item,
+        }))
+        let total = 0;
+        total = (1 + (index - 1) * 2) / (2 * datak.length);
+        let poc = [total, 0.92];
+        return poc;
+    }
+
+
+    orientation = (obj) => {
+        let op = [];
+        if (obj.typeFlag === "end") {
+            op = [0, 0];
+        }
+        else if (obj.typeFlag === "start") {
+            op = [0, -1]
+        }
+        else if (obj.typeFlag === "down") {
+            op = [0, 0];
+        }
+        else if (obj.typeFlag === "normal") {
+            op = [0, 0];
+        }
+        else {
+            op = obj.orientation;
+        }
+        return op;
+
+    }
+
+    pos = (obj, data, item, index) => {
+        console.log(obj, data, item, index, "obj")
+        let pos = [];
+        if (obj.typeFlag === "end") {
+            pos = [0.5, 1];
+        }
+        else if (obj.typeFlag == "start") {
+            pos = [0.5, 0];
+        }
+        else if (obj.typeFlag === "down") {
+            pos = [0.5, 1];
+        }
+        else if (obj.typeFlag === "normal") {
+            pos = this.positionFunction(data, item, index);
+        }
+
+        else {
+            pos = obj.pos;
+        }
+
+        return pos
+    }
+
     DagreLayoutInitialization = () => {
         const { id, data, handClick, shapeType } = this.props;
         let root = document.getElementById(id || "dag-canvas");
@@ -35,6 +108,8 @@ class LiteGraph extends Component {
             endpoints: _.map(item.endpoints, (itemD, indexD) => ({
                 ...itemD,
                 Class: BaseEndpoint, // 灰色系统锚点
+                orientation: this.orientation(itemD),
+                pos: this.pos(itemD, item.endpoints, item, indexD)
                 // orientation: item.id === "Root" ? [0, 1] : itemD.type === 2 ? [0, 0] : itemD.content ? [0, 1] : orientation,
                 // pos: itemD.content ? this.positionFunction(item.endpoints, indexD) : itemD.type === 2 ? [0.5, 1.07] : pos,
 

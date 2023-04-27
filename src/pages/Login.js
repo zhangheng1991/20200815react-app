@@ -2274,9 +2274,10 @@ class Login extends React.Component {
             text: 'Root',
             endpoints: [{
               id: 'root-1',
-              orientation: [0, 0],
-              pos: [0.5, 1],
+              // orientation: [0, 0],
+              // pos: [0.5, 1],
               color: 'system-green',
+              typeFlag:"end",
             }]
           },
           {
@@ -2285,29 +2286,54 @@ class Login extends React.Component {
             endpoints: [
               {
                 id: 'test-1',
-                orientation: [0, -1],
-                pos: [0.5, 0],
+                // orientation: [0, -1],
+                // pos: [0.5, 0],
                 color: 'system-green',
+                typeFlag:"start",
               },
               {
                 id: 'test-2',
-                orientation: [0, 0],
-                pos: [0.2, 0.9],
+                // orientation: [0, 0],
+                // pos: [0.2, 0.9],
                 color: 'system-green',
+                content:"222",
+                typeFlag:"normal",
+                data:[
+                  {
+                    id:"111",
+                    name:"111",
+                  },
+                  {
+                    id:"222",
+                    name:"222",
+                  },
+                ]
               },
 
               {
                 id: 'test-3',
-                orientation: [0, 0],
-                pos: [0.8, 0.9],
+                // orientation: [0, 0],
+                // pos: [0.8, 0.9],
                 color: 'system-green',
+                content:"222",
+                typeFlag:"normal",
+                data:[
+                  {
+                    id:"333",
+                    name:"333",
+                  },
+                  {
+                    id:"444",
+                    name:"444",
+                  },
+                ]
               },
               {
                 id: 'test-4',
-                orientation: [0, 0],
-                pos: [0.5, 1],
+                // orientation: [0, 0],
+                // pos: [0.5, 1],
                 color: 'system-green',
-
+                typeFlag:"down",
               },
             ]
           },
@@ -2316,52 +2342,106 @@ class Login extends React.Component {
             text: 'Title',
             endpoints: [{
               id: 'title-1',
-              orientation: [0, -1],
-              pos: [0.5, 0],
+              // orientation: [0, -1],
+              // pos: [0.5, 0],
               color: 'system-green',
-
+              typeFlag:"start",
             }, {
               id: 'title-2',
-              orientation: [0, 0],
-              pos: [0.2, 0.9],
+              // orientation: [0, 0],
+              // pos: [0.2, 0.9],
               color: 'system-green',
-
-            }, {
+              typeFlag:"normal",
+              content:"555",
+              data:[
+                {
+                  id:"555",
+                  name:"555",
+                },
+                {
+                  id:"666",
+                  name:"666",
+                },
+              ]
+            }, 
+            {
               id: 'title-3',
-              orientation: [0, 0],
-              pos: [0.8, 0.9],
+              // orientation: [0, 0],
+              // pos: [0.8, 0.9],
               color: 'system-green',
-
-            }]
+              typeFlag:"normal",
+              content:"777",
+              data:[
+                {
+                  id:"888",
+                  name:"888",
+                },
+                {
+                  id:"999",
+                  name:"999",
+                },
+              ]
+            }, 
+            {
+              id: 'title-4',
+              // orientation: [0, 0],
+              // pos: [0.8, 0.9],
+              color: 'system-green',
+              typeFlag:"down",
+             
+            }
+          ]
           },
           {
             id: 'txt',
             text: 'Txt',
             endpoints: [{
               id: 'txt-1',
-              orientation: [0, -1],
-              pos: [0.5, 0],
+              // orientation: [0, -1],
+              // pos: [0.5, 0],
               color: 'system-green',
-
+              typeFlag:"start",
             },
             {
               id: 'txt-2',
-              orientation: [0, 0],
-              pos: [0.2, 0.9],
+              // orientation: [0, 0],
+              // pos: [0.2, 0.9],
               color: 'system-green',
-
+              typeFlag:"normal",
+              content:"555",
+              data:[
+                {
+                  id:"555",
+                  name:"555",
+                },
+                {
+                  id:"666",
+                  name:"666",
+                },
+              ]
             }, {
               id: 'txt-3',
-              orientation: [0, 0],
-              pos: [0.8, 0.9],
+              // orientation: [0, 0],
+              // pos: [0.8, 0.9],
               color: 'system-green',
-
+              typeFlag:"normal",
+              content:"555",
+              data:[
+                {
+                  id:"555",
+                  name:"555",
+                },
+                {
+                  id:"666",
+                  name:"666",
+                },
+              ]
             }, {
               id: 'txt-4',
-              orientation: [0, 0],
-              pos: [0.5, 1],
+              // orientation: [0, 0],
+              // pos: [0.5, 1],
               color: 'system-green',
-
+              typeFlag:"down",
             }
             ]
           },
@@ -2370,10 +2450,10 @@ class Login extends React.Component {
             text: 'Fly',
             endpoints: [{
               id: 'fly-1',
-              orientation: [0, -1],
-              pos: [0.5, 1],
+              // orientation: [0, -1],
+              // pos: [0.5, 1],
               color: 'system-green',
-
+              typeFlag:"start",
             }]
           }],
 
@@ -2395,7 +2475,7 @@ class Login extends React.Component {
 
           },
           {
-            source: 'test-4',
+            source: 'test-3',
             target: 'title-1',
             sourceNode: 'test',
             targetNode: 'title',
@@ -2403,7 +2483,7 @@ class Login extends React.Component {
 
           },
           {
-            source: 'txt-4',
+            source: 'txt-2',
             target: 'title-1',
             sourceNode: 'txt',
             targetNode: 'title',
@@ -2411,7 +2491,7 @@ class Login extends React.Component {
 
           },
           {
-            source: 'title-3',
+            source: 'title-4',
             target: 'fly-1',
             sourceNode: 'title',
             targetNode: 'fly',

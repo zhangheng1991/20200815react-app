@@ -64,8 +64,12 @@ class BaseNode extends Node {
   }
 
   WidthFunction = (data) => {
+
+    const datak = _.map(_.filter(data, item => item.typeFlag === "normal"), item => ({
+      ...item,
+    }))
     let width = "";
-    width = data && data.length > 0 ? (100 / data.length) : "";
+    width = datak && datak.length > 0 ? (100 / datak.length) : "";
     return width;
   }
 
