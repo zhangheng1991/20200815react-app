@@ -157,6 +157,17 @@ class LiteGraph extends Component {
                 }
             }
         });
+        this.canvas.on('events', (Obj) => {
+            // eslint-disable-next-line no-console
+
+            if (Obj.type === "node:click") {
+                console.log(Obj);
+                if (handClick) {
+                    handClick(Obj)
+                }
+            }
+
+        });
         this.canvas.draw(dataObj)//dataObj  mockData
     }
 
