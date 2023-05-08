@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>一起来看流星雨</title>
+
+    <style type="text/css">
+        body {
+            /* background-color: black; */
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .check {
+            width: 8px;
+            height: 15px;
+            border-color: white;
+            border-style: solid;
+            border-width: 0 2px 3px 0;
+            transform: rotate(45deg);
+            position: relative;
+            left: 10px;
+            top: 5px;
+        }
+
+        .boxD {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #009933;
+            text-align: center;
+            line-height: 30px;
+            position: relative;
+            top: -20px;
+        }
+
+        .content {
+            height: 200px;
+            border: 1px solid red;
+            padding: 0px 10px;
+            box-shadow: 10px 10px 5px grey;
+        }
+
+        .contentHeader {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0px;
+
+        }
+
+        .contentHeader h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .contentHeader  span {
+            font-size: 20px;
+            color: #FF8619;
+            font-weight: bold;
+        }
+
+        .Progressbar {
+            height: 10px;
+            width: 100%;
+            background: gray;
+
+          
+        }
+        .Progress {
+                height: 100%;
+                background: #FF8C25;
+            }
+
+        .contentFooter {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .percentage {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .percentage-right {
+            text-align: right;
+        }
+
+        .text {
+            color: #CECECE;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="contentHeader">
+            <h2>充电桩市场占有率</h2>
+            <span>62%</span>
+        </div>
+        <div class="Progressbar">
+            <div class="Progress" style=" width: 50%">
+
+            </div>
+        </div>
+        <div class="boxD" style="left:30%">
+            <div class="check"></div>
+        </div>
+        <div class="contentFooter">
+            <div>
+                <div class="percentage">
+                    10%
+                </div>
+                <div class="text">
+                    同期比例
+                </div>
+            </div>
+            <div>
+                <div class="percentage percentage-right">
+                    40%
+                </div>
+                <div class="text">
+                    目标比例
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function onClickD() {
+
+        }
+    </script>
+</body>
+
+</html>

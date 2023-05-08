@@ -1,6 +1,6 @@
 import React from "react";
 import RelationChartCom from "../components/realtionChart/index";
-
+import style from "./style.less";
 
 class RelationChart extends React.Component {
     render() {
@@ -281,9 +281,45 @@ class RelationChart extends React.Component {
                 ]
             },
         }
+        const widthObj = {
+            width: "50%",
+            left: "30%"
+        }
         return (
             <div>
-                <RelationChartCom  {...relationChartObj}/>
+                <div className={style.content}>
+                    <div className={style.contentHeader}>
+                        <h2>充电桩市场占有率</h2>
+                        <span>62%</span>
+                    </div>
+                    <div className={style.Progressbar}>
+                        <div className={style.Progress} style={{ width: widthObj.width }}>
+
+                        </div>
+                    </div>
+                    <div className={style.boxD} style={{ left: widthObj.left }}>
+                        <div className={style.check} ></div>
+                    </div>
+                    <div className={style.contentFooter}>
+                        <div>
+                            <div className={style.percentage}>
+                                10%
+                            </div>
+                            <div className={style.text}>
+                                同期比例
+                            </div>
+                        </div>
+                        <div>
+                            <div className={`${style["percentage"]} ${style["percentage-right"]}`} >
+                                40%
+                            </div>
+                            <div className={style.text}>
+                                目标比例
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <RelationChartCom  {...relationChartObj} />
             </div>
         )
     }
