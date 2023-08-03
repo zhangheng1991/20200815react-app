@@ -7,6 +7,7 @@ import PublicEcharts from './public/PublicEcharts';
 import style from './public/style.less';
 import EchartsChildren from './component/EchartsChildren';
 import ParentComponent from './component/ParentComponent';
+import AppIndex from "../Test/start/Index";
 const data = { value: 10, id: '1' };
 const data1 = { value: 50, id: '2' };
 const data2 = { value: 80, id: '3' };

@@ -7,7 +7,9 @@ import styles from './Tests.less';
 import Echarts from 'echarts';
 // import { MonacoDiffEditor } from 'react-monaco-editor';
 import { Table, Input, Button, Popconfirm, Form, Drawer } from 'antd';
+import moment from 'moment';
 import EditableCell from './TestChildren';
+import AppIndex from "./start/Index";
 import { connect } from 'dva';
 
 const data = [];
@@ -199,6 +201,7 @@ class Tests extends React.Component {
       visible: false,
       placement: "right",
       name: "右面",
+      falgTag:true
     };
   }
   componentDidMount() {
@@ -206,12 +209,17 @@ class Tests extends React.Component {
       type: 'TestModel/save',
       payload: { tableList: this.data },
     });
+
   }
   componentWillReceiveProps(nextProsp) {
     //实时监听表格数据发生变化
     if (nextProsp.TestModel.tableList && nextProsp.TestModel.tableList != this.state.dataSource) {
       this.setState({ dataSource: nextProsp.TestModel.tableList });
     }
+  }
+
+  componentWillUnmount() {
+    this.setState({ falgTag: false })
   }
   //删除行
   handleDelete = key => {
@@ -314,7 +322,7 @@ class Tests extends React.Component {
 
 
   render() {
-    const { dataSource } = this.state;
+    const { dataSource,falgTag } = this.state;
     const { TestModel, dispatch } = this.props;
     const { tableList } = TestModel;
     const components = {
@@ -447,77 +455,84 @@ class Tests extends React.Component {
           value={code2}
           options={options}
         /> */}
-        <Table
-          // components={components}
-          rowClassName={() => 'editable-row'}
-          bordered
-          dataSource={dataR}
-          columns={columnsR}
-          pageSize="10000000"
-          pagintion={false}
-        />
-        {/* <div className={styles.backGround}></div> */}111111111111111
-        <div className={styles.content}>
-          {
-            dataP.map((item, index) => {
-              return (
-                <Button type="primary" onClick={this.showDrawer.bind(this, item)} key={item.key}>
-                  {item.title}
-                </Button>
-              )
-            })
-          }
+        {
+          falgTag&&<AppIndex id={moment().format('YYYY-MM-DD-HH:MM:ssss')} />
+        }
+        
+        {/* key={moment().format('YYYY-MM-DD-HH:MM:ssss')}  */}
+        <div style={{ position: "absolute", width: "100%" }}>
+          <Table
+            // components={components}
+            rowClassName={() => 'editable-row'}
+            bordered
+            dataSource={dataR}
+            columns={columnsR}
+            pageSize="10000000"
+            pagintion={false}
+          />
+          {/* <div className={styles.backGround}></div> */}111111111111111
+          <div className={styles.content}>
+            {
+              dataP.map((item, index) => {
+                return (
+                  <Button type="primary" onClick={this.showDrawer.bind(this, item)} key={item.key}>
+                    {item.title}
+                  </Button>
+                )
+              })
+            }
 
-          <Drawer
-            title={"抽屉方向(" + this.state.name + ")"}
-            closable={false}
-            onClose={this.onClose}
-            visible={this.state.visible}
-            zIndex={100000}
-            placement={this.state.placement}
-          >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-          </Drawer>
-          <div>
-            <input
-              value={this.state.value}
-              onChange={({ target: { value } }) => this.setState({ value, copied: false })}
-            />
+            <Drawer
+              title={"抽屉方向(" + this.state.name + ")"}
+              closable={false}
+              onClose={this.onClose}
+              visible={this.state.visible}
+              zIndex={100000}
+              placement={this.state.placement}
+            >
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+            </Drawer>
+            <div>
+              <input
+                value={this.state.value}
+                onChange={({ target: { value } }) => this.setState({ value, copied: false })}
+              />
 
-            <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
-              <span className={styles.copyButton}>点击复制</span>
-            </CopyToClipboard>
+              <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+                <span className={styles.copyButton}>点击复制</span>
+              </CopyToClipboard>
 
-            {/* <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
+              {/* <CopyToClipboard text={this.state.value} onCopy={() => this.setState({ copied: true })}>
             <button>Copy to clipboard with button</button>
           </CopyToClipboard> */}
 
-            {/* {this.state.copied ? <span style={{ color: 'red' }}>Copied.</span> : null} */}
-          </div>
-          <div>
-            <div className={`${styles['ContentButton']}`}>
-              <Button onClick={this.handleAdd} type="primary">
-                新增
-              </Button>
-              <Button onClick={this.handledCurrent} type="primary">
-                打印当前表格
-              </Button>
-              <Button onClick={this.handDeleteAll} type="primary">
-                全部删除
-              </Button>
+              {/* {this.state.copied ? <span style={{ color: 'red' }}>Copied.</span> : null} */}
             </div>
             <div>
-              <Table
-                components={components}
-                rowClassName={() => 'editable-row'}
-                bordered
-                dataSource={dataSource}
-                columns={columns}
-                pageSize="10000000"
-                pagintion={false}
-              />
+              <div className={`${styles['ContentButton']}`}>
+                <Button onClick={this.handleAdd} type="primary">
+                  新增
+                </Button>
+                <Button onClick={this.handledCurrent} type="primary">
+                  打印当前表格
+                </Button>
+                <Button onClick={this.handDeleteAll} type="primary">
+                  全部删除
+                </Button>
+              </div>
+              <div style={{ width: "100%" }}>
+                <Table
+                  components={components}
+                  rowClassName={() => 'editable-row'}
+                  bordered
+                  dataSource={dataSource}
+                  columns={columns}
+                  pageSize="10000000"
+                  pagintion={false}
+                />
+              </div>
             </div>
           </div>
         </div>
