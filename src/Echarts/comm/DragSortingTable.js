@@ -16,19 +16,19 @@ class DragSortingTable extends React.Component {
         data: [
             {
                 key: '1',
-                name: 'John Brown',
+                name: 'John Brown11111111111111111',
                 age: 32,
                 address: 'New York No. 1 Lake Park',
             },
             {
                 key: '2',
-                name: 'Jim Green',
+                name: 'Jim Green22222222222222222',
                 age: 42,
                 address: 'London No. 1 Lake Park',
             },
             {
                 key: '3',
-                name: 'Joe Black',
+                name: 'Joe Black3333333333333333',
                 age: 32,
                 address: 'Sidney No. 1 Lake Park',
             },
@@ -120,11 +120,14 @@ class DragSortingTable extends React.Component {
             },
         ];
 
+        const {data}=this.state;
+        console.log(data,"Data")
+
         return (
             <DndProvider backend={HTML5Backend}>
                 <Table
                     columns={columns}
-                    dataSource={this.state.data}
+                    dataSource={data}
                     components={components}
                     onRow={(record, index) => ({
                         index,

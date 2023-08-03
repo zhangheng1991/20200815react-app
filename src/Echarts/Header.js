@@ -1,7 +1,7 @@
 import React from 'react';
 import Echarts from 'echarts';
 import _ from "loadsh";
-import { Modal, Button, Select, Radio, Table,Tag,message  } from 'antd';
+import { Modal, Button, Select, Radio, Table, Tag, message } from 'antd';
 import moment from "moment";
 import HeaderBody from './component/HeaderBody';
 import EditableTable from "./Header/HeaderBody";
@@ -24,8 +24,8 @@ const renderContent = (value, row, index) => {
   // }
   return obj;
 };
-const mergeCells=(text, data, key, index)=> {
- 
+const mergeCells = (text, data, key, index) => {
+
   // 上一行该列数据是否一样
   if (index !== 0 && text === data[index - 1][key]) {
     return 0
@@ -48,9 +48,10 @@ class Header extends React.Component {
       this.epieP();
     }
   }
-  state = { visible: false,
-  list:[],
- };
+  state = {
+    visible: false,
+    list: [],
+  };
 
   showModal = () => {
     this.setState({
@@ -59,14 +60,14 @@ class Header extends React.Component {
   };
 
   handleOk = e => {
-  
+
     this.setState({
       visible: false,
     });
   };
 
   handleCancel = e => {
-    
+
     this.setState({
       visible: false,
     });
@@ -288,18 +289,18 @@ class Header extends React.Component {
     }
   }
   handleChange = value => {
-   
+
   };
-   columns = [
+  columns = [
     {
       title: 'Name',
       dataIndex: 'name',
-      render: (text, record,index) => {
+      render: (text, record, index) => {
         const obj = {
           children: text !== null ? text : '',
           props: {}
         }
-        obj.props.rowSpan =mergeCells(text, this.data, 'name', index,record.name)
+        obj.props.rowSpan = mergeCells(text, this.data, 'name', index, record.name)
         return obj
       },
     },
@@ -307,12 +308,12 @@ class Header extends React.Component {
       title: 'Age',
       dataIndex: 'age',
       rowSpan: 0,
-      render: (text, record,index) => {
+      render: (text, record, index) => {
         const obj = {
           children: text !== null ? text : '',
           props: {}
         }
-        obj.props.rowSpan =mergeCells(text, this.data, 'age', index,record.name)
+        obj.props.rowSpan = mergeCells(text, this.data, 'age', index, record.name)
         return obj
       },
     },
@@ -349,13 +350,13 @@ class Header extends React.Component {
       title: '状态',
       dataIndex: 'age',
       // render: renderContent,
-      render: (text, record,index) => {
-      
+      render: (text, record, index) => {
+
         const obj = {
-          children: record.status !== null&&record.status===1 ? "已完成" :"未完成",
+          children: record.status !== null && record.status === 1 ? "已完成" : "未完成",
           props: {}
         }
-        obj.props.rowSpan =mergeCells(text, this.data, 'age', index,record.name)
+        obj.props.rowSpan = mergeCells(text, this.data, 'age', index, record.name)
         return obj
       },
     },
@@ -367,12 +368,12 @@ class Header extends React.Component {
     {
       title: '操作',
       dataIndex: 'operate',
-      render: (text,record)=><div onClick={this.handClickConfirm.bind(this,record)}>确定</div>,
+      render: (text, record) => <div onClick={this.handClickConfirm.bind(this, record)}>确定</div>,
     },
   ];
-  
-   data = [
-   
+
+  data = [
+
     {
       key: '1',
       name: 'John Brown',
@@ -380,7 +381,7 @@ class Header extends React.Component {
       tel: '0571-22098909',
       phone: 18889898989,
       address: 'New York No. 1 Lake Park',
-      status:1,
+      status: 1,
     },
     {
       key: '2',
@@ -389,7 +390,7 @@ class Header extends React.Component {
       phone: 18889898888,
       age: 32,
       address: 'London No. 1 Lake Park',
-      status:1,
+      status: 1,
     },
     {
       key: '23',
@@ -398,7 +399,7 @@ class Header extends React.Component {
       phone: 18889898888,
       age: 92,
       address: 'London No. 1 Lake Park',
-      status:2,
+      status: 2,
     },
     {
       key: '3',
@@ -407,7 +408,7 @@ class Header extends React.Component {
       tel: '0575-22098909',
       phone: 18900010002,
       address: 'Sidney No. 1 Lake Park',
-      status:2,
+      status: 2,
     },
     {
       key: '4',
@@ -416,7 +417,7 @@ class Header extends React.Component {
       tel: '0575-22098909',
       phone: 18900010002,
       address: 'London No. 2 Lake Park',
-      status:2,
+      status: 2,
     },
     {
       key: '5',
@@ -425,7 +426,7 @@ class Header extends React.Component {
       tel: '0575-22098909',
       phone: 18900010002,
       address: 'Dublin No. 2 Lake Park',
-      status:2,
+      status: 2,
     },
     {
       key: '6',
@@ -434,31 +435,32 @@ class Header extends React.Component {
       tel: '0575-22098909',
       phone: 18900010002,
       address: 'Dublin No. 2 Lake Park',
-      status:1,
+      status: 1,
     },
   ];
-  handClickConfirm=(obj)=>{
-    const {list}=this.state;
-    let data=list;
-    data.push({...obj,
-      key:moment().format("YYYYMMDDHH:mm:ss.SSS")
+  handClickConfirm = (obj) => {
+    const { list } = this.state;
+    let data = list;
+    data.push({
+      ...obj,
+      key: moment().format("YYYYMMDDHH:mm:ss.SSS")
     })
-    this.setState({list:[...new Set(data)]})
-    
+    this.setState({ list: [...new Set(data)] })
+
   }
-  onClose=(e,objD)=>{
-    const {list}=this.state;
-     
-      const data=_.map(_.filter(list,item=>e.key!==item.key),item=>(
-        {
-          ...item
-        }
-      ))
-     
-      this.setState({list:[...new Set(data)]})
+  onClose = (e, objD) => {
+    const { list } = this.state;
+
+    const data = _.map(_.filter(list, item => e.key !== item.key), item => (
+      {
+        ...item
+      }
+    ))
+
+    this.setState({ list: [...new Set(data)] })
   }
 
-   columnsR = [
+  columnsR = [
     {
       title: 'Name',
       dataIndex: 'name',
@@ -476,14 +478,14 @@ class Header extends React.Component {
     {
       title: '操作',
       dataIndex: 'operate',
-      render: (text,record)=><div onClick={this.handClickConfirm.bind(this,record)}>确定</div>,
+      render: (text, record) => <div onClick={this.handClickConfirm.bind(this, record)}>确定</div>,
     },
   ];
-  
-   dataR = [];
- 
 
-   dataSource = [
+  dataR = [];
+
+
+  dataSource = [
     {
       name: '杜八',
       sex: '男',
@@ -492,7 +494,7 @@ class Header extends React.Component {
       address: '河南',
       id: 7,
       flag: 1,
-      code:"015785",
+      code: "015785",
     },
     {
       name: '张三',
@@ -502,7 +504,7 @@ class Header extends React.Component {
       address: '河南',
       id: 1,
       flag: 1,
-      code:"015780",
+      code: "015780",
     },
     {
       name: '李四',
@@ -512,7 +514,7 @@ class Header extends React.Component {
       address: '河南',
       id: 2,
       flag: 1,
-      code:"015781",
+      code: "015781",
     },
     {
       name: '李六',
@@ -522,7 +524,7 @@ class Header extends React.Component {
       address: '河南',
       id: 2,
       flag: 1,
-      code:"015781",
+      code: "015781",
     },
     {
       name: '王二',
@@ -532,7 +534,7 @@ class Header extends React.Component {
       address: '河南',
       id: 3,
       flag: 2,
-      code:"015782",
+      code: "015782",
     },
     {
       name: '刘大',
@@ -542,7 +544,7 @@ class Header extends React.Component {
       address: '河南',
       id: 4,
       flag: 3,
-      code:"015783",
+      code: "015783",
     },
     {
       name: '胡六',
@@ -552,7 +554,7 @@ class Header extends React.Component {
       address: '河南',
       id: 5,
       flag: 4,
-      code:"015784",
+      code: "015784",
     },
     {
       name: '杨七',
@@ -562,54 +564,57 @@ class Header extends React.Component {
       address: '河南',
       id: 6,
       flag: 1,
-      code:"015785",
+      code: "015785",
     },
   ];
   render() {
-    const {list}=this.state;
+    const { list } = this.state;
     for (let i = 0; i < 100; i++) {
       this.dataR.push({
         key: i,
         name: `Edward King ${i}`,
-        age:1+i,
+        age: 1 + i,
         address: `London, Park Lane no. ${i}`,
       });
     }
-    const dataU=_.map(this.dataSource,item=>item.name);
-   
-    const dataY=_.map(_.filter(this.dataSource,item=>item.name !=="杨七"),item=>({
+    const dataU = _.map(this.dataSource, item => item.name);
+
+    const dataY = _.map(_.filter(this.dataSource, item => item.name !== "杨七"), item => ({
       ...item
     }));
 
-    console.log(_.sortBy(this.dataSource,  ["id","age"],"desc"),"sortBy")//"desc"  ,"id","asc"
-  
+    console.log(_.sortBy(this.dataSource, ["id", "age"], "desc"), "sortBy")//"desc"  ,"id","asc"
+
     return (
       <div>
         我是echarts第二个页面折线图 ddddddddddddd
-        <DragSortingTable />
+        <div>
+          <h1>b表格拖拽</h1>
+          <DragSortingTable />
+        </div>
         <div>
           <HeaderBody />
           <Button type="primary" onClick={this.showModal}>
             添加
           </Button>
           <div className={style.TagBox} >
-        {
-          list.map((item,index)=>{
-            return(
-              <div className={style.TagText} key={item.key}>
-                   <div className={style.TagContainer} title={item.name+"("+item.code+")"}>
-                   <Tag closable={true} onClose={this.onClose.bind(this,item)}>  {item.name}({item.code})</Tag>
-                   {
-                     list.length-1===index?"":"  --->"
-                   }
-               
-                   </div>
-              </div>
-            )
-          })
-        }
-        </div>
-       
+            {
+              list.map((item, index) => {
+                return (
+                  <div className={style.TagText} key={item.key}>
+                    <div className={style.TagContainer} title={item.name + "(" + item.code + ")"}>
+                      <Tag closable={true} onClose={this.onClose.bind(this, item)}>  {item.name}({item.code})</Tag>
+                      {
+                        list.length - 1 === index ? "" : "  --->"
+                      }
+
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+
           <Select
             mode="tags"
             // size={size}
@@ -620,9 +625,9 @@ class Header extends React.Component {
           >
             {children}
           </Select>
-          <Table columns={this.columns} dataSource={this.data} bordered  rowKey="key" pagination={
-           { scroll:"2800px"}
-          }/>
+          <Table columns={this.columns} dataSource={this.data} bordered rowKey="key" pagination={
+            { scroll: "2800px" }
+          } />
           <Modal
             title="Basic Modal"
             visible={this.state.visible}
@@ -630,7 +635,7 @@ class Header extends React.Component {
             onCancel={this.handleCancel}
             width={800}
           >
-             <Table columns={this.columnsR} dataSource={this.dataSource} bordered  rowKey="name"/>
+            <Table columns={this.columnsR} dataSource={this.dataSource} bordered rowKey="name" />
             <p>Some contents...</p>
             <p>Some contents...</p>
             <p>Some contents...</p>
@@ -638,9 +643,9 @@ class Header extends React.Component {
           </Modal>
         </div>
         <div />
-        <Table columns={this.columnsR} dataSource={this.dataR} bordered  rowKey="name" pagination={{pageSize:10,total:100 }}/>
+        <Table columns={this.columnsR} dataSource={this.dataR} bordered rowKey="name" pagination={{ pageSize: 10, total: 100 }} />
         <div>
-           <EditableTable />
+          <EditableTable />
         </div>
       </div>
     );
