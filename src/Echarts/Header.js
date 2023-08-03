@@ -5,6 +5,7 @@ import { Modal, Button, Select, Radio, Table,Tag,message  } from 'antd';
 import moment from "moment";
 import HeaderBody from './component/HeaderBody';
 import EditableTable from "./Header/HeaderBody";
+import DragSortingTable from "./comm/DragSortingTable";
 import style from "./style.less";
 const { Option } = Select;
 
@@ -484,9 +485,19 @@ class Header extends React.Component {
 
    dataSource = [
     {
-      name: '张三',
+      name: '杜八',
       sex: '男',
       age: 12,
+      phone: 12345678900,
+      address: '河南',
+      id: 7,
+      flag: 1,
+      code:"015785",
+    },
+    {
+      name: '张三',
+      sex: '男',
+      age: 16,
       phone: 12345678900,
       address: '河南',
       id: 1,
@@ -496,7 +507,17 @@ class Header extends React.Component {
     {
       name: '李四',
       sex: '男',
-      age: 12,
+      age: 11,
+      phone: 12345678900,
+      address: '河南',
+      id: 2,
+      flag: 1,
+      code:"015781",
+    },
+    {
+      name: '李六',
+      sex: '男',
+      age: 20,
       phone: 12345678900,
       address: '河南',
       id: 2,
@@ -506,7 +527,7 @@ class Header extends React.Component {
     {
       name: '王二',
       sex: '男',
-      age: 12,
+      age: 10,
       phone: 12345678900,
       address: '河南',
       id: 3,
@@ -516,7 +537,7 @@ class Header extends React.Component {
     {
       name: '刘大',
       sex: '男',
-      age: 12,
+      age: 9,
       phone: 12345678900,
       address: '河南',
       id: 4,
@@ -526,7 +547,7 @@ class Header extends React.Component {
     {
       name: '胡六',
       sex: '男',
-      age: 12,
+      age: 8,
       phone: 12345678900,
       address: '河南',
       id: 5,
@@ -536,7 +557,7 @@ class Header extends React.Component {
     {
       name: '杨七',
       sex: '男',
-      age: 12,
+      age: 20,
       phone: 12345678900,
       address: '河南',
       id: 6,
@@ -559,10 +580,13 @@ class Header extends React.Component {
     const dataY=_.map(_.filter(this.dataSource,item=>item.name !=="杨七"),item=>({
       ...item
     }));
+
+    console.log(_.sortBy(this.dataSource,  ["id","age"],"desc"),"sortBy")//"desc"  ,"id","asc"
   
     return (
       <div>
         我是echarts第二个页面折线图 ddddddddddddd
+        <DragSortingTable />
         <div>
           <HeaderBody />
           <Button type="primary" onClick={this.showModal}>

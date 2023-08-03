@@ -15,7 +15,7 @@ import EditApp from "./components/EditApp";
 import EditComponent from "./components/EditComponent";
 import style from "../user/user.less";
 // import JsonFormault from "./components/JsonFormault";
-// import MonacoEditor from "././components/MonacoEditor";
+import MonacoEditor from "././components/MonacoEditor";
 // import XmlFormaultD from "./../component/XmlFormault";
 import CodemirrorFormault from "./components/CodemirrorFormault";
 import JSonFormault from "./comm/JSonFormault";
@@ -2644,7 +2644,7 @@ class Login extends React.Component {
           {/* <XmlFormaultD /> */}
           {/* <EditComponent /> */}
           {/* <JsonFormault /> */}
-          {/* <MonacoEditor /> */}
+          <MonacoEditor />
           {/* <CodemirrorFormault /> */}
         </div>
 
