@@ -33,6 +33,7 @@ class ResizableTitleBody extends React.Component {
       {
         title: 'Action',
         key: 'action',
+        width: 100,
         render: (text, record) => <a onClick={this.handDelete.bind(this, record)}>Delete</a>,
       },
     ],
@@ -116,7 +117,7 @@ class ResizableTitleBody extends React.Component {
     return (
       <div>
         <span>判断对象是否完全一致:data与data2{dataF.toString()}</span>
-        <Table bordered components={this.components} columns={columns} dataSource={this.data} />
+        <Table bordered components={this.components} columns={columns} dataSource={this.data} scroll={{x:"3600"}} />
       </div>
 
     )

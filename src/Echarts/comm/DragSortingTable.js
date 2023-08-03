@@ -16,21 +16,21 @@ class DragSortingTable extends React.Component {
         data: [
             {
                 key: '1',
-                name: 'John Brown11111111111111111',
-                age: 32,
-                address: 'New York No. 1 Lake Park',
+                name: '张三11111111111111111',
+                age: "1111111111111111111111",
+                address: '中国江苏省南京市建邺区',
             },
             {
                 key: '2',
-                name: 'Jim Green22222222222222222',
-                age: 42,
-                address: 'London No. 1 Lake Park',
+                name: '李四22222222222222222',
+                age: "2222222222222222222222",
+                address: '中国浙江省杭州市西湖区',
             },
             {
                 key: '3',
-                name: 'Joe Black3333333333333333',
-                age: 32,
-                address: 'Sidney No. 1 Lake Park',
+                name: '王二33333333333333333',
+                age: "3333333333333333333333",
+                address: '中国河南省郑州市管城区',
             },
         ],
     };

@@ -41,6 +41,15 @@ const MenuData = [
     "title": "流程图",
     "url": "/RelationChart",
   },
+  {
+    "title": "拖拽",
+    "url": "/DragDrop",
+  },
+  {
+    "title": "表格拖拽",
+    "url": "/Hooks",
+  },
+ 
 ];
 @connect(({ Index }) => ({ Index }))
 class BasicLayout extends React.Component {

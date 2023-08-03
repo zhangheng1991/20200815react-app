@@ -7,12 +7,23 @@ import { CustomErrorComponent } from 'custom-error';
 // import {Pdf} from 'react-pdf-js';
 // import Pdf from 'react-pdf-js';
 // import { Anchor } from 'antd';
+import { Tabs } from 'antd';
 import { Document, Page } from 'react-pdf';
+
+import SignalVertical from './SignalVertical/SignalVertical';
+import SignalHorizontal from './SignalHorizontal/SignalHorizontal';
+import MultiVertical from './MultiVertical/MultiVertical';
+import MultiHorizontal from './MultiHorizontal/MultiHorizontal';
+import VirtualVertical from './VirtualVertical/VirtualVertical';
+import DragSortingTable from "./../../Echarts/comm/DragSortingTable";
 import style from './style.less';
 // const { Link } = Anchor;
 // const file = '11.jpg';
 const type = 'docx';
 
+
+
+const { TabPane } = Tabs;
 function MyHooks(props) {
   const [count, setCount] = useState(1);
   const [numPages, setNumPages] = useState(null);
@@ -29,7 +40,7 @@ function MyHooks(props) {
     // })
     console.log(count, "count")
     console.log(props, "props");
-    return function cleanup(){
+    return function cleanup() {
       stepConfig()
       // setCount(1)
     }
@@ -64,11 +75,15 @@ function MyHooks(props) {
     logger.logError(e, 'error in file-viewer');
   };
   console.log(props.type, "props.type")
-  console.log(props,"props")
+  console.log(props, "props")
   // const onDocumentLoadSuccess=()=> {
   //   // setNumPages(numPages);
   // }
   // console.log(NavData, "NavData")
+
+  const callback = (key) => {
+    console.log(key);
+  }
   return (
     <div className={style.box}>
       <div>
@@ -82,6 +97,63 @@ function MyHooks(props) {
         </Document>
         <p>Page {pageNumber} of {numPages}</p>
       </div>
+
+      <Tabs defaultActiveKey="1" onChange={callback}>
+        <TabPane tab="单行垂直列表" key="1">
+          <SignalVertical />
+        </TabPane>
+        <TabPane tab="单行水平列表" key="2">
+          <SignalHorizontal />
+        </TabPane>
+        <TabPane tab="多行垂直列表拖拽" key="3">
+          <MultiVertical />
+        </TabPane>
+        <TabPane tab="多行水平列表拖拽" key="4">
+          <MultiHorizontal />
+        </TabPane>
+        <TabPane tab="大数据量垂直列表" key="5">
+          <VirtualVertical />
+        </TabPane>
+        <TabPane tab="表格拖拽" key="6">
+          <DragSortingTable />
+        </TabPane>
+        <TabPane tab="单行垂直列表" key="11">
+          <SignalVertical />
+        </TabPane>
+        <TabPane tab="单行水平列表" key="12">
+          <SignalHorizontal />
+        </TabPane>
+        <TabPane tab="多行垂直列表拖拽" key="13">
+          <MultiVertical />
+        </TabPane>
+        <TabPane tab="多行水平列表拖拽" key="14">
+          <MultiHorizontal />
+        </TabPane>
+        <TabPane tab="大数据量垂直列表" key="15">
+          <VirtualVertical />
+        </TabPane>
+        <TabPane tab="表格拖拽" key="16">
+          <DragSortingTable />
+        </TabPane>
+        <TabPane tab="单行垂直列表" key="17">
+          <SignalVertical />
+        </TabPane>
+        <TabPane tab="单行水平列表" key="21">
+          <SignalHorizontal />
+        </TabPane>
+        <TabPane tab="多行垂直列表拖拽" key="31">
+          <MultiVertical />
+        </TabPane>
+        <TabPane tab="多行水平列表拖拽" key="41">
+          <MultiHorizontal />
+        </TabPane>
+        <TabPane tab="大数据量垂直列表" key="51">
+          <VirtualVertical />
+        </TabPane>
+        <TabPane tab="表格拖拽" key="61">
+          <DragSortingTable />
+        </TabPane>
+      </Tabs>
       {/* <Document
         file="./11.pdf"
         onLoadSuccess={onDocumentLoadSuccess}
