@@ -201,7 +201,7 @@ class Tests extends React.Component {
       visible: false,
       placement: "right",
       name: "右面",
-      falgTag:true
+      falgTag:false
     };
   }
   componentDidMount() {
@@ -209,6 +209,9 @@ class Tests extends React.Component {
       type: 'TestModel/save',
       payload: { tableList: this.data },
     });
+    setTimeout(()=>{
+      this.setState({falgTag:true})
+    },1000)
 
   }
   componentWillReceiveProps(nextProsp) {
@@ -445,6 +448,9 @@ class Tests extends React.Component {
     const options = {
       //renderSideBySide: false
     };
+
+    console.log(falgTag,"falgTag");
+
     return (
       <div>
         {/* <MonacoDiffEditor
@@ -460,7 +466,7 @@ class Tests extends React.Component {
         }
         
         {/* key={moment().format('YYYY-MM-DD-HH:MM:ssss')}  */}
-        <div style={{ position: "absolute", width: "100%" }}>
+        <div style={{ position: "absolute", width: "100%",top:"0",height:"100%" }}>
           <Table
             // components={components}
             rowClassName={() => 'editable-row'}

@@ -53,6 +53,11 @@ const MenuData = [
   //   "title": "图表",
   //   "url": "/echartsIndex",
   // },
+
+  {
+    "title": "星星",
+    "url": "/stars",
+  },
   
  
 ];

@@ -27,10 +27,10 @@ const PublicData = [{ value: 20, id: '1' }, { value: 50, id: '     2' }, { value
 var context;
 
 var arr = new Array();
-var starCount = 800;
+var starCount = 20000;
 
 var rains = new Array();
-var rainCount = 20;
+var rainCount = 100;
 let windowWidth = window.innerWidth; //当前的窗口的高度
 //创建一个星星对象
 let Star = function () {

@@ -29,6 +29,7 @@ export default
       routes: [
         { path: '/', component: './Lndex' },
         { path: '/Test', component: './Test' },
+        { path: '/stars', component: './star/start/start' },
         { path: '/Tests', component: '../Test/Tests' },//有导航
         { path: '/echartsIndex', component: './echarts/echartsIndex' },
         { path: '/Hooks', component: './Hooks/Hooks' },
