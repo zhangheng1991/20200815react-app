@@ -117,42 +117,6 @@ function MyHooks(props) {
         <TabPane tab="表格拖拽" key="6">
           <DragSortingTable />
         </TabPane>
-        <TabPane tab="单行垂直列表" key="11">
-          <SignalVertical />
-        </TabPane>
-        <TabPane tab="单行水平列表" key="12">
-          <SignalHorizontal />
-        </TabPane>
-        <TabPane tab="多行垂直列表拖拽" key="13">
-          <MultiVertical />
-        </TabPane>
-        <TabPane tab="多行水平列表拖拽" key="14">
-          <MultiHorizontal />
-        </TabPane>
-        <TabPane tab="大数据量垂直列表" key="15">
-          <VirtualVertical />
-        </TabPane>
-        <TabPane tab="表格拖拽" key="16">
-          <DragSortingTable />
-        </TabPane>
-        <TabPane tab="单行垂直列表" key="17">
-          <SignalVertical />
-        </TabPane>
-        <TabPane tab="单行水平列表" key="21">
-          <SignalHorizontal />
-        </TabPane>
-        <TabPane tab="多行垂直列表拖拽" key="31">
-          <MultiVertical />
-        </TabPane>
-        <TabPane tab="多行水平列表拖拽" key="41">
-          <MultiHorizontal />
-        </TabPane>
-        <TabPane tab="大数据量垂直列表" key="51">
-          <VirtualVertical />
-        </TabPane>
-        <TabPane tab="表格拖拽" key="61">
-          <DragSortingTable />
-        </TabPane>
       </Tabs>
       {/* <Document
         file="./11.pdf"

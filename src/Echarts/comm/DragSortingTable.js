@@ -1,12 +1,12 @@
 import React from "react";
 import { Table } from 'antd';
 import { DndProvider, DragSource, DropTarget } from 'react-dnd';
-import  HTML5Backend  from 'react-dnd-html5-backend';
-import  update  from 'immutability-helper';
+import HTML5Backend from 'react-dnd-html5-backend';
+import update from 'immutability-helper';
 // import reactDnd from "react-dnd"
 import BodyRow from "./BodyRow";
 
-
+import style from "./style.less";
 // console.log(reactDnd,"reactDnd")
 // console.log( DndProvider, DragSource,DropTarget,"DropTarget")
 
@@ -36,7 +36,7 @@ class DragSortingTable extends React.Component {
     };
 
 
-    componentWillReceiveProps(){
+    componentWillReceiveProps() {
         // console.log(reactDnd,"reactDnd")
     }
 
@@ -86,7 +86,7 @@ class DragSortingTable extends React.Component {
             },
         };
 
-        const DragableBodyRow =DropTarget('row', rowTarget, (connect, monitor) => ({
+        const DragableBodyRow = DropTarget('row', rowTarget, (connect, monitor) => ({
             connectDropTarget: connect.dropTarget(),
             isOver: monitor.isOver(),
         }))(
@@ -95,7 +95,7 @@ class DragSortingTable extends React.Component {
             }))(BodyRow),
         );
 
-      const  components = {
+        const components = {
             body: {
                 row: DragableBodyRow,
             },
@@ -120,21 +120,23 @@ class DragSortingTable extends React.Component {
             },
         ];
 
-        const {data}=this.state;
-        console.log(data,"Data")
+        const { data } = this.state;
+        console.log(data, "Data")
 
         return (
-            <DndProvider backend={HTML5Backend}>
-                <Table
-                    columns={columns}
-                    dataSource={data}
-                    components={components}
-                    onRow={(record, index) => ({
-                        index,
-                        moveRow: this.moveRow,
-                    })}
-                />
-            </DndProvider>
+            <div className={style.DndProvider}>
+                <DndProvider backend={HTML5Backend}>
+                    <Table
+                        columns={columns}
+                        dataSource={data}
+                        components={components}
+                        onRow={(record, index) => ({
+                            index,
+                            moveRow: this.moveRow,
+                        })}
+                    />
+                </DndProvider>
+            </div>
         );
     }
 }

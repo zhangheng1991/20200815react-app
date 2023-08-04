@@ -49,6 +49,11 @@ const MenuData = [
     "title": "表格拖拽",
     "url": "/Hooks",
   },
+  // {
+  //   "title": "图表",
+  //   "url": "/echartsIndex",
+  // },
+  
  
 ];
 @connect(({ Index }) => ({ Index }))
