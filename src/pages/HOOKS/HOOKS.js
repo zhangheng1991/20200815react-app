@@ -4,11 +4,16 @@ import logger from 'logging-library';
 import { connect } from "dva";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import { CustomErrorComponent } from 'custom-error';
+import DocViewer from 'react-doc-viewer';
 // import {Pdf} from 'react-pdf-js';
 // import Pdf from 'react-pdf-js';
 // import { Anchor } from 'antd';
 import { Tabs } from 'antd';
 import { Document, Page } from 'react-pdf';
+
+import Viewer, { Worker } from '@phuocng/react-pdf-viewer';
+
+import '@phuocng/react-pdf-viewer/cjs/react-pdf-viewer.css';
 
 import SignalVertical from './SignalVertical/SignalVertical';
 import SignalHorizontal from './SignalHorizontal/SignalHorizontal';
@@ -21,6 +26,7 @@ import style from './style.less';
 // const file = '11.jpg';
 const type = 'docx';
 
+const pdfUrl =require('./11.pdf')
 
 
 const { TabPane } = Tabs;
@@ -84,11 +90,25 @@ function MyHooks(props) {
   const callback = (key) => {
     console.log(key);
   }
+
+  const docs = [
+    { uri: './11.docx' },
+  ];
   return (
     <div className={style.box}>
       <div>
         props.type:
         {props.type}
+        {/* <DocViewer
+          documents={docs}
+        /> */}
+
+        <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.4.456/build/pdf.worker.min.js">
+          <div style={{ height: '750px' }}>
+            <Viewer fileUrl={pdfUrl} />
+          </div>
+        </Worker>
+
         <Document
           file="./11.pdf"
           onLoadSuccess={onDocumentLoadSuccess}
@@ -149,7 +169,7 @@ function MyHooks(props) {
       /> */}
       <FileViewer
         fileType={type}
-        filePath={require('./11.docx')}
+        filePath={require('./张衡.docx')}
         errorComponent={CustomErrorComponent}
         onError={onError}
       />
