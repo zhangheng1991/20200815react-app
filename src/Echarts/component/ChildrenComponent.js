@@ -4,15 +4,25 @@ function MyHooks(props) {
   const {total,handT}=props;
   const [count, setCount] = useState(0);
   // const [numPages, setNumPages] = useState(null);
-
+  
   useEffect(() => {
     // props.getChildrenMsg('我是子组件的默认穿过去的值');
+    const {refGetInfo}=props
+    if(refGetInfo){
+      console.log(props,"props")
+      refGetInfo(props)
+    }
   }, []);
-  const handClick = () => {
+  let handClick = () => {
     // const total=count+1;
     setCount(count+1)
     props.getChildrenMsg(count+1);
   };
+
+  useEffect(()=>{
+      // props.handClick=handClick
+  },[])
+
   return (
     <div >
        <h3>父级点击事件传过来的值：{total}</h3>

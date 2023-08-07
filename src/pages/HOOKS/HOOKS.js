@@ -98,7 +98,7 @@ function MyHooks(props) {
         <p>Page {pageNumber} of {numPages}</p>
       </div>
 
-      <Tabs defaultActiveKey="1" onChange={callback}>
+      <Tabs defaultActiveKey="6" onChange={callback}>
         <TabPane tab="单行垂直列表" key="1">
           <SignalVertical />
         </TabPane>

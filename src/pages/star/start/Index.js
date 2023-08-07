@@ -18,6 +18,7 @@
 
 import React from 'react';
 // import { Col } from 'antd';
+import moment from "moment";
 import style from './style.less';
 const data = { value: 10, id: '1' };
 const data1 = { value: 50, id: '2' };
@@ -168,7 +169,7 @@ let MeteorRain = function () {
 class AppIndex extends React.Component {
     state = {
         Flagt: false,
-
+        time:"",
     };
 
     pageClick = () => {
@@ -196,6 +197,15 @@ class AppIndex extends React.Component {
         this.TimeID = setInterval(() => this.Tick(), 10);
         this.TimeIDd = setInterval(() => this.Tickd(), 10);
     }
+
+    pageLoad = () => {
+        console.log(111111111111111)
+        // alert("ddddd")
+        // this.pageClick();
+    }
+
+    firstLoad=false;
+
     componentDidMount() {
         const { Flagt } = this.state;
         //页面加载的时候
@@ -204,17 +214,37 @@ class AppIndex extends React.Component {
         // window.location.reload()
 
         // window.addEventListener("mousedown", this.pageClick, true)
-        setTimeout(()=>{
-            this.setState({Flagt:true})
-            this.pageClick();
-          },10)
+        // window.addEventListener("load", this.pageLoad, true);
+        console.log(22222222222)
+        if(!this.firstLoad){
+            this.firstLoad=true;
+            setTimeout(() => {
+                this.setState({ Flagt: true })
+                this.pageClick();
+            }, 10)
+        }
        
+
     }
 
     componentWillUnmount() {
-        this.setState({Flagt:false})
+        this.setState({ Flagt: false })
         window.location.reload();
         // window.removeEventListener("addEventListener",this.pageClick())
+        // window.removeEventListener("load", this.pageLoad())
+        // window.clearInterval(this.timer);
+    }
+
+    componentWillReceiveProps(){
+        console.log(this,"this")
+        //  if(!this.firstLoad&&moment().format("YYYYMMDD HH:mm:ssss")!=this.state.time){
+        
+        //   this.setState({time:moment().format("YYYYMMDD HH:mm:ssss")});
+        //   this.setState({ Flagt: true })
+        //   this.pageClick();
+        //   this.firstLoad=true;
+        //   console.log("Ffffff")
+        //  }
     }
 
     //初始化画布及context
@@ -268,14 +298,14 @@ class AppIndex extends React.Component {
 
     render() {
         const { id } = this.props;
-        const {Flagt}=this.state;
-        const style={ position: "absolute", top: "0", left: "0", width: "100%", height: "100%", bottom: "0", right: "0", background: "black" };
+        const { Flagt } = this.state;
+        const style = { position: "absolute", top: "0", left: "0", width: "100%", height: "100%", bottom: "0", right: "0", background: "black" };
         return (
             <div>
                 {
-                    Flagt? <canvas id={id || "starsId"} style={style} />:<div>dddd</div>
+                    Flagt ? <canvas id={id || "starsId"} style={style} /> : <div>dddd</div>
                 }
-               
+
             </div>
         );
     }

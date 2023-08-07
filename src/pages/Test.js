@@ -875,7 +875,7 @@ class Test extends React.Component {
   };
 
   handleChange = targetKeys => {
-
+    console.log(targetKeys,"targetKeys")
     this.setState({ targetKeys });
   };
 
@@ -978,6 +978,7 @@ class Test extends React.Component {
     const dataLine = _.chunk(dataLis, fiedLine);
     // console.log(dataLine, "dataLine")
     
+    console.log(this.state.mockData,"this.state.mockData")
 
     return (
       <div className={`${style['IndexBox']}`}>
@@ -1206,8 +1207,8 @@ class Test extends React.Component {
           dataSource={this.state.mockData}
           showSearch
           listStyle={{
-            width: 250,
-            height: 300,
+            width: 600,
+            height: 600,
           }}
           operations={['to right', 'to left']}
           targetKeys={this.state.targetKeys}

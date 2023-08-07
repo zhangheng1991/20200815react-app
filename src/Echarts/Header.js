@@ -1,7 +1,7 @@
 import React from 'react';
 import Echarts from 'echarts';
 import _ from "loadsh";
-import { Modal, Button, Select, Radio, Table, Tag, message } from 'antd';
+import { Modal, Button, Select, Radio, Table, Tag, message, Carousel } from 'antd';
 import moment from "moment";
 import HeaderBody from './component/HeaderBody';
 import EditableTable from "./Header/HeaderBody";
@@ -591,6 +591,22 @@ class Header extends React.Component {
         <div>
           <h1>b表格拖拽</h1>
           <DragSortingTable />
+          <div className={style.Carousel}>
+            <Carousel autoplay>
+              <div>
+                <h3>11111111111111111111111111111111111111</h3>
+              </div>
+              <div>
+                <h3>22222222222222222222222222222222222222</h3>
+              </div>
+              <div>
+                <h3>33333333333333333333333333333333333333</h3>
+              </div>
+              <div>
+                <h3>44444444444444444444444444444444444444</h3>
+              </div>
+            </Carousel>
+          </div>
         </div>
         <div>
           <HeaderBody />

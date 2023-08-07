@@ -1,39 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { Button,Table } from 'antd';
+import { Button, Table } from 'antd';
+import _ from "loadsh";
 import Children from './component/ChildrenComponent';
+
+
+let GetInfo = {};
+
+
 function HOOKSC(props) {
   const [childrenMsg, setChildrenMsg] = useState(0);
   // const [numPages, setNumPages] = useState(null);
   const handT = React.createRef();
   const [total, setTotal] = useState(0);
   useEffect(() => {
- 
- 
-  //  if(window.frames["iframed"]){
- 
-  //  }
+
+
+    //  if(window.frames["iframed"]){
+
+    //  }
     return () => {
       // setTotal(10);
     };
-   
+
     // getChildrenMsg()
     // props.parent.getChildrenMsg(this, 'sssssss');
   }, [total]);
   //[childrenMsg]
   const getChildrenMsg = data => {
-  
+
     setChildrenMsg(data);
     // this.setState({
     //     childrenMsg: this.refs['children'].state.msg
     // })
   };
   const handClick = () => {
-    
+    console.log(GetInfo, "GetInfo")
+    const data = _.get(GetInfo, "handT");
+    console.log(data,"data")
     // const total=count+1;
     setTotal(total + 1);
-    
+
   };
- 
+
   const dataSource = [
     {
       key: '1',
@@ -46,19 +54,19 @@ function HOOKSC(props) {
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号',
-      children:[
+      children: [
         {
           key: '22',
           name: '胡彦祖',
           age: 42,
           address: '西湖区湖底公园1号',
-          children:[
+          children: [
             {
               key: '23',
               name: '胡彦祖',
               age: 42,
               address: '西湖区湖底公园1号',
-              children:[
+              children: [
                 {
                   key: '24',
                   name: '胡彦祖',
@@ -84,7 +92,7 @@ function HOOKSC(props) {
               name: '胡彦祖',
               age: 42,
               address: '西湖区湖底公园1号',
-              children:[
+              children: [
                 {
                   key: '28',
                   name: '胡彦祖',
@@ -110,7 +118,7 @@ function HOOKSC(props) {
               name: '胡彦祖',
               age: 42,
               address: '西湖区湖底公园1号',
-              children:[
+              children: [
                 {
                   key: '233333',
                   name: '胡彦祖',
@@ -136,7 +144,7 @@ function HOOKSC(props) {
       ]
     },
   ];
-  
+
   const columns = [
     {
       title: '姓名',
@@ -154,6 +162,16 @@ function HOOKSC(props) {
       key: 'address',
     },
   ];
+
+
+
+  const refGetInfo = (ref) => {
+    if (ref) {
+      GetInfo = ref;
+    }
+  }
+
+
   return (
     <div>
       <div>
@@ -171,7 +189,7 @@ function HOOKSC(props) {
         </Button>
         <h3>我要引入子组件了：</h3>
         <hr />
-        <Children handT={handT} total={total} getChildrenMsg={getChildrenMsg} />
+        <Children handT={handT} total={total} getChildrenMsg={getChildrenMsg} refGetInfo={refGetInfo} />
       </div>
     </div>
   );

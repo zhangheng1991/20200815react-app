@@ -57,13 +57,13 @@ class Weather extends React.Component {
       },
       data: [],
     }).then(res => {
-      const dataL = res.data.data;
+      const dataL = res.data.data||[];
       dataL.map((item, index) => {
         item.cityName = res.data.city;
         item.codeSort = index + 1;
         item.key = index + 1;
       });
-      this.setState({ dataSource: res.data.data, updateTime: res.data.update_time });
+      this.setState({ dataSource: res.data.data||[], updateTime: res.data.update_time||"" });
     });
   }
   //查询
