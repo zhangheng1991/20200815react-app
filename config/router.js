@@ -35,7 +35,8 @@ export default
         { path: '/Hooks', component: './Hooks/Hooks' },
         { path: '/DragDrop', component: './Hooks/DragDrop' },
         { path: '/Pdf', component: './pdf/Pdf' },
-        {path:'/RelationChart',component:'./relationChart/RelationChart'}
+        {path:'/RelationChart',component:'./relationChart/RelationChart'},
+        {path:'/Word',component:'./Word/Word'}
       ]
     },
 
