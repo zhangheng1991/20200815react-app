@@ -25,7 +25,7 @@ class AnchorIndex extends React.Component {
         return (
             <div className={`${style["AnchorBox"]}`}>
                 {/* <Affix offsetTop={100}>
-                    <div>
+                    <div style={{display:"none"}}  className={"AffixBox"}>
                         <div onClick={this.jumpClick.bind(this, "AnchorIndex4")}>跳转到标签4</div>
                         <div onClick={this.jumpClick.bind(this, "AnchorIndex3")}>跳转到标签3</div>
                         <div onClick={this.jumpClick.bind(this, "AnchorIndex2")}>跳转到标签2</div>
