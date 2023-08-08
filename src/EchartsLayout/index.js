@@ -1,4 +1,5 @@
 import React from 'react';
+import {BackTop} from "antd";
 import styles from './index.css';
 import Link from 'umi/link';
 import IndexEcharts from '../layouts/indexEcharts';
@@ -13,6 +14,7 @@ class BasicLayout extends React.Component {
         <div style={{ paddingTop: '4rem' }}>
           <Link to="/">返回首页</Link>
           {this.props.children}
+          <BackTop />
         </div>
       </div>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import Link from 'umi/link';
-import { Menu } from 'antd';
+import { Menu, BackTop } from 'antd';
 import axios from 'axios';
 import { connect } from 'dva';
 const { SubMenu } = Menu;
@@ -62,8 +62,12 @@ const MenuData = [
     "title": "文档预览",
     "url": "/Word",
   },
-  
- 
+  {
+    "title": "锚点",
+    "url": "/Anchor",
+  },
+
+
 ];
 @connect(({ Index }) => ({ Index }))
 class BasicLayout extends React.Component {
@@ -171,6 +175,9 @@ class BasicLayout extends React.Component {
           </div>
           <div className={styles.NormalBodyContent}>
             {this.props.children}
+            <div>
+              <BackTop />
+            </div>
           </div>
         </div>
       </div>
