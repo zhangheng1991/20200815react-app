@@ -7,11 +7,10 @@
     // display: flex;
     :global{
         .ant-affix{
-           
-            background:#1890ff ;
+            // background:#1890ff ;
             .AffixBox{
                 width: 200px !important;
-                display: block !important;
+                display: none !important;
                 background:#e6f7ff ;
                 text-align: center;
                 color: #333;
@@ -28,6 +27,24 @@
           right: 240px;
           bottom: 100px;
         }
+
+        .AffixBox{
+            width: 200px !important;
+            display: block !important;
+            background:#e6f7ff ;
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+            div{
+                color: white;
+                cursor: pointer;
+                color: #333;
+                font-weight: bold;
+            }
+        }
+      
 
     }
 }

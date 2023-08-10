@@ -5,6 +5,8 @@ import FileViewer from 'react-file-viewer';
 import { CustomErrorComponent } from 'custom-error';
 import logger from 'logging-library';
 import { Tabs, Anchor } from 'antd';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 import style from "./style.less";
 const pdfUrl = require('./component/Report.pdf');
 const JpgUrl = require('./component/fengjing.jpg');
@@ -12,6 +14,8 @@ const type = 'docx';
 const typeE = 'xlsx';
 
 const typeP = 'jpg';
+
+const typeT = 'txt';
 
 const { Link } = Anchor;
 const { TabPane } = Tabs;
@@ -45,6 +49,7 @@ class WordIndex extends React.Component {
         return (
             <div className={`${style["PreviewBox"]}`}>
                 {/* <div id="anchor">位置</div> */}
+
                 <Tabs activeKey={activeKey} onChange={this.callback}>
                     <TabPane tab="pdf预览" key="pdf">
                         <h2>pdf预览</h2>
@@ -103,6 +108,26 @@ class WordIndex extends React.Component {
                         />
 
                     </TabPane>
+
+                    <TabPane tab="图片预览" key="picture">
+                        <h2>图片预览</h2>
+                        <PhotoProvider>
+                            <PhotoView src={JpgUrl}>
+                                <img src={JpgUrl} alt="" style={{ width: "600px", height: "300px" }} />
+                            </PhotoView>
+                        </PhotoProvider>
+                    </TabPane>
+
+                    {/* <TabPane tab="TXT文档" key="TXT">
+                        <h2>TXT文档</h2>
+                        <FileViewer
+                            fileType={"txt"}
+                            filePath={require('./component/txt.txt')}
+                            errorComponent={CustomErrorComponent}
+                            onError={this.onError}
+                        />
+
+                    </TabPane> */}
 
                 </Tabs>
                 {/* <div onClick={this.jumpClick.bind(this, "anchor")}>点击跳转</div> */}

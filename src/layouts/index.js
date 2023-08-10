@@ -49,10 +49,10 @@ const MenuData = [
     "title": "表格拖拽",
     "url": "/Hooks",
   },
-  // {
-  //   "title": "图表",
-  //   "url": "/echartsIndex",
-  // },
+  {
+    "title": "图表",
+    "url": "/echartsIndex",
+  },
 
   {
     "title": "星星",
