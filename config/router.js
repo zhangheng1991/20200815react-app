@@ -37,7 +37,8 @@ export default
         { path: '/Pdf', component: './pdf/Pdf' },
         {path:'/RelationChart',component:'./relationChart/RelationChart'},
         {path:'/Word',component:'./Word/Word'},
-        {path:'/Anchor',component:'./Anchor/index'}
+        {path:'/Anchor',component:'./Anchor/index'},
+        {path:'/starSky',component:'./starSky/index'}
       ]
     },
 
