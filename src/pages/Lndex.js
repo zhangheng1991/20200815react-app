@@ -140,7 +140,7 @@ const Index = (props) => {
     setSex("女");
     setWork("测试");
     setAge(age + 1);
-    // stepConfig("dddd" + type)
+    stepConfig("dddddddddddddddddd" + type)
     // save("ffffff" + type)
 
   }

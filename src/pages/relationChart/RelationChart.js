@@ -1,8 +1,95 @@
 import React from "react";
-import RelationChartCom from "../components/realtionChart/index";
-import style from "./style.less";
+import { Form, DatePicker, TimePicker, Button, Input, Select, Collapse, Icon } from 'antd';
 
+
+import RelationChartCom from "../components/realtionChart/index";
+import _ from "loadsh";
+import style from "./style.less";
+const { MonthPicker, RangePicker } = DatePicker;
+const { Panel } = Collapse;
 class RelationChart extends React.Component {
+
+    state = {
+        dataCollapse: [{}],
+        activeKey: "0"
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+
+        this.props.form.validateFields((err, fieldsValue) => {
+            if (err) {
+                return;
+            }
+            console.log(fieldsValue, "fieldsValue")
+
+            console.log(this.props.form.getFieldsValue())
+
+            // Should format date value before submit.
+            // const rangeValue = fieldsValue['range-picker'];
+            // const rangeTimeValue = fieldsValue['range-time-picker'];
+            // const values = {
+            //     ...fieldsValue,
+            //     'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
+            //     'date-time-picker': fieldsValue['date-time-picker'].format('YYYY-MM-DD HH:mm:ss'),
+            //     'month-picker': fieldsValue['month-picker'].format('YYYY-MM'),
+            //     'range-picker': [rangeValue[0].format('YYYY-MM-DD'), rangeValue[1].format('YYYY-MM-DD')],
+            //     'range-time-picker': [
+            //         rangeTimeValue[0].format('YYYY-MM-DD HH:mm:ss'),
+            //         rangeTimeValue[1].format('YYYY-MM-DD HH:mm:ss'),
+            //     ],
+            //     'time-picker': fieldsValue['time-picker'].format('HH:mm:ss'),
+            // };
+            // console.log('Received values of form: ', values);
+        });
+    };
+
+    callback = (key) => {
+        console.log(key);
+        this.setState({ activeKey: key })
+    }
+
+    handClickAdd = (e) => {
+        const { dataCollapse } = this.state;
+        const data = [{}];
+        this.setState({ dataCollapse: dataCollapse.concat(data) });
+        e.stopPropagation()
+        setTimeout(() => {
+            this.props.form.setFieldsValue({ "Collapse": dataCollapse.concat(data) })
+        }, 100)
+    }
+
+    handClickDelete = (e, indexT) => {
+        const { dataCollapse } = this.state;
+        const data = _.map(_.filter(dataCollapse, (item, index) => index !== indexT), item => ({
+            ...item,
+        }))
+        this.setState({ dataCollapse: data })
+        setTimeout(() => {
+            this.props.form.setFieldsValue({ "Collapse": data })
+        }, 100)
+        e.stopPropagation()
+    }
+
+    handCliclChange = (obj, index, type, e, value) => {
+
+        console.log(obj, index, type, e, value, "obj,index,type,e,value")
+        const { dataCollapse } = this.state;
+        const data = _.map(dataCollapse, (item, indexT) => {
+            return Object.assign(
+                {},
+                item,
+                index === indexT ? { [type]: e.target.value } : { [type]: item[type] }
+            )
+        })
+        this.setState({ dataCollapse: data });
+        console.log(data, "data")
+        console.log(this.props, "ddd")
+        setTimeout(() => {
+            this.props.form.setFieldsValue({ "Collapse": data })
+        }, 100)
+    }
+
     render() {
 
         const relationChartObj = {
@@ -285,6 +372,30 @@ class RelationChart extends React.Component {
             width: "50%",
             left: "30%"
         }
+
+        const { getFieldDecorator } = this.props.form;
+        const { dataCollapse, activeKey } = this.state;
+        const formItemLayout = {
+            labelCol: {
+                // xs: { span: 4 },
+                // sm: { span: 4 },
+                span:4
+            },
+            wrapperCol: {
+                // xs: { span: 20 },
+                // sm: { span: 20 },
+                span:20
+            },
+        };
+        const config = {
+            rules: [{ type: 'string', required: true, message: 'Please select time!' }],
+        };
+        const rangeConfig = {
+            rules: [{ type: 'array', required: true, message: 'Please select time!' }],
+        };
+
+        console.log(dataCollapse, "dataCollapse")
+
         return (
             <div>
                 <div className={style.content}>
@@ -319,10 +430,97 @@ class RelationChart extends React.Component {
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <Form  labelCol={4} wrapperCol={20}  onSubmit={this.handleSubmit}>
+                        <Form.Item label="label2222">
+                            {getFieldDecorator('Collapse', {
+                                initialValue: dataCollapse,
+                                rules: [{ required: true, message: 'Please select time!' }],
+                            })(<div>
+                                <Collapse defaultActiveKey={['0']} activeKey={activeKey} onChange={this.callback}
+                                // accordion
+                                >
+                                    {
+                                        dataCollapse && dataCollapse.map((item, index) => {
+                                            return (
+                                                <Panel header={`This is panel header${index}`} key={index} extra={
+                                                    <div>
+                                                        <Icon type="plus" onClick={(e) => this.handClickAdd(e)} />
+                                                        {
+                                                            dataCollapse && dataCollapse.length > 1 && <Icon type="minus" onClick={(e) => this.handClickDelete(e, index)} />
+                                                        }
+
+                                                    </div>
+
+                                                }>
+                                                    <Form.Item label="name" labelCol={4} wrapperCol={20}>
+                                                        {/* initialValue:"", */}
+                                                        {getFieldDecorator(`name${index}`, {
+                                                            initialValue: item.name,
+                                                            rules: [{ type: 'string', required: true, message: 'Please select name!' }],
+                                                        },
+                                                            config,)(<Input onChange={(e) => this.handCliclChange(item, index, "name", e)} />)}
+                                                    </Form.Item>
+                                                    <Form.Item label="text">
+                                                        {getFieldDecorator(`txt${index}`, {
+                                                            initialValue: item.txt,
+                                                            rules: [{ type: 'string', required: true, message: 'Please select txt!' }],
+                                                        })(<Input onChange={(e) => this.handCliclChange(item, index, "txt", e)} />)}
+                                                    </Form.Item>
+                                                </Panel>
+                                            )
+                                        })
+                                    }
+
+                                    {/* <Panel header="This is panel header 2" key="2">
+                                        <p>222</p>
+                                    </Panel>
+                                    <Panel header="This is panel header 3" key="3" disabled>
+                                        <p>3333</p>
+                                    </Panel> */}
+                                </Collapse>
+
+                            </div>)}
+                        </Form.Item>
+                        {/* <Form.Item label="DatePicker">
+                            {getFieldDecorator('date-picker', config)(<DatePicker />)}
+                        </Form.Item>
+                        <Form.Item label="DatePicker[showTime]">
+                            {getFieldDecorator('date-time-picker', config)(
+                                <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />,
+                            )}
+                        </Form.Item>
+                        <Form.Item label="MonthPicker">
+                            {getFieldDecorator('month-picker', config)(<MonthPicker />)}
+                        </Form.Item>
+                        <Form.Item label="RangePicker">
+                            {getFieldDecorator('range-picker', rangeConfig)(<RangePicker />)}
+                        </Form.Item>
+                        <Form.Item label="RangePicker[showTime]">
+                            {getFieldDecorator('range-time-picker', rangeConfig)(
+                                <RangePicker showTime format="YYYY-MM-DD HH:mm:ss" />,
+                            )}
+                        </Form.Item>
+                        <Form.Item label="TimePicker">
+                            {getFieldDecorator('time-picker', config)(<TimePicker />)}
+                        </Form.Item> */}
+                        <Form.Item
+                            wrapperCol={{
+                                xs: { span: 24, offset: 0 },
+                                sm: { span: 16, offset: 8 },
+                            }}
+                        >
+                            <Button type="primary" htmlType="submit">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
                 <RelationChartCom  {...relationChartObj} />
             </div>
         )
     }
 }
 
-export default RelationChart;
+export default Form.create()(RelationChart);

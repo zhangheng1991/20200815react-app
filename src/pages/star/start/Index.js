@@ -229,7 +229,7 @@ class AppIndex extends React.Component {
 
     componentWillUnmount() {
         this.setState({ Flagt: false })
-        window.location.reload();
+        window.location.reload(true);
         // window.removeEventListener("addEventListener",this.pageClick())
         // window.removeEventListener("load", this.pageLoad())
         // window.clearInterval(this.timer);
@@ -299,11 +299,12 @@ class AppIndex extends React.Component {
     render() {
         const { id } = this.props;
         const { Flagt } = this.state;
-        const style = { position: "absolute", top: "0", left: "0", width: "100%", height: "100%", bottom: "0", right: "0", background: "black" };
+        const style = { position: "absolute", top: "0", left: "0", width: "100%", height: "100%", bottom: "0", right: "0", background: "black",display:Flagt?"blcok":"none" };
+        console.log(Flagt,"Flagt")
         return (
             <div>
                 {
-                    Flagt ? <canvas id={id || "starsId"} style={style} /> : <div>dddd</div>
+                    Flagt ? <canvas id={id || "starsId"} style={style} /> : <div></div>
                 }
 
             </div>
