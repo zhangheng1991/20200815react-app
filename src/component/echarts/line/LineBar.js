@@ -57,6 +57,7 @@ class EchartsLine extends React.Component {
                     smooth: false,
                     // prettier-ignore
                     data: seriesData,
+                  
                     markArea: {
                         itemStyle: {
                             color: 'rgba(255, 173, 177, 0.4)'
@@ -88,6 +89,38 @@ class EchartsLine extends React.Component {
         if (myLine) {
             myLine.setOption(option);
         }
+
+        // myLine.on('click', function(params) {
+        //     console.log(params,"params")
+        //     // 获取序列号
+        //     // var seriesIndex = params.seriesIndex;
+        //     // // 修改样式
+        //     // option.series[seriesIndex].itemStyle.emphasis.itemStyle.color = 'red';
+        //     // // 更新图表
+        //     // option.color="blue";
+        //     // option.itemStyle.borderColor="yellow";
+        //     // option.itemStyle.borderWidth="10";
+        //     // option.itemStyle
+        //     option.borderColor="yellow";
+        //     myLine.setOption(option);
+            
+        //   });
+
+        //   myLine.on('mousemove', function(params) {
+        //     console.log(params,"params")
+        //     // 获取序列号
+        //     // var seriesIndex = params.seriesIndex;
+        //     // // 修改样式
+        //     // option.series[seriesIndex].itemStyle.emphasis.itemStyle.color = 'red';
+        //     // // 更新图表
+        //     // option.color="blue";
+        //     // option.itemStyle.borderColor="yellow";
+        //     // option.itemStyle.borderWidth="10";
+        //     // option.itemStyle
+        //     option.borderColor="yellow";
+        //     myLine.setOption(option);
+            
+        //   });
     }
 
     render() {

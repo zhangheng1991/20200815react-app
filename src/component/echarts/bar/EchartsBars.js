@@ -22,6 +22,9 @@ class EchartsBars extends React.Component {
         axisPointer: {
           // 坐标轴指示器，坐标轴触发有效
           type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+          // shadowStyle:{
+          //   color:"red",
+          // }
         },
       },
       grid: {
@@ -105,6 +108,27 @@ class EchartsBars extends React.Component {
       option.series[0].name = '游客数量';
       option.series[0].itemStyle.normal.color = color;
       MyEcharts.setOption(option);
+
+      MyEcharts.on('mousemove', function(params) {
+        // console.log(params,"params")
+        // console.log(option,"option")
+        // 获取序列号
+        // var seriesIndex = params.seriesIndex;
+        // // 修改样式
+        // option.series[seriesIndex].itemStyle.emphasis.itemStyle.color = 'red';
+        // // 更新图表
+        // option.color="blue";
+        // option.itemStyle.borderColor="yellow";
+        // option.itemStyle.borderWidth="10";
+        // option.itemStyle
+        // option.borderColor="yellow";
+        // option.series[0].itemStyle.normal.color.colorStops[0].color="red";
+        // option.series[0].itemStyle.normal.color.colorStops[0].color="yellow";
+        // option.tooltip.axisPointer.shadowStyle.color="yellow";
+        // MyEcharts.setOption(option);
+        
+      });
+
     }
     window.addEventListener('resize', () => {
       MyEcharts.resize();

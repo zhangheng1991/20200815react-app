@@ -4,6 +4,8 @@ import Link from 'umi/link';
 import { Menu, BackTop } from 'antd';
 import axios from 'axios';
 import { connect } from 'dva';
+
+import TimeFormatter from "./../component/time/index";
 const { SubMenu } = Menu;
 const MenuData = [
   {
@@ -178,6 +180,7 @@ class BasicLayout extends React.Component {
             </Menu>
           </div>
           <div className={styles.NormalBodyContent}>
+            <TimeFormatter />
             {this.props.children}
             <div>
               <BackTop />

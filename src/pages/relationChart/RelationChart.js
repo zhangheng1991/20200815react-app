@@ -1,17 +1,21 @@
 import React from "react";
 import { Form, DatePicker, TimePicker, Button, Input, Select, Collapse, Icon } from 'antd';
-
-
+import moment from "moment";
 import RelationChartCom from "../components/realtionChart/index";
 import _ from "loadsh";
 import style from "./style.less";
+import "./style.less";
 const { MonthPicker, RangePicker } = DatePicker;
 const { Panel } = Collapse;
+const { Option } = Select;
+
+const { TextArea } = Input;
 class RelationChart extends React.Component {
 
     state = {
         dataCollapse: [{}],
-        activeKey: "0"
+        activeKey: "0",
+        time: moment(),
     }
 
     handleSubmit = e => {
@@ -66,8 +70,9 @@ class RelationChart extends React.Component {
         }))
         this.setState({ dataCollapse: data })
         setTimeout(() => {
-            this.props.form.setFieldsValue({ "Collapse": data })
+            // this.props.form.setFieldsValue({ "Collapse": data })
         }, 100)
+        this.props.form.setFieldsValue({ "Collapse": data })
         e.stopPropagation()
     }
 
@@ -88,6 +93,54 @@ class RelationChart extends React.Component {
         setTimeout(() => {
             this.props.form.setFieldsValue({ "Collapse": data })
         }, 100)
+        // this.props.form.setFieldsValue({ "Collapse": data })
+    }
+
+
+    handleChange(obj, index, type, value) {
+        console.log(obj, index, type, value, `selected ${value}`);
+
+        const { dataCollapse } = this.state;
+        const data = _.map(dataCollapse, (item, indexT) => {
+            return Object.assign(
+                {},
+                item,
+                index === indexT ? { [type]: value } : { [type]: item[type] }
+            )
+        })
+        this.setState({ dataCollapse: data });
+        // console.log(data, "data")
+        // console.log(this.props, "ddd")
+        this.props.form.setFieldsValue({ "Collapse": data })
+        // setTimeout(() => {
+        //     this.props.form.setFieldsValue({ "Collapse": data })
+        // }, 0)
+
+    }
+
+    componentDidMount() {
+        // var wrapper = document.getElementById('wrapper');
+        // var content = document.getElementById('content');
+        // this.intervalId = setInterval(this.scroll, 2000);
+        // this.timeID = setInterval(this.time, 1000);
+    }
+
+
+    scroll = () => {
+        var wrapper = document.getElementById('wrapper');
+        var content = document.getElementById('content');
+        var firstChild = content.children[0];
+        content.removeChild(firstChild);
+        content.appendChild(firstChild);
+    }
+
+    componentWillUnmount() {
+        window.clearInterval(this.timeID)
+        window.clearInterval(this.intervalId)
+    }
+
+    time = () => {
+        this.setState({ time: moment() })
     }
 
     render() {
@@ -374,17 +427,17 @@ class RelationChart extends React.Component {
         }
 
         const { getFieldDecorator } = this.props.form;
-        const { dataCollapse, activeKey } = this.state;
+        const { dataCollapse, activeKey ,time} = this.state;
         const formItemLayout = {
             labelCol: {
-                // xs: { span: 4 },
-                // sm: { span: 4 },
-                span:4
+                xs: { span: 4 },
+                sm: { span: 4 },
+                span: 4
             },
             wrapperCol: {
-                // xs: { span: 20 },
-                // sm: { span: 20 },
-                span:20
+                xs: { span: 20 },
+                sm: { span: 20 },
+                span: 20
             },
         };
         const config = {
@@ -395,6 +448,8 @@ class RelationChart extends React.Component {
         };
 
         console.log(dataCollapse, "dataCollapse")
+
+        console.log(time,"time")
 
         return (
             <div>
@@ -431,58 +486,105 @@ class RelationChart extends React.Component {
                     </div>
                 </div>
 
+                {/* <div className={style.timeBox}>
+                      
+                       <div className={style.time}>{moment(time).format("YYYY-MM-DD  dddd")}</div>
+                       <div className={style.time}>{moment(time).format("HH:mm:ss  a")}</div>
+                     
+                </div> */}
+
+                {/* <div id="wrapper">
+                    <div id="content">
+                        <div>广告1</div>
+                        <div>广告2</div>
+                        <div>广告3</div>
+                    </div>
+                </div> */}
+
                 <div>
-                    <Form  labelCol={4} wrapperCol={20}  onSubmit={this.handleSubmit}>
-                        <Form.Item label="label2222">
-                            {getFieldDecorator('Collapse', {
-                                initialValue: dataCollapse,
-                                rules: [{ required: true, message: 'Please select time!' }],
-                            })(<div>
-                                <Collapse defaultActiveKey={['0']} activeKey={activeKey} onChange={this.callback}
-                                // accordion
-                                >
+                    <Form  {...formItemLayout} onSubmit={this.handleSubmit}>
+                        <section>
+                            <Form.Item label="space Address">
+                                {getFieldDecorator('spaceAddress',
                                     {
-                                        dataCollapse && dataCollapse.map((item, index) => {
-                                            return (
-                                                <Panel header={`This is panel header${index}`} key={index} extra={
-                                                    <div>
-                                                        <Icon type="plus" onClick={(e) => this.handClickAdd(e)} />
-                                                        {
-                                                            dataCollapse && dataCollapse.length > 1 && <Icon type="minus" onClick={(e) => this.handClickDelete(e, index)} />
-                                                        }
+                                        rules: [{ type: 'string', required: true, message: 'Please input space Address!' }],
+                                    })(<TextArea rows={4} />)}
+                            </Form.Item>
+                        </section>
+                        <div>
+                            <Form.Item label="chooseColumns">
+                                {getFieldDecorator('Collapse', {
+                                    initialValue: dataCollapse,
+                                    rules: [{ required: true, message: 'Please select time!' }],
+                                })(<div>
+                                    <Collapse defaultActiveKey={['0']} activeKey={activeKey} onChange={this.callback}
+                                    // accordion
+                                    >
+                                        {
+                                            dataCollapse && dataCollapse.map((item, index) => {
+                                                return (
+                                                    <Panel header={`This is panel header${index}`} key={index} extra={
+                                                        <div>
+                                                            <Icon type="plus" onClick={(e) => this.handClickAdd(e)} />
+                                                            {
+                                                                dataCollapse && dataCollapse.length > 1 && <Icon type="minus" onClick={(e) => this.handClickDelete(e, index)} />
+                                                            }
 
-                                                    </div>
+                                                        </div>
 
-                                                }>
-                                                    <Form.Item label="name" labelCol={4} wrapperCol={20}>
-                                                        {/* initialValue:"", */}
-                                                        {getFieldDecorator(`name${index}`, {
-                                                            initialValue: item.name,
-                                                            rules: [{ type: 'string', required: true, message: 'Please select name!' }],
-                                                        },
-                                                            config,)(<Input onChange={(e) => this.handCliclChange(item, index, "name", e)} />)}
-                                                    </Form.Item>
-                                                    <Form.Item label="text">
-                                                        {getFieldDecorator(`txt${index}`, {
-                                                            initialValue: item.txt,
-                                                            rules: [{ type: 'string', required: true, message: 'Please select txt!' }],
-                                                        })(<Input onChange={(e) => this.handCliclChange(item, index, "txt", e)} />)}
-                                                    </Form.Item>
-                                                </Panel>
-                                            )
-                                        })
-                                    }
+                                                    }>
+                                                        <div>
+                                                            <Form.Item label="name" labelCol={4} wrapperCol={20} {...formItemLayout} >
+                                                                {/* initialValue:"", */}
+                                                                {getFieldDecorator(`name${index}`, {
+                                                                    initialValue: item.name,
+                                                                    rules: [{ type: 'string', required: true, message: 'Please select name!' }],
+                                                                },
+                                                                    config,)(<Input onChange={(e) => this.handCliclChange(item, index, "name", e)} />)}
+                                                            </Form.Item>
+                                                            <Form.Item label="text" {...formItemLayout} >
+                                                                {getFieldDecorator(`txt${index}`, {
+                                                                    initialValue: item.txt,
+                                                                    rules: [{ type: 'string', required: true, message: 'Please select txt!' }],
+                                                                })(<Input onChange={(e) => this.handCliclChange(item, index, "txt", e)} />)}
+                                                            </Form.Item>
+                                                            <Form.Item label="sex" {...formItemLayout} >
+                                                                {getFieldDecorator(`sex${index}`, {
+                                                                    initialValue: item.sex,
+                                                                    rules: [{ type: 'string', required: true, message: 'Please select txt!' }],
+                                                                })(<Select defaultValue="lucy" style={{ width: "100%" }} onChange={(value) => this.handleChange(item, index, "sex", value)}>
+                                                                    <Option value="jack">Jack</Option>
+                                                                    <Option value="lucy">Lucy</Option>
 
-                                    {/* <Panel header="This is panel header 2" key="2">
+                                                                    <Option value="Yiminghe">yiminghe</Option>
+                                                                </Select>)}
+                                                            </Form.Item>
+                                                        </div>
+
+                                                    </Panel>
+                                                )
+                                            })
+                                        }
+
+                                        {/* <Panel header="This is panel header 2" key="2">
                                         <p>222</p>
                                     </Panel>
                                     <Panel header="This is panel header 3" key="3" disabled>
                                         <p>3333</p>
                                     </Panel> */}
-                                </Collapse>
+                                    </Collapse>
 
-                            </div>)}
-                        </Form.Item>
+                                </div>)}
+                            </Form.Item>
+                        </div>
+                        <section>
+                            <Form.Item label="space Content">
+                                {getFieldDecorator('spaceContent',
+                                    {
+                                        rules: [{ type: 'string', required: true, message: 'Please input space Content!' }],
+                                    })(<TextArea rows={4} />)}
+                            </Form.Item>
+                        </section>
                         {/* <Form.Item label="DatePicker">
                             {getFieldDecorator('date-picker', config)(<DatePicker />)}
                         </Form.Item>

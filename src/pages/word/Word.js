@@ -80,12 +80,17 @@ class WordIndex extends React.Component {
                     <TabPane tab="excel预览(格式xlsx)" key="excel">
                         <h2>excel预览(格式xlsx)</h2>
                         {/* <div onClick={this.jumpClick.bind(this, "excel")}>点击跳转</div> */}
-                        <FileViewer
-                            fileType={typeE}
-                            filePath={require('./component/zhangheng.xlsx')}
-                            errorComponent={CustomErrorComponent}
-                            onError={this.onError}
-                        />
+                        <div className={style.headerFileBox}>
+
+                            <div className={style.headerFile}> </div>
+                            <FileViewer
+                                fileType={typeE}
+                                filePath={require('./component/zhangheng.xlsx')}
+                                errorComponent={CustomErrorComponent}
+                                onError={this.onError}
+                            />
+                        </div>
+
                         {/* <div id="excel">位置</div> */}
                     </TabPane>
                     <TabPane tab="图片预览" key="jpg">
