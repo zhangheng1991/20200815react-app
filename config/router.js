@@ -38,7 +38,8 @@ export default
         {path:'/RelationChart',component:'./relationChart/RelationChart'},
         {path:'/Word',component:'./Word/Word'},
         {path:'/Anchor',component:'./Anchor/index'},
-        {path:'/starSky',component:'./starSky/index'}
+        {path:'/starSky',component:'./starSky/index'},
+        {path:'/Calendar',component:'./Calendar/index'},
       ]
     },
 
