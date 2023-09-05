@@ -10,26 +10,62 @@ import style from "./style.less";
 // console.log(reactDnd,"reactDnd")
 // console.log( DndProvider, DragSource,DropTarget,"DropTarget")
 
+const dataD=[];
+
+for(let i=1;i<101;i++){
+
+    dataD.push({
+        key:i,
+        code:i,
+        name:`李四${i}`,
+        age:20+i,
+        address:"中国江苏省南京市建邺区"
+    })
+}
 
 class DragSortingTable extends React.Component {
     state = {
-        data: [
+        data:[
             {
                 key: '1',
+                code:1,
                 name: '张三11111111111111111',
                 age: "1111111111111111111111",
                 address: '中国江苏省南京市建邺区',
             },
             {
                 key: '2',
+                code:2,
                 name: '李四22222222222222222',
                 age: "2222222222222222222222",
                 address: '中国浙江省杭州市西湖区',
             },
             {
                 key: '3',
+                code:3,
                 name: '王二33333333333333333',
                 age: "3333333333333333333333",
+                address: '中国河南省郑州市管城区',
+            },
+            {
+                key: '4',
+                code:4,
+                name: '张三44444444444444444',
+                age: "4444444444444444444444",
+                address: '中国江苏省南京市建邺区',
+            },
+            {
+                key: '5',
+                code:5,
+                name: '李四55555555555555555',
+                age: "5555555555555555555555",
+                address: '中国浙江省杭州市西湖区',
+            },
+            {
+                key: '6',
+                code:6,
+                name: '王二66666666666666666',
+                age: "66666666666666666666666",
                 address: '中国河南省郑州市管城区',
             },
         ],
@@ -104,6 +140,11 @@ class DragSortingTable extends React.Component {
 
         const columns = [
             {
+                title: '排序',
+                dataIndex: 'code',
+                key: 'code',
+            },
+            {
                 title: 'Name',
                 dataIndex: 'name',
                 key: 'name',
@@ -117,6 +158,11 @@ class DragSortingTable extends React.Component {
                 title: 'Address',
                 dataIndex: 'address',
                 key: 'address',
+                render:(tex,record)=>{
+                    return(
+                        <div style={{width:"300px"}}>{tex}</div>
+                    )
+                }
             },
         ];
 
@@ -124,12 +170,15 @@ class DragSortingTable extends React.Component {
         console.log(data, "Data")
 
         return (
-            <div className={style.DndProvider}>
+            <div className={`${style.DndProvider} `}>
+                 {/* ${style.DndProviderPortrait} */}
                 <DndProvider backend={HTML5Backend}>
                     <Table
                         columns={columns}
                         dataSource={data}
                         components={components}
+                        scroll={{x:2000}}
+                        // pagination={false}
                         onRow={(record, index) => ({
                             index,
                             moveRow: this.moveRow,

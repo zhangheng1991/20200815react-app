@@ -34,7 +34,7 @@ class TimeFormatter extends React.Component {
         const { time, value } = this.state;
         return (
             <div>
-                <ConfigProvider locale={value === "zhCN" ? zhCN : enCN}>
+                <ConfigProvider locale={  value==="zhCN"?zhCN:enCN}>
                     <div className={style.timeBox}>
                         {/* <div>
                             <Select onChange={this.handClickChange} value={value}>
@@ -44,6 +44,8 @@ class TimeFormatter extends React.Component {
                         </div> */}
                         <div>
                             <div className={style.time}>{moment(time).format("YYYY-MM-DD  dddd")}</div>
+                            {/* <div className={style.time}>{moment(time).format("DD-MMM HH:mm") }</div>
+                            <div className={style.time}>{moment(time).format("DD-MMMM HH:mm") }</div> */}
                             <div className={style.time}>{moment(time).format("HH:mm:ss  a")}</div>
                         </div>
                     </div>

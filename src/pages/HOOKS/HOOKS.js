@@ -26,7 +26,7 @@ import style from './style.less';
 // const file = '11.jpg';
 const type = 'docx';
 
-const pdfUrl =require('./11.pdf')
+const pdfUrl = require('./11.pdf')
 
 
 const { TabPane } = Tabs;
@@ -102,7 +102,26 @@ function MyHooks(props) {
         {/* <DocViewer
           documents={docs}
         /> */}
-
+        <Tabs defaultActiveKey="6" onChange={callback}>
+          <TabPane tab="单行垂直列表" key="1">
+            <SignalVertical />
+          </TabPane>
+          <TabPane tab="单行水平列表" key="2">
+            <SignalHorizontal />
+          </TabPane>
+          <TabPane tab="多行垂直列表拖拽" key="3">
+            <MultiVertical />
+          </TabPane>
+          <TabPane tab="多行水平列表拖拽" key="4">
+            <MultiHorizontal />
+          </TabPane>
+          <TabPane tab="大数据量垂直列表" key="5">
+            <VirtualVertical />
+          </TabPane>
+          <TabPane tab="表格拖拽" key="6">
+            <DragSortingTable />
+          </TabPane>
+        </Tabs>
         <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.4.456/build/pdf.worker.min.js">
           <div style={{ height: '750px' }}>
             <Viewer fileUrl={pdfUrl} />
@@ -118,26 +137,7 @@ function MyHooks(props) {
         <p>Page {pageNumber} of {numPages}</p>
       </div>
 
-      <Tabs defaultActiveKey="6" onChange={callback}>
-        <TabPane tab="单行垂直列表" key="1">
-          <SignalVertical />
-        </TabPane>
-        <TabPane tab="单行水平列表" key="2">
-          <SignalHorizontal />
-        </TabPane>
-        <TabPane tab="多行垂直列表拖拽" key="3">
-          <MultiVertical />
-        </TabPane>
-        <TabPane tab="多行水平列表拖拽" key="4">
-          <MultiHorizontal />
-        </TabPane>
-        <TabPane tab="大数据量垂直列表" key="5">
-          <VirtualVertical />
-        </TabPane>
-        <TabPane tab="表格拖拽" key="6">
-          <DragSortingTable />
-        </TabPane>
-      </Tabs>
+
       {/* <Document
         file="./11.pdf"
         onLoadSuccess={onDocumentLoadSuccess}

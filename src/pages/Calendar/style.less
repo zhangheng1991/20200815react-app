@@ -1,0 +1,68 @@
+.Calendar{
+    :global{
+        .ant-fullcalendar-value{
+            text-align: center !important;
+        }
+        .ant-fullcalendar-column-header{
+            text-align: center !important;
+            padding-right: 0px !important;
+        }
+    }
+}
+.contentTex{
+    border: 1px solid red;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    .contentBox{
+        width: 20%;
+        // height: 80px;
+        cursor: pointer;
+        text-align: center;
+        div{
+            // width: 100%;
+            height:  100px;
+            text-align: center;
+            // padding: 5px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+        }
+    }
+   
+}
+.contentTex .contentBox:nth-child(5n){
+      div{
+        border: 1px solid gold ;
+        color: gold;
+      }
+}
+.contentTex .contentBox:nth-child(5n+1){
+    div{
+      border: 1px solid green ;
+      color: green;
+    }
+}
+
+.contentTex .contentBox:nth-child(5n+2){
+    div{
+      border: 1px solid purple ;
+      color: purple;
+    }
+}
+
+.contentTex .contentBox:nth-child(5n+3){
+    div{
+      border: 1px solid blue ;
+      color: blue;
+    }
+}
+
+.contentTex .contentBox:nth-child(5n+4){
+    div{
+      border: 1px solid  pink ;
+      color:pink;
+    }
+}

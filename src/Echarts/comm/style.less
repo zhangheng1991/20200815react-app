@@ -1,8 +1,26 @@
 
-.DndProvider{
+.DndProviderPortrait{
     :global{
         .drop-over-downward{
             //   background: red;
         }
+        table{
+            display:flex !important;
+            // tr{
+            //     display: flex !important;
+            //     flex-direction: column !important;
+            //   }
+            .ant-table-tbody{
+                display: flex !important;
+            }
+            .ant-table-thead > tr, .ant-table-tbody > tr{
+                display:flex !important;
+                flex-direction:column;
+            }
+            .drop-over-downward{
+                background: red !important;
+            }
+          }
+         
     }
 }
