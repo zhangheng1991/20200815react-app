@@ -89,6 +89,20 @@ class DragSortingTable extends React.Component {
         );
     };
 
+    classNameType=()=>{
+        const {type}=this.props;
+        let className ="DndProviderLandscape"
+        if(type==="landscape"){
+            className ="DndProviderLandscape";
+        
+        }else if(type==="portrait"){
+            className ="DndProviderPortrait";
+        }else{
+            className ="DndProviderLandscape";
+        }
+        return className;
+    }
+
     render() {
 
         let dragingIndex = -1;
@@ -168,9 +182,9 @@ class DragSortingTable extends React.Component {
 
         const { data } = this.state;
         console.log(data, "Data")
-
+        const {className}=this.props;
         return (
-            <div className={`${style.DndProvider} `}>
+            <div className={`${style.DndProvider} ${style[this.classNameType()]} `}>
                  {/* ${style.DndProviderPortrait} */}
                 <DndProvider backend={HTML5Backend}>
                     <Table

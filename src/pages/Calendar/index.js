@@ -106,6 +106,7 @@ class CalendarCom extends React.Component {
                 title: '姓名',
                 dataIndex: 'name',
                 key: 'name',
+                with:"20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     // console.log(text, "text");
@@ -134,6 +135,7 @@ class CalendarCom extends React.Component {
                 title: '年龄',
                 dataIndex: 'age',
                 key: 'age',
+                with:"20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
@@ -158,6 +160,7 @@ class CalendarCom extends React.Component {
                 title: '住址',
                 dataIndex: 'address',
                 key: 'address',
+                with:"20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
@@ -182,6 +185,7 @@ class CalendarCom extends React.Component {
                 title: '参数',
                 dataIndex: 'parameter',
                 key: 'parameter',
+                with:"20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
@@ -206,6 +210,7 @@ class CalendarCom extends React.Component {
                 title: "操作",
                 dataIndex: "operate",
                 key: "operate",
+                with:150,
                 render: (text, record, index) => {
                     return (
                         <div>
@@ -365,7 +370,7 @@ class CalendarCom extends React.Component {
                                         // rowKey="id"
                                         pagination={{ pageSize: 10, current: current }}
                                         onChange={this.handClickPage}
-                                        scroll={{x:2000}}
+                                        // scroll={{x:1200}}
                                     />
                                 </div>
                             </div>

@@ -31,24 +31,24 @@ class TimeFormatter extends React.Component {
     }
 
     render() {
-        const { time, value } = this.state;
+        const { time, value,className } = this.state;
         return (
             <div>
                 <ConfigProvider locale={  value==="zhCN"?zhCN:enCN}>
-                    <div className={style.timeBox}>
+                    {/* <div className={`${style["timeBox"]} ${style[className]}`}> */}
                         {/* <div>
                             <Select onChange={this.handClickChange} value={value}>
                                 <Option value="zhCN">中文</Option>
                                 <Option value="enCN">英文</Option>
                             </Select>
                         </div> */}
-                        <div>
+                        <div className={`${style["timeBoxContent"]}`}>
                             <div className={style.time}>{moment(time).format("YYYY-MM-DD  dddd")}</div>
                             {/* <div className={style.time}>{moment(time).format("DD-MMM HH:mm") }</div>
                             <div className={style.time}>{moment(time).format("DD-MMMM HH:mm") }</div> */}
                             <div className={style.time}>{moment(time).format("HH:mm:ss  a")}</div>
                         </div>
-                    </div>
+                    {/* </div> */}
                 </ConfigProvider>
             </div>
         )

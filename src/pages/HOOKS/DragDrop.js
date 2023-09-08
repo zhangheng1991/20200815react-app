@@ -7,6 +7,7 @@ import MultiVertical from './MultiVertical/MultiVertical';
 import MultiHorizontal from './MultiHorizontal/MultiHorizontal';
 import VirtualVertical from './VirtualVertical/VirtualVertical';
 import DragSortingTable from "./../../Echarts/comm/DragSortingTable";
+import style from "./style.less";
 const { Sider, Content } = Layout;
 const { TabPane } = Tabs;
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
   return (
     <div className="App">
       {/* style={{width: window.innerWidth, height: window.innerHeight}} */}
-      <div>
+      <div className={style.LayoutBox}>
         <Layout >
           <Sider
             breakpoint="lg"
@@ -62,13 +63,13 @@ const App = () => {
               {currentKey === '3' ? <MultiVertical /> : null}
               {currentKey === '4' ? <MultiHorizontal /> : null}
               {currentKey === '5' ? <VirtualVertical /> : null}
-              {currentKey === '6' ? <DragSortingTable /> : null}
+              {currentKey === '6' ? <DragSortingTable  /> : null}
 
             </Content>
           </Layout>
         </Layout>
       </div>
-      <div>
+      {/* <div>
         <Tabs defaultActiveKey="1" onChange={callback}>
           <TabPane tab="单行垂直列表" key="1">
             <SignalVertical />
@@ -86,10 +87,10 @@ const App = () => {
             <VirtualVertical />
           </TabPane>
           <TabPane tab="表格拖拽" key="6">
-            <DragSortingTable />
+            <DragSortingTable type="portrait" />
           </TabPane>
         </Tabs>
-      </div>
+      </div> */}
 
     </div>
   );

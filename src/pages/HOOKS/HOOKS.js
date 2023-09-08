@@ -118,8 +118,11 @@ function MyHooks(props) {
           <TabPane tab="大数据量垂直列表" key="5">
             <VirtualVertical />
           </TabPane>
-          <TabPane tab="表格拖拽" key="6">
+          <TabPane tab="表格拖拽表格横向" key="6">
             <DragSortingTable />
+          </TabPane>
+          <TabPane tab="表格拖拽表格纵向" key="7">
+            <DragSortingTable type="portrait" />
           </TabPane>
         </Tabs>
         <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.4.456/build/pdf.worker.min.js">

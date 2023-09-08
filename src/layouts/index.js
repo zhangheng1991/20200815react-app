@@ -76,7 +76,7 @@ const MenuData = [
     "title": "日历",
     "url": "/Calendar",
   },
-  
+
 
 ];
 @connect(({ Index }) => ({ Index }))
@@ -175,7 +175,11 @@ class BasicLayout extends React.Component {
     return (
       <div className={styles.normal}>
         <div className={styles.Header}>
-          <h1 className={styles.title}>Yay! Welcome to echarts!</h1>
+          <div className={styles.HeaderBox}>
+            <h1 className={styles.title}>Yay! Welcome to echarts!</h1>
+            <TimeFormatter  className="TimeFormatter"/>
+          </div>
+
         </div>
         <div className={styles.NormalBody} >
           <div className={styles.NormalBodyMenu}>
@@ -184,7 +188,7 @@ class BasicLayout extends React.Component {
             </Menu>
           </div>
           <div className={styles.NormalBodyContent}>
-            <TimeFormatter />
+            {/* <TimeFormatter /> */}
             {this.props.children}
             <div>
               <BackTop />
