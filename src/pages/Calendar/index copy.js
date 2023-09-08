@@ -26,7 +26,7 @@ class CalendarCom extends React.Component {
         value: moment(moment().format("YYYYMMDD")),
         selectedValue: moment(moment().format("YYYYMMDD")),
         data: dataH,
-        dataSource: [],
+        dataSource: [{ id: moment().format("YYYYMM HH:mm:ssss") }],
         TextAreaValue: "",
         current: 1,
         pagination: { current: 1, pageSize: 10 }
@@ -62,15 +62,14 @@ class CalendarCom extends React.Component {
     columns = () => {
         const { dataSource, pagination } = this.state;
         const total = (pagination.current - 1) * 10;
-        const { getFieldDecorator, setFieldsValue } = this.props.form;
-        console.log(this.props.form, "this.props.form")
+        const { getFieldDecorator } = this.props.form;
         // console.log(getFieldDecorator, "getFieldDecorator")
         var str = '1a2b3c4d5e6f7';
 
         const result = str.replace(/[0-9]/g, '');//第二个参数为空("")
-        const resultU = str.replace(/[^\d]/g, '');
-        // console.log(resultU,"resultU")
-        // console.log(result, "result");
+        const resultU=str.replace(/[^\d]/g,'');
+        console.log(resultU,"resultU")
+        console.log(result, "result");
 
         const objData = {
             name0: "11",
@@ -84,49 +83,33 @@ class CalendarCom extends React.Component {
             address2: "99",
         };
 
-        const data = _.map(objData, (item, key) => ({
-            [key.replace(/[0-9]/g, '')]: item,
-            keyId: key.replace(/[^\d]/g, ''),
+        const data=_.map(objData,(item,key)=>({
+            [key.replace(/[0-9]/g, '')]:item,
+            keyId:key.replace(/[^\d]/g,''),
         }));
-        // console.log(data,"data")
+        console.log(data,"data")
 
         const column = [
-            {
-                title: '序号',
-                dataIndex: 'code',
-                key: 'code',
-                render:(text,record,index)=>{
-                    const indexF = total + index+1;
-                    return(
-                        <div>{indexF}</div>
-                    )
-                }
-            },
             {
                 title: '姓名',
                 dataIndex: 'name',
                 key: 'name',
                 render: (text, record, index) => {
                     const indexF = total + index;
-                    // console.log(text, "text");
-                    // console.log(indexF, "indexF")
-                    // console.log(dataSource[indexF].name, "dataSource[indexF].name")
-
+                    console.log(indexF,"indexF")
                     return (
-                        <div>
-                            {/* <div>
-                                <Input defaultValue={text} onChange={this.handClickChange.bind(this, record, indexF, "name")} />
-                            </div> */}
-                            <Form.Item className={`${style[`name${indexF}`]}`} key={`name${indexF}`}>
-                                {getFieldDecorator(`name${indexF}`,
-                                    {
-                                        // initialValue: text,
-                                        rules: [{ type: 'string', required: true, message: 'Please input name!' }],
-                                    })(<Input
-                                        // defaultValue={text} 
-                                        onChange={this.handClickChange.bind(this, record, indexF, "name")} />)}
-                            </Form.Item>
-                        </div>
+                        // <div>
+                        //     <Input defaultValue={text} onChange={this.handClickChange.bind(this, record, index, "name")} />
+                        // </div>
+                        <Form.Item >
+                            {getFieldDecorator(`name${indexF}`,
+                                {
+                                    initialValue: text,
+                                    rules: [{ type: 'string', required: true, message: 'Please input name!' }],
+                                })(<Input
+                                    // defaultValue={text} 
+                                    onChange={this.handClickChange.bind(this, record, index, "name")} />)}
+                        </Form.Item>
                     )
                 }
             },
@@ -137,20 +120,18 @@ class CalendarCom extends React.Component {
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
-                        <div>
-                            {/* <div>
-                                <Input defaultValue={text} onChange={this.handClickChange.bind(this, record, indexF, "age")} />
-                            </div> */}
-                            <Form.Item >
-                                {getFieldDecorator(`age${indexF}`,
-                                    {
-                                        // initialValue: text,
-                                        rules: [{ type: 'string', required: true, message: 'Please input age!' }],
-                                    })(<Input
-                                        // defaultValue={text}
-                                        onChange={this.handClickChange.bind(this, record, indexF, "age")} />)}
-                            </Form.Item>
-                        </div>
+                        // <div>
+                        //     <Input defaultValue={text} onChange={this.handClickChange.bind(this, record, index, "age")} />
+                        // </div>
+                        <Form.Item >
+                            {getFieldDecorator(`age${indexF}`,
+                                {
+                                    initialValue: text,
+                                    rules: [{ type: 'string', required: true, message: 'Please input age!' }],
+                                })(<Input
+                                    // defaultValue={text}
+                                    onChange={this.handClickChange.bind(this, record, index, "age")} />)}
+                        </Form.Item>
                     )
                 }
             },
@@ -161,44 +142,18 @@ class CalendarCom extends React.Component {
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
-                        <div>
-                            {/* <div>
-                                <Input defaultValue={text} onChange={this.handClickChange.bind(this, record, indexF, "address")} />
-                            </div> */}
-                            <Form.Item >
-                                {getFieldDecorator(`address${indexF}`,
-                                    {
-                                        // initialValue: text,
-                                        rules: [{ type: 'string', required: true, message: 'Please input address!' }],
-                                    })(<Input
-                                        // defaultValue={text}
-                                        onChange={this.handClickChange.bind(this, record, indexF, "address")} />)}
-                            </Form.Item>
-                        </div>
-                    )
-                }
-            },
-            {
-                title: '参数',
-                dataIndex: 'parameter',
-                key: 'parameter',
-                render: (text, record, index) => {
-                    const indexF = total + index;
-                    return (
-                        <div>
-                            {/* <div>
-                                <Input defaultValue={text} onChange={this.handClickChange.bind(this, record, indexF, "address")} />
-                            </div> */}
-                            <Form.Item >
-                                {getFieldDecorator(`parameter${indexF}`,
-                                    {
-                                        // initialValue: text,
-                                        rules: [{ type: 'string', required: false, message: 'Please input parameter!' }],
-                                    })(<Input
-                                        // defaultValue={text}
-                                        onChange={this.handClickChange.bind(this, record, indexF, "parameter")} />)}
-                            </Form.Item>
-                        </div>
+                        // <div>
+                        //     <Input defaultValue={text} onChange={this.handClickChange.bind(this, record, index, "address")} />
+                        // </div>
+                        <Form.Item >
+                            {getFieldDecorator(`address${indexF}`,
+                                {
+                                    initialValue: text,
+                                    rules: [{ type: 'string', required: true, message: 'Please input address!' }],
+                                })(<Input
+                                    // defaultValue={text}
+                                    onChange={this.handClickChange.bind(this, record, index, "address")} />)}
+                        </Form.Item>
                     )
                 }
             },
@@ -229,45 +184,24 @@ class CalendarCom extends React.Component {
 
 
     handClickAdd = () => {
-        // console.log(Math.round(Math.random() * 100000), "2222")
+        console.log(Math.round(Math.random() * 100000), "2222")
         const { dataSource } = this.state;
         const dataNew = [{ id: moment().format("YYYYDDMM HH:mm:ssss") + Math.round(Math.random() * 100000) + dataSource.length, name: "", age: "", address: "" }];
-        this.setState({ dataSource: dataSource.concat(dataNew) })
-        // setTimeout(() => {
-        //     this.setState({ dataSource: dataNew.concat(dataSource) })
-        // }, 10)
+
+        this.setState({ dataSource: dataNew.concat(dataSource) })
     }
 
     handClickChange = (record, index, type, e) => {
-        console.log(index,"index")
         const { dataSource } = this.state;
-        // const { setFieldsValue } = this.props.form;
-        // const data = _.map(dataSource, (item, indexD) => ({
-        //     ...item,
-        //     [type]: index == indexD ? e.target.value : item[type],
-        // }))
-        // console.log(data,"data")
-        // this.setState({ dataSource: data });
-        // setFieldsValue({ [`${type}${index}`]: e.target.value || "" })
-        // setTimeout(() => {
-        //     this.setState({ dataSource: data });
-        // }, 10)
 
-        // this.setState(()=>({
-        //     dataSource: data
-        // }))
+        const data = _.map(dataSource, (item, indexD) => ({
+            ...item,
+            [type]: index == indexD ? e.target.value : item[type],
+        }))
 
-
-        const data = _.map(dataSource, (item, indexT) => {
-            console.log(item,indexT,"dddddd")
-            return Object.assign(
-                {},
-                item,
-                index === indexT ? { [type]: e.target.value } : { [type]: item[type] }
-            )
-        })
-        this.setState({ dataSource: data });
-        console.log(data,"data")
+        setTimeout(() => {
+            this.setState({ dataSource: data });
+        }, 10)
 
     }
 
@@ -285,8 +219,8 @@ class CalendarCom extends React.Component {
         const data = _.map(dataString, (item, index) => ({
             name: item,
             id: moment().format("YYYYDDMM HH:mm:ssss") + index + Math.round(Math.random() * 100000),
-            age: " ",
-            address: " "
+            age: "",
+            address: ""
         }))
 
         this.setState({ dataSource: data })
@@ -345,7 +279,7 @@ class CalendarCom extends React.Component {
         var str2 = "abcdefgname='test'sddfhskshjsfsjdfps";
         var reg = /name='((\w|-|\s)+)/ig;
         // console.log(this.columns,"this.columns")
-        // console.log(dataSource, "dataSource")
+        console.log(dataSource, "dataSource")
         return (
             <div>
                 <div>
@@ -365,7 +299,6 @@ class CalendarCom extends React.Component {
                                         // rowKey="id"
                                         pagination={{ pageSize: 10, current: current }}
                                         onChange={this.handClickPage}
-                                        scroll={{x:2000}}
                                     />
                                 </div>
                             </div>
