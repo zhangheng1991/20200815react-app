@@ -3,6 +3,8 @@ import styles from './index.less';
 import Link from 'umi/link';
 import { Menu } from "antd";
 import { connect } from "dva";
+
+import TimeFormatter from "./../component/time/index";
 const { SubMenu } = Menu;
 const MenuData = [
   {
@@ -60,7 +62,7 @@ const MenuData = [
     "title": "流程图",
     "url": "/RelationChart",
   },
-  
+
 ]
 @connect(({ Index }) => ({ Index }))
 class BasicLayout extends React.Component {
@@ -71,7 +73,7 @@ class BasicLayout extends React.Component {
 
     const { dispatch } = this.props;
     dispatch({
-      type: "Index/homePage", payload: { username:"admin"}
+      type: "Index/homePage", payload: { username: "admin" }
     })
 
     const url = this.props.keyId && this.props.keyId ? this.props.keyId : "";
@@ -81,12 +83,12 @@ class BasicLayout extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.keyId &&  nextProps.keyId != this.state.keyId) {
+    if (nextProps.keyId && nextProps.keyId != this.state.keyId) {
       this.setState({ keyId: nextProps.keyId })
     }
   }
   // shouldComponentUpdate(nextStates) { // 应该使用这个方法，否则无论state是否有变化都将会导致组件重新渲染
-  
+
   // }
   handleClick = (e) => {
     this.setState({
@@ -94,11 +96,11 @@ class BasicLayout extends React.Component {
     });
   }
   render() {
-    const {Index}=this.props;
-    const {NavData}=Index;
-   
+    const { Index } = this.props;
+    const { NavData } = Index;
+
     const loop = data => data.map((item, index) => {
-      console.log(data,"data")
+      console.log(data, "data")
       if (item.child && item.child.length > 0) {
         return (
           <SubMenu key={item.url} title={<span title={item.title}>{item.title}</span>} >
@@ -121,17 +123,21 @@ class BasicLayout extends React.Component {
           <h1 className={styles.title}>Yay! Welcome to echarts!</h1>
         </div> */}
         <div className={styles.NormalBodyS}>
-          <Menu
-            onClick={this.handleClick}
-            selectedKeys={[this.state.keyId]}
-            mode="horizontal"
-          >
-            {/* {loop(NavData&&NavData.length>0?NavData:MenuData)} */}
-            {loop(MenuData)}
-          </Menu>
-          {this.props.children}
-        </div>
+          <div className={styles.NormalBodyEcharts}>
+            <Menu
+              onClick={this.handleClick}
+              selectedKeys={[this.state.keyId]}
+              mode="horizontal"
+            >
+              {/* {loop(NavData&&NavData.length>0?NavData:MenuData)} */}
+              {loop(MenuData)}
+            </Menu>
+            <TimeFormatter />
+          </div>
 
+        
+        </div>
+        <div>  {this.props.children}</div>
       </div>
     );
   }
