@@ -1,6 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect, DatePicker } from 'antd';
+import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect, DatePicker,Calendar,Badge  } from 'antd';
 import _ from "loadsh";
 import moment from "moment";
 import { router } from "react-router";
@@ -120,6 +120,14 @@ const colors = ["red", "yellow", "blue", "gold", "pink"];
 const dataO = [{ num: 111111111111111 }, { num: 22222222222222 }, { num: 22222223444444 },
 { num: 555555555555666666663 },
 { num: 123456789012345678901 }];
+
+moment.locale('zh-cn', {
+  week: {
+    dow: 0
+  },
+  weekdaysMin: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+});
+
 class CopyCom extends React.Component {
   state = {
     title: '',
@@ -481,14 +489,99 @@ class CopyCom extends React.Component {
     this.getInfo = ref;
   }
 
-  rowClassNameFunc=(obj)=>{
-       console.log(obj,"obj")
-       if(obj.type==="true"){
-          return "red";
-       }else{
-         return "yellow"
-       }
+  rowClassNameFunc = (obj) => {
+    console.log(obj, "obj")
+    if (obj.type === "true") {
+      return "red";
+    } else {
+      return "yellow"
+    }
   }
+
+  getListData=(value)=> {
+    console.log(value,"value",value.format("dddd"))
+    let listData;
+    switch (value.date()) {
+      case 8:
+        listData = [
+          { type: 'warning', content: 'This is warning event.' },
+          { type: 'success', content: 'This is usual event.' },
+        ];
+        break;
+      case 10:
+        listData = [
+          { type: 'warning', content: 'This is warning event.' },
+          { type: 'success', content: 'This is usual event.' },
+          { type: 'error', content: 'This is error event.' },
+        ];
+        break;
+      case 15:
+        listData = [
+          { type: 'warning', content: 'This is warning event' },
+          { type: 'success', content: 'This is very long usual event。。....' },
+          { type: 'error', content: 'This is error event 1.' },
+          { type: 'error', content: 'This is error event 2.' },
+          { type: 'error', content: 'This is error event 3.' },
+          { type: 'error', content: 'This is error event 4.' },
+        ];
+        break;
+      default:
+    }
+    return listData || [];
+  }
+
+  dateCellRender=(value)=> {
+    const listData = this.getListData(value);
+    return (
+      // <ul className="events">
+      //   {listData.map(item => (
+      //     <li key={item.content}>
+      //       <Badge status={item.type} text={item.content} />
+      //     </li>
+      //   ))}
+      // </ul>
+      <div  className="events">
+        <span>1</span>
+        <span>2</span>
+      </div>
+    );
+  }
+
+  getMonthData=(value)=> {
+    if (value.month() === 8) {
+      return 1394;
+    }
+  }
+
+  monthCellRender=(value)=> {
+    const num = this.getMonthData(value);
+    return num ? (
+      <div className="notes-month">
+        <section>{num}</section>
+        <span>Backlog number</span>
+      </div>
+    ) : null;
+  }
+
+
+  
+   formatNumber(str) {
+    let arr = [],
+      count = str.length
+  
+    while (count >= 3) {
+      arr.unshift(str.slice(count - 3, count))
+      count -= 3
+    }
+  
+    // 如果是不是3的倍数就另外追加到上去
+    str.length % 3 && arr.unshift(str.slice(0, str.length % 3))
+  
+    return arr.toString()
+  
+  }
+ 
+
 
   render() {
     const { textT, persent, dataL, dataU, time, dataG, dataK, parameter, flagParm } = this.state;
@@ -518,7 +611,7 @@ class CopyCom extends React.Component {
         name: `Edward King ${i}`,
         age: 32,
         address: `London, Park Lane no. ${i}`,
-        type:i % 2 == 0?"true":"false",
+        type: i % 2 == 0 ? "true" : "false",
       });
       dataSource.push({
         key: i,
@@ -526,7 +619,7 @@ class CopyCom extends React.Component {
         age: i,
         address: '西湖区湖底公园' + i + "号",
         persent: i,
-        type:i % 2 == 0?"true":"false",
+        type: i % 2 == 0 ? "true" : "false",
       })
 
       dataD.push({
@@ -588,7 +681,7 @@ class CopyCom extends React.Component {
     const dataT = {
       dataSource: dataSource,
       columns: columns,
-      rowClassName:this.rowClassNameFunc,
+      rowClassName: this.rowClassNameFunc,
     };
     const TouristTransactionVolume1 = {
       id: 'TouristTransactionVolumeY',
@@ -716,16 +809,21 @@ class CopyCom extends React.Component {
 
     console.log(router, "router")
 
-    const dataKKK=[{id:"1",name:"2222"},{id:"2",name:"2222"},{id:"3",name:"333"},]
+    const dataKKK = [{ id: "1", name: "2222" }, { id: "2", name: "2222" }, { id: "3", name: "333" },]
 
-    console.log(_.groupBy(dataKKK,"name"))
+    console.log(_.groupBy(dataKKK, "name"))
 
+
+    console.log(this.formatNumber("1234567890"),"Ffffffffff") // 1,234,567,890
+     
 
     return (
       <div>
         <AddFormItem clientFormRef={this.clientFormRef} handleSubmitP={this.handleSubmitP}
           oNref={this.oNref} />
-
+<div>
+  {this.formatNumber("1234567890")}
+</div>
         <div className={`${style['copyBox']}`} id="content">
           <RangePicker
             disabledDate={this.disabledDate}
@@ -793,6 +891,7 @@ class CopyCom extends React.Component {
               })
             }
           </div>
+          <Calendar  dateCellRender={this.dateCellRender} locale={{shortWeekDays:["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]} } mode={"month"} />
           <Table {...dataV} onChange={this.handChange} />
           <Table {...dataT} onChange={this.handChange} />
           <TouristTransactionVolume {...TouristTransactionVolume1}

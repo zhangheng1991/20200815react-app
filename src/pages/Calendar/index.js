@@ -95,9 +95,9 @@ class CalendarCom extends React.Component {
                 title: '序号',
                 dataIndex: 'code',
                 key: 'code',
-                render:(text,record,index)=>{
-                    const indexF = total + index+1;
-                    return(
+                render: (text, record, index) => {
+                    const indexF = total + index + 1;
+                    return (
                         <div>{indexF}</div>
                     )
                 }
@@ -106,7 +106,7 @@ class CalendarCom extends React.Component {
                 title: '姓名',
                 dataIndex: 'name',
                 key: 'name',
-                with:"20%",
+                with: "20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     // console.log(text, "text");
@@ -135,7 +135,7 @@ class CalendarCom extends React.Component {
                 title: '年龄',
                 dataIndex: 'age',
                 key: 'age',
-                with:"20%",
+                with: "20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
@@ -160,7 +160,7 @@ class CalendarCom extends React.Component {
                 title: '住址',
                 dataIndex: 'address',
                 key: 'address',
-                with:"20%",
+                with: "20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
@@ -185,7 +185,7 @@ class CalendarCom extends React.Component {
                 title: '参数',
                 dataIndex: 'parameter',
                 key: 'parameter',
-                with:"20%",
+                with: "20%",
                 render: (text, record, index) => {
                     const indexF = total + index;
                     return (
@@ -210,7 +210,7 @@ class CalendarCom extends React.Component {
                 title: "操作",
                 dataIndex: "operate",
                 key: "operate",
-                with:150,
+                with: 150,
                 render: (text, record, index) => {
                     return (
                         <div>
@@ -244,7 +244,7 @@ class CalendarCom extends React.Component {
     }
 
     handClickChange = (record, index, type, e) => {
-        console.log(index,"index")
+        console.log(index, "index")
         const { dataSource } = this.state;
         // const { setFieldsValue } = this.props.form;
         // const data = _.map(dataSource, (item, indexD) => ({
@@ -264,7 +264,7 @@ class CalendarCom extends React.Component {
 
 
         const data = _.map(dataSource, (item, indexT) => {
-            console.log(item,indexT,"dddddd")
+            console.log(item, indexT, "dddddd")
             return Object.assign(
                 {},
                 item,
@@ -272,7 +272,7 @@ class CalendarCom extends React.Component {
             )
         })
         this.setState({ dataSource: data });
-        console.log(data,"data")
+        console.log(data, "data")
 
     }
 
@@ -351,8 +351,47 @@ class CalendarCom extends React.Component {
         var reg = /name='((\w|-|\s)+)/ig;
         // console.log(this.columns,"this.columns")
         // console.log(dataSource, "dataSource")
+        const arr = ["a", "b"];
+        console.log(JSON.stringify(arr), "arr");
+        const dataList = [
+
+            { link: "https://www.baidu.com/", name: "百度", target: "blank" ,sort:1},
+            { link: "http://www.bookbenx.com/", name: "书本网", target: "blank",sort:9 },
+            { link: "https://3x.ant.design/docs/react/introduce-cn", name: "antdesin", target: "_blank",sort:10 },
+            { link: "https://www.tianqi.com/", name: "天气预报", target: "_blank" ,sort:4},
+            { link: "https://bizhi.cheetahfun.com/ranking/new_", name: "元气壁纸", target: "_blank" ,sort:5},
+            { link: "https://www.cgmep.com/", name: "晨光影院", target: "_blank" ,sort:2},
+            { link: "https://www.12306.cn/index/", name: "12306", target: "_blank" ,sort:7},
+            { link: "https://www.lodashjs.com/", name: "loadsh", target: "_blank" ,sort:3},
+            { link: "https://create-react-app.bootcss.com/docs/getting-started", name: "create-react-app", target: "_blank" ,sort:12},
+            { link: "https://www.reactnative.cn/", name: "reactnative", target: "_blank" ,sort:11},
+            { link: "https://butterfly-dag.gitee.io/butterfly-dag/home", name: "butterfly-dag（流程图）", target: "_blank" ,sort:6},
+            { link: "https://github.com/github/", name: "github", target: "_blank" ,sort:13},
+            { link: "http://www.affect3d.com/", name: "affect3d", target: "_blank" ,sort:"333"},
+           
+           
+        ];
+
+        console.log(dataList,_.sortBy(dataList,["sort"]));
+        const arrayList=_.sortBy(dataList,["sort"]);
+
         return (
             <div>
+                <div className={style.webLink}>
+                    {
+                        dataList && dataList.map((item, index) => {
+                            return (
+                                <div className={style.linkBox}>
+                                    <a href={item.link} target="_blank" title={item.name}>{item.name}</a>
+                                </div>
+                            )
+                        })
+                    }
+
+                    {/* <a href="http://www.bookbenx.com/" target="blank">小说</a>
+                    <a href="https://3x.ant.design/docs/react/introduce-cn" target="blank">antdesin</a> */}
+
+                </div>
                 <div>
                     <div className={style.sqlBox}>
                         <div className={style.sqlBoxContent}>
@@ -370,7 +409,7 @@ class CalendarCom extends React.Component {
                                         // rowKey="id"
                                         pagination={{ pageSize: 10, current: current }}
                                         onChange={this.handClickPage}
-                                        // scroll={{x:1200}}
+                                    // scroll={{x:1200}}
                                     />
                                 </div>
                             </div>
@@ -390,6 +429,7 @@ class CalendarCom extends React.Component {
                         })
                     }
                 </div>
+
                 <div className={style.Calendar}>
                     <Alert
                         message={`You selected date: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`}

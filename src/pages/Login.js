@@ -2639,8 +2639,8 @@ class Login extends React.Component {
           {/* <Graph /> */}
 
 
-          {/* <ExampleApp />
-          <EditApp /> */}
+          <ExampleApp />
+          <EditApp />
           {/* <XmlFormaultD /> */}
           {/* <EditComponent /> */}
           {/* <JsonFormault /> */}

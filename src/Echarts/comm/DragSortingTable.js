@@ -12,7 +12,7 @@ import style from "./style.less";
 
 const dataD=[];
 
-for(let i=1;i<101;i++){
+for(let i=1;i<10001;i++){
 
     dataD.push({
         key:i,
@@ -197,6 +197,7 @@ class DragSortingTable extends React.Component {
                             index,
                             moveRow: this.moveRow,
                         })}
+                        // pagination={false}
                     />
                 </DndProvider>
             </div>
