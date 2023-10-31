@@ -10,6 +10,8 @@ import { Table, Input, Button, Popconfirm, Form, Drawer } from 'antd';
 import moment from 'moment';
 import EditableCell from './TestChildren';
 import AppIndex from "./start/Index";
+import PublicTable  from './public/PublicTable';
+import TestTable from './conmponent/TestTable';
 import { connect } from 'dva';
 
 const data = [];
@@ -582,7 +584,13 @@ class Tests extends React.Component {
         } */}
 
         {/* key={moment().format('YYYY-MM-DD-HH:MM:ssss')}  */}
-        <div >
+        <div>
+          <TestTable />
+        </div>
+        <div>
+          {/* <PublicTable  /> */}
+        </div>
+        <div  style={{display:"none"}}>
           {/* style={{ position: "absolute", width: "100%",top:"0",height:"100%" }} */}
           <Table columns={columnsObj} dataSource={data} bordered />
           <Table

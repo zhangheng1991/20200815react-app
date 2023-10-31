@@ -23,7 +23,26 @@ class DynamicFieldSet extends React.Component {
         const { oNref } = this.props;
         if (oNref) {
             this.props.oNref(this)
-        }
+        };
+        document.onclick = function(event) {
+            console.log(event,"event")
+            console.log(document.getElementsByClassName("ant-input"),"2222");
+            const data=document.getElementsByClassName("ant-input");
+            console.log(data,"data");
+            // data.map((item)=>{
+            //     console.log(item,"item")
+            // })
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode == 27) {
+                alert("按 Esc")
+            }
+            if (e && e.keyCode == 32) {
+                alert("按空格")
+            }
+            if (e && e.keyCode == 13) {
+                alert("按回车")
+            }
+        };
     }
     remove = k => {
         const { form } = this.props;
@@ -56,6 +75,9 @@ class DynamicFieldSet extends React.Component {
     };
 
     handleSubmit = e => {
+        console.log(document.getElementsByClassName("dataSheet"),"2222");
+        console.log(document.getElementById("dataSheet"),"3333");
+
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
@@ -263,7 +285,11 @@ class DynamicFieldSet extends React.Component {
             dataIndex:"index",
             key:"index"
         },
-    ]
+    ];
+
+    handCliclk=()=>{
+        console.log("Ddddd")
+    }
 
     render() {
         const { clientFormRef } = this.props;
@@ -472,8 +498,7 @@ class DynamicFieldSet extends React.Component {
             // },
         };
         
-
-
+      
         return (
             <div style={{ width: "100%", margin: "0 auto" }}>
                 <Upload {...propsT}>
@@ -481,7 +506,7 @@ class DynamicFieldSet extends React.Component {
                         <Icon type="upload" /> Click to Upload
                     </Button>
                 </Upload>
-                <div className={`${style.dataSheet}`}>
+                <div className={`${style.dataSheet}`} id="dataSheet" onKeyDown={this.handCliclk}>
                     <ReactData
                         data={this.state.grid}
                         valueRenderer={this.valueRenderer}

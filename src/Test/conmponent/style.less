@@ -1,0 +1,44 @@
+.headerBoxButton{
+    text-align: right;
+    margin: 10px 0;
+}
+.TestTable{
+    :global{
+        input:hover{
+            // cursor: pointer;
+        }
+        .ant-table-tbody > tr > .SecondaryIndexTd{
+              padding: 0px 0px;
+        }
+        .ant-table-bordered .ant-table-thead > tr > th{
+            width: 12.5%;
+        }
+    }
+}
+.SecondaryIndexBox,.ThitryLevel,.ThitryLevelIndex{
+    border-bottom:1px solid #e8e8e8;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+.SecondaryIndexBox:last-child,.ThitryLevel:last-child{
+    border: none;
+}
+.SecondaryIndex,.ThitryLevel{
+   margin: 10px 0px;
+   width: 100%;
+}
+.ThitryLevel{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.ThitryLevelIndex{
+    width: 100%;
+    div{
+        width: 100%;
+        margin: 10px 0px;
+    }
+}

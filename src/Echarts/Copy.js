@@ -1,6 +1,6 @@
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect, DatePicker,Calendar,Badge  } from 'antd';
+import { Table, InputNumber, Progress, message, Modal, Button, Space, TreeSelect, DatePicker, Calendar, Badge } from 'antd';
 import _ from "loadsh";
 import moment from "moment";
 import { router } from "react-router";
@@ -498,8 +498,8 @@ class CopyCom extends React.Component {
     }
   }
 
-  getListData=(value)=> {
-    console.log(value,"value",value.format("dddd"))
+  getListData = (value) => {
+    console.log(value, "value", value.format("dddd"))
     let listData;
     switch (value.date()) {
       case 8:
@@ -530,7 +530,7 @@ class CopyCom extends React.Component {
     return listData || [];
   }
 
-  dateCellRender=(value)=> {
+  dateCellRender = (value) => {
     const listData = this.getListData(value);
     return (
       // <ul className="events">
@@ -540,20 +540,20 @@ class CopyCom extends React.Component {
       //     </li>
       //   ))}
       // </ul>
-      <div  className="events">
+      <div className="events">
         <span>1</span>
         <span>2</span>
       </div>
     );
   }
 
-  getMonthData=(value)=> {
+  getMonthData = (value) => {
     if (value.month() === 8) {
       return 1394;
     }
   }
 
-  monthCellRender=(value)=> {
+  monthCellRender = (value) => {
     const num = this.getMonthData(value);
     return num ? (
       <div className="notes-month">
@@ -564,23 +564,23 @@ class CopyCom extends React.Component {
   }
 
 
-  
-   formatNumber(str) {
+
+  formatNumber(str) {
     let arr = [],
       count = str.length
-  
+
     while (count >= 3) {
       arr.unshift(str.slice(count - 3, count))
       count -= 3
     }
-  
+
     // 如果是不是3的倍数就另外追加到上去
     str.length % 3 && arr.unshift(str.slice(0, str.length % 3))
-  
+
     return arr.toString()
-  
+
   }
- 
+
 
 
   render() {
@@ -814,16 +814,16 @@ class CopyCom extends React.Component {
     console.log(_.groupBy(dataKKK, "name"))
 
 
-    console.log(this.formatNumber("1234567890"),"Ffffffffff") // 1,234,567,890
-     
+    console.log(this.formatNumber("1234567890"), "Ffffffffff") // 1,234,567,890
+
 
     return (
       <div>
         <AddFormItem clientFormRef={this.clientFormRef} handleSubmitP={this.handleSubmitP}
           oNref={this.oNref} />
-<div>
-  {this.formatNumber("1234567890")}
-</div>
+        <div>
+          {this.formatNumber("1234567890")}
+        </div>
         <div className={`${style['copyBox']}`} id="content">
           <RangePicker
             disabledDate={this.disabledDate}
@@ -891,7 +891,7 @@ class CopyCom extends React.Component {
               })
             }
           </div>
-          <Calendar  dateCellRender={this.dateCellRender} locale={{shortWeekDays:["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]} } mode={"month"} />
+          <Calendar dateCellRender={this.dateCellRender} locale={{ shortWeekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] }} mode={"month"} />
           <Table {...dataV} onChange={this.handChange} />
           <Table {...dataT} onChange={this.handChange} />
           <TouristTransactionVolume {...TouristTransactionVolume1}
