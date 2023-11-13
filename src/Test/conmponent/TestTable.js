@@ -1,6 +1,10 @@
 import React from "react";
-import { Table, Select, Input, Tooltip, Popover, Button } from "antd";
+import { Table, Select, Input, Tooltip, Popover, Button, Icon,Upload,message } from "antd";
+
 import _ from "loadsh";
+
+import FormModal from "./FormModal";
+
 import style from "./style.less";
 
 
@@ -24,6 +28,8 @@ class TestTable extends React.Component {
 
     state = {
         dataSource: [],
+        settingsData: {},
+        visible: false,
     }
 
 
@@ -54,12 +60,27 @@ class TestTable extends React.Component {
     };
 
     operationFunctionThitryLevel = (obj, index, indexT, indexD) => {
+        const data = {
+            ...obj, index, indexT, indexD
+        }
         const content = <div>
             <div>
-                <a onClick={this.handClickDeleteThitryLevel.bind(this, obj, index, indexT, indexD)}>删除</a>
+                <div>
+                    <a onClick={this.handClickDeleteThitryLevel.bind(this, obj, index, indexT, indexD)}>删除</a>
+                </div>
+
+                <div>
+                    <Icon type="setting" onClick={this.handClickSetting.bind(this, data)} />
+                </div>
             </div>
         </div>;
         return content;
+    }
+
+    //设置
+
+    handClickSetting = (data) => {
+        this.setState({ settingsData: data, visible: true });
     }
 
     //三级指标新增
@@ -217,11 +238,11 @@ class TestTable extends React.Component {
                                 _.get(record, "SecondaryIndex", []).map((item, indexT) => {
                                     return (
                                         <div className={_.get(record, "SecondaryIndex", []).length > 1 && style.ThitryLevelBox}>
-                                            <div className={style.ThitryLevel} style={{ height: this.functionHeight(_.get(record, "SecondaryIndex", [])),  }}>
+                                            <div className={style.ThitryLevel} style={{ height: this.functionHeight(_.get(record, "SecondaryIndex", [])), }}>
                                                 {
                                                     _.get(item, "ThitryLevel", []).map((itemD, indexD) => {
                                                         return (
-                                                            <div className={_.get(record, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%" }}>
+                                                            <div className={_.get(item, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%", height: "42px", lineHeight: "42px" }}>
                                                                 <div >
                                                                     <Popover placement="right" content={this.operationFunctionThitryLevel(record, index, indexT, indexD)} trigger="hover">
                                                                         <Input defaultValue={itemD.ThitryLevel} onChange={this.handChangeThitryLevel.bind(this, record, "ThitryLevel", index, indexT, indexD)} />
@@ -253,11 +274,11 @@ class TestTable extends React.Component {
                                 _.get(record, "SecondaryIndex", []).map((item, indexT) => {
                                     return (
                                         <div className={_.get(record, "SecondaryIndex", []).length > 1 && style.ThitryLevelBox}>
-                                            <div className={style.ThitryLevel} style={{ height: this.functionHeight(_.get(record, "SecondaryIndex", [])),  }}>
+                                            <div className={style.ThitryLevel} style={{ height: this.functionHeight(_.get(record, "SecondaryIndex", [])), }}>
                                                 {
                                                     _.get(item, "ThitryLevel", []).map((itemD, indexD) => {
                                                         return (
-                                                            <div className={_.get(record, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%" }}>
+                                                            <div className={_.get(item, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%", height: "42px", lineHeight: "42px" }}>
                                                                 <div >
                                                                     <Input defaultValue={itemD.ThreeLevelEeight} onChange={this.handChangeThitryLevel.bind(this, record, "ThreeLevelEeight", index, indexT, indexD)} />
 
@@ -291,7 +312,7 @@ class TestTable extends React.Component {
                                                 {
                                                     _.get(item, "ThitryLevel", []).map((itemD, indexD) => {
                                                         return (
-                                                            <div className={_.get(record, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%" }}>
+                                                            <div className={_.get(item, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%", height: "42px", lineHeight: "42px" }}>
                                                                 <div >
                                                                     <Input defaultValue={itemD.TargetValue} onChange={this.handChangeThitryLevel.bind(this, record, "TargetValue", index, indexT, indexD)} />
 
@@ -325,10 +346,10 @@ class TestTable extends React.Component {
                                                 {
                                                     _.get(item, "ThitryLevel", []).map((itemD, indexD) => {
                                                         return (
-                                                            <div className={_.get(record, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%" }}>
+                                                            <div className={_.get(item, "ThitryLevel", []).length > 1 && style.ThitryLevelIndex} style={{ width: "100%", height: "42px", lineHeight: "42px" }}>
                                                                 <div >
                                                                     {/* <Input defaultValue={itemD.EvaluationMethod} onChange={this.handChangeThitryLevel.bind(this, record, "EvaluationMethod", index, indexT, indexD)} /> */}
-                                                                    <Select defaultValue={itemD.EvaluationMethod} onChange={this.handChangeSelectThitryLevel.bind(this, record, "EvaluationMethod", index, indexT, indexD)} style={{width:"100%"}}>
+                                                                    <Select defaultValue={itemD.EvaluationMethod} onChange={this.handChangeSelectThitryLevel.bind(this, record, "EvaluationMethod", index, indexT, indexD)} style={{ width: "100%" }}>
                                                                         <Option value="jack">Jack</Option>
                                                                         <Option value="lucy">Lucy</Option>
                                                                         <Option value="Yiminghe">yiminghe</Option>
@@ -401,7 +422,7 @@ class TestTable extends React.Component {
 
     };
 
-    handChangeSelectThitryLevel= (obj, type, index, indexT, indexK, value) => {
+    handChangeSelectThitryLevel = (obj, type, index, indexT, indexK, value) => {
         console.log(obj, type, index, indexT, indexK, value, "obj,type,index, indexT, indexD,e")
 
         const { dataSource } = this.state;
@@ -429,12 +450,12 @@ class TestTable extends React.Component {
 
     handClickDeleteThitryLevel = (obj, index, indexT, indexK) => {
         const { dataSource } = this.state;
-        console.log(indexK,"indexK")
+        console.log(indexK, "indexK")
         const data = _.map(dataSource, (item, indexD) => ({
             ...item,
-            key:Math.random(),
+            key: Math.random(),
             SecondaryIndex: index == indexD ? _.map(item.SecondaryIndex, (itemG, indexG) => {
-                console.log(_.filter(itemG.ThitryLevel, (itemH, indexH) => indexH != indexK),"111111111111111111111111111");
+                console.log(_.filter(itemG.ThitryLevel, (itemH, indexH) => indexH != indexK), "111111111111111111111111111");
                 return ({
                     ...itemG,
                     ThitryLevel: indexG == indexT ? _.map(_.filter(itemG.ThitryLevel, (itemH, indexH) => indexH != indexK), itemH => ({
@@ -445,7 +466,7 @@ class TestTable extends React.Component {
         }));
         console.log(data, "data45566")
         // data[0].key = Math.random();
-        this.setState(()=>({
+        this.setState(() => ({
             dataSource: data
         }))
         // setTimeout(()=>{
@@ -484,15 +505,103 @@ class TestTable extends React.Component {
         this.setState({ dataSource: data });
     }
 
+
+    handleOk = () => {
+        const { settingsData } = this.state;
+        // console.log(this.clientFormRef,"clientFormRef");
+        console.log(this.getInfoRef, "this.getInfoRef")
+        // console.log(this.clientFormRef.current.getFieldsValue())
+
+        this.getInfoRef.props.form.validateFields((err, values) => {
+            console.log(err, values, "err")
+            console.log(!err, "dddd")
+            if (!err) {
+                console.log('Received values of form: ', values);
+                console.log(values, "values");
+                console.log(settingsData, "settingsData")
+                this.setState({ visible: false })
+            }
+
+        });
+
+    }
+
+    handleCancel = () => {
+        this.setState({ visible: false })
+    }
+
+    clientFormRef = React.createRef();
+
+    getInfo = (ref) => {
+        if (ref) {
+            this.getInfoRef = ref;
+        }
+    }
+
+    numConvert = (num) => {
+        if (num >= 10000) {
+            num = Math.round(num / 1000) / 10 + 'W';
+        } else if (num >= 1000) {
+            num = Math.round(num / 100) / 10 + 'K';
+        }
+        return num;
+    }
+
     render() {
 
-        const { dataSource } = this.state;
-        console.log(dataSource, "dataSource")
+        const { dataSource, visible } = this.state;
+        console.log(dataSource, "dataSource");
+        const text = <span>Title</span>;
+        const content = (
+            <div>
+                <p>Content</p>
+                <p>Content</p>
+            </div>
+        );
+
+        const num = this.numConvert(30003);
+        console.log(num, "num")
+
+        const props = {
+            name: 'file',
+            action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+            headers: {
+                authorization: 'authorization-text',
+            },
+            // accept:".csv",
+            onChange(info) {
+                if (info.file.status !== 'uploading') {
+                    console.log(info.file, info.fileList);
+                }
+                if (info.file.status === 'done') {
+                    message.success(`${info.file.name} file uploaded successfully`);
+                } else if (info.file.status === 'error') {
+                    message.error(`${info.file.name} file upload failed.`);
+                }
+            },
+        };
+
+        const daFF=_.map(dataSource,item=>{
+           return {
+               
+           }
+        })
+
+
 
         return (
             <div className={style.TestTable}>
+                <Upload {...props}>
+                    <Button>
+                        <Icon type="upload" /> Click to Upload
+                    </Button>
+                </Upload>
                 <div className={style.headerBoxButton}>
-                    <Button type="primary" onClick={this.handClickAddFirst}>新增</Button>
+
+                    <Popover placement="top" overlayClassName={style.ddddd}>
+                        <Button type="primary" onClick={this.handClickAddFirst}>新增</Button>
+                    </Popover>
+
                 </div>
                 <div>
                     <Table
@@ -504,6 +613,8 @@ class TestTable extends React.Component {
                         bordered
                     />
                 </div>
+                <FormModal visible={visible} handleOk={this.handleOk} handleCancel={this.handleCancel} clientFormRef={this.clientFormRef}
+                    getInfo={this.getInfo} />
             </div>
         )
     }
